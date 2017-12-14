@@ -1,0 +1,12 @@
+Oficial Pages
+
+ **** Spring JPA data ****
+
+https://docs.spring.io/spring-data/jpa/docs/current/reference/html/
+
+
+**** templete thymelef ****
+http://www.thymeleaf.org/documentation.html
+
+**** JPA entity relations ***
+https://www.tutorialspoint.com/jpa/jpa_entity_relationships.htm

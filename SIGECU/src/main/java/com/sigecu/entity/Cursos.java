@@ -3,6 +3,7 @@ package com.sigecu.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,7 +11,7 @@ import javax.persistence.Table;
 @Table(name="cursos")
 public class Cursos {
 	@Id
-	@GeneratedValue
+	@GeneratedValue (strategy = GenerationType.AUTO)
 	@Column(name="idCurso")
 	private int idCurso;
 	@Column(name="cNombre", unique=true, nullable=false, length=45)
