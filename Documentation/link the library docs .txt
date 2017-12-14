@@ -10,3 +10,8 @@ http://www.thymeleaf.org/documentation.html
 
 **** JPA entity relations ***
 https://www.tutorialspoint.com/jpa/jpa_entity_relationships.htm
+
+
+
+*****EXTRA manejo de branch ***********
+https://www.genbetadev.com/herramientas/manejo-de-ramas-de-desarrollo-con-git
