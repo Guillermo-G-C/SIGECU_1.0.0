@@ -32,6 +32,9 @@ public class Evaluaciones {
 	@ManyToOne
 	private Cursos cursos;
 	
+	public Evaluaciones() {
+		
+	}
 	public Evaluaciones(int idEvaluacion, String eNombre, Time eTiempo, String ePorsentaje)  {
 		this.idEvaluacion=idEvaluacion;
 		this.eNombre=eNombre;
