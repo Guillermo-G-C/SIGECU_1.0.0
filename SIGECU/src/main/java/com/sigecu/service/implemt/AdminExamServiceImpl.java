@@ -15,6 +15,7 @@ import com.sigecu.model.CursoModel;
 import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.repository.CursosRepository;
 import com.sigecu.repository.EvaluacionRepository;
+import com.sigecu.repository.QueryEvaluacion;
 import com.sigecu.service.AdminExamService;
 
 
@@ -38,14 +39,18 @@ public class AdminExamServiceImpl implements AdminExamService {
 	@Autowired
 	@Qualifier("cursosConvertir")
 	private CursosConverter cursosConverter;
+	
+	@Autowired
+	@Qualifier("queryEvaluacion")
+	private QueryEvaluacion queryEvaluacion;
 
 	@Override
-	public List<EvaluacionesModel> listAllEvaluaciones() {
+	public List<EvaluacionesModel> listAllEvaluaciones(int idCurso) {
 		// TODO Auto-generated method stub
 		List<Evaluaciones> evaluaciones = evaluacionesRepository.findAll();
 		List<EvaluacionesModel> evaluacionModel = new ArrayList<EvaluacionesModel>();;
 		for(Evaluaciones evaluacion: evaluaciones) {
-			//evaluacionModel.add(evaluacionConverter.convertEvaluacionModel2Evaluacion(evaluacion));
+			evaluacionModel.add(evaluacionConverter.convertEvaluacion2EvaluacionModel(evaluacion));
 		}
 		return evaluacionModel;
 	}

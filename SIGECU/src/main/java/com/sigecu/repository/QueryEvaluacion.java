@@ -3,6 +3,8 @@
  */
 package com.sigecu.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.data.jpa.repository.Query;
@@ -20,8 +22,8 @@ import com.sigecu.entity.QEvaluaciones;
  * @Fecha 16/12/2017
  *
  */
-@Repository("")
-public class queryEvaluacion {
+@Repository("queryEvaluacion")
+public class QueryEvaluacion {
 	QEvaluaciones qEval = QEvaluaciones.evaluaciones;
 	QCursos qCursos = QCursos.cursos;
 	//persistencia de la app
@@ -32,9 +34,11 @@ public class queryEvaluacion {
 		
 	}
 	
-	public Evaluaciones find() {
-		JPAQuery<Evaluaciones> query = new JPAQuery<>(em);
-		Evaluaciones eval = query.select(qEval).from(qEval).where(qEval.idEvaluacion.eq(1)).fetchOne();
+	public List<Evaluaciones> find(int idCurs) {
+		JPAQuery query = new JPAQuery(em);
+		List<Evaluaciones> eval =   (List<Evaluaciones>) query.from(qEval)
+				.where(qEval.cursos.idCurso.eq(idCurs));
+				//.uniqueResult(qEval);
 		return eval;
 	}
 }

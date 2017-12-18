@@ -32,7 +32,7 @@ public class AdminExamController {
 	@GetMapping("/listaExamen")
 	public ModelAndView showExamenes(@RequestParam(name="idCurso", required=false) int idCurso, Model model) {
 		ModelAndView mav = new ModelAndView(ViewConstant.LISTAR_EXAMEN);
-		mav.addObject("listaExamen", adminExamService.listAllEvaluaciones());
+		mav.addObject("listaExamen", adminExamService.listAllEvaluaciones(idCurso));
 		return mav;
 	}
 	@GetMapping("/listaCursos")
