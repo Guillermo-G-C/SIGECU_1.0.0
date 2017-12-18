@@ -33,5 +33,12 @@ public class AdminExamController {
 		//mav.addObject("alumnos",alumnoService.listAllAlumnos());
 		return mav;
 	}
-
+	
+	@GetMapping("/certificado")
+	public ModelAndView certificado() {
+		ModelAndView mav = new ModelAndView("certificado");
+		//mav.addObject("alumnos",alumnoService.listAllAlumnos());
+		return mav;
+	}
+	
 }
