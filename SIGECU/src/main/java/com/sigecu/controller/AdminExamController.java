@@ -42,7 +42,6 @@ public class AdminExamController {
 		
 		return mav;
 	}
-<<<<<<< HEAD
 
 	@GetMapping("/nuevoExamen")
 	public ModelAndView nuevoExamen() {
@@ -65,7 +64,6 @@ public class AdminExamController {
 	// return "redirect:/alumnos/showalumnos";
 	// }
 
-=======
 	
 	@GetMapping("/certificado")
 	public ModelAndView certificado() {
@@ -74,5 +72,4 @@ public class AdminExamController {
 		return mav;
 	}
 	
->>>>>>> dfe906a5b19cd4b2d41748dc0dc20454488e5dca
 }
