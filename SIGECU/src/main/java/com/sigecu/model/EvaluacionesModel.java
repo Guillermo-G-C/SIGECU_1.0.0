@@ -18,12 +18,30 @@ public class EvaluacionesModel {
 	 */
 	private int idevaluacion;
 	private String eNombre;
+	private int idCurso;
 	private Time eTiempo;
 	private String ePorcentaje;
 	
 	public EvaluacionesModel() {
 		// TODO Auto-generated constructor stub
 	}
+	
+
+	/**
+	 * @return the idCurso
+	 */
+	public int getIdCurso() {
+		return idCurso;
+	}
+
+
+	/**
+	 * @param idCurso the idCurso to set
+	 */
+	public void setIdCurso(int idCurso) {
+		this.idCurso = idCurso;
+	}
+
 
 	/**
 	 * @return the idevaluacion

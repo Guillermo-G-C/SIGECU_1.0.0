@@ -2,34 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 
-    <title>Lisa de Examenes</title>
-    
- 
-    <link href="#" th:href="@{/fonts/material-design-icons-master/material-icons.css}"/>
-    <link href="#" th:href="@{/plugins/bootstrap/css/bootstrap.css}" rel="styleseet"/>
-    <link href="#" th:href="@{/plugins/node-waves/waves.css}" rel="stylesheet" />
-	<link href="#" th:href="@{/plugins/bootstrap/css/bootstrap.css}" rel="stylesheet"/>
-    <link href="#" th:href="@{/css/style.css}" rel="stylesheet" />
-    <link href="#" th:href="@{/css/themes/all-themes.css}" rel="stylesheet"/>
-    <link  href="#" th:href="@{/plugins/animate-css/animate.css}" rel="stylesheet" />
-    <script src="@{//plugins/jquery/jquery.min.js}"></script>
-       <!-- Bootstrap Core Js -->
-    <script src="@{//plugins/bootstrap/js/bootstrap.js}"></script>
+<title>Lisa de Examenes</title>
 
-    <!-- Select Plugin Js -->
-    <script src="@{//plugins/bootstrap-select/js/bootstrap-select.js}"></script>
 
-    <!-- Slimscroll Plugin Js -->
-    <script src="@{//plugins/jquery-slimscroll/jquery.slimscroll.js}"></script>
+<link href="#"
+	th:href="@{/fonts/material-design-icons-master/material-icons.css}" />
+<link href="#" th:href="@{/plugins/bootstrap/css/bootstrap.css}"
+	rel="styleseet" />
+<link href="#" th:href="@{/plugins/node-waves/waves.css}"
+	rel="stylesheet" />
+<link href="#" th:href="@{/plugins/bootstrap/css/bootstrap.css}"
+	rel="stylesheet" />
+<link href="#" th:href="@{/css/style.css}" rel="stylesheet" />
+<link href="#" th:href="@{/css/themes/all-themes.css}" rel="stylesheet" />
+<link href="#" th:href="@{/plugins/animate-css/animate.css}"
+	rel="stylesheet" />
+<script src="@{//plugins/jquery/jquery.min.js}"></script>
+<!-- Bootstrap Core Js -->
+<script src="@{//plugins/bootstrap/js/bootstrap.js}"></script>
 
-    <!-- Waves Effect Plugin Js -->
-    <script src="@{//plugins/node-waves/waves.js}"></script>
+<!-- Select Plugin Js -->
+<script src="@{//plugins/bootstrap-select/js/bootstrap-select.js}"></script>
 
-    <!-- Custom Js -->
-    <script src="@{//js/admin.js}"></script>
+<!-- Slimscroll Plugin Js -->
+<script src="@{//plugins/jquery-slimscroll/jquery.slimscroll.js}"></script>
 
-    <!-- Demo Js -->
-    <script src="@{//js/demo.js}"></script>
+<!-- Waves Effect Plugin Js -->
+<script src="@{//plugins/node-waves/waves.js}"></script>
+
+<!-- Custom Js -->
+<script src="@{//js/admin.js}"></script>
+
+<!-- Demo Js -->
+<script src="@{//js/demo.js}"></script>
 </head>
 
 
@@ -46,113 +51,119 @@
 										<label for="title">Titulo</label>
 										<div class="form-group">
 											<div class="form-line">
-												<input type="text" id="titulo" class="form-control" placeholder="Titulo del Examen"/>
+												<input type="text" id="titulo" class="form-control"
+													placeholder="Titulo del Examen" />
 											</div>
 										</div>
 									</div>
 									<div class="col-md-3">
 										<b>Tiempo</b>
 										<div class="input-group">
-											<span class="form-line">
-												<i class="material-icons">access_time</i>
+											<span class="form-line"> <i class="material-icons">access_time</i>
 											</span>
 											<div class="form-line">
-												<input type="text" class="form-control time24" placeholder="Ex: 23:59"/>
+												<input type="text" class="form-control time24"
+													placeholder="Ex: 23:59" />
 											</div>
 										</div>
-									</div>	
-								</div>						
+									</div>
 								</div>
-								
-								<div class="body">
-									<!-- preguntas de examen  -->
-									<div class="card">
-										<div class="header">
-											<div class="row clearfix">
-												<div class="col-md-6">
-													<label for="title">Pregunta</label>
-													<div class="form-group">
-														<div class="form-line">
-															<input type="text" id="pregunta" class="form-control" placeholder="Titulo del Examen"/>
-														</div>
-													</div>
-												</div>
-												<div class="col-md-3">
-													<label>Puntos</label>
-													<div class="input-group spinner" data-triger="spinnes">
-														<div class="form-line">
-															<input type="text" class="form-control text-center" value="1" data-rule="quantity"/>
-														</div>
-														<span class="input-group-addon">
-															<a href="javascript:;" class="spin-up" data-spin="up">
-																<i class="glyphicon glyphicon-chevron-up"></i>
-															</a>
-															<a href="javascript:;" class="spin-down" data-spin="down">
-																<i class="glyphicon glyphicon-chevron-down"></i>
-															</a>
-														</span>
-													</div>
-													
-												</div>
-												<div class="col-md-3">
-													<label>Tipo</label>
-													<div class="form-group">
-														<select class="form-control show-tick">
-															<option value="multiple">Opcion Multiple</option>
-														</select>
-													</div>
-												</div>
-											</div>
-																					
-										</div>
-										<!-- Respuestas opcion multiple -->
-										<div class="body">
-											<div class="row clearfix">
-												<div class="col-md-12">
-													<input type="checkbox" id="1" class="filled-in"/>
-													<label for="1">Respuesta 1</label>
-												</div>
-												<div class="col-md-12">
-													<input type="checkbox" id="2" class="filled-in"/>
-													<label for="1">Respuesta 2</label>
-												</div>
-												<div class="col-md-12">
-													<input type="checkbox" id="3" class="filled-in"/>
-													<label for="1">Respuesta 3</label>
-												</div>
-												<div class="col-md-12">
-													<input type="checkbox" id="4" class="filled-in"/>
-													<label for="1">Respuesta 4</label>
-												</div>
-											</div>
-											
-											<!-- Agregar mas respuestas -->
-											<div class="row clearfix">
-												<div class="col-md-12">
-													<label> Agregar Respuesta</label>
-													<button type="button" class="btn btn-primary btn-lg m-l-15 waves-effect">+ respuesta</button>
-												</div>
-											</div>	
-										</div>
-									</div>
-									<!-- Termina respuestas opcion multiple -->
-										
-									<div class="card">
-										<div class="body">
-											<div class="row clearfix">
-												<div class="col-md-12">
-													<label> Agregar Pregunta</label>
-													<button type="button" class="btn btn-primary btn-lg m-l-15 waves-effect">Agregar</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>		
 							</div>
-						</form>
-					</div>
+
+							<div class="body">
+								<!-- preguntas de examen  -->
+								<div class="card">
+									<div class="header">
+										<div class="row clearfix">
+											<div class="col-md-6">
+												<label for="title">Pregunta</label>
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="pregunta" class="form-control"
+															placeholder="Titulo del Examen" />
+													</div>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<label>Puntos</label>
+												<div class="input-group spinner" data-triger="spinnes">
+													<div class="form-line">
+														<input type="text" class="form-control text-center"
+															value="1" data-rule="quantity" />
+													</div>
+													<span class="input-group-addon"> <a
+														href="javascript:;" class="spin-up" data-spin="up"> <i
+															class="glyphicon glyphicon-chevron-up"></i>
+													</a> <a href="javascript:;" class="spin-down" data-spin="down">
+															<i class="glyphicon glyphicon-chevron-down"></i>
+													</a>
+													</span>
+												</div>
+
+											</div>
+											<div class="col-md-3">
+												<label>Tipo</label>
+												<div class="form-group">
+													<select class="form-control show-tick">
+														<option value="multiple">Opcion Multiple</option>
+														<option value="abierta">Abierta</option>
+													</select>
+												</div>
+											</div>
+										</div>
+
+									</div>
+									<!-- Respuestas opcion multiple -->
+									<div class="body">
+										<div class="row clearfix">
+											<div class="col-md-12">
+												<input type="checkbox" id="1" class="filled-in" /> <label
+													for="1">Respuesta 1</label>
+											</div>
+											<div class="col-md-12">
+												<input type="checkbox" id="2" class="filled-in" /> <label
+													for="2">Respuesta 2</label>
+											</div>
+											<div class="col-md-12">
+												<input type="checkbox" id="3" class="filled-in" /> <label
+													for="3">Respuesta 3</label>
+											</div>
+											<div class="col-md-12">
+												<input type="checkbox" id="4" class="filled-in" /> <label
+													for="4">Respuesta 4</label>
+											</div>
+										</div>
+
+										<!-- Agregar mas respuestas -->
+										<div class="row clearfix">
+											<div class="col-md-12">
+												<label> Agregar Respuesta</label>
+												<button type="button" onclick="Agregar()"
+													class="btn btn-primary btn-lg m-l-15 waves-effect">+
+													respuesta</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Termina respuestas opcion multiple -->
+
+								<div class="card">
+									<div class="body">
+										<div class="row clearfix">
+											<div class="col-md-12">
+												<label> Agregar Pregunta</label>
+												<button type="button"
+													class="btn btn-primary btn-lg m-l-15 waves-effect">Agregar</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
+		</div>
 	</section>
 </body>
 </html>
