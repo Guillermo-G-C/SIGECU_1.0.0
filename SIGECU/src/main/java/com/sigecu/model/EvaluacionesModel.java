@@ -18,28 +18,28 @@ public class EvaluacionesModel {
 	 */
 	private int idevaluacion;
 	private String eNombre;
-	private int idCurso;
+	private CursoModel curso;
 	private Time eTiempo;
 	private String ePorcentaje;
 	
 	public EvaluacionesModel() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 
 	/**
-	 * @return the idCurso
+	 * @return the curso
 	 */
-	public int getIdCurso() {
-		return idCurso;
+	public CursoModel getCurso() {
+		return curso;
 	}
 
 
 	/**
-	 * @param idCurso the idCurso to set
+	 * @param curso the curso to set
 	 */
-	public void setIdCurso(int idCurso) {
-		this.idCurso = idCurso;
+	public void setCurso(CursoModel curso) {
+		this.curso = curso;
 	}
 
 
@@ -97,6 +97,9 @@ public class EvaluacionesModel {
 	 */
 	public void setePorcentaje(String ePorcentaje) {
 		this.ePorcentaje = ePorcentaje;
+	}
+	public String toString() {
+		return " idEvaluacion: "+idevaluacion+" eNombre: "+eNombre+" eTiempo: "+eTiempo+" ePorcentaje: "+ePorcentaje;
 	}
 	
 

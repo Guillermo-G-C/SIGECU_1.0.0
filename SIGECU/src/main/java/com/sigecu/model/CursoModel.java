@@ -67,5 +67,9 @@ public class CursoModel {
 		this.cDescripcion = cDescripcion;
 	}
 	
+	public String toString() {
+		return "idCurso="+idCurso+" cNombre: "+cNombre+" cDescripcion: "+cDescripcion;
+	}
+	
 
 }

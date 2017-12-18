@@ -3,6 +3,8 @@ package com.sigecu.service.implemt;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,7 @@ public class AdminExamServiceImpl implements AdminExamService {
 	/* (non-Javadoc)
 	 * @see com.sigecu.service.AdminExamService#listAllEvaluaciones()
 	 */
+	private static final Log LOG = LogFactory.getLog(AdminExamServiceImpl.class);
 	@Autowired
 	@Qualifier("evaluacionesRepository")
 	private EvaluacionRepository evaluacionesRepository;
@@ -46,12 +49,13 @@ public class AdminExamServiceImpl implements AdminExamService {
 
 	@Override
 	public List<EvaluacionesModel> listAllEvaluaciones(int idCurso) {
-		// TODO Auto-generated method stub
-		List<Evaluaciones> evaluaciones = evaluacionesRepository.findAll();
-		List<EvaluacionesModel> evaluacionModel = new ArrayList<EvaluacionesModel>();;
+		List<Evaluaciones> evaluaciones = queryEvaluacion.findAllExamenesById(idCurso);
+		List<EvaluacionesModel> evaluacionModel = new ArrayList<EvaluacionesModel>();
+		
 		for(Evaluaciones evaluacion: evaluaciones) {
 			evaluacionModel.add(evaluacionConverter.convertEvaluacion2EvaluacionModel(evaluacion));
 		}
+		LOG.info("BUSCAR examen de CURSO "+idCurso);
 		return evaluacionModel;
 	}
 

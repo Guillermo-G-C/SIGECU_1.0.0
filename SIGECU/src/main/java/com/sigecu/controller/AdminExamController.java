@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sigecu.constant.ViewConstant;
+import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.service.AdminExamService;
 
 //import com.escuela.constant.ViewConstant;
@@ -30,23 +31,34 @@ public class AdminExamController {
 	private AdminExamService adminExamService;
 
 	@GetMapping("/listaExamen")
-	public ModelAndView showExamenes(@RequestParam(name="idCurso", required=false) int idCurso, Model model) {
+	public ModelAndView showExamenes(@RequestParam(name = "idCurso", required = false) int idCurso, Model model) {
+		EvaluacionesModel evalModel = new EvaluacionesModel();
 		ModelAndView mav = new ModelAndView(ViewConstant.LISTAR_EXAMEN);
 		mav.addObject("listaExamen", adminExamService.listAllEvaluaciones(idCurso));
+		model.addAttribute("evaluacionesModel", evalModel);
 		return mav;
 	}
+
 	@GetMapping("/listaCursos")
 	public ModelAndView showCursos() {
 		ModelAndView mav = new ModelAndView(ViewConstant.LISTAR_CURSOS);
 		mav.addObject("listaCursos", adminExamService.listaCursos());
-		
 		return mav;
 	}
 
 	@GetMapping("/nuevoExamen")
 	public ModelAndView nuevoExamen() {
+
 		ModelAndView mav = new ModelAndView(ViewConstant.NUEVO_EXAMEN);
+
 		return mav;
+	}
+
+	@PostMapping("/addEvaluacion")
+	public String addEvaluavion(@ModelAttribute(name = "evaluacionesModel") EvaluacionesModel eval) {
+		LOG.info("METODO: addEvaluacion --- PARAMETROS ");
+		// ModelAndView mav = new ModelAndView(ViewConstant.LISTAR_EXAMEN);
+		return "redirect:/adminExamen/listaCursos";
 	}
 
 	//
@@ -64,12 +76,11 @@ public class AdminExamController {
 	// return "redirect:/alumnos/showalumnos";
 	// }
 
-	
 	@GetMapping("/certificado")
 	public ModelAndView certificado() {
 		ModelAndView mav = new ModelAndView("certificado");
-		//mav.addObject("alumnos",alumnoService.listAllAlumnos());
+		// mav.addObject("alumnos",alumnoService.listAllAlumnos());
 		return mav;
 	}
-	
+
 }
