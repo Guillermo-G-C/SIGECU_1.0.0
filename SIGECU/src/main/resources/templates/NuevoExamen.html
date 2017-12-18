@@ -37,7 +37,7 @@
 <script src="@{//js/demo.js}"></script>
 </head>
 
-
+<section th:includes="fragment/menuadmin"></section>
 <body class="theme-red">
 	<section class="content">
 		<div class="container-fluid">
@@ -116,9 +116,17 @@
 									<!-- Respuestas opcion multiple -->
 									<div class="body">
 										<div class="row clearfix">
-											<div class="col-md-12">
-												<input type="checkbox" id="1" class="filled-in" /> <label
-													for="1">Respuesta 1</label>
+											<div class="col-md-3">
+												<input type="checkbox" id="1" class="filled-in" /> 
+											</div>
+											<div class="col-md-6">
+												<label for="title">Pregunta</label>
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="pregunta" class="form-control"
+															placeholder="Titulo del Examen" />
+													</div>
+												</div>
 											</div>
 											<div class="col-md-12">
 												<input type="checkbox" id="2" class="filled-in" /> <label
