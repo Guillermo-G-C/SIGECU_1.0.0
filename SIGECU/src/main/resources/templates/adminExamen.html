@@ -17,7 +17,7 @@
 <link href="#" th:href="@{/css/themes/all-themes.css}" rel="stylesheet" />
 <link href="#" th:href="@{/plugins/animate-css/animate.css}"
 	rel="stylesheet" />
-<script th:src="@{//plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
 <!-- Bootstrap Core Js -->
 <script src="#" th:src="@{/plugins/bootstrap/js/bootstrap.js}"></script>
 
@@ -41,6 +41,7 @@
 
 
 <body class="theme-red">
+	<section th:include="fragment/menuadmin"></section>
 	<section class="content">
 		<div class="container-fluid">
 			<div class="row clearfix">
@@ -48,9 +49,10 @@
 					<div class="card">
 						<div class="header"></div>
 						<div class="body">
-							<form action="#" th:action="@{/adminExamen/addEvaluacion}" th:object="${evaluacionesModel}" method="post">
-							<input type="hidden" th:field="*{idevaluacion}"></input>
-								<input type="hidden" th:field="*{curso}" th:value="${curso}"></input>
+							<form action="#" th:action="@{/adminExamen/addEvaluacion}"
+								th:object="${evaluacionesModel}" method="post">
+								<input type="hidden" name="idCurso" th:value="${idCurso}"></input>
+								<input type="hidden" th:field="*{idevaluacion}"></input>
 								<div class="row clearfix">
 									<div class="col-md-3">
 										<label for="title">Titulo</label>

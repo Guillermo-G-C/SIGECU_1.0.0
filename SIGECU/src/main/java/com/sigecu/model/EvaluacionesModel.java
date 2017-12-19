@@ -3,8 +3,6 @@
  */
 package com.sigecu.model;
 
-import java.sql.Time;
-
 /**
  * @author Rolando Castillo
  * @contact castillomartinez@acm.org
@@ -19,7 +17,7 @@ public class EvaluacionesModel {
 	private int idevaluacion;
 	private String eNombre;
 	private CursoModel curso;
-	private Time eTiempo;
+	private String eTiempo;
 	private String ePorcentaje;
 	
 	public EvaluacionesModel() {
@@ -74,14 +72,14 @@ public class EvaluacionesModel {
 	/**
 	 * @return the eTiempo
 	 */
-	public Time geteTiempo() {
+	public String geteTiempo() {
 		return eTiempo;
 	}
 
 	/**
 	 * @param eTiempo the eTiempo to set
 	 */
-	public void seteTiempo(Time eTiempo) {
+	public void seteTiempo(String eTiempo) {
 		this.eTiempo = eTiempo;
 	}
 

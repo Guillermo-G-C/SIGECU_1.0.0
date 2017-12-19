@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -23,7 +24,9 @@ public class Preguntas {
 	@GeneratedValue (strategy=GenerationType.AUTO)
 	@Column(name="idPregunta")
 	private int idPregunta;
+	
 	@ManyToOne
+	@JoinColumn(name="evaluaciones_id_evaluacion")
 	private Evaluaciones evaluaciones;
 	@Column(name="pPregunta")
 	private String pPregunta;

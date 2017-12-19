@@ -45,8 +45,7 @@ public class EvaluacionConverter {
 	}
 	
 	// Model --> Entity
-	public Evaluaciones convertEvaluacionModelToEvaluacion(EvaluacionesModel evaluacionModel) {
-		Cursos curso=cursosConverter.convertCursoModelToCurso(evaluacionModel.getCurso());
+	public Evaluaciones convertEvaluacionModelToEvaluacion(EvaluacionesModel evaluacionModel, Cursos curso) {
 		Evaluaciones evaluacion = new Evaluaciones();
 		
 		evaluacion.seteNombre(evaluacionModel.geteNombre());

@@ -15,8 +15,10 @@ import org.springframework.stereotype.Repository;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.sigecu.entity.Evaluaciones;
+import com.sigecu.entity.Preguntas;
 import com.sigecu.entity.QCursos;
 import com.sigecu.entity.QEvaluaciones;
+import com.sigecu.entity.QPreguntas;
 
 /**
  * @author Rolando Castillo
@@ -29,6 +31,7 @@ public class QueryEvaluacion {
 	private static final Log LOG = LogFactory.getLog(QueryEvaluacion.class);
 	QEvaluaciones qEval = QEvaluaciones.evaluaciones;
 	QCursos qCursos = QCursos.cursos;
+	QPreguntas qPreguntas = QPreguntas.preguntas;
 	//persistencia de la app
 	@PersistenceContext
 	private EntityManager em;
@@ -46,7 +49,18 @@ public class QueryEvaluacion {
 		 .from(qEval)
 		 .where(qEval.cursos.idCurso.eq(idCurso))
 		 .fetch();
+		 LOG.info("LISTA DE EXAMENES POR CURSO");
 		 
 		 return eval;
+	}
+	
+	public List<Preguntas> findAllPreguntasById(int idExamen){
+		JPAQuery<Preguntas> query = new JPAQuery<> (em);
+		List<Preguntas> listPreguntas = query.select(qPreguntas)
+				.from(qPreguntas)
+				.where(qPreguntas.evaluaciones.idEvaluacion.eq(idExamen))
+				.fetch();
+		return listPreguntas;
+		
 	}
 }

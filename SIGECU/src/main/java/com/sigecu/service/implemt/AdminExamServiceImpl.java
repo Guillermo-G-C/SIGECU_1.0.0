@@ -11,12 +11,16 @@ import org.springframework.stereotype.Service;
 
 import com.sigecu.converter.CursosConverter;
 import com.sigecu.converter.EvaluacionConverter;
+import com.sigecu.converter.PreguntasConverter;
 import com.sigecu.entity.Cursos;
 import com.sigecu.entity.Evaluaciones;
+import com.sigecu.entity.Preguntas;
 import com.sigecu.model.CursoModel;
 import com.sigecu.model.EvaluacionesModel;
+import com.sigecu.model.PreguntasModel;
 import com.sigecu.repository.CursosRepository;
 import com.sigecu.repository.EvaluacionRepository;
+import com.sigecu.repository.PreguntasRepository;
 import com.sigecu.repository.QueryEvaluacion;
 import com.sigecu.service.AdminExamService;
 
@@ -46,6 +50,14 @@ public class AdminExamServiceImpl implements AdminExamService {
 	@Autowired
 	@Qualifier("queryEvaluacion")
 	private QueryEvaluacion queryEvaluacion;
+	
+	@Autowired
+	@Qualifier("preguntasConverter")
+	private PreguntasConverter preguntasConverter;
+	
+	@Autowired
+	@Qualifier("preguntasRepository")
+	private PreguntasRepository preguntasRepository;
 
 	@Override
 	public List<EvaluacionesModel> listAllEvaluaciones(int idCurso) {
@@ -57,6 +69,19 @@ public class AdminExamServiceImpl implements AdminExamService {
 		}
 		LOG.info("BUSCAR examen de CURSO "+idCurso);
 		return evaluacionModel;
+	}
+	/* (non-Javadoc)
+	 * @see com.sigecu.service.AdminExamService#listarPregunrasByExam(int)
+	 */
+	@Override
+	public List<PreguntasModel> listarPregunrasByExam(int idExamen) {
+		List<Preguntas> listPreguntas = queryEvaluacion.findAllPreguntasById(idExamen);
+		List<PreguntasModel> preguntasModel = new ArrayList<PreguntasModel>();
+		
+		for(Preguntas preg : listPreguntas) {
+			preguntasModel.add(preguntasConverter.converterPreguntasToPreguntasModel(preg));
+		}
+		return preguntasModel;
 	}
 
 	/* (non-Javadoc)
@@ -71,6 +96,31 @@ public class AdminExamServiceImpl implements AdminExamService {
 		}
 		return cursoModel;
 	}
+
+	/* (non-Javadoc)
+	 * @see com.sigecu.service.AdminExamService#nuevaEvaluacion()
+	 */
+	@Override
+	public void nuevaEvaluacion(EvaluacionesModel evalModel , int idCurso) {
+		LOG.info("NUEVO EXAMEN POR REGISTRAR CON CURSO ID: "+idCurso);
+		Cursos curso = cursoRepository.findByIdCurso(idCurso);
+		Evaluaciones eval = evaluacionConverter.convertEvaluacionModelToEvaluacion(evalModel, curso);
+		evaluacionesRepository.saveAndFlush(eval);		
+		LOG.info("EXAMEN REGISTRADO");
+	}
+	/* (non-Javadoc)
+	 * @see com.sigecu.service.AdminExamService#nuevaPregunta(com.sigecu.model.PreguntasModel, int)
+	 */
+	@Override
+	public void nuevaPregunta(PreguntasModel preguntaModel, int idEvaluacion) {
+		Evaluaciones eval = evaluacionesRepository.findByIdEvaluacion(idEvaluacion);
+		Preguntas preguntas = preguntasConverter.converterPreguntaModelToPreguntas(preguntaModel, eval);
+		preguntasRepository.saveAndFlush(preguntas);
+		LOG.info("PREGUNTA REGISTRADA");
+		
+	}
+	
+
 
 	
 }
