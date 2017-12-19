@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sigecu.constant.ViewConstant;
 import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.PreguntasModel;
+import com.sigecu.model.RespuestasModel;
 import com.sigecu.service.AdminExamService;
 
 //import com.escuela.constant.ViewConstant;
@@ -51,10 +52,14 @@ public class AdminExamController {
 	@GetMapping("/nuevoExamen")
 	public ModelAndView nuevoExamen(@RequestParam(name="idEvaluacion", required= false) int idEvaluacion, Model model) {
 		PreguntasModel preModel = new PreguntasModel();		
+		RespuestasModel respuestasModel = new RespuestasModel();
 		ModelAndView mav = new ModelAndView(ViewConstant.NUEVO_EXAMEN);
 		mav.addObject("listaPreguntas", adminExamService.listarPregunrasByExam(idEvaluacion));
+		//agregar respuestas
+		model.addAttribute("respuestasModel", respuestasModel);
 		model.addAttribute("preModel", preModel);
 		model.addAttribute("idEvaluacion", idEvaluacion);
+		
 
 		return mav;
 	}
@@ -71,6 +76,13 @@ public class AdminExamController {
 	public String addPregunta(@ModelAttribute(name="preguntasModel") PreguntasModel preguntasModel, @RequestParam(name="idEvaluacion", required=true) int idEvaluacion) {
 		LOG.info("METODO: ADDPREGUNTA ---- PARAMETROS"+preguntasModel.toString()+" id evaluacione "+ idEvaluacion);
 		adminExamService.nuevaPregunta(preguntasModel, idEvaluacion);
+		return "redirect:/adminExamen/nuevoExamen?idEvaluacion="+idEvaluacion;
+	}
+	
+	@PostMapping("/addRespuesta")
+	public String addRespuesta(@ModelAttribute(name="respuestaModel") RespuestasModel respuestaModel, @RequestParam(name="idPreguntaR", required=true) int idPregunta,
+			@RequestParam(name="idEvaluacion", required=true) int idEvaluacion) {
+		LOG.info("PARAMETROS DE "+ respuestaModel.toString());
 		return "redirect:/adminExamen/nuevoExamen?idEvaluacion="+idEvaluacion;
 	}
 

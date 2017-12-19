@@ -35,6 +35,7 @@
 
 <!-- Demo Js -->
 <script th:src="@{/js/demo.js}"></script>
+<script th:src="@{/js/pages/ui/modals.js}"></script>
 
 </head>
 
@@ -97,29 +98,6 @@
 									</div>
 
 								</div>
-								<!-- Respuestas opcion multiple -->
-								<div class="body">
-									<div class="row clearfix">
-										<div class="col-md-12">
-											<label for="title">Respuesta</label>
-											<div class="form-group">
-												<div class="form-line">
-													<input type="text" id="pregunta" class="form-control"
-														placeholder="Escribe respuesta" />
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<!-- Agregar mas respuestas -->
-									<div class="row clearfix">
-										<div class="col-md-12">
-											<button type="submit" onclick="Agregar()"
-												class="btn btn-primary btn-lg m-l-15 waves-effect">+
-												Respuestas</button>
-										</div>
-									</div>
-								</div>
 							</div>
 							<!-- Termina respuestas opcion multiple -->
 
@@ -162,9 +140,76 @@
 														<div class="col-md-3">
 															<p th:text="${pregunta.pDescripcion}"></p>
 														</div>
+														<div>
+															<button name="respuestas" type="button"
+																class="btn bg-deep-orange waves-effect m-r-20"
+																value="Agregar Respuesta" id="respuestas"
+																data-color="deep-orange" data-toggle="modal"
+																data-target="#defaultModal">Agregar Respuesta</button>
+														</div>
 													</div>
 												</div>
-												<div class="body"></div>
+												<div class="body">
+													<div class="modal fade" id="defaultModal" tabindex="-1"
+														role="dialog">
+														<div class="modal-dialog" role="document">
+															<div class="modal-content">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h4 class="modal-title" id="smallModalLabel">Transferencia</h4>
+																	</div>
+																	<div class="modal-body">
+																		<p th:text="${pregunta.idPregunta}"></p>
+																		<!-- Respuestas opcion multiple -->
+																		<div class="body">
+																			<form action="#"
+																				th:action="@{/adminExamen/addRespuesta}"
+																				th:object="${respuestasModel}" method="POST">
+																				<input type="hidden" name="idPregunta"
+												th:value="${idEvaluacion}" /> <input
+																					type="hidden" th:field="*{idRespuesta}"></input>
+																				<div class="row clearfix">
+																					<div class="col-md-6">
+																						<label for="title">Respuesta</label>
+																						<div class="form-group">
+																							<div class="form-line">
+																								<input type="text" id="pregunta"
+																									class="form-control"
+																									placeholder="Escribe respuesta"
+																									th:field="*{rRespuesta}"
+																									th:value="${rRespuesta}" />
+																							</div>
+																						</div>
+																					</div>
+																					<div class="col-md-6">
+																						<label for="title">Solucion</label>
+																						<div class="form-group">
+																							<div class="form-line">
+																								<input type="text" id="solucion"
+																									class="form-control"
+																									placeholder="Escribe si es la solucion"
+																									th:field="*{rSolucion}" th:value="${rSolucion}" />
+																							</div>
+																						</div>
+																					</div>
+																				</div>
+																				<div class="modal-footer">
+																					<button type="submit"
+																						class="btn btn-primary waves-effect">GUARDAR</button>
+																					<button type="button"
+																						class="btn btn-danger waves-effect"
+																						data-dismiss="modal">CERRAR</button>
+																				</div>
+																			</form>
+																		</div>
+																	</div>
+
+																</div>
+															</div>
+														</div>
+													</div>
+
+												</div>
 											</div>
 										</td>
 									</tr>
@@ -175,6 +220,7 @@
 				</div>
 			</div>
 		</div>
+
 	</section>
 </body>
 </html>

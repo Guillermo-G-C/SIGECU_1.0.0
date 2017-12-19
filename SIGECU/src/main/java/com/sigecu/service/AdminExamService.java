@@ -15,5 +15,7 @@ public interface AdminExamService {
 	
 	public abstract List<PreguntasModel> listarPregunrasByExam(int idExamen);
 	public abstract void nuevaPregunta(PreguntasModel preguntaModel, int idEvaluacion);
+	
+	//spublic abstract List<RespuestasModel> listaRespuestasModel(int )
 
 }

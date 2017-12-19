@@ -27,7 +27,7 @@ public class PreguntasConverter {
 	//entity -- to -- model
 	public PreguntasModel converterPreguntasToPreguntasModel(Preguntas preguntas) {
 		PreguntasModel preguntaModel = new PreguntasModel();
-		
+		preguntaModel.setIdPregunta(preguntas.getIdPregunta());
 		preguntaModel.setpPregunta(preguntas.getpPregunta());
 		preguntaModel.setpDescripcion(preguntas.getpDescripcion());
 		preguntaModel.setEvaluacion(preguntas.getEvaluaciones());
@@ -39,7 +39,6 @@ public class PreguntasConverter {
 	//model -- to -- entity
 	public Preguntas converterPreguntaModelToPreguntas (PreguntasModel preguntaModel, Evaluaciones eval) {
 		Preguntas pregunta = new Preguntas();
-		
 		pregunta.setpPregunta(preguntaModel.getpPregunta());
 		pregunta.setpPuntaje(preguntaModel.getPuntaje());
 		pregunta.setpDescripcion(pregunta.getpDescripcion());
