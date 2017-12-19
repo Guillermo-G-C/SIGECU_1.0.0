@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1"/>
 <title>SIGECU | CERTIFICADO</title>
 </head>
 <body>
 	<h1>Aqui va el certificado bien bonito :v</h1>
+	<a th:href="${'/alumno/certificado'}" target="_blank">Certificado</a>
+	
+	<table>
+		<tr>
+			<th>Alumno</th>
+		</tr>
+		<tr th:each="certificado : ${certificadoO}">
+			<td th:text="${certificado.alumno}"></td>
+		</tr>
+	</table>
+	
 </body>
 </html>
