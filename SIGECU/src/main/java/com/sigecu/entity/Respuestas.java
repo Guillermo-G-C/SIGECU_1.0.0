@@ -3,6 +3,7 @@
  */
 package com.sigecu.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,8 @@ public class Respuestas {
 	@GeneratedValue (strategy= GenerationType.AUTO)
 	@Column(name="idRespuesta")
 	private int idRespuesta;
-	@ManyToOne
+	
+	@ManyToOne(cascade= CascadeType.ALL)
 	private Preguntas preguntas;
 	@Column(name="rRespuesta")
 	private String rRespuesta;

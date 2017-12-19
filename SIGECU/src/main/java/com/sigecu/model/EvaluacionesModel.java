@@ -3,8 +3,6 @@
  */
 package com.sigecu.model;
 
-import java.sql.Time;
-
 /**
  * @author Rolando Castillo
  * @contact castillomartinez@acm.org
@@ -18,28 +16,28 @@ public class EvaluacionesModel {
 	 */
 	private int idevaluacion;
 	private String eNombre;
-	private int idCurso;
-	private Time eTiempo;
+	private CursoModel curso;
+	private String eTiempo;
 	private String ePorcentaje;
 	
 	public EvaluacionesModel() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 
 	/**
-	 * @return the idCurso
+	 * @return the curso
 	 */
-	public int getIdCurso() {
-		return idCurso;
+	public CursoModel getCurso() {
+		return curso;
 	}
 
 
 	/**
-	 * @param idCurso the idCurso to set
+	 * @param curso the curso to set
 	 */
-	public void setIdCurso(int idCurso) {
-		this.idCurso = idCurso;
+	public void setCurso(CursoModel curso) {
+		this.curso = curso;
 	}
 
 
@@ -74,14 +72,14 @@ public class EvaluacionesModel {
 	/**
 	 * @return the eTiempo
 	 */
-	public Time geteTiempo() {
+	public String geteTiempo() {
 		return eTiempo;
 	}
 
 	/**
 	 * @param eTiempo the eTiempo to set
 	 */
-	public void seteTiempo(Time eTiempo) {
+	public void seteTiempo(String eTiempo) {
 		this.eTiempo = eTiempo;
 	}
 
@@ -97,6 +95,9 @@ public class EvaluacionesModel {
 	 */
 	public void setePorcentaje(String ePorcentaje) {
 		this.ePorcentaje = ePorcentaje;
+	}
+	public String toString() {
+		return " idEvaluacion: "+idevaluacion+" eNombre: "+eNombre+" eTiempo: "+eTiempo+" ePorcentaje: "+ePorcentaje;
 	}
 	
 

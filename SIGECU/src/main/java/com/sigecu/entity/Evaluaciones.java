@@ -1,11 +1,10 @@
 package com.sigecu.entity;
 
-import java.sql.Time;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -24,17 +23,18 @@ public class Evaluaciones {
 	@Column(name="eNombre")
 	private String eNombre;
 	@Column(name="eTiempo")
-	private Time eTiempo;
+	private String eTiempo;
 	@Column (name="ePorsentaje")
 	private String ePorsentaje;
 	
 	@ManyToOne
+	@JoinColumn(name = "cursos_id_curso")
 	private Cursos cursos;
 	
 	public Evaluaciones() {
 		
 	}
-	public Evaluaciones(int idEvaluacion, String eNombre, Time eTiempo, String ePorsentaje)  {
+	public Evaluaciones(int idEvaluacion, String eNombre, String eTiempo, String ePorsentaje)  {
 		this.idEvaluacion=idEvaluacion;
 		this.eNombre=eNombre;
 		this.eTiempo=eTiempo;
@@ -73,14 +73,14 @@ public class Evaluaciones {
 	/**
 	 * @return the eTiempo
 	 */
-	public Time geteTiempo() {
+	public String geteTiempo() {
 		return eTiempo;
 	}
 
 	/**
 	 * @param eTiempo the eTiempo to set
 	 */
-	public void seteTiempo(Time eTiempo) {
+	public void seteTiempo(String eTiempo) {
 		this.eTiempo = eTiempo;
 	}
 
