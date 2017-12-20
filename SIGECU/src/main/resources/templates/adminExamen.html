@@ -62,7 +62,7 @@
 											<div class="form-line">
 												<input type="text" id="titulo" th:field="*{eNombre}"
 													th:value="${eNombre}" class="form-control"
-													placeholder="Titulo del Examen" />
+													placeholder="Titulo del Examen" required="" aria-required="true" />
 											</div>
 										</div>
 									</div>
@@ -72,7 +72,7 @@
 											<div class="form-line">
 												<input type="text" id="porcentaje" class="form-control"
 													th:field="*{ePorcentaje}" th:value="${ePorcentaje}"
-													placeholder="Porcentaje asignado" />
+													placeholder="Porcentaje asignado" required="" aria-required="true" />
 											</div>
 										</div>
 									</div>
@@ -84,7 +84,7 @@
 											<div class="form-line">
 												<input type="text" class="form-control time24"
 													th:field="*{eTiempo}" th:value="${eTiempo}"
-													placeholder="Ex: 23:59" />
+													placeholder="Ex: 23:59" required="" aria-required="true"/>
 											</div>
 										</div>
 									</div>

@@ -58,7 +58,7 @@
 											th:object="${preModel}" method="POST">
 											<input type="hidden" name="idEvaluacion"
 												th:value="${idEvaluacion}" /> <input type="hidden"
-												th:field="*{idPregunta}" />
+												th:field="*{idPregunta}" required="" aria-required="true"/>
 											<div class="col-md-6">
 												<label for="title">Pregunta</label>
 												<div class="form-group">
@@ -66,7 +66,7 @@
 													<div class="form-line">
 														<input type="text" class="form-control"
 															placeholder="Enunciado de la Pregunta"
-															th:field="*{pPregunta}" th:value="${pPregunta}" />
+															th:field="*{pPregunta}" th:value="${pPregunta}" required="" aria-required="true" />
 													</div>
 												</div>
 											</div>
@@ -76,7 +76,7 @@
 													<div class="form-line">
 														<input type="text" class="form-control"
 															placeholder="Puntos asignados a pregunta"
-															th:field="*{puntaje}" th:value="${puntaje}" />
+															th:field="*{puntaje}" th:value="${puntaje}" required="" aria-required="true" />
 													</div>
 												</div>
 											</div>
@@ -277,7 +277,7 @@
 																									class="form-control"
 																									placeholder="Escribe respuesta"
 																									th:field="*{rRespuesta}"
-																									th:value="${rRespuesta}" />
+																									th:value="${rRespuesta}" required="" aria-required="true" />
 																							</div>
 																						</div>
 																					</div>
@@ -288,7 +288,7 @@
 																								<input type="text" id="solucion"
 																									class="form-control"
 																									placeholder="Escribe si es la solucion"
-																									th:field="*{rSolucion}" th:value="${rSolucion}" />
+																									th:field="*{rSolucion}" th:value="${rSolucion}"  required="" aria-required="true"/>
 																							</div>
 																						</div>
 																					</div>
