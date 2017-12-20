@@ -61,6 +61,8 @@ public class CertificadoServiceImpl implements CertificadoService{
 		
 		Map<String, Object> item= new HashMap<String, Object>();
 		item.put("alumno", certificado.getAlumno());
+		item.put("curso", certificado.getCurso());
+		item.put("fecha", certificado.getFecha());
 		
 		result.add(item);
 		
