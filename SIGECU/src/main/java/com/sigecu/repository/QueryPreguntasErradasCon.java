@@ -14,7 +14,6 @@ import com.querydsl.jpa.impl.JPAQuery;
 import com.sigecu.entity.Preguntas;
 import com.sigecu.entity.QEvaluaciones;
 import com.sigecu.entity.QPreguntas;
-import com.sigecu.entity.QRespuestaALM;
 import com.sigecu.entity.QRespuestas;
 import com.sigecu.entity.Respuestas;
 
@@ -25,20 +24,20 @@ import com.sigecu.entity.Respuestas;
 @Repository("queryDSLPreguntasRepo")
 public class QueryPreguntasErradasCon {
 	
-	private QEvaluaciones qEvaluaciones = QEvaluaciones.evaluaciones;
-	private QPreguntas qPreguntas = QPreguntas.preguntas;
-	private QRespuestas qRespuestas = QRespuestas.respuestas;
-	private QRespuestaALM qrepuestasalm = QRespuestaALM.respuestaALM;
-	
-	@PersistenceContext
-	private EntityManager em;
-	
-	public List<Respuestas> preguntasErradasMo() {
-		JPAQuery<Preguntas> query = new JPAQuery<Preguntas>(em);
-		
-		//query.select(qPreguntas,qRespuestas).from(qPreguntas,qRespuestas).where(qRespuestas.preguntas.idPregunta.eq(qPreguntas.idPregunta)).fetch();
-		List<Respuestas> pre=query.select(qRespuestas).from(qRespuestas,qrepuestasalm).where(qrepuestasalm.respuestas.idRespuesta.eq(qRespuestas.idRespuesta)).fetch();
-		return pre;
-	}
+//	private QEvaluaciones qEvaluaciones = QEvaluaciones.evaluaciones;
+//	private QPreguntas qPreguntas = QPreguntas.preguntas;
+//	private QRespuestas qRespuestas = QRespuestas.respuestas;
+//	private QRespuestaALM qrepuestasalm = QRespuestaALM.respuestaALM;
+//	
+//	@PersistenceContext
+//	private EntityManager em;
+//	
+//	public List<Respuestas> preguntasErradasMo() {
+//		JPAQuery<Preguntas> query = new JPAQuery<Preguntas>(em);
+//		
+//		//query.select(qPreguntas,qRespuestas).from(qPreguntas,qRespuestas).where(qRespuestas.preguntas.idPregunta.eq(qPreguntas.idPregunta)).fetch();
+//		List<Respuestas> pre=query.select(qRespuestas).from(qRespuestas,qrepuestasalm).where(qrepuestasalm.respuestas.idRespuesta.eq(qRespuestas.idRespuesta)).fetch();
+//		return pre;
+//	}
 
 }
