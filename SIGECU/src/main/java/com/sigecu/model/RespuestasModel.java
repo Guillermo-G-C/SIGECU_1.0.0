@@ -3,6 +3,8 @@
  */
 package com.sigecu.model;
 
+import com.sigecu.entity.Preguntas;
+
 /**
  * @author Rolando Castillo
  * @contact castillomartinez@acm.org
@@ -17,8 +19,7 @@ public class RespuestasModel {
 	private int idRespuesta;
 	private String rRespuesta;
 	private String rSolucion;
-	private PreguntasModel pregunta;
-	
+	private Preguntas pregunta;
 	
 	public RespuestasModel() {
 		// TODO Auto-generated constructor stub
@@ -65,13 +66,13 @@ public class RespuestasModel {
 	/**
 	 * @return the pregunta
 	 */
-	public PreguntasModel getPregunta() {
+	public Preguntas getPregunta() {
 		return pregunta;
 	}
 	/**
 	 * @param pregunta the pregunta to set
 	 */
-	public void setPregunta(PreguntasModel pregunta) {
+	public void setPregunta(Preguntas pregunta) {
 		this.pregunta = pregunta;
 	}
 	

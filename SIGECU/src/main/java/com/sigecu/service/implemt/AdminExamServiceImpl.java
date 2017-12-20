@@ -12,16 +12,20 @@ import org.springframework.stereotype.Service;
 import com.sigecu.converter.CursosConverter;
 import com.sigecu.converter.EvaluacionConverter;
 import com.sigecu.converter.PreguntasConverter;
+import com.sigecu.converter.RespuestasConverter;
 import com.sigecu.entity.Cursos;
 import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Preguntas;
+import com.sigecu.entity.Respuestas;
 import com.sigecu.model.CursoModel;
 import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.PreguntasModel;
+import com.sigecu.model.RespuestasModel;
 import com.sigecu.repository.CursosRepository;
 import com.sigecu.repository.EvaluacionRepository;
 import com.sigecu.repository.PreguntasRepository;
 import com.sigecu.repository.QueryEvaluacion;
+import com.sigecu.repository.RespuestasRepository;
 import com.sigecu.service.AdminExamService;
 
 
@@ -58,7 +62,16 @@ public class AdminExamServiceImpl implements AdminExamService {
 	@Autowired
 	@Qualifier("preguntasRepository")
 	private PreguntasRepository preguntasRepository;
-
+	
+	@Autowired
+	@Qualifier("respuestasRepository")
+	private RespuestasRepository respuestasRespository;
+	
+	@Autowired
+	@Qualifier("respuestasConverter")
+	private RespuestasConverter respuestasConverter;
+	
+	
 	@Override
 	public List<EvaluacionesModel> listAllEvaluaciones(int idCurso) {
 		List<Evaluaciones> evaluaciones = queryEvaluacion.findAllExamenesById(idCurso);
@@ -118,6 +131,28 @@ public class AdminExamServiceImpl implements AdminExamService {
 		preguntasRepository.saveAndFlush(preguntas);
 		LOG.info("PREGUNTA REGISTRADA");
 		
+	}
+	/* (non-Javadoc)
+	 * @see com.sigecu.service.AdminExamService#nuevaRespuesta(com.sigecu.model.RespuestasModel, int)
+	 */
+	@Override
+	public void nuevaRespuesta(RespuestasModel respuestasModel, int idPregunta) {
+		Preguntas pregunta = preguntasRepository.findByIdPregunta(idPregunta);
+		Respuestas respuesta = respuestasConverter.converterRespuestasModelToRespuestas(respuestasModel, pregunta);
+		respuestasRespository.save(respuesta);
+		LOG.info("RESPUESTA AGREGADA");
+	}
+	/* (non-Javadoc)
+	 * @see com.sigecu.service.AdminExamService#listarRespuestas()
+	 */
+	@Override
+	public List<RespuestasModel> listarRespuestas() {
+		List<Respuestas> respuestas =respuestasRespository.findAll();
+		List<RespuestasModel> respModel = new ArrayList<RespuestasModel>();
+		for(Respuestas resp : respuestas) {
+			respModel.add(respuestasConverter.converterRespuestasToRespuestasModel(resp));
+		}
+		return respModel;
 	}
 	
 
