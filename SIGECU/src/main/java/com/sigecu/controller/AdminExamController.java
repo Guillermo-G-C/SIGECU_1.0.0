@@ -73,16 +73,17 @@ public class AdminExamController {
 	}
 	
 	@PostMapping("/addPregunta")
-	public String addPregunta(@ModelAttribute(name="preguntasModel") PreguntasModel preguntasModel, @RequestParam(name="idEvaluacion", required=true) int idEvaluacion) {
+	public String addPregunta(@ModelAttribute(name="preguntasModel") PreguntasModel preguntasModel, @RequestParam(name="idEvaluacion", required=true) int idEvaluacion, Model model) {
 		LOG.info("METODO: ADDPREGUNTA ---- PARAMETROS"+preguntasModel.toString()+" id evaluacione "+ idEvaluacion);
 		adminExamService.nuevaPregunta(preguntasModel, idEvaluacion);
 		return "redirect:/adminExamen/nuevoExamen?idEvaluacion="+idEvaluacion;
 	}
-	
+	/*Agrega una nueva respuesta a la pregunta X*/
 	@PostMapping("/addRespuesta")
-	public String addRespuesta(@ModelAttribute(name="respuestaModel") RespuestasModel respuestaModel, @RequestParam(name="idPreguntaR", required=true) int idPregunta,
-			@RequestParam(name="idEvaluacion", required=true) int idEvaluacion) {
+	public String addRespuesta(@ModelAttribute(name="respuestaModel") RespuestasModel respuestaModel, @RequestParam(name="idPregunta", required=true) int idPregunta,
+			@RequestParam(name="idEvaluacion", required=true) int idEvaluacion, Model model) {
 		LOG.info("PARAMETROS DE "+ respuestaModel.toString());
+		adminExamService.nuevaRespuesta(respuestaModel, idPregunta);
 		return "redirect:/adminExamen/nuevoExamen?idEvaluacion="+idEvaluacion;
 	}
 

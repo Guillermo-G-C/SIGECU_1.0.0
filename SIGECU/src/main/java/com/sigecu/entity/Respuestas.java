@@ -3,12 +3,12 @@
  */
 package com.sigecu.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -26,7 +26,8 @@ public class Respuestas {
 	@Column(name="idRespuesta")
 	private int idRespuesta;
 	
-	@ManyToOne(cascade= CascadeType.ALL)
+	@ManyToOne
+	@JoinColumn(name="preguntas_id_pregunta")
 	private Preguntas preguntas;
 	@Column(name="rRespuesta")
 	private String rRespuesta;

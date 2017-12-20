@@ -6,6 +6,7 @@ import com.sigecu.entity.Preguntas;
 import com.sigecu.model.CursoModel;
 import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.PreguntasModel;
+import com.sigecu.model.RespuestasModel;
 
 public interface AdminExamService {
 	
@@ -17,5 +18,6 @@ public interface AdminExamService {
 	public abstract void nuevaPregunta(PreguntasModel preguntaModel, int idEvaluacion);
 	
 	//spublic abstract List<RespuestasModel> listaRespuestasModel(int )
+	public abstract void nuevaRespuesta(RespuestasModel respuestasModel, int idPregunta);
 
 }
