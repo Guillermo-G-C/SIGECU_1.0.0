@@ -47,8 +47,8 @@ public class CertificadoController {
 		return mav;
 	}
 	
-	@GetMapping("/certificado")
-	public ModelAndView certificado() {
+	@GetMapping("/certificado2")
+	public ModelAndView certificado2() {
 		JasperReportsPdfView cerView = new JasperReportsPdfView();
 		cerView.setUrl("classpath:reports/certificadoR.jasper");
 		cerView.setApplicationContext(applicationContext);
@@ -59,14 +59,14 @@ public class CertificadoController {
 		return new ModelAndView(cerView, params);
 	}
 	
-	@GetMapping("/certificado2")
-	public ModelAndView certificado2() {
+	@GetMapping("/certificado")
+	public ModelAndView certificado() {
 		JasperReportsPdfView cerView = new JasperReportsPdfView();
 		cerView.setUrl("classpath:reports/certificadoR.jasper");
 		cerView.setApplicationContext(applicationContext);
 		
 		Map<String, Object> params = new HashMap<String, Object>();
-	    params.put("datasource", certificadoService.report(2));
+	    params.put("datasource", certificadoService.report(1));
 	    params.put("img", this.getClass().getResource("/src/main/resources/reports/c.png"));
 		return new ModelAndView(cerView, params);
 	}
