@@ -55,6 +55,7 @@ public class AdminExamController {
 		RespuestasModel respuestasModel = new RespuestasModel();
 		ModelAndView mav = new ModelAndView(ViewConstant.NUEVO_EXAMEN);
 		mav.addObject("listaPreguntas", adminExamService.listarPregunrasByExam(idEvaluacion));
+		mav.addObject("listaRespuestas", adminExamService.listarRespuestas());
 		//agregar respuestas
 		model.addAttribute("respuestasModel", respuestasModel);
 		model.addAttribute("preModel", preModel);

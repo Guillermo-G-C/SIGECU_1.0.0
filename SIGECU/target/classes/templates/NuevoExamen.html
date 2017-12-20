@@ -4,7 +4,8 @@
 
 <title>Lisa de Examenes</title>
 
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" type="text/css" />
 <link href="#"
 	th:href="@{/fonts/material-design-icons-master/material-icons.css}" />
 <link href="#" th:href="@{/plugins/bootstrap/css/bootstrap.css}"
@@ -132,12 +133,15 @@
 												<div class="header">
 													<div class=" row clearfix">
 														<div class="col-md-3">
+															<label>Pregunta</label>
 															<p th:text="${pregunta.pPregunta}"></p>
 														</div>
 														<div class="col-md-3">
+															<label>Puntaje asignado</label>
 															<p th:text="${pregunta.puntaje}"></p>
 														</div>
 														<div class="col-md-3">
+															<label>Descripción</label>
 															<p th:text="${pregunta.pDescripcion}"></p>
 														</div>
 														<div>
@@ -145,18 +149,40 @@
 																class="btn bg-deep-orange waves-effect m-r-20"
 																value="Agregar Respuesta" id="respuestas"
 																data-color="deep-orange" data-toggle="modal"
-																data-target="#defaultModal">Agregar Respuesta</button>
+																th:attr="data-target='#ModalRespuesta'+${pregunta.idPregunta}">Agregar Respuesta</button>
 														</div>
 													</div>
 												</div>
 												<div class="body">
-													<div class="modal fade" id="defaultModal" tabindex="-1"
+													<div class="table-reponsive">
+														<table style="border: hidden">
+															<thead style="border: hidden">
+																<tr>
+																	<th style="border: hidden"></th>
+																	<th style="border: hidden"><label>Respuestas</label></th>
+																	<th style="border: hidden"></th>
+																</tr>
+															</thead>
+															<tbody style="border: hidden">
+																<tr th:each="resp : ${listaRespuestas}"
+																	th:if="${pregunta.idPregunta==resp.pregunta.getIdPregunta()}">
+																	<td style="border: hidden;"><input type="checkbox"
+																		id="remember_me" class="filled-in" /><label
+																		for="remember_me"></label></td>
+																	<td th:text="${resp.rRespuesta}" style="border: hidden"></td>
+																	<td th:if="${resp.rSolucion}==1"
+																		style="border: hidden; background-color: #5BFF33">Correcta</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													<div class="modal fade" th:id="'ModalRespuesta'+${pregunta.idPregunta}" tabindex="-1"
 														role="dialog">
 														<div class="modal-dialog" role="document">
 															<div class="modal-content">
 																<div class="modal-content">
 																	<div class="modal-header">
-																		<h4 class="modal-title" id="smallModalLabel">Transferencia</h4>
+																		<h4 class="modal-title" id="smallModalLabel">Agregar Respuesta</h4>
 																	</div>
 																	<div class="modal-body">
 																		<p th:text="${pregunta.idPregunta}"></p>
@@ -168,8 +194,8 @@
 																				<input type="hidden" name="idPregunta"
 																					th:value="${pregunta.idPregunta}" /> <input
 																					type="hidden" /> <input type="hidden"
-																					name="idEvaluacion" th:value="${idEvaluacion}" /> <input
-																					type="hidden" /> <input type="hidden"
+																					name="idEvaluacion" th:value="${idEvaluacion}" />
+																				<input type="hidden" /> <input type="hidden"
 																					th:field="*{idRespuesta}"></input>
 																				<div class="row clearfix">
 																					<div class="col-md-6">
@@ -206,12 +232,10 @@
 																			</form>
 																		</div>
 																	</div>
-
 																</div>
 															</div>
 														</div>
 													</div>
-
 												</div>
 											</div>
 										</td>

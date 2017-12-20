@@ -59,6 +59,7 @@ public class QueryEvaluacion {
 		List<Preguntas> listPreguntas = query.select(qPreguntas)
 				.from(qPreguntas)
 				.where(qPreguntas.evaluaciones.idEvaluacion.eq(idExamen))
+				.orderBy(qPreguntas.idPregunta.desc())
 				.fetch();
 		return listPreguntas;
 		

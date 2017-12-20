@@ -2,7 +2,7 @@ package com.sigecu.service;
 
 import java.util.List;
 
-import com.sigecu.entity.Preguntas;
+import com.sigecu.entity.Respuestas;
 import com.sigecu.model.CursoModel;
 import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.PreguntasModel;
@@ -19,5 +19,6 @@ public interface AdminExamService {
 	
 	//spublic abstract List<RespuestasModel> listaRespuestasModel(int )
 	public abstract void nuevaRespuesta(RespuestasModel respuestasModel, int idPregunta);
+	public abstract List<RespuestasModel> listarRespuestas();
 
 }

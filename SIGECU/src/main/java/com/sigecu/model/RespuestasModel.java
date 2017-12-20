@@ -21,7 +21,6 @@ public class RespuestasModel {
 	private String rSolucion;
 	private Preguntas pregunta;
 	
-	
 	public RespuestasModel() {
 		// TODO Auto-generated constructor stub
 	}

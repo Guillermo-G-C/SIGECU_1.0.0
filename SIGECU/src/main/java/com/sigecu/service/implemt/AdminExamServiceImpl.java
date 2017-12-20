@@ -140,6 +140,19 @@ public class AdminExamServiceImpl implements AdminExamService {
 		Preguntas pregunta = preguntasRepository.findByIdPregunta(idPregunta);
 		Respuestas respuesta = respuestasConverter.converterRespuestasModelToRespuestas(respuestasModel, pregunta);
 		respuestasRespository.save(respuesta);
+		LOG.info("RESPUESTA AGREGADA");
+	}
+	/* (non-Javadoc)
+	 * @see com.sigecu.service.AdminExamService#listarRespuestas()
+	 */
+	@Override
+	public List<RespuestasModel> listarRespuestas() {
+		List<Respuestas> respuestas =respuestasRespository.findAll();
+		List<RespuestasModel> respModel = new ArrayList<RespuestasModel>();
+		for(Respuestas resp : respuestas) {
+			respModel.add(respuestasConverter.converterRespuestasToRespuestasModel(resp));
+		}
+		return respModel;
 	}
 	
 

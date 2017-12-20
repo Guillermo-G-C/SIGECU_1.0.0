@@ -27,6 +27,7 @@ public class RespuestasConverter {
 		respModel.setIdRespuesta(respuestas.getIdRespuesta());
 		respModel.setrSolucion(respuestas.getrSolucion());
 		respModel.setPregunta(respuestas.getPreguntas());
+		respModel.setrRespuesta(respuestas.getrRespuesta());
 		
 		return respModel;
 		
