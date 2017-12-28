@@ -20,5 +20,6 @@ public class ViewConstant {
 	public static final String LISTAR_CURSOS = "listaCursosAdmin";
 
 	public static final String CERTIFICADO = "certificado";
+	public static final String MOSTRAREXAMEN="EvaluacionAlumno";
 
 }
