@@ -62,7 +62,8 @@
 											<div class="form-line">
 												<input type="text" id="titulo" th:field="*{eNombre}"
 													th:value="${eNombre}" class="form-control"
-													placeholder="Titulo del Examen" required="" aria-required="true" />
+													placeholder="Titulo del Examen" required=""
+													aria-required="true" />
 											</div>
 										</div>
 									</div>
@@ -72,7 +73,8 @@
 											<div class="form-line">
 												<input type="text" id="porcentaje" class="form-control"
 													th:field="*{ePorcentaje}" th:value="${ePorcentaje}"
-													placeholder="Porcentaje asignado" required="" aria-required="true" />
+													placeholder="Porcentaje asignado" required=""
+													aria-required="true" />
 											</div>
 										</div>
 									</div>
@@ -84,7 +86,7 @@
 											<div class="form-line">
 												<input type="text" class="form-control time24"
 													th:field="*{eTiempo}" th:value="${eTiempo}"
-													placeholder="Ex: 23:59" required="" aria-required="true"/>
+													placeholder="Ex: 23:59" required="" aria-required="true" />
 											</div>
 										</div>
 									</div>
@@ -127,13 +129,25 @@
 											<td th:text="${exam.eTiempo}"></td>
 											<td th:text="${exam.curso.getcNombre()}"></td>
 											<td>
-												<div>
-													<a href="#"
-														th:href="@{/adminExamen/nuevoExamen?idEvaluacion=__${exam.idevaluacion}__}">
-														<button type="button"
-															class="btn btn-primary btn-lg m-l-15 waves-effect">Editar</button>
-													</a>
+												<div class="row clearfix">
+													<div class="col-md-2">
+														<a href="#"
+															th:href="@{/adminExamen/nuevoExamen?idEvaluacion=__${exam.idevaluacion}__}">
+															<button type="button"
+																class="btn btn-primary btn-lg m-l-15 waves-effect">Editar</button>
+														</a>
+													</div>
+													<div class="col-md-2">
+														<a href="#"
+															th:href="@{/adminExamen/removeExamen(idCurso=${idCurso},idExamen=${exam.idevaluacion})}">
+															<button type="button"
+																class="btn bg-deep-orange waves-effect m-r-20">Eliminar</button>
+														</a>
+													</div>
+
 												</div>
+
+
 											</td>
 										</tr>
 									</tbody>
