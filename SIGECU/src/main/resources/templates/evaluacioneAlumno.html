@@ -46,16 +46,26 @@
 				</h2>
 			</div>
 			<div class="row">
-				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" th:each="eva : ${evaluacionesAlumno}">
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"
+					th:each="eva : ${evaluacionesAlumno}">
 					<div class="info-box bg-pink hover-zoom-effect">
 						<div class="icon">
 							<i class="material-icons">question_answer</i>
 						</div>
 						<div class="content">
 							<div class="text" th:text="${eva.eNombre}"></div>
-							<div class="number">15</div>
+							<div class="number" th:text="${eva.ePorcentaje}">15</div>
 						</div>
 					</div>
+					<button type="button" class="btn btn-primary waves-effect">
+						<i class="material-icons">check_box</i> <span>Realizar Evaluacion</span>
+					</button>
+					<button type="button" class="btn btn-primary waves-effect">
+						<i class="material-icons">remove_red_eye</i> <span>Ver Preguntas Erradas</span>
+					</button>
+					<button type="button" class="btn btn-primary waves-effect">
+						<i class="material-icons">indeterminate_check_box</i> <span>Corregir Examen</span>
+					</button>
 
 				</div>
 			</div>

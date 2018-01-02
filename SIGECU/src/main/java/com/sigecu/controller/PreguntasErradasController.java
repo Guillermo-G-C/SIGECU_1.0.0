@@ -42,7 +42,7 @@ public class PreguntasErradasController {
 	@GetMapping("/evaluaciones")
 	public ModelAndView evaluaciones(@RequestParam(name = "idEvaluacion", required = false) int idEvaluacion) {
 		ModelAndView mav = new ModelAndView(ViewConstant.EXAMENES_ALUMNO);
-		mav.addObject("evaluacionesAlumno",preguntasErradasConService.listarEvaluaciones());		
+		mav.addObject("evaluacionesAlumno",preguntasErradasConService.listarEvaluaciones(idEvaluacion));		
 		return mav;
 	}
 
