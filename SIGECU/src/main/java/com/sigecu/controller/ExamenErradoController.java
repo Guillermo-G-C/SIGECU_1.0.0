@@ -46,27 +46,4 @@ public class ExamenErradoController {
 		return mav;
 	}
 
-	@GetMapping("/nuevoExamen")
-	public ModelAndView nuevoExamen(@RequestParam(name="idEvaluacion", required= false) int idEvaluacion, Model model) {
-		PreguntasModel preModel = new PreguntasModel();		
-		RespuestasModel respuestasModel = new RespuestasModel();
-		ModelAndView mav = new ModelAndView(ViewConstant.NUEVO_EXAMEN);
-		mav.addObject("listaPreguntas", adminExamService.listarPregunrasByExam(idEvaluacion));
-		//agregar respuestas
-		model.addAttribute("respuestasModel", respuestasModel);
-		model.addAttribute("preModel", preModel);
-		model.addAttribute("idEvaluacion", idEvaluacion);
-		
-
-		return mav;
-	}
-
-	@PostMapping("/addEvaluacion")
-	public String addEvaluavion(@ModelAttribute(name="evaluacionesModel") EvaluacionesModel  evalModel, @RequestParam(name="idCurso", required=true) int idCurso,
-			Model model) {
-		LOG.info("METODO: addEvaluacion --- PARAMETROS "+evalModel.toString()+ " idCurso "+idCurso);
-		adminExamService.nuevaEvaluacion(evalModel, idCurso);
-		return "redirect:/adminExamen/listaExamen?idCurso="+idCurso;
-	}
-	
 }
