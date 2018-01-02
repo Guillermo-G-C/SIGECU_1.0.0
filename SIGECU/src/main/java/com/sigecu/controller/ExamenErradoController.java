@@ -33,14 +33,14 @@ public class ExamenErradoController {
 	private static final Log LOG = LogFactory.getLog(AdminExamController.class);
 
 	@Autowired
-	@Qualifier("adminExamServiceImpl")
-	private AdminExamService adminExamService;
+	@Qualifier("ExamenErradoServiceImplement")
+	private ExamenErradoService examenErradoService;
 
 	@GetMapping("/listaExamen")
 	public ModelAndView showExamenes(@RequestParam(name = "idCurso", required = false) int idCurso, Model model) {
 		EvaluacionesModel evalModel = new EvaluacionesModel();
 		ModelAndView mav = new ModelAndView(ViewConstant.LISTAR_EXAMEN);
-		mav.addObject("listaExamen", adminExamService.listAllEvaluaciones(idCurso));
+		mav.addObject("listaExamen", examenErradoService.listAllEvaluaciones(idCurso));
 		model.addAttribute("evaluacionesModel", evalModel);
 		model.addAttribute("idCurso", idCurso);
 		return mav;

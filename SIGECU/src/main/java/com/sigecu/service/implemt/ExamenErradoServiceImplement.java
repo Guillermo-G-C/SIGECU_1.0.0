@@ -46,4 +46,10 @@ public class ExamenErradoServiceImplement implements ExamenErradoService {
 		
 	}
 
+	@Override
+	public Object listAllEvaluaciones(int idCurso) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
