@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sigecu.constant.ViewConstant;
@@ -33,8 +34,15 @@ public class PreguntasErradasController {
 	
 	@GetMapping("/cursos")
 	public ModelAndView Cursos() {
-		ModelAndView mav = new ModelAndView(ViewConstant.LISTAR_CURSOS);
+		ModelAndView mav = new ModelAndView(ViewConstant.CURSOS_ALUMNO);
 		mav.addObject("listaCursosAl", preguntasErradasConService.listaCursos());
+		return mav;
+	}
+	
+	@GetMapping("/evaluaciones")
+	public ModelAndView evaluaciones(@RequestParam(name = "idEvaluacion", required = false) int idEvaluacion) {
+		ModelAndView mav = new ModelAndView(ViewConstant.EXAMENES_ALUMNO);
+		mav.addObject("evaluacionesAlumno",preguntasErradasConService.listarEvaluaciones());		
 		return mav;
 	}
 

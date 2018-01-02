@@ -13,11 +13,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.sigecu.converter.CursosConverter;
+import com.sigecu.converter.EvaluacionConverter;
 import com.sigecu.entity.Cursos;
 import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Respuestas;
 import com.sigecu.model.CursoModel;
+import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.repository.CursosRepository;
+import com.sigecu.repository.QueryEvaluacion;
 import com.sigecu.service.PreguntasErradasConService;
 
 /**
@@ -35,19 +38,34 @@ public class PreguntasErradasConServiceImplement implements PreguntasErradasConS
 	@Qualifier("cursosConvertir")
 	private CursosConverter cursosConverter;
 
+	@Autowired
+	@Qualifier("queryEvaluacion")
+	private QueryEvaluacion queryEvaluacion;
+
+	@Autowired
+	@Qualifier("evalaucionesConverter")
+	private EvaluacionConverter evaluacionConverter;
+
 	
 	@Override
 	public List<Respuestas> listarPreguntasHerradas() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+ //listar Evaluaiones
 	@Override
-	public List<Evaluaciones> listarEvaluaciones() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public List<EvaluacionesModel> listarEvaluaciones(int idCurso) {
+		List<Evaluaciones> evaluaciones = queryEvaluacion.findAllExamenesById(idCurso);
+		List<EvaluacionesModel> evaluacionModel = new ArrayList<EvaluacionesModel>();
 
+		for (Evaluaciones evaluacion : evaluaciones) {
+			evaluacionModel.add(evaluacionConverter.convertEvaluacion2EvaluacionModel(evaluacion));
+		}
+		LOG.info("BUSCAR examen de CURSO " + idCurso);
+		return evaluacionModel;
+	}
+	
+	//listar CUrsos
 	public List<CursoModel> listaCursos() {
 		List<Cursos> cursos = cursoRepository.findAll();
 		List<CursoModel> cursoModel = new ArrayList<CursoModel>();

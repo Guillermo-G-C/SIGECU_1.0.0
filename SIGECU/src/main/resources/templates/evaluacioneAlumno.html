@@ -35,46 +35,32 @@
 <body class="theme-red">
 
 	<section th:include="fragment/menualumno"></section>
+
 	<section class="content">
 		<div class="container-fluid">
+			<!-- Counter Examples -->
 			<div class="block-header">
-				<h2>CURSOS</h2>
+				<h2>
+					COUNTER ANIMATION <small>Taken from <a
+						href="https://github.com/mhuggins/jquery-countTo" target="_blank">github.com/mhuggins/jquery-countTo</a></small>
+				</h2>
 			</div>
-			<!-- Basic Example -->
-			<div class="row clearfix">
-
-				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"
-					th:each="cur : ${listaCursosAl}">
-					<div class="card">
-						<div class="header bg-cyan">
-							<h2 th:text="${cur.cNombre}"></h2>
-							<ul class="header-dropdown m-r--5">
-
-							</ul>
+			<div class="row">
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" th:each="eva : ${evaluacionesAlumno}">
+					<div class="info-box bg-pink hover-zoom-effect">
+						<div class="icon">
+							<i class="material-icons">question_answer</i>
 						</div>
-						<div class="body">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon"> <i
-									class="material-icons">view_compact</i>
-								</span>
-								<div class="form-line">
-									<textarea rows="5" cols="5" class="form-control"
-										th:text="${cur.cDescripcion}"></textarea>
-								</div>
-							</div>
-							<a th:href="@{/adminExamen/listaExamen?idCurso=__${cur.idCurso}__}">
-								<button type="button" class="btn btn-primary waves-effect">
-									<i class="material-icons">question_answer</i> <span>Evaluaciones</span>
-								</button>
-							</a>
-
+						<div class="content">
+							<div class="text" th:text="${eva.eNombre}"></div>
+							<div class="number">15</div>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>
 	</section>
-
 
 	<!-- Jquery Core Js -->
 	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
