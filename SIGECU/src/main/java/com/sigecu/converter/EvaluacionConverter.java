@@ -27,11 +27,11 @@ public class EvaluacionConverter {
 	@Autowired
 	@Qualifier("cursosConvertir")
 	private CursosConverter cursosConverter;
-	
-	//Entity --> Model
+
+	// Entity --> Model
 	public EvaluacionesModel convertEvaluacion2EvaluacionModel(Evaluaciones evaluacion) {
 		EvaluacionesModel eval = new EvaluacionesModel();
-		
+
 		CursoModel curso = cursosConverter.convertCursoToCursoModel(evaluacion.getCursos());
 		eval.setIdevaluacion(evaluacion.getIdEvaluacion());
 		eval.setCurso(curso);
@@ -43,14 +43,14 @@ public class EvaluacionConverter {
 		return eval;
 
 	}
-	
+
 	// Model --> Entity
 	public Evaluaciones convertEvaluacionModelToEvaluacion(EvaluacionesModel evaluacionModel, Cursos curso) {
 		Evaluaciones evaluacion = new Evaluaciones();
-		
+
 		evaluacion.seteNombre(evaluacionModel.geteNombre());
 		evaluacion.setePorsentaje(evaluacionModel.getePorcentaje());
-	 	evaluacion.setCursos(curso);
+		evaluacion.setCursos(curso);
 		evaluacion.seteTiempo(evaluacionModel.geteTiempo());
 		return evaluacion;
 	}

@@ -19,24 +19,26 @@ import com.sigecu.model.CursoModel;
 @Component("cursosConvertir")
 public class CursosConverter {
 	private static final Log LOG = LogFactory.getLog(CursosConverter.class);
-	
-	//entity -- to -- model
+
+	// entity -- to -- model
 	public CursoModel convertCursoToCursoModel(Cursos curso) {
 		CursoModel cursoModel = new CursoModel();
 		cursoModel.setIdCurso(curso.getIdCurso());
 		cursoModel.setcNombre(curso.getcNombre());
 		cursoModel.setcDescripcion(curso.getcDescripcion());
-		
-		return cursoModel;	
+
+		return cursoModel;
 	}
-	
-	//model -- to -- entity
+
+	// model -- to -- entity
 	public Cursos convertCursoModelToCurso(CursoModel cursoModel) {
 		Cursos curso = new Cursos();
-		curso.setcNombre(cursoModel.getcNombre());
-		curso.setcDescripcion(cursoModel.getcDescripcion());
-		
+		try {
+			curso.setcNombre(cursoModel.getcNombre());
+			curso.setcDescripcion(cursoModel.getcDescripcion());
+		} catch (Exception e) {
+			LOG.error("Error en convertir el cursoModel a Curso");
+		}
 		return curso;
-		
 	}
 }

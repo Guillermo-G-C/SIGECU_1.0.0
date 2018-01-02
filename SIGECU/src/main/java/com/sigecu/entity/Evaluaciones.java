@@ -14,32 +14,33 @@ import javax.persistence.Table;
  * */
 
 @Entity
-@Table (name="evaluaciones")
+@Table(name = "evaluaciones")
 public class Evaluaciones {
 	@Id
-	@GeneratedValue 
-	@Column(name="idEvaluacion")
+	@GeneratedValue
+	@Column(name = "idEvaluacion")
 	private int idEvaluacion;
-	@Column(name="eNombre")
+	@Column(name = "eNombre")
 	private String eNombre;
-	@Column(name="eTiempo")
+	@Column(name = "eTiempo")
 	private String eTiempo;
-	@Column (name="ePorsentaje")
+	@Column(name = "ePorsentaje")
 	private String ePorsentaje;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "cursos_id_curso")
 	private Cursos cursos;
-	
+
 	public Evaluaciones() {
-		
+
 	}
-	public Evaluaciones(int idEvaluacion, String eNombre, String eTiempo, String ePorsentaje)  {
-		this.idEvaluacion=idEvaluacion;
-		this.eNombre=eNombre;
-		this.eTiempo=eTiempo;
-		this.ePorsentaje=ePorsentaje;
-		
+
+	public Evaluaciones(int idEvaluacion, String eNombre, String eTiempo, String ePorsentaje) {
+		this.idEvaluacion = idEvaluacion;
+		this.eNombre = eNombre;
+		this.eTiempo = eTiempo;
+		this.ePorsentaje = ePorsentaje;
+
 	}
 
 	/**
@@ -50,7 +51,8 @@ public class Evaluaciones {
 	}
 
 	/**
-	 * @param idEvaluacion the idEvaluacion to set
+	 * @param idEvaluacion
+	 *            the idEvaluacion to set
 	 */
 	public void setIdEvaluacion(int idEvaluacion) {
 		this.idEvaluacion = idEvaluacion;
@@ -64,7 +66,8 @@ public class Evaluaciones {
 	}
 
 	/**
-	 * @param eNombre the eNombre to set
+	 * @param eNombre
+	 *            the eNombre to set
 	 */
 	public void seteNombre(String eNombre) {
 		this.eNombre = eNombre;
@@ -78,7 +81,8 @@ public class Evaluaciones {
 	}
 
 	/**
-	 * @param eTiempo the eTiempo to set
+	 * @param eTiempo
+	 *            the eTiempo to set
 	 */
 	public void seteTiempo(String eTiempo) {
 		this.eTiempo = eTiempo;
@@ -92,7 +96,8 @@ public class Evaluaciones {
 	}
 
 	/**
-	 * @param ePorsentaje the ePorsentaje to set
+	 * @param ePorsentaje
+	 *            the ePorsentaje to set
 	 */
 	public void setePorsentaje(String ePorsentaje) {
 		this.ePorsentaje = ePorsentaje;
@@ -106,11 +111,11 @@ public class Evaluaciones {
 	}
 
 	/**
-	 * @param cursos the cursos to set
+	 * @param cursos
+	 *            the cursos to set
 	 */
 	public void setCursos(Cursos cursos) {
 		this.cursos = cursos;
 	}
-	
-	
+
 }

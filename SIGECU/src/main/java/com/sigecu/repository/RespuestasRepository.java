@@ -7,9 +7,7 @@ import java.io.Serializable;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import com.sigecu.entity.Respuestas;
-
 
 /**
  * @author Rolando Castillo
@@ -18,6 +16,6 @@ import com.sigecu.entity.Respuestas;
  *
  */
 @Repository("respuestasRepository")
-public interface RespuestasRepository extends JpaRepository<Respuestas, Serializable>{
-
+public interface RespuestasRepository extends JpaRepository<Respuestas, Serializable> {
+	public abstract Respuestas findByIdRespuesta(int idRespuesta);
 }
