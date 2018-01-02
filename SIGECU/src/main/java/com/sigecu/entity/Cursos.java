@@ -57,8 +57,16 @@ public class Cursos {
 	public void setIdCurso(int idCurso) {
 		this.idCurso = idCurso;
 	}
+	public Cursos(int idCurso, String cNombre, String cDescripcion) {
+		super();
+		this.idCurso = idCurso;
+		this.cNombre = cNombre;
+		this.cDescripcion = cDescripcion;
+	}
 	
-	
+	public Cursos() {
+		
+	}
 	
 
 }

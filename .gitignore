@@ -21,3 +21,6 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 SIGECU/src/main/resources/application.yml
+SIGECU/target/classes/com/sigecu/component/RequestTimeInterceptor.class
+SIGECU/target/classes/com/sigecu/component/RequestTimeInterceptor.class
+SIGECU/target/classes/com/sigecu/component/RequestTimeInterceptor.class
