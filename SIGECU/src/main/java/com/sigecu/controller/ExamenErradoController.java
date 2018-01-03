@@ -36,12 +36,13 @@ public class ExamenErradoController {
 	@Qualifier("ExamenErradoServiceImplement")
 	private ExamenErradoService examenErradoService;
 
-	@GetMapping("/nuevoExamen")
-	public ModelAndView nuevoExamen(@RequestParam(name = "idEvaluacion", required = false) int idEvaluacion,
+	@GetMapping("/ExamenErrado1")
+	public ModelAndView ExamenErrado1(
 			Model model) {
+		int idEvaluacion=1;
 		PreguntasModel preModel = new PreguntasModel();
 		RespuestasModel respuestasModel = new RespuestasModel();
-		ModelAndView mav = new ModelAndView(ViewConstant.NUEVO_EXAMEN);
+		ModelAndView mav = new ModelAndView(ViewConstant.NUEVO_EXAMENERRADO);
 		mav.addObject("listaPreguntas", examenErradoService.listarPreguntasByExamErrado(idEvaluacion));
 		mav.addObject("listaRespuestas", examenErradoService.listarRespuestas());
 		// agregar respuestas

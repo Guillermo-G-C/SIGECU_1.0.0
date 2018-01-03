@@ -10,6 +10,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
 import com.sigecu.converter.PreguntasConverter;
 import com.sigecu.converter.RespuestasConverter;
 import com.sigecu.entity.Preguntas;
@@ -26,6 +28,7 @@ import com.sigecu.service.ExamenErradoService;
  * @author Anel
  *
  */
+@Service ("ExamenErradoServiceImplement")
 public class ExamenErradoServiceImplement implements ExamenErradoService {
 	
 	private static final Log LOG = LogFactory.getLog(ExamenErradoServiceImplement.class);
