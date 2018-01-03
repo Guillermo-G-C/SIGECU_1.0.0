@@ -30,20 +30,27 @@ import com.sigecu.service.ExamenErradoService;
 @RequestMapping("/ExamenErrado")
 public class ExamenErradoController {
 	
-	private static final Log LOG = LogFactory.getLog(AdminExamController.class);
+	private static final Log LOG = LogFactory.getLog(ExamenErradoController.class);
 
 	@Autowired
 	@Qualifier("ExamenErradoServiceImplement")
 	private ExamenErradoService examenErradoService;
 
-	@GetMapping("/listaExamen")
-	public ModelAndView showExamenes(@RequestParam(name = "idCurso", required = false) int idCurso, Model model) {
-		EvaluacionesModel evalModel = new EvaluacionesModel();
-		ModelAndView mav = new ModelAndView(ViewConstant.LISTAR_EXAMEN);
-		mav.addObject("listaExamen", examenErradoService.listAllEvaluaciones(idCurso));
-		model.addAttribute("evaluacionesModel", evalModel);
-		model.addAttribute("idCurso", idCurso);
+	@GetMapping("/nuevoExamen")
+	public ModelAndView nuevoExamen(@RequestParam(name = "idEvaluacion", required = false) int idEvaluacion,
+			Model model) {
+		PreguntasModel preModel = new PreguntasModel();
+		RespuestasModel respuestasModel = new RespuestasModel();
+		ModelAndView mav = new ModelAndView(ViewConstant.NUEVO_EXAMEN);
+		mav.addObject("listaPreguntas", examenErradoService.listarPreguntasByExamErrado(idEvaluacion));
+		mav.addObject("listaRespuestas", examenErradoService.listarRespuestas());
+		// agregar respuestas
+		model.addAttribute("respuestasModel", respuestasModel);
+		model.addAttribute("preModel", preModel);
+		model.addAttribute("idEvaluacion", idEvaluacion);
+
 		return mav;
 	}
+
 
 }

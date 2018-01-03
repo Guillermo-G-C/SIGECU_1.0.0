@@ -52,16 +52,13 @@
                         <div class="body">
                             <div id="wizard_vertical">
                                 <h2></h2>
-                                <section>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut nulla nunc. Maecenas
-                                        arcu sem, hendrerit a tempor quis, sagittis accumsan tellus. In hac habitasse platea
-                                        dictumst. Donec a semper dui. Nunc eget quam libero. Nam at felis metus. Nam tellus
-                                        dolor, tristique ac tempus nec, iaculis quis nisi.
-                                    </p>
-                            <div class="demo-checkbox">
+                                <section th:each="pregunta : ${listaPreguntas}">
+                                    <p th:text="${pregunta.pPregunta}"> </p>
+                            
+                            <div class="demo-checkbox" th:each="resp : ${listaRespuestas}"
+																	th:if="${pregunta.idPregunta==resp.pregunta.getIdPregunta()}">
                                 <input type="checkbox" id="md_checkbox_1" name="group1" class="chk-col-teal" checked="checked" />
-                                <label for="md_checkbox_1">Release</label>
+                                <label for="md_checkbox_1" th:text="${resp.rRespuesta}"></label>
                                <br></br>
                                 
                              </div>

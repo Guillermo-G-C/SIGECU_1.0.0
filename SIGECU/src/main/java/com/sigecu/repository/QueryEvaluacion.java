@@ -19,6 +19,8 @@ import com.sigecu.entity.Preguntas;
 import com.sigecu.entity.QCursos;
 import com.sigecu.entity.QEvaluaciones;
 import com.sigecu.entity.QPreguntas;
+import com.sigecu.entity.QRespuestas;
+import com.sigecu.entity.Respuestas;
 
 /**
  * @author Rolando Castillo
@@ -32,6 +34,7 @@ public class QueryEvaluacion {
 	QEvaluaciones qEval = QEvaluaciones.evaluaciones;
 	QCursos qCursos = QCursos.cursos;
 	QPreguntas qPreguntas = QPreguntas.preguntas;
+	QRespuestas qRespuestas = QRespuestas.respuestas;
 	//persistencia de la app
 	@PersistenceContext
 	private EntityManager em;
@@ -54,13 +57,25 @@ public class QueryEvaluacion {
 		 return eval;
 	}
 	
+	/*Busca preguntas por id de examen*/
 	public List<Preguntas> findAllPreguntasById(int idExamen){
 		JPAQuery<Preguntas> query = new JPAQuery<> (em);
 		List<Preguntas> listPreguntas = query.select(qPreguntas)
 				.from(qPreguntas)
 				.where(qPreguntas.evaluaciones.idEvaluacion.eq(idExamen))
+				.orderBy(qPreguntas.idPregunta.desc())
 				.fetch();
 		return listPreguntas;
+		
+	}
+	/*Busca respuestas de pregunta*/
+	public List<Respuestas> findAllRespuestasByIdPregunta(int idPregunta){
+		JPAQuery<Respuestas> query = new JPAQuery<> (em);
+		List<Respuestas> listRespuestas = query.select(qRespuestas)
+				.from(qRespuestas)
+				.where(qRespuestas.preguntas.idPregunta.eq(idPregunta))
+				.fetch();
+		return listRespuestas;
 		
 	}
 }
