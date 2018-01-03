@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
 import com.sigecu.constant.ViewConstant;
 import com.sigecu.service.CertificadoService;
+import com.sigecu.service.implemt.AlumnoHasEventoServiceImpl;
 import com.sigecu.service.implemt.CertificadoServiceImpl;
 
 import net.sf.jasperreports.engine.JRException;
@@ -39,10 +40,22 @@ public class CertificadoController {
 	@Autowired
 	private CertificadoServiceImpl certificadoService;
 	
+	@Autowired
+	private AlumnoHasEventoServiceImpl alumnoHasEventoService;
+	
 	@GetMapping("/inicio")
 	public ModelAndView ejemploMAV() {
 		ModelAndView mav = new ModelAndView(ViewConstant.CERTIFICADO);
 		mav.addObject("certificadoO",certificadoService.findCertificadoById(2));
+		
+		return mav;
+	}
+	
+	@GetMapping("/ahe")
+	public ModelAndView ahe() {
+		ModelAndView mav = new ModelAndView(ViewConstant.CERTIFICADO);
+		
+		mav.addObject("AHEB", alumnoHasEventoService.findAlumnoHasEventoById(1));
 		
 		return mav;
 	}
@@ -55,7 +68,7 @@ public class CertificadoController {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 	    params.put("datasource", certificadoService.report());
-	    params.put("img", this.getClass().getResource("/src/main/resources/reports/c.png"));
+	    //params.put("img", this.getClass().getResource("/src/main/resources/reports/c.png"));
 		return new ModelAndView(cerView, params);
 	}
 	
@@ -67,7 +80,9 @@ public class CertificadoController {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 	    params.put("datasource", certificadoService.report(1));
-	    params.put("img", this.getClass().getResource("/src/main/resources/reports/c.png"));
+	    //params.put("img", this.getClass().getResource("/src/main/resources/reports/c.png"));
 		return new ModelAndView(cerView, params);
 	}
+	
+	
 }

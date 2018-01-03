@@ -8,12 +8,21 @@
 	<h1>Aqui va el certificado bien bonito :v</h1>
 	<a th:href="${'/alumno/certificado'}" target="_blank">Certificado</a>
 	
-	<table>
+	<!--table>
 		<tr>
 			<th>Alumno</th>
 		</tr>
 		<tr th:each="certificado : ${certificadoO}">
 			<td th:text="${certificado.alumno}"></td>
+		</tr>
+	</table-->
+	
+	<table>
+		<tr>
+			<th>AHE</th>
+		</tr>
+		<tr th:each="ahe : ${AHEB}">
+			<td th:text="${ahe.alumno.getaNombre()}"></td>
 		</tr>
 	</table>
 	
