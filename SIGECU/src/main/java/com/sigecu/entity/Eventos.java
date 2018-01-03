@@ -11,6 +11,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,18 +23,18 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="evantos")
+@Table(name="eventos")
 public class Eventos {
 	
 	private int id_evento;
 	private String e_descripcion;
+	private Cursos cursos;
 	
 	private Set<Alumno_Has_Eventos> alumnos_has_eventos = new HashSet<>();
 	
 	public Eventos() {
 		// TODO Auto-generated constructor stub
 	}
-	
 
 	/**
 	 * @param id_evento
@@ -77,6 +79,16 @@ public class Eventos {
 	 */
 	public void setE_descripcion(String e_descripcion) {
 		this.e_descripcion = e_descripcion;
+	}
+
+	@ManyToOne
+	@JoinColumn(name="idCurso")
+	public Cursos getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(Cursos cursos) {
+		this.cursos = cursos;
 	}
 
 	/**

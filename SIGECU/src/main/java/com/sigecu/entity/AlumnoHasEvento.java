@@ -9,8 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
-
 @Entity
 @Table(name = "alumno_has_evento")
 public class AlumnoHasEvento{
@@ -22,15 +20,21 @@ public class AlumnoHasEvento{
 	
 	//Bi-direcional many-to-many association to Alumno
 	@ManyToOne
-	@JoinColumn(name="idAlumno")
+	@JoinColumn(name="id_alumno")
 	private Alumno alumno;
-
-	public AlumnoHasEvento(int idAHE, Alumno alumno) {
+	
+	//Bi-direcional many-to-many association to Alumno
+	@ManyToOne
+	@JoinColumn(name="id_evento")
+	private Eventos eventos;
+	
+	public AlumnoHasEvento(int idAHE, Alumno alumno, Eventos eventos) {
 		super();
 		this.idAHE = idAHE;
 		this.alumno = alumno;
+		this.eventos = eventos;
 	}
-	
+
 	public AlumnoHasEvento() {
 		
 	}
@@ -50,7 +54,15 @@ public class AlumnoHasEvento{
 	public void setAlumno(Alumno alumno) {
 		this.alumno = alumno;
 	}
-	
+
+	public Eventos getEventos() {
+		return eventos;
+	}
+
+	public void setEventos(Eventos eventos) {
+		this.eventos = eventos;
+	}
+
 	
 	
 }
