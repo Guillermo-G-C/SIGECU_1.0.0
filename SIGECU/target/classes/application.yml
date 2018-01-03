@@ -5,11 +5,9 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/sigecu?useSSL=false
     username: root
-<<<<<<< HEAD
+
     password: root
-=======
-    password: ''
->>>>>>> master
+
   jpa:
     show-sql: true
     hibernate:
