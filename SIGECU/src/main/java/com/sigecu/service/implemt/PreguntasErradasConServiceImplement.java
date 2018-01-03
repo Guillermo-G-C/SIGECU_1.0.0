@@ -19,14 +19,17 @@ import com.sigecu.converter.RespuestasConverter;
 import com.sigecu.entity.Cursos;
 import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Preguntas;
+import com.sigecu.entity.RespuestaALMEntity;
 import com.sigecu.entity.Respuestas;
 import com.sigecu.model.CursoModel;
 import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.PreguntasModel;
+import com.sigecu.model.RespuestaALMModel;
 import com.sigecu.model.RespuestasModel;
 import com.sigecu.repository.CursosRepository;
 import com.sigecu.repository.QueryEvaluacion;
 import com.sigecu.repository.RespuestasRepository;
+import com.sigecu.repository.respuestaALM;
 import com.sigecu.service.PreguntasErradasConService;
 
 /**
@@ -64,6 +67,10 @@ public class PreguntasErradasConServiceImplement implements PreguntasErradasConS
 	@Autowired
 	@Qualifier("respuestasConverter")
 	private RespuestasConverter respuestasConverter;
+	
+	@Autowired
+	@Qualifier("respuestasALM")
+	private respuestaALM respuestaAL;
 	@Override
 	public List<Respuestas> listarPreguntasHerradas() {
 		// TODO Auto-generated method stub
@@ -110,5 +117,13 @@ public class PreguntasErradasConServiceImplement implements PreguntasErradasConS
 		}
 		return respModel;
 	}
+	@Override
+	public List<RespuestaALMModel> listarRespuestasAlumno() {
+		List<RespuestaALMEntity> respuestasALumno = respuestaAL.findAll();
+		List <RespuestaALMModel> respuestaALMo = new ArrayList<RespuestaALMModel>();
+		return null;
+	}
+	
+	
 
 }
