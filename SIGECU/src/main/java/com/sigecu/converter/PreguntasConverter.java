@@ -6,12 +6,8 @@ package com.sigecu.converter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
-
-import com.sigecu.entity.Cursos;
 import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Preguntas;
-import com.sigecu.model.CursoModel;
-import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.PreguntasModel;
 
 /**
@@ -23,8 +19,8 @@ import com.sigecu.model.PreguntasModel;
 @Component("preguntasConverter")
 public class PreguntasConverter {
 	private static final Log LOG = LogFactory.getLog(PreguntasConverter.class);
-	
-	//entity -- to -- model
+
+	// entity -- to -- model
 	public PreguntasModel converterPreguntasToPreguntasModel(Preguntas preguntas) {
 		PreguntasModel preguntaModel = new PreguntasModel();
 		preguntaModel.setIdPregunta(preguntas.getIdPregunta());
@@ -32,18 +28,18 @@ public class PreguntasConverter {
 		preguntaModel.setpDescripcion(preguntas.getpDescripcion());
 		preguntaModel.setEvaluacion(preguntas.getEvaluaciones());
 		preguntaModel.setPuntaje(preguntas.getpPuntaje());
-		
+		LOG.info("Conversion correcta: Pregunta a PreguntaModel");
 		return preguntaModel;
 	}
-	
-	//model -- to -- entity
-	public Preguntas converterPreguntaModelToPreguntas (PreguntasModel preguntaModel, Evaluaciones eval) {
+
+	// model -- to -- entity
+	public Preguntas converterPreguntaModelToPreguntas(PreguntasModel preguntaModel, Evaluaciones eval) {
 		Preguntas pregunta = new Preguntas();
 		pregunta.setpPregunta(preguntaModel.getpPregunta());
 		pregunta.setpPuntaje(preguntaModel.getPuntaje());
 		pregunta.setpDescripcion(pregunta.getpDescripcion());
 		pregunta.setEvaluaciones(eval);
-		
+
 		return pregunta;
 	}
 }

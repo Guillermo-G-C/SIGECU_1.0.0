@@ -1,32 +1,26 @@
 package com.sigecu.controller;
-/**/
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-/**/
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.jasperreports.JasperReportsHtmlView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
 import com.sigecu.constant.ViewConstant;
+
 import com.sigecu.service.CertificadoService;
 import com.sigecu.service.implemt.AlumnoHasEventoServiceImpl;
+
 import com.sigecu.service.implemt.CertificadoServiceImpl;
 
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.export.HtmlExporter;
-import net.sf.jasperreports.export.SimpleHtmlExporterOutput;
 
 @Controller
 @RequestMapping("/alumno")
