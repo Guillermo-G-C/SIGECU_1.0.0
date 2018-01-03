@@ -46,5 +46,14 @@ public class PreguntasErradasController {
 		return mav;
 	}
 
+	@GetMapping("/evaluacion")
+	public ModelAndView preguntasErradas(@RequestParam(name = "idEvaluacion",required = false)
+	int idEvaluacion) {
+		ModelAndView mav = new ModelAndView(ViewConstant.PREGUNTAS_ERRADAS);
+		mav.addObject("listaPreguntas", preguntasErradasConService.listarPregunrasByExam(idEvaluacion));
+		mav.addObject("listaRespuestas", preguntasErradasConService.listarRespuestas());
+		return mav;
+		
+	}
 
 }

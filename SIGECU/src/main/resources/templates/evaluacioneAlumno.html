@@ -36,6 +36,8 @@
 
 	<section th:include="fragment/menualumno"></section>
 
+
+
 	<section class="content">
 		<div class="container-fluid">
 			<!-- Counter Examples -->
@@ -54,18 +56,31 @@
 						</div>
 						<div class="content">
 							<div class="text" th:text="${eva.eNombre}"></div>
-							<div class="number" th:text="${eva.ePorcentaje}">15</div>
+							<div class="number" th:text="${eva.ePorcentaje}"></div>
 						</div>
 					</div>
-					<button type="button" class="btn btn-primary waves-effect">
-						<i class="material-icons">check_box</i> <span>Realizar Evaluacion</span>
-					</button>
-					<button type="button" class="btn btn-primary waves-effect">
-						<i class="material-icons">remove_red_eye</i> <span>Ver Preguntas Erradas</span>
-					</button>
-					<button type="button" class="btn btn-primary waves-effect">
-						<i class="material-icons">indeterminate_check_box</i> <span>Corregir Examen</span>
-					</button>
+					<div class="demo-button-nesting">
+						<div class="btn-group" role="group">
+							<div class="btn-group" role="group">
+								<button type="button"
+									class="btn bg-pink waves-effect dropdown-toggle"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false">
+									<i class="material-icons">info</i> <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="EvaluacionAlumno.html"><span>Realizar Evaluacion</span>
+									</a></li>
+									<li><a th:href="@{/preguntasErradas/evaluacion?idEvaluacion=__${eva.idevaluacion}__}">
+									<span>Preguntas Erradas</span>
+									</a></li>
+									<li><a><span>Corregir Examen</span> </a></li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+
 
 				</div>
 			</div>

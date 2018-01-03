@@ -27,4 +27,5 @@ public class ViewConstant {
 	
 	public static final String EXAMENES_ALUMNO ="evaluacioneAlumno";
 
+	public static final String PREGUNTAS_ERRADAS ="EvaluacionAlumno";
 }

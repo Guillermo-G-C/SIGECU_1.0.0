@@ -14,13 +14,19 @@ import org.springframework.stereotype.Service;
 
 import com.sigecu.converter.CursosConverter;
 import com.sigecu.converter.EvaluacionConverter;
+import com.sigecu.converter.PreguntasConverter;
+import com.sigecu.converter.RespuestasConverter;
 import com.sigecu.entity.Cursos;
 import com.sigecu.entity.Evaluaciones;
+import com.sigecu.entity.Preguntas;
 import com.sigecu.entity.Respuestas;
 import com.sigecu.model.CursoModel;
 import com.sigecu.model.EvaluacionesModel;
+import com.sigecu.model.PreguntasModel;
+import com.sigecu.model.RespuestasModel;
 import com.sigecu.repository.CursosRepository;
 import com.sigecu.repository.QueryEvaluacion;
+import com.sigecu.repository.RespuestasRepository;
 import com.sigecu.service.PreguntasErradasConService;
 
 /**
@@ -46,7 +52,17 @@ public class PreguntasErradasConServiceImplement implements PreguntasErradasConS
 	@Qualifier("evalaucionesConverter")
 	private EvaluacionConverter evaluacionConverter;
 
-	
+	@Autowired
+	@Qualifier("preguntasConverter")
+	private PreguntasConverter preguntasConverter;
+
+	@Autowired
+	@Qualifier("respuestasRepository")
+	private RespuestasRepository respuestasRepository;
+
+	@Autowired
+	@Qualifier("respuestasConverter")
+	private RespuestasConverter respuestasConverter;
 	@Override
 	public List<Respuestas> listarPreguntasHerradas() {
 		// TODO Auto-generated method stub
@@ -73,5 +89,24 @@ public class PreguntasErradasConServiceImplement implements PreguntasErradasConS
 			cursoModel.add(cursosConverter.convertCursoToCursoModel(curso));
 		}
 		return cursoModel;
+	}
+	@Override
+	public List<PreguntasModel> listarPregunrasByExam(int idExamen) {
+		List<Preguntas> listPreguntas = queryEvaluacion.findAllPreguntasById(idExamen);
+		List<PreguntasModel> preguntasModel = new ArrayList<PreguntasModel>();
+
+		for (Preguntas preg : listPreguntas) {
+			preguntasModel.add(preguntasConverter.converterPreguntasToPreguntasModel(preg));
+		}
+		return preguntasModel;
+	}
+	@Override
+	public List<RespuestasModel> listarRespuestas() {
+		List<Respuestas> respuestas = respuestasRepository.findAll();
+		List<RespuestasModel> respModel = new ArrayList<RespuestasModel>();
+		for (Respuestas resp : respuestas) {
+			respModel.add(respuestasConverter.converterRespuestasToRespuestasModel(resp));
+		}
+		return respModel;
 	}
 }

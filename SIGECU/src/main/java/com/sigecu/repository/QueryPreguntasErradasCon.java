@@ -58,5 +58,15 @@ public class QueryPreguntasErradasCon {
 		 
 		 return eval;
 	}
-	
+	/*Busca preguntas por id de examen*/
+	public List<Preguntas> findAllPreguntasById(int idExamen){
+		JPAQuery<Preguntas> query = new JPAQuery<> (em);
+		List<Preguntas> listPreguntas = query.select(qPreguntas)
+				.from(qPreguntas)
+				.where(qPreguntas.evaluaciones.idEvaluacion.eq(idExamen))
+				.orderBy(qPreguntas.idPregunta.desc())
+				.fetch();
+		return listPreguntas;
+		
+	}
 }
