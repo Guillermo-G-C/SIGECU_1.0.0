@@ -17,7 +17,6 @@ import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Preguntas;
 import com.sigecu.entity.QEvaluaciones;
 import com.sigecu.entity.QPreguntas;
-//import com.sigecu.entity.QRespuestaALM;
 import com.sigecu.entity.QRespuestas;
 import com.sigecu.entity.Respuestas;
 
@@ -32,10 +31,10 @@ public class QueryPreguntasErradasCon {
 	private QEvaluaciones qEvaluaciones = QEvaluaciones.evaluaciones;
 	private QPreguntas qPreguntas = QPreguntas.preguntas;
 	private QRespuestas qRespuestas = QRespuestas.respuestas;
-	//private QRespuestaALM qrepuestasalm = QRespuestaALM.respuestaALM;
-	
+//	private QRespuestaALM qrepuestasalm = QRespuestaALM.respuestaALM;
+//	
 	@PersistenceContext
-	private EntityManager em;
+    private EntityManager em;
 //	
 //	public List<Respuestas> preguntasErradasMo() {
 //		JPAQuery<Preguntas> query = new JPAQuery<Preguntas>(em);
@@ -69,4 +68,5 @@ public class QueryPreguntasErradasCon {
 		return listPreguntas;
 		
 	}
+
 }
