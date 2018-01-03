@@ -7,8 +7,6 @@ package com.sigecu.constant;
  * @author zoro
  *
  */
-
-
 public class ViewConstant {
 
 	/**
@@ -22,10 +20,11 @@ public class ViewConstant {
 	public static final String LISTAR_CURSOS = "listaCursosAdmin";
 
 	public static final String CERTIFICADO = "certificado";
-	
-	public static final String CURSOS_ALUMNO = "cursosAlumno";
-	
-	public static final String EXAMENES_ALUMNO ="evaluacioneAlumno";
+	public static final String EVENTOS_ALUMNO="eventosAlumno";
 
 	public static final String PREGUNTAS_ERRADAS ="EvaluacionAlumno";
+
+	public static final String EXAMENES_ALUMNO = "evaluacioneAlumno";
+
+	public static final String CURSOS_ALUMNO = "cursosAlumno";
 }

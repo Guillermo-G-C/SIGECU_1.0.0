@@ -33,6 +33,7 @@ import com.sigecu.service.PreguntasErradasConService;
  * @author Dell
  *
  */
+
 @Service("preErradasServiceImpl")
 public class PreguntasErradasConServiceImplement implements PreguntasErradasConService{
 
@@ -109,4 +110,5 @@ public class PreguntasErradasConServiceImplement implements PreguntasErradasConS
 		}
 		return respModel;
 	}
+
 }

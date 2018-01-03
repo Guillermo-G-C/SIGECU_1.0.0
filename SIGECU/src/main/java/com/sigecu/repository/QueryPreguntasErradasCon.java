@@ -12,6 +12,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 
+
 import com.querydsl.jpa.impl.JPAQuery;
 import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Preguntas;
@@ -35,6 +36,13 @@ public class QueryPreguntasErradasCon {
 //	
 	@PersistenceContext
     private EntityManager em;
+//	private QEvaluaciones qEvaluaciones = QEvaluaciones.evaluaciones;
+//	private QPreguntas qPreguntas = QPreguntas.preguntas;
+//	private QRespuestas qRespuestas = QRespuestas.respuestas;
+//	private QRespuestaALM qrepuestasalm = QRespuestaALM.respuestaALM;
+//	
+//	@PersistenceContext
+//	private EntityManager em;
 //	
 //	public List<Respuestas> preguntasErradasMo() {
 //		JPAQuery<Preguntas> query = new JPAQuery<Preguntas>(em);
@@ -68,5 +76,6 @@ public class QueryPreguntasErradasCon {
 		return listPreguntas;
 		
 	}
+
 
 }
