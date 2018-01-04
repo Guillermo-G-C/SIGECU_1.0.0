@@ -52,6 +52,7 @@ public class PreguntasErradasController {
 		ModelAndView mav = new ModelAndView(ViewConstant.PREGUNTAS_ERRADAS);
 		mav.addObject("listaPreguntas", preguntasErradasConService.listarPregunrasByExam(idEvaluacion));
 		mav.addObject("listaRespuestas", preguntasErradasConService.listarRespuestas());
+		mav.addObject("listaRespuestasAlm",preguntasErradasConService.listarRespuestasAlumno());
 		return mav;
 		
 	}

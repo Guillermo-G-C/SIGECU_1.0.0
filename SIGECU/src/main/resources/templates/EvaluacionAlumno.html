@@ -58,21 +58,27 @@
 							<div id="wizard_vertical">
 								<h2></h2>
 								<section th:each="pregunta : ${listaPreguntas}">
-									    <div class="row clearfix">
-                                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-                                    <h1 th:text="${pregunta.pPregunta}"></h1>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-                                    <button class="btn btn-success btn-lg btn-block waves-effect" type="button" >Puntaje <span class="badge" th:text="${pregunta.puntaje}"></span></button>
-                                </div>                               
-                            </div>
-									<div class="demo-checkbox" 
-									th:each="resp : ${listaRespuestas}"
-									th:if="${pregunta.idPregunta==resp.pregunta.getIdPregunta()}">
-									
+									<div class="row clearfix">
+										<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+											<h1 th:text="${pregunta.pPregunta}"></h1>
+										</div>
+										<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+											<button class="btn btn-success btn-lg btn-block waves-effect"
+												type="button">
+												Puntaje <span class="badge" th:text="${pregunta.puntaje}"></span>
+											</button>
+										</div>
+									</div>
+									<div class="demo-checkbox" th:each="resp : ${listaRespuestas}"
+										th:if="${pregunta.idPregunta==resp.pregunta.getIdPregunta()}"
+										
+										>
+
 										<input type="checkbox" id="md_checkbox_1" name="group1"
-											class="chk-col-teal"  th:value="${resp.rRespuesta}" /> <label
-											for="md_checkbox_1"  th:text="${resp.rRespuesta}"></label>
+											class="chk-col-teal" th:value="${resp.rRespuesta}"
+											th:each="respal : ${listaRespuestasAlm}"
+										th:if="({resp.idRespuesta==respal.RespuestaModel.getIdRespuestaModel}and{resp.rSolucion==1})" checked="checked"/> 
+											<label for="md_checkbox_1" th:text="${resp.rRespuesta}"></label>
 									</div>
 								</section>
 								<h2></h2>

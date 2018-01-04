@@ -48,6 +48,23 @@ public class RespuestaALMEntity {
 		this.seleccionada = seleccionada;
 	}
 	
+	
+	/**
+	 * @return the respuestas
+	 */
+	public Respuestas getRespuestas() {
+		return respuestas;
+	}
+	/**
+	 * @param respuestas the respuestas to set
+	 */
+	public void setRespuestas(Respuestas respuestas) {
+		this.respuestas = respuestas;
+	}
+	public RespuestaALMEntity() {
+		
+	}
+	
 	public RespuestaALMEntity(int idrespuestaALM, String seleccionada) {
 		super();
 		this.idrespuestaALM = idrespuestaALM;

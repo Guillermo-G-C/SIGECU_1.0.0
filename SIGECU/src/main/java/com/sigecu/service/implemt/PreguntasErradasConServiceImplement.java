@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.sigecu.converter.CursosConverter;
 import com.sigecu.converter.EvaluacionConverter;
 import com.sigecu.converter.PreguntasConverter;
+import com.sigecu.converter.RespuestasAlumnoConverter;
 import com.sigecu.converter.RespuestasConverter;
 import com.sigecu.entity.Cursos;
 import com.sigecu.entity.Evaluaciones;
@@ -71,6 +72,9 @@ public class PreguntasErradasConServiceImplement implements PreguntasErradasConS
 	@Autowired
 	@Qualifier("respuestasALM")
 	private respuestaALM respuestaAL;
+	@Autowired
+	@Qualifier("respuestasAlumConverter")
+	private RespuestasAlumnoConverter RespuestasAlumno;
 	@Override
 	public List<Respuestas> listarPreguntasHerradas() {
 		// TODO Auto-generated method stub
@@ -121,6 +125,9 @@ public class PreguntasErradasConServiceImplement implements PreguntasErradasConS
 	public List<RespuestaALMModel> listarRespuestasAlumno() {
 		List<RespuestaALMEntity> respuestasALumno = respuestaAL.findAll();
 		List <RespuestaALMModel> respuestaALMo = new ArrayList<RespuestaALMModel>();
+		for(RespuestaALMEntity ressal : respuestasALumno) {
+			//respuestaALMO.add(RespuestasAlumno.converterRespuestaALMEntitytoRespuestaALMModel(ressal));
+		}
 		return null;
 	}
 	
