@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
-<html class="bootstrap-layout" xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+<title>Evaluacion | Alumno</title>
+
 <meta charset="UTF-8" />
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -24,6 +25,12 @@
 <link th:href="@{/css/style.css}" rel="stylesheet" />
 <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 <link th:href="@{/css/themes/all-themes.css}" rel="stylesheet" />
+
+<script th:src="@{/js/cronometro.js}"></script>
+
+
+
+
 </head>
 
 <body class="theme-red">
@@ -44,40 +51,62 @@
 									class="dropdown-toggle" data-toggle="dropdown" role="button"
 									aria-haspopup="true" aria-expanded="false"> <i
 										class="material-icons">more_vert</i>
-								</a>
-									<ul class="dropdown-menu pull-right">
-										<li><a href="javascript:void(0);">Action</a></li>
-										<li><a href="javascript:void(0);">Another action</a></li>
-										<li><a href="javascript:void(0);">Something else here</a></li>
-									</ul></li>
+								</a></li>
 							</ul>
 						</div>
+						
+						
+						
 						<div class="body">
 							<div id="wizard_vertical">
 								<h2></h2>
 								<section th:each="pregunta : ${listaPreguntas}">
-									<p th:text="${pregunta.pPregunta}"></p>
+									    <div class="row clearfix">
+                                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                                    <h4 th:text="${pregunta.pPregunta}"></h4>
+                                </div>
+                                
+                                                                
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-teal hover-expand-effect">
+                        <div class="icon">
+                            <div class="chart chart-pie"></div>
 
-									<div class="demo-checkbox" th:each="resp : ${listaRespuestas}"
-										th:if="${pregunta.idPregunta==resp.pregunta.getIdPregunta()}">
+                        </div>
+
+
+                        <div class="content">
+                            <div class="text">Puntaje</div>
+                            <div class="number" th:text="${pregunta.puntaje}"></div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+   
+                  					<div class="demo-checkbox" 
+									th:each="resp : ${listaRespuestas}"
+									th:if="${pregunta.idPregunta==resp.pregunta.getIdPregunta()}">
+									
 										<input type="checkbox" id="md_checkbox_1" name="group1"
-											class="chk-col-teal" checked="checked" /> <label
-											for="md_checkbox_1" th:text="${resp.rRespuesta}"></label> <br></br>
-
+											class="chk-col-teal"  th:value="${resp.rRespuesta}" /> <label
+											for="md_checkbox_1"  th:text="${resp.rRespuesta}"></label>
 									</div>
 								</section>
+								<h2></h2>
 							</div>
 						</div>
 					</div>
 				</div>
-				</div>
-				</div>
 				
+			</div>
+		</div>
 	</section>
 	<!-- #END# Basic Example | Vertical Layout -->
 
 
 	<!-- Jquery Core Js -->
+
+
 	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core Js -->
@@ -104,6 +133,8 @@
 	<!-- Custom Js -->
 	<script th:src="@{/js/admin.js}"></script>
 	<script th:src="@{/js/pages/forms/form-wizard.js}"></script>
+
+
 
 	<!-- Demo Js -->
 	<script th:src="@{/js/demo.js}"></script>
