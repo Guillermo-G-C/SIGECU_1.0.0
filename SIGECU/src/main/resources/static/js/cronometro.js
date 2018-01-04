@@ -6,8 +6,14 @@
 
 	function carga()
 	{
-		contador_s =5;
-		contador_m =0;
+		
+		 
+		fecha=new Date(tiempo);
+		var hora=tiempo;
+		alert(hora+"");
+		
+		contador_s =0;
+		contador_m =document.getElementById("tiempo").value;;
                 
 		s = document.getElementById("segundos");
 		m = document.getElementById("minutos");

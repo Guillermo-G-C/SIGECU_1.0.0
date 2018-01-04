@@ -25,7 +25,7 @@ public class EvaluacionAlumController {
 	@GetMapping("/mostrarExamen")
 	public ModelAndView mostrarExamen(Model model){
 		ModelAndView mav = new ModelAndView(ViewConstant.MOSTRAREXAMEN );
-		model.addAttribute("eTiempo",EvaluacionAlumnoService);
+		mav.addObject("eTiempo",EvaluacionAlumnoService.tiempoExamen(1));
 		return mav;
 	}
 }
