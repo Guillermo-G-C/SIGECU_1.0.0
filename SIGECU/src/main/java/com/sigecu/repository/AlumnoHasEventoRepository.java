@@ -11,5 +11,5 @@ import com.sigecu.entity.AlumnoHasEvento;
 public interface AlumnoHasEventoRepository extends JpaRepository<AlumnoHasEvento, Serializable> {
 	
 	public abstract AlumnoHasEvento findAlumnoHasEventoByIdAHE(int idAHE);
-
+	
 }
