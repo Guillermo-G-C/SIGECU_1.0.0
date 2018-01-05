@@ -22,6 +22,7 @@ public class RespuestasALMConverter {
 		RespuestaALMModel resModel = new RespuestaALMModel();
 		resModel.setIdrespuestaALM(respuesta.getIdrespuestaALM());
 		
+		return resModel;
 		
 	}
 	
