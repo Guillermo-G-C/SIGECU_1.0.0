@@ -1,5 +1,8 @@
 package com.sigecu.model;
-
+/**
+ * @author Anel
+ *
+ */
 public class AsignaExamenModel {
 	private int idasignaExamen;
 	private String asignado;
@@ -57,5 +60,11 @@ public class AsignaExamenModel {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+/*
+	@Override
+	public String toString() {
+		return "AsignaExamen [idasignaExamen=" + idasignaExamen + ", asignado=" + asignado + ", fechaInicio=" + fechaInicio + ", eTiempo="
+				+ eTiempo + ", ePorcentaje =" + ePorcentaje + "]";
+	}*/
 
 }
