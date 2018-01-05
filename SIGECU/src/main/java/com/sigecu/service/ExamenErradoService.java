@@ -15,5 +15,7 @@ public interface ExamenErradoService {
 	public abstract List<PreguntasModel> listarPreguntasByExamErrado(int idExamen);
 	public abstract List<RespuestasModel> listarRespuestas(int idExamen);
 	List<RespuestasModel> listarRespuestas();
+	
+	// public abstract void nuevaRespuesta(RespuestasModel respuestasModel, int idPregunta);
 
 }
