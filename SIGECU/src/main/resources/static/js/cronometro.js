@@ -8,12 +8,15 @@
 	{
 		
 		 
-		fecha=new Date(tiempo);
-		var hora=tiempo;
-		alert(hora+"");
+		tiempo=document.getElementById("tiempo").value;
+		//alert(tiempo+"");
+		fecha=tiempo.split(":");
 		
-		contador_s =0;
-		contador_m =document.getElementById("tiempo").value;;
+		contador_s =fecha[2];
+		contador_m =fecha[1];
+		
+		//contador_s =0;
+		//contador_m =document.getElementById("tiempo").value;;
                 
 		s = document.getElementById("segundos");
 		m = document.getElementById("minutos");

@@ -24,7 +24,12 @@
     <link th:href="@{/css/themes/all-themes.css}" rel="stylesheet"/>
     
     <script th:src="@{/js/cronometro.js}"></script>
-        
+    <style type='text/css'>
+
+	input.invisible {
+		visibility:hidden;
+	}
+	</style>
     
     
     
@@ -46,13 +51,17 @@
                         <span th:time="${eTiempo}"></span>
                         </p> -->
                         
-                        <input type="hidden" id="tiempo" name="2" th:value="${eTiempo}"></input>
+                        <input type="hidden" id="tiempo" name="2" th:value="${eTiempo}" class="insivible">
+                        	
+                        </input>
+                        
                         <span id="minutos"></span>:<span id="segundos"></span>
+                        
                        
         <br/>
         <span id="aviso"></span>
                         
-                            <h2 th:text="${eTiempo}"></h2>
+                           <!--  <h2 th:text="${eTiempo}"></h2>--> 
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
