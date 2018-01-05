@@ -49,7 +49,8 @@ public class CertificadoController {
 	public ModelAndView ahe() {
 		ModelAndView mav = new ModelAndView(ViewConstant.CERTIFICADO);
 		
-		mav.addObject("AHEB", alumnoHasEventoService.findAlumnoHasEventoById(1));
+		//mav.addObject("AHEB", alumnoHasEventoService.findAlumnoHasEventoByIdAlumnoAndIdEvento(1, 1));
+		alumnoHasEventoService.findAlumnoHasEventoByIdAlumnoAndIdEvento(1,1);
 		
 		return mav;
 	}
@@ -73,7 +74,7 @@ public class CertificadoController {
 		cerView.setApplicationContext(applicationContext);
 		
 		Map<String, Object> params = new HashMap<String, Object>();
-	    params.put("datasource", certificadoService.report(1));
+	    params.put("datasource", certificadoService.report(1));//nombre ,fecha, curso
 	    //params.put("img", this.getClass().getResource("/src/main/resources/reports/c.png"));
 		return new ModelAndView(cerView, params);
 	}

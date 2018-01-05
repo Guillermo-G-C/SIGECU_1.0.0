@@ -38,12 +38,20 @@ public class Eventos {
 	@ManyToOne
 	@JoinColumn(name = "cursos_id_curso")
 	private Cursos cursos;
+	private Instructor instructor;
+	private String e_fecha_inicio;
+	private String e_fecha_termino;
+	private String e_programa;
+	private String e_horario;
+	private String e_capacidad;
+	private String e_tipo;
+	private String e_estatus;
+	
 	private Set<Alumno_Has_Eventos> alumnos_has_eventos = new HashSet<>();
 	
 	public Eventos() {
 		// TODO Auto-generated constructor stub
 	}
-	
 
 	/**
 	 * @param id_evento
@@ -102,6 +110,132 @@ public class Eventos {
 	 */
 	public void setE_descripcion(String e_descripcion) {
 		this.e_descripcion = e_descripcion;
+	}
+	
+
+	/**
+	 * @return the e_fecha_inicio
+	 */
+	public String getE_fecha_inicio() {
+		return e_fecha_inicio;
+	}
+
+	/**
+	 * @param e_fecha_inicio the e_fecha_inicio to set
+	 */
+	public void setE_fecha_inicio(String e_fecha_inicio) {
+		this.e_fecha_inicio = e_fecha_inicio;
+	}
+
+	/**
+	 * @return the e_fecha_termino
+	 */
+	public String getE_fecha_termino() {
+		return e_fecha_termino;
+	}
+
+	/**
+	 * @param e_fecha_termino the e_fecha_termino to set
+	 */
+	public void setE_fecha_termino(String e_fecha_termino) {
+		this.e_fecha_termino = e_fecha_termino;
+	}
+
+	/**
+	 * @return the e_programa
+	 */
+	public String getE_programa() {
+		return e_programa;
+	}
+
+	/**
+	 * @param e_programa the e_programa to set
+	 */
+	public void setE_programa(String e_programa) {
+		this.e_programa = e_programa;
+	}
+
+	/**
+	 * @return the e_horario
+	 */
+	public String getE_horario() {
+		return e_horario;
+	}
+
+	/**
+	 * @param e_horario the e_horario to set
+	 */
+	public void setE_horario(String e_horario) {
+		this.e_horario = e_horario;
+	}
+
+	/**
+	 * @return the e_capacidad
+	 */
+	public String getE_capacidad() {
+		return e_capacidad;
+	}
+
+	/**
+	 * @param e_capacidad the e_capacidad to set
+	 */
+	public void setE_capacidad(String e_capacidad) {
+		this.e_capacidad = e_capacidad;
+	}
+
+	/**
+	 * @return the e_tipo
+	 */
+	public String getE_tipo() {
+		return e_tipo;
+	}
+
+	/**
+	 * @param e_tipo the e_tipo to set
+	 */
+	public void setE_tipo(String e_tipo) {
+		this.e_tipo = e_tipo;
+	}
+
+	/**
+	 * @return the e_estatus
+	 */
+	public String getE_estatus() {
+		return e_estatus;
+	}
+
+	/**
+	 * @param e_estatus the e_estatus to set
+	 */
+	public void setE_estatus(String e_estatus) {
+		this.e_estatus = e_estatus;
+	}
+
+	@ManyToOne
+	@JoinColumn(name="idCurso")
+	public Cursos getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(Cursos cursos) {
+		this.cursos = cursos;
+	}
+	
+
+	/**
+	 * @return the instructor
+	 */
+	@ManyToOne
+	@JoinColumn(name="id_instructor")
+	public Instructor getInstructor() {
+		return instructor;
+	}
+
+	/**
+	 * @param instructor the instructor to set
+	 */
+	public void setInstructor(Instructor instructor) {
+		this.instructor = instructor;
 	}
 
 	/**
