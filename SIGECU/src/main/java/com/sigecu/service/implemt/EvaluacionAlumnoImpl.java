@@ -13,23 +13,23 @@ import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.repository.EvaluacionAlumnoRepository;
 import com.sigecu.service.EvaluacionAlumnoService;
 
-@Service("EvaluacionAlumnoImpl")
+@Service("evaluacionAlumnoServiceImpl")
 
 public class EvaluacionAlumnoImpl  implements EvaluacionAlumnoService{
 	
 	private static final Log LOG = LogFactory.getLog(EvaluacionAlumnoImpl.class);
 	
 	@Autowired
-	@Qualifier("evaluacionAlumnRepository")
-	private EvaluacionAlumnoRepository evaluacionAlumnRepository;
+	@Qualifier("evaluacionAlumnoRepository")
+	private EvaluacionAlumnoRepository evaluacionAlumnoRepository;
 
 	@Autowired
-	@Qualifier("evaluacionConverter")
+	@Qualifier("evalaucionesConverter")
 	private EvaluacionConverter evaluacionConverter;
 	
 	@Override
 	public String BuscarNombreEva(int idEvaluacion) {
-		Evaluaciones eva = evaluacionAlumnRepository.findByIdEvaluacion(idEvaluacion);
+		Evaluaciones eva = evaluacionAlumnoRepository.findByIdEvaluacion(idEvaluacion);
 		EvaluacionesModel eval = new  EvaluacionesModel();
 		eval= evaluacionConverter.convertEvaluacion2EvaluacionModel(eva);
 		return eval.geteNombre();

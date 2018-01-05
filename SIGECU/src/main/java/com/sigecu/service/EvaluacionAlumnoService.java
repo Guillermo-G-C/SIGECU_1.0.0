@@ -1,7 +1,5 @@
 package com.sigecu.service;
 
-import com.sigecu.entity.Evaluaciones;
-
 
 
 public interface EvaluacionAlumnoService {

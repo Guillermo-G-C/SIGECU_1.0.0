@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.sigecu.entity.Evaluaciones;
 
-@Repository("EvaluacionAlumnoRepository")
+@Repository("evaluacionAlumnoRepository")
 public interface EvaluacionAlumnoRepository extends JpaRepository <Evaluaciones, Serializable>{
 	
 	//Busca por nombre Evaluacion 
