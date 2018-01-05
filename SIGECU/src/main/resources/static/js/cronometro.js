@@ -48,7 +48,7 @@
                                
                                 
                                  if (contador_s<=0 && contador_m==0) {
-                                     alert("Termino Examen");
+                                     alert("Se te a agotado el tiempo del Examen");
                                      detenerse();
                                 }
 			}
