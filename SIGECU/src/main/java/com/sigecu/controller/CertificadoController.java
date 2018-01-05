@@ -1,12 +1,11 @@
 package com.sigecu.controller;
-/**/
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-/**/
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -16,6 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
 import com.sigecu.constant.ViewConstant;
+
+import com.sigecu.service.CertificadoService;
+import com.sigecu.service.implemt.AlumnoHasEventoServiceImpl;
+
 import com.sigecu.service.implemt.CertificadoServiceImpl;
 
 
@@ -31,10 +34,23 @@ public class CertificadoController {
 	@Autowired
 	private CertificadoServiceImpl certificadoService;
 	
+	@Autowired
+	private AlumnoHasEventoServiceImpl alumnoHasEventoService;
+	
 	@GetMapping("/inicio")
 	public ModelAndView ejemploMAV() {
 		ModelAndView mav = new ModelAndView(ViewConstant.CERTIFICADO);
 		mav.addObject("certificadoO",certificadoService.findCertificadoById(2));
+		
+		return mav;
+	}
+	
+	@GetMapping("/ahe")
+	public ModelAndView ahe() {
+		ModelAndView mav = new ModelAndView(ViewConstant.CERTIFICADO);
+		
+		//mav.addObject("AHEB", alumnoHasEventoService.findAlumnoHasEventoByIdAlumnoAndIdEvento(1, 1));
+		alumnoHasEventoService.findAlumnoHasEventoByIdAlumnoAndIdEvento(1,1);
 		
 		return mav;
 	}
@@ -47,7 +63,7 @@ public class CertificadoController {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 	    params.put("datasource", certificadoService.report());
-	    params.put("img", this.getClass().getResource("/src/main/resources/reports/c.png"));
+	    //params.put("img", this.getClass().getResource("/src/main/resources/reports/c.png"));
 		return new ModelAndView(cerView, params);
 	}
 	
@@ -58,8 +74,10 @@ public class CertificadoController {
 		cerView.setApplicationContext(applicationContext);
 		
 		Map<String, Object> params = new HashMap<String, Object>();
-	    params.put("datasource", certificadoService.report(1));
-	    params.put("img", this.getClass().getResource("/src/main/resources/reports/c.png"));
+	    params.put("datasource", certificadoService.report(1));//nombre ,fecha, curso
+	    //params.put("img", this.getClass().getResource("/src/main/resources/reports/c.png"));
 		return new ModelAndView(cerView, params);
 	}
+	
+	
 }
