@@ -30,7 +30,6 @@ public class Alumno_Has_Eventos {
 	private String confirmado;
 	private int activo;
 	
-	
 	public Alumno_Has_Eventos() {}
 	/**
 	 * @return the primaryKey
