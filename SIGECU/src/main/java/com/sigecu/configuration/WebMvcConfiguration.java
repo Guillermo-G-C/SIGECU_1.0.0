@@ -8,17 +8,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import com.sigecu.component.RequestTimeInterceptor;
 
-
 @Configuration
 public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
-	
-	 @Autowired
-	 @Qualifier("requestTimeInterceptor")
-	 private RequestTimeInterceptor requestTimeInterceptor;
-	
-	 @Override
-	 public void addInterceptors(InterceptorRegistry registry) {
-		 registry.addInterceptor(requestTimeInterceptor);
-	 }
+
+	@Autowired
+	@Qualifier("requestTimeInterceptor")
+	private RequestTimeInterceptor requestTimeInterceptor;
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(requestTimeInterceptor);
+	}
 
 }

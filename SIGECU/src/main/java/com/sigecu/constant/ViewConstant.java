@@ -17,4 +17,6 @@ public class ViewConstant {
 	public static final String LISTAR_CURSOS="listaCursosAdmin";
 	public static final String CERTIFICADO="certificado";
 	public static final String EVENTOS_ALUMNO="eventosAlumno";
+	/* login 0 */
+	public static final String LOGIN = "publico/login";
 }

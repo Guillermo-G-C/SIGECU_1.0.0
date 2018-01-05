@@ -13,10 +13,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("eventosAlumno")
+@RequestMapping("/eventosAlumno")
 public class EventoAlumnoController {
 	private static final Log LOG = LogFactory.getLog(EventoAlumnoController.class);
 	
@@ -28,7 +27,7 @@ public class EventoAlumnoController {
 	public ModelAndView showEventosAl(@RequestParam(name="idEvento", required=false)int idEvento, Model model) {
 		Evento eventoModel=new Evento();
 		ModelAndView mo=new ModelAndView(ViewConstant.EVENTOS_ALUMNO);
-		mo.addObject("eventosAlumno", eventoAlumnoService.listAllEventosAl(idEvento));
+		mo.addObject("listaEvenAl", eventoAlumnoService.listAllEventosAl(idEvento));
 		model.addAttribute("eventoModel", eventoModel);
 		model.addAttribute("idEvento", idEvento);
 		return mo;

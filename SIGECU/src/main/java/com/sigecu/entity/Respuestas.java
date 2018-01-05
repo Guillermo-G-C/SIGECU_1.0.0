@@ -13,36 +13,35 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * @author Rolando Castillo
- *14/12/2017
+ * @author Rolando Castillo 14/12/2017
  *
  */
 @Entity
-@Table(name="respuestas")
+@Table(name = "respuestas")
 public class Respuestas {
 
 	@Id
-	@GeneratedValue (strategy= GenerationType.AUTO)
-	@Column(name="idRespuesta")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "idRespuesta")
 	private int idRespuesta;
-	
+
 	@ManyToOne
-	@JoinColumn(name="preguntas_id_pregunta")
+	@JoinColumn(name = "preguntas_id_pregunta")
 	private Preguntas preguntas;
-	@Column(name="rRespuesta")
+	@Column(name = "rRespuesta")
 	private String rRespuesta;
-	@Column(name="rSolucion")
+	@Column(name = "rSolucion")
 	private String rSolucion;
-	
+
 	public Respuestas() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Respuestas(int idRespuesta, String rRespuesta, String rSolucion) {
 		// TODO Auto-generated constructor stub
-		this.idRespuesta=idRespuesta;
-		this.rRespuesta=rRespuesta;
-		this.rSolucion=rSolucion;
+		this.idRespuesta = idRespuesta;
+		this.rRespuesta = rRespuesta;
+		this.rSolucion = rSolucion;
 	}
 
 	/**
@@ -53,7 +52,8 @@ public class Respuestas {
 	}
 
 	/**
-	 * @param idRespuesta the idRespuesta to set
+	 * @param idRespuesta
+	 *            the idRespuesta to set
 	 */
 	public void setIdRespuesta(int idRespuesta) {
 		this.idRespuesta = idRespuesta;
@@ -67,7 +67,8 @@ public class Respuestas {
 	}
 
 	/**
-	 * @param preguntas the preguntas to set
+	 * @param preguntas
+	 *            the preguntas to set
 	 */
 	public void setPreguntas(Preguntas preguntas) {
 		this.preguntas = preguntas;
@@ -81,7 +82,8 @@ public class Respuestas {
 	}
 
 	/**
-	 * @param rRespuesta the rRespuesta to set
+	 * @param rRespuesta
+	 *            the rRespuesta to set
 	 */
 	public void setrRespuesta(String rRespuesta) {
 		this.rRespuesta = rRespuesta;
@@ -95,7 +97,8 @@ public class Respuestas {
 	}
 
 	/**
-	 * @param rSolucion the rSolucion to set
+	 * @param rSolucion
+	 *            the rSolucion to set
 	 */
 	public void setrSolucion(String rSolucion) {
 		this.rSolucion = rSolucion;

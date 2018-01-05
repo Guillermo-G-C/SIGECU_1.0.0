@@ -3,7 +3,7 @@ banner:
     
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/db_sigecu?useSSL=false
+    url: jdbc:mysql://localhost:3306/sigecu?useSSL=false
     username: root
     password: naye
   jpa:

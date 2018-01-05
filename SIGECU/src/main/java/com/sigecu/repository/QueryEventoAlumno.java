@@ -6,12 +6,12 @@ import org.springframework.stereotype.Repository;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.sigecu.entity.Cursos;
-import com.sigecu.entity.QAlumnoEntity;
-import com.sigecu.entity.QAlumnoHasEventoEntity;
+import com.sigecu.entity.Eventos;
+import com.sigecu.entity.QAlumno;
+import com.sigecu.entity.QAlumnoEventosId;
+import com.sigecu.entity.QAlumno_Has_Eventos;
 import com.sigecu.entity.QCursos;
-import com.sigecu.entity.QEventoEntity;
-
-import com.sigecu.entity.EventoEntity;
+import com.sigecu.entity.QEventos;
 
 import java.util.List;
 
@@ -25,10 +25,11 @@ public class QueryEventoAlumno {
 	private static final Log LOG=LogFactory.getLog(QueryEventoAlumno.class);
 	
 	//Tablas a utilizar
-	QEventoEntity qEvento=QEventoEntity.eventoEntity;
-	QAlumnoEntity qAlumno=QAlumnoEntity.alumnoEntity;
-	QAlumnoHasEventoEntity qAlEve=QAlumnoHasEventoEntity.alumnoHasEventoEntity;
+	QAlumno qAlumno=QAlumno.alumno;
+	QAlumno_Has_Eventos qAhE=QAlumno_Has_Eventos.alumno_Has_Eventos;
+	QAlumnoEventosId qAEId=QAlumnoEventosId.alumnoEventosId;	
 	QCursos qCursos=QCursos.cursos;
+	QEventos qEventos=QEventos.eventos;
 	
 	
 	@PersistenceContext
@@ -36,14 +37,19 @@ public class QueryEventoAlumno {
 	JPAQueryFactory queryFactory=null;
 	
 	//Busca los eventos relacionado por el ID del Alumno
-	public List<EventoEntity> findAllEventosById (int idAlumno){
-		JPAQuery<EventoEntity> query=new JPAQuery<> (em);
-		List<EventoEntity> listaEventos=query.select(qEvento)
-				.from(qEvento)
-				.where(qEvento.id)
-		
-	}
-	
+   public List<Eventos> findAllEventosAlumnosById(int idAlumno){
+	   JPAQuery<Eventos> query=new JPAQuery<> (em);
+	   List<Eventos> listaEventos=query.select(qEventos)
+			   .from(qEventos, qAhE, qAlumno)
+			   .where(qEventos.id_evento.eq(qAhE.primaryKey.eventos.id_evento).
+					   and(qAhE.primaryKey.alumno.id_alumno.eq(idAlumno)))
+			   .fetch();
+	   
+	   return listaEventos;
+	   
+   }
+   
+  
 	
 	
 

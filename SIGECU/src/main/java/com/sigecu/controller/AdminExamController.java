@@ -1,6 +1,5 @@
 package com.sigecu.controller;
 
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +41,7 @@ public class AdminExamController {
 		model.addAttribute("idCurso", idCurso);
 		return mav;
 	}
+
 	@GetMapping("/listaCursos")
 	public ModelAndView showCursos() {
 		ModelAndView mav = new ModelAndView(ViewConstant.LISTAR_CURSOS);
@@ -50,42 +50,68 @@ public class AdminExamController {
 	}
 
 	@GetMapping("/nuevoExamen")
-	public ModelAndView nuevoExamen(@RequestParam(name="idEvaluacion", required= false) int idEvaluacion, Model model) {
-		PreguntasModel preModel = new PreguntasModel();		
+	public ModelAndView nuevoExamen(@RequestParam(name = "idEvaluacion", required = false) int idEvaluacion,
+			Model model) {
+		PreguntasModel preModel = new PreguntasModel();
 		RespuestasModel respuestasModel = new RespuestasModel();
 		ModelAndView mav = new ModelAndView(ViewConstant.NUEVO_EXAMEN);
 		mav.addObject("listaPreguntas", adminExamService.listarPregunrasByExam(idEvaluacion));
 		mav.addObject("listaRespuestas", adminExamService.listarRespuestas());
-		//agregar respuestas
+		// agregar respuestas
 		model.addAttribute("respuestasModel", respuestasModel);
 		model.addAttribute("preModel", preModel);
 		model.addAttribute("idEvaluacion", idEvaluacion);
-		
 
 		return mav;
 	}
 
 	@PostMapping("/addEvaluacion")
-	public String addEvaluavion(@ModelAttribute(name="evaluacionesModel") EvaluacionesModel  evalModel, @RequestParam(name="idCurso", required=true) int idCurso,
-			Model model) {
-		LOG.info("METODO: addEvaluacion --- PARAMETROS "+evalModel.toString()+ " idCurso "+idCurso);
+	public String addEvaluavion(@ModelAttribute(name = "evaluacionesModel") EvaluacionesModel evalModel,
+			@RequestParam(name = "idCurso", required = true) int idCurso, Model model) {
+		LOG.info("METODO: addEvaluacion --- PARAMETROS " + evalModel.toString() + " idCurso " + idCurso);
 		adminExamService.nuevaEvaluacion(evalModel, idCurso);
+		return "redirect:/adminExamen/listaExamen?idCurso=" + idCurso;
+	}
+
+	@PostMapping("/addPregunta")
+	public String addPregunta(@ModelAttribute(name = "preguntasModel") PreguntasModel preguntasModel,
+			@RequestParam(name = "idEvaluacion", required = true) int idEvaluacion, Model model) {
+		LOG.info("METODO: ADDPREGUNTA ---- PARAMETROS" + preguntasModel.toString() + " id evaluacione " + idEvaluacion);
+		adminExamService.nuevaPregunta(preguntasModel, idEvaluacion);
+		return "redirect:/adminExamen/nuevoExamen?idEvaluacion=" + idEvaluacion;
+	}
+
+	/* Agrega una nueva respuesta a la pregunta X */
+	@PostMapping("/addRespuesta")
+	public String addRespuesta(@ModelAttribute(name = "respuestaModel") RespuestasModel respuestaModel,
+			@RequestParam(name = "idPregunta", required = true) int idPregunta,
+			@RequestParam(name = "idEvaluacion", required = true) int idEvaluacion, Model model) {
+		LOG.info("PARAMETROS DE " + respuestaModel.toString());
+		adminExamService.nuevaRespuesta(respuestaModel, idPregunta);
+		return "redirect:/adminExamen/nuevoExamen?idEvaluacion=" + idEvaluacion;
+	}
+
+	@GetMapping("/removePregunta")
+	public String removePregunta(@RequestParam(name = "idPregunta", required = true) int idPregunta,
+			@RequestParam(name = "idEvaluacion", required = true) int idEvaluacion) {
+		LOG.info("el id de la pregunta es: " + idPregunta);
+		adminExamService.eliminaPregunta(idPregunta);
+		return "redirect:/adminExamen/nuevoExamen?idEvaluacion=" + idEvaluacion;
+	}
+	@GetMapping("/removeRespuesta")
+	public String removeRespuesta(@RequestParam(name = "idRespuesta", required = true) int idRespuesta,
+			@RequestParam(name = "idEvaluacion", required = true) int idEvaluacion) {
+		LOG.info("el id de la pregunta es: " + idRespuesta);
+		adminExamService.eliminarRespuesta(idRespuesta);
+		return "redirect:/adminExamen/nuevoExamen?idEvaluacion=" + idEvaluacion;
+	}
+	@GetMapping("/removeExamen")
+	public String removeExamen(@RequestParam(name = "idExamen", required = true) int idExamen,
+			@RequestParam(name = "idCurso", required = true) int idCurso) {
+		LOG.info("el id del curso: "+idCurso+" id de Examen: "+idExamen);
+		adminExamService.eliminarExamen(idExamen);
 		return "redirect:/adminExamen/listaExamen?idCurso="+idCurso;
 	}
 	
-	@PostMapping("/addPregunta")
-	public String addPregunta(@ModelAttribute(name="preguntasModel") PreguntasModel preguntasModel, @RequestParam(name="idEvaluacion", required=true) int idEvaluacion, Model model) {
-		LOG.info("METODO: ADDPREGUNTA ---- PARAMETROS"+preguntasModel.toString()+" id evaluacione "+ idEvaluacion);
-		adminExamService.nuevaPregunta(preguntasModel, idEvaluacion);
-		return "redirect:/adminExamen/nuevoExamen?idEvaluacion="+idEvaluacion;
-	}
-	/*Agrega una nueva respuesta a la pregunta X*/
-	@PostMapping("/addRespuesta")
-	public String addRespuesta(@ModelAttribute(name="respuestaModel") RespuestasModel respuestaModel, @RequestParam(name="idPregunta", required=true) int idPregunta,
-			@RequestParam(name="idEvaluacion", required=true) int idEvaluacion, Model model) {
-		LOG.info("PARAMETROS DE "+ respuestaModel.toString());
-		adminExamService.nuevaRespuesta(respuestaModel, idPregunta);
-		return "redirect:/adminExamen/nuevoExamen?idEvaluacion="+idEvaluacion;
-	}
 
 }

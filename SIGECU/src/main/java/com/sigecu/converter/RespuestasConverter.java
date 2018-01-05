@@ -20,25 +20,28 @@ import com.sigecu.model.RespuestasModel;
 @Component("respuestasConverter")
 public class RespuestasConverter {
 	private static final Log LOG = LogFactory.getLog(RespuestasConverter.class);
-	
-	//entity -- to -- model
+
+	// entity -- to -- model
 	public RespuestasModel converterRespuestasToRespuestasModel(Respuestas respuestas) {
 		RespuestasModel respModel = new RespuestasModel();
 		respModel.setIdRespuesta(respuestas.getIdRespuesta());
 		respModel.setrSolucion(respuestas.getrSolucion());
 		respModel.setPregunta(respuestas.getPreguntas());
 		respModel.setrRespuesta(respuestas.getrRespuesta());
-		
+		LOG.info("Conversion correcta: RESPUESTA A RESPUESTA MODEL");
+
 		return respModel;
-		
+
 	}
-	//model -- to -- entity
-	public Respuestas converterRespuestasModelToRespuestas (RespuestasModel respuestasModel, Preguntas preguntas) {
+
+	// model -- to -- entity
+	public Respuestas converterRespuestasModelToRespuestas(RespuestasModel respuestasModel, Preguntas preguntas) {
 		Respuestas resp = new Respuestas();
 		resp.setPreguntas(preguntas);
 		resp.setrRespuesta(respuestasModel.getrRespuesta());
 		resp.setrSolucion(respuestasModel.getrSolucion());
-		
+		LOG.info("Conversion correcta: RESPUESTA MODEL A RESPUESTA");
+
 		return resp;
 	}
 }
