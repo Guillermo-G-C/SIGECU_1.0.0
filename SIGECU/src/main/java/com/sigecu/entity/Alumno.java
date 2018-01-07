@@ -65,7 +65,7 @@ public class Alumno {
 	 */
 	@Id
 	@GeneratedValue
-	@Column(name="idalumno")
+	@Column(name="id_alumno")
 	public int getId_alumno() {
 		return id_alumno;
 	}

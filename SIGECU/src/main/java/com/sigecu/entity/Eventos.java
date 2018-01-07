@@ -28,13 +28,6 @@ public class Eventos {
 	
 	private int id_evento;
 	private String e_descripcion;
-	private String e_fechaInicio;
-	private String e_fechaFin;
-	private String e_Programa;
-	private String e_Horario;
-	private String e_Capacidad;
-	private String e__Tipo;
-	private String e_Status;
 	@ManyToOne
 	@JoinColumn(name = "cursos_id_curso")
 	private Cursos cursos;
@@ -61,23 +54,6 @@ public class Eventos {
 	
 	public void addAlumnosHasEventos(Alumno_Has_Eventos alm_has_event) {
 		this.alumnos_has_eventos.add(alm_has_event);
-	}
-
-	public Eventos(int id_evento, String e_descripcion, String e_fechaInicio, String e_fechaFin, String e_Programa,
-			String e_Horario, String e_Capacidad, String e__Tipo, String e_Status, Cursos cursos,
-			Set<Alumno_Has_Eventos> alumnos_has_eventos) {
-		super();
-		this.id_evento = id_evento;
-		this.e_descripcion = e_descripcion;
-		this.e_fechaInicio = e_fechaInicio;
-		this.e_fechaFin = e_fechaFin;
-		this.e_Programa = e_Programa;
-		this.e_Horario = e_Horario;
-		this.e_Capacidad = e_Capacidad;
-		this.e__Tipo = e__Tipo;
-		this.e_Status = e_Status;
-		this.cursos = cursos;
-		this.alumnos_has_eventos = alumnos_has_eventos;
 	}
 
 
@@ -253,77 +229,25 @@ public class Eventos {
 		this.alumnos_has_eventos = alumnos_has_eventos;
 	}
 
-
-	public String getE_fechaInicio() {
-		return e_fechaInicio;
+	public Eventos(int id_evento, String e_descripcion, Cursos cursos, Instructor instructor, String e_fecha_inicio,
+			String e_fecha_termino, String e_programa, String e_horario, String e_capacidad, String e_tipo,
+			String e_estatus, Set<Alumno_Has_Eventos> alumnos_has_eventos) {
+		super();
+		this.id_evento = id_evento;
+		this.e_descripcion = e_descripcion;
+		this.cursos = cursos;
+		this.instructor = instructor;
+		this.e_fecha_inicio = e_fecha_inicio;
+		this.e_fecha_termino = e_fecha_termino;
+		this.e_programa = e_programa;
+		this.e_horario = e_horario;
+		this.e_capacidad = e_capacidad;
+		this.e_tipo = e_tipo;
+		this.e_estatus = e_estatus;
+		this.alumnos_has_eventos = alumnos_has_eventos;
 	}
 
 
-	public void setE_fechaInicio(String e_fechaInicio) {
-		this.e_fechaInicio = e_fechaInicio;
-	}
-
-
-	public String getE_fechaFin() {
-		return e_fechaFin;
-	}
-
-
-	public void setE_fechaFin(String e_fechaFin) {
-		this.e_fechaFin = e_fechaFin;
-	}
-
-
-	public String getE_Programa() {
-		return e_Programa;
-	}
-
-
-	public void setE_Programa(String e_Programa) {
-		this.e_Programa = e_Programa;
-	}
-
-
-	public String getE_Horario() {
-		return e_Horario;
-	}
-
-
-	public void setE_Horario(String e_Horario) {
-		this.e_Horario = e_Horario;
-	}
-
-
-	public String getE_Capacidad() {
-		return e_Capacidad;
-	}
-
-
-	public void setE_Capacidad(String e_Capacidad) {
-		this.e_Capacidad = e_Capacidad;
-	}
-
-
-	public String getE__Tipo() {
-		return e__Tipo;
-	}
-
-
-	public void setE__Tipo(String e__Tipo) {
-		this.e__Tipo = e__Tipo;
-	}
-
-
-	public String getE_Status() {
-		return e_Status;
-	}
-
-
-	public void setE_Status(String e_Status) {
-		this.e_Status = e_Status;
-	}
-	
-	
 	
 	
 

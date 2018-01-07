@@ -12,7 +12,7 @@ public class Evento {
     private int idevento;
     private int c_idcursos;
     private int i_idinstructor;
-    private String fechaInicio;
+    private String fecha_Inicio;
     private String fechaTermino;
     private String descripcion;
     private String  horario;
@@ -58,10 +58,10 @@ public class Evento {
 		this.i_idinstructor = i_idinstructor;
 	}
 	public String getFechaInicio() {
-		return fechaInicio;
+		return fecha_Inicio;
 	}
 	public void setFechaInicio(String fechaInicio) {
-		this.fechaInicio = fechaInicio;
+		this.fecha_Inicio = fechaInicio;
 	}
 	public String getFechaTermino() {
 		return fechaTermino;

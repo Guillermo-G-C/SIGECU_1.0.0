@@ -1,6 +1,7 @@
 package com.sigecu.service.implemt;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.sigecu.converter.EventosConverter;
 import com.sigecu.entity.Eventos;
 import com.sigecu.model.AlumnoModel;
-import com.sigecu.model.Evento;
+import com.sigecu.model.EventosModel;
 import com.sigecu.repository.EventosAlumnoRepository;
 import com.sigecu.repository.QueryEventoAlumno;
 import com.sigecu.service.eventoAlumnoService;
@@ -34,9 +35,15 @@ public class EventoAlumnoImpl implements eventoAlumnoService{
     private QueryEventoAlumno queryEventoAlumno;
 
 	@Override
-	public List<Evento> listAllEventosAl(int idEvento) {
-		//List<Eventos> eventos = queryEventoAlumno.findAllEventosAlumnosById(idAlumno, idAlumnoEvento);
-		return null;
+	public List<EventosModel> listAllEventosAl(int idAlumno) {
+		List<Eventos> eventos = queryEventoAlumno.findAllEventosAlumnosById(idAlumno);
+		List<EventosModel> eventosModel=new ArrayList<EventosModel>();
+		
+		for(Eventos evento: eventos) {
+			eventosModel.add(eventosConverter.convertEventoToEentoModel(evento));
+		}
+		LOG.info("Eventos" + idAlumno);
+		return eventosModel;
 	}
 
 	@Override

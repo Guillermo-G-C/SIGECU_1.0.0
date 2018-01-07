@@ -36,7 +36,8 @@ public class EventoAlumnoController {
 	@GetMapping("/listarEventos")
 	public ModelAndView mostrarEventos() {
 		ModelAndView mav=new ModelAndView(ViewConstant.EVENTOS_ALUMNO);
-		mav.addObject("listarEventos", eventoAlumnoService.listaAlumnos());
+		mav.addObject("listarEventos", eventoAlumnoService.listAllEventosAl(1));
+		
 		return mav;
 		
 	}

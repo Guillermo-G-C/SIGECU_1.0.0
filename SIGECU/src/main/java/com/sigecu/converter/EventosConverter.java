@@ -4,7 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 
-import com.sigecu.model.Evento;
+import com.sigecu.model.EventosModel;
 import com.sigecu.entity.Eventos;
 
 @Component("eventosConverter")
@@ -13,17 +13,19 @@ public class EventosConverter {
 
 	//Entidad a Modelo
 	
-	public Evento convertEventoToEentoModel(Eventos evento) {
-		 Evento eventoModel=new Evento();
+	public EventosModel convertEventoToEentoModel(Eventos evento) {
+		 EventosModel eventoModel=new EventosModel();
 		 eventoModel.setIdevento(evento.getId_evento());
-		 eventoModel.setDescripcion(evento.getE_descripcion());
-		 eventoModel.setFechaInicio(evento.getE_fechaInicio());
-		 eventoModel.setFechaTermino(evento.getE_fechaFin());
-		 eventoModel.setPrograma(evento.getE_Programa());
-		 eventoModel.setHorario(evento.getE_Horario());
-		 eventoModel.setCapacidad(evento.getE_Capacidad());
-		 eventoModel.setTipo(evento.getE__Tipo());
-		 eventoModel.setStatus(evento.getE_Status());
+		 eventoModel.seteDescripcion(evento.getE_descripcion());
+		 eventoModel.setE_fecha_inicio(evento.getE_fecha_inicio());
+		 eventoModel.seteFechaTermino(evento.getE_fecha_termino());
+		 eventoModel.setePrograma(evento.getE_programa());
+		 eventoModel.seteHorario(evento.getE_horario());
+		 eventoModel.seteCapacidad(evento.getE_capacidad());
+		 eventoModel.seteTipo(evento.getE_tipo());
+		 eventoModel.seteEstatus(evento.getE_estatus());
+		 eventoModel.setCurso(evento.getCursos());
+		 eventoModel.setInstructor(evento.getInstructor());
 		 
 		 return eventoModel;
 	}
@@ -31,17 +33,19 @@ public class EventosConverter {
 	
 	//Modelo a Entidad
 	
-	public Eventos convertEventoModelToEvento (Evento evento) {
+	public Eventos convertEventoModelToEvento (EventosModel evento) {
 		Eventos even=new Eventos() ;
 		even.setId_evento(evento.getIdevento());
-		even.setE_descripcion(evento.getDescripcion());
-		even.setE_fechaInicio(evento.getFechaInicio());
-		even.setE_fechaFin(evento.getFechaTermino());
-		even.setE_Programa(evento.getPrograma());
-		even.setE_Horario(evento.getHorario());
-		even.setE_Capacidad(evento.getCapacidad());
-		even.setE__Tipo(evento.getTipo());
-		even.setE_Status(evento.getStatus());
+		even.setE_descripcion(evento.geteDescripcion());
+		even.setE_fecha_inicio(evento.getE_fecha_inicio());
+		even.setE_fecha_termino(evento.geteFechaTermino());
+		even.setE_programa(evento.getePrograma());
+		even.setE_horario(evento.geteHorario());
+		even.setE_capacidad(evento.geteCapacidad());
+		even.setE_tipo(evento.geteTipo());
+		even.setE_estatus(evento.geteEstatus());
+		even.setInstructor(evento.getInstructor());
+		even.setCursos(evento.getCurso());
 		return even;
 		
 	}

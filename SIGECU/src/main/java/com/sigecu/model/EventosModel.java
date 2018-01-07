@@ -1,14 +1,18 @@
 package com.sigecu.model;
+
+import com.sigecu.entity.Cursos;
+import com.sigecu.entity.Instructor;
+
 /**
  * @author Anel
  *
  */
 public class EventosModel {
 	private int idevento;
-	private int c_idcurso;
-	private int i_idinstructor;
+	private Cursos curso;
+	private Instructor instructor;
 	private String eDescripcion;
-	private String eFechaInicio;
+	private String e_fecha_inicio;
 	private String eFechaTermino;
 	private String ePrograma;
 	private String eHorario;
@@ -23,29 +27,19 @@ public class EventosModel {
 	public void setIdevento(int idevento) {
 		this.idevento = idevento;
 	}
-	public int getC_idcurso() {
-		return c_idcurso;
-	}
-	public void setC_idcurso(int c_idcurso) {
-		this.c_idcurso = c_idcurso;
-	}
-	public int getI_idinstructor() {
-		return i_idinstructor;
-	}
-	public void setI_idinstructor(int i_idinstructor) {
-		this.i_idinstructor = i_idinstructor;
-	}
+	
 	public String geteDescripcion() {
 		return eDescripcion;
 	}
 	public void seteDescripcion(String eDescripcion) {
 		this.eDescripcion = eDescripcion;
 	}
-	public String geteFechaInicio() {
-		return eFechaInicio;
+	
+	public String getE_fecha_inicio() {
+		return e_fecha_inicio;
 	}
-	public void seteFechaInicio(String eFechaInicio) {
-		this.eFechaInicio = eFechaInicio;
+	public void setE_fecha_inicio(String e_fecha_inicio) {
+		this.e_fecha_inicio = e_fecha_inicio;
 	}
 	public String geteFechaTermino() {
 		return eFechaTermino;
@@ -96,10 +90,23 @@ public class EventosModel {
 		this.eEstatus = eEstatus;
 	}
 	
+	
+	public Cursos getCurso() {
+		return curso;
+	}
+	public void setCurso(Cursos curso) {
+		this.curso = curso;
+	}
+	public Instructor getInstructor() {
+		return instructor;
+	}
+	public void setInstructor(Instructor instructor) {
+		this.instructor = instructor;
+	}
 	@Override
 	public String toString() {
-		return "EventosModel [idevento=" + idevento + ", c_idcurso=" + c_idcurso + ", i_idinstructor=" + i_idinstructor + ", eDescripcion="
-				+ eDescripcion + ", eFechaInicio =" + eFechaInicio + ", eFechaTermino ="+ eFechaTermino +", ePrograma ="+ ePrograma +", "
+		return "EventosModel [idevento=" + idevento + ", c_idcurso=" + curso + ", i_idinstructor=" + instructor + ", eDescripcion="
+				+ eDescripcion + ", e_fecha_inicio =" + e_fecha_inicio + ", eFechaTermino ="+ eFechaTermino +", ePrograma ="+ ePrograma +", "
 				+ "eHorario ="+ eHorario +", lugar_idlugar ="+ lugar_idlugar +", t_idtempletes ="+ t_idtempletes +", eCapacidad ="+ eCapacidad +", "
 				+ "eTipo ="+ eTipo +", eEstatus ="+ eEstatus +"]";
 	}
