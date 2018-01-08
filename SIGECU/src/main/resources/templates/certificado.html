@@ -5,26 +5,28 @@
 <title>SIGECU | CERTIFICADO</title>
 </head>
 <body>
-	<h1>Aqui va el certificado bien bonito :v</h1>
-	<a th:href="${'/alumno/certificado'}" target="_blank">Certificado</a>
+	<h1>Certificado</h1>
+	
+	<form th:action="@{/alumno/certificado2}" th:object="${form}" th:method="post">
+		Id Evento:<br/>
+		<input type="text" name="idAlumno" value="${idAlumno}" placeholder="Alumno" />
+		<br/>
+		ID Evento:<br/>
+		<input type="text" name="idEvento" value="${idEvento}" placeholder="Alumno" />
+		<br/><br/>
+		<input type="submit" value="Generar"/>
+	</form> 
+
+	<!--a th:href="${'/alumno/certificado'}" target="_blank">Certificado</a-->
 	
 	<!--table>
-		<tr>
-			<th>Alumno</th>
-		</tr>
-		<tr th:each="certificado : ${certificadoO}">
-			<td th:text="${certificado.alumno}"></td>
-		</tr>
-	</table-->
-	
-	<table>
 		<tr>
 			<th>AHE</th>
 		</tr>
 		<tr th:each="ahe : ${AHEB}">
 			<td th:text="${ahe.alumno.getA_nombre()}"></td>
 		</tr>
-	</table>
+	</table-->
 	
 </body>
 </html>
