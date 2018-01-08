@@ -28,4 +28,9 @@ public class ViewConstant {
 	public static final String CERTIFICADO = "certificado";
 	public static final String EVENTOS_ALUMNO="eventosAlumno";
 
+	public static final String PREGUNTAS_ERRADAS ="EvaluacionAlumno";
+
+	public static final String EXAMENES_ALUMNO = "evaluacioneAlumno";
+
+	public static final String CURSOS_ALUMNO = "cursosAlumno";
 }
