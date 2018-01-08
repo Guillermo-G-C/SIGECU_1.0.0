@@ -28,7 +28,4 @@ public interface EvaluacionRepository extends JpaRepository <Evaluaciones, Seria
 	//@Query(value="SELECT p FROM evaluaciones p WHERE e_nombre='ok'")
 	public abstract  List<Evaluaciones> findT();
 	
-	
-	
-	
 }

@@ -54,5 +54,11 @@ public class RespuestaALMEntity {
 		
 		this.seleccionada = seleccionada;
 	}
+	
+	public RespuestaALMEntity() {
+		
+	}
+	
+	
 
 }
