@@ -25,15 +25,22 @@
 <link th:href="@{/css/style.css}" rel="stylesheet" />
 <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 <link th:href="@{/css/themes/all-themes.css}" rel="stylesheet" />
+ <script th:src="@{/js/cronometro.js}"></script>
+    <style type='text/css'>
 
-<script th:src="@{/js/cronometro.js}"></script>
+	input.invisible {
+		visibility:hidden;
+	}
+	</style>
+
+
 
 
 
 
 </head>
 
-<body class="theme-red">
+<body class="theme-red" onload="carga()">
 	<section th:include="fragment/menuadmin"></section>
 
 	<section class="content">
@@ -53,6 +60,14 @@
 										class="material-icons">more_vert</i>
 								</a></li>
 							</ul>
+							<input type="hidden" id="tiempo" name="2" th:value="${eTiempo}" class="insivible">
+                        	
+                        </input>
+                        
+                        
+                        <span id="horas"></span>:<span id="minutos"></span>:<span id="segundos"></span>
+                        
+                       
 						</div>
 						
 						

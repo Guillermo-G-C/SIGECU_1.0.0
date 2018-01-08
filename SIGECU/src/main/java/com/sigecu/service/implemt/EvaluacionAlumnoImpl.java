@@ -41,8 +41,11 @@ public class EvaluacionAlumnoImpl  implements EvaluacionAlumnoService{
 		return evaluacionmodel.geteTiempo();
 	}
 	
-
-	
+	public String calificacion(int idEvaluacion) {
+		Evaluaciones eval= evaluacionesRepository.findByIdEvaluacion(idEvaluacion);
+	    EvaluacionesModel evaluacionmodel = evaluacionConverter.convertEvaluacion2EvaluacionModel(eval);
+		return evaluacionmodel.getePorcentaje();
+	}
 	
 	
 }
