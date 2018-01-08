@@ -44,7 +44,7 @@ public class ExamenErradoController {
 	@GetMapping("/ExamenErrado1")
 	public ModelAndView ExamenErrado1(
 			Model model) {
-		int idEvaluacion=1;
+		int idEvaluacion=3;
 		PreguntasModel preModel = new PreguntasModel();
 		RespuestasModel respuestasModel = new RespuestasModel();
 		ModelAndView mav = new ModelAndView(ViewConstant.NUEVO_EXAMENERRADO);
