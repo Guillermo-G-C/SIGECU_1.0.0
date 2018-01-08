@@ -25,12 +25,33 @@ public class EvaluacionAlumController {
 	private EvaluacionAlumnoService EvaluacionAlumnoService;
 	
 	
-	@GetMapping("/mostrarExamen")
+	@GetMapping("/mostrarExamenN")
+	public ModelAndView showExamenes(@RequestParam(name = "idCurso") int idCurso, Model model) {
+		EvaluacionesModel evalModel = new EvaluacionesModel();
+		ModelAndView mav = new ModelAndView(ViewConstant.MOSTRAR_EXAMEN);
+		mav.addObject("mostrarExamenN", EvaluacionAlumnoService.listAllEvaluaciones(idCurso));
+		model.addAttribute("evaluacionesModel", evalModel);
+		//model.addAttribute("idCurso", idCurso);
+		return mav;
+	}
+	
+
+	@GetMapping("/listaCursos")
+	public ModelAndView showCursos() {
+		ModelAndView mav = new ModelAndView(ViewConstant.LISTAR_CURSOS);
+		mav.addObject("listaCursos", EvaluacionAlumnoService.listaCursos());
+		return mav;
+	}
+
+	
+/*@GetMapping("/mostrarExamen")
 	public ModelAndView mostrarExamen(@RequestParam(name="idEvaluacion") int idEvaluacion, Model model){
 		EvaluacionesModel evalModel = new EvaluacionesModel();
 		ModelAndView mav = new ModelAndView(ViewConstant.MOSTRAREXAMEN);
 		mav.addObject("NombreEvaluacion", EvaluacionAlumnoService.BuscarNombreEva(idEvaluacion));
 		model.addAttribute("Examen", EvaluacionAlumnoService.BuscarNombreEva(idEvaluacion));
-		return mav;
-	}
+    	return mav;
+}
+*/
+
 }
