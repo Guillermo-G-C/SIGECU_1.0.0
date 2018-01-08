@@ -1,7 +1,5 @@
 package com.sigecu.repository;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -36,12 +34,11 @@ public class QueryAlumnoHasEvento {
 	public Tuple findAlumnoHasEventosByIdAlumnoAndIdEvento(int id_alumno, int id_evento) {
 		JPAQuery<Alumno_Has_Eventos> query = new JPAQuery<>(em);
 		
-		Tuple AHE = query.select(qAlumno.a_nombre, qCursos.cNombre, qEventos.e_fecha_termino)
+		Tuple AHE = query.select(qAlumno.a_nombre, qCursos.cNombre)
 				.from(qAlumno_Has_Eventos, qCursos, qAlumno, qEventos)
-				.where(qAlumno_Has_Eventos.primaryKey.alumno.id_alumno.eq(qAlumno.id_alumno).and(qAlumno.id_alumno.eq(id_alumno)).and(qEventos.id_evento.eq(id_evento)).and(qAlumno_Has_Eventos.primaryKey.eventos.id_evento.eq(qEventos.id_evento).and(qEventos.cursos.idCurso.eq(qCursos.idCurso))))
+				.where(qAlumno_Has_Eventos.primaryKey.alumno.id_alumno.eq(id_alumno).and(qAlumno_Has_Eventos.primaryKey.eventos.id_evento.eq(id_evento).and(qCursos.idCurso.eq(qEventos.cursos.idCurso))))
 				.fetchOne();
-		
-		LOG.info("list tuple "+AHE.size());
+		LOG.info(":v -_- :v");
 		return AHE;
 	}
 	

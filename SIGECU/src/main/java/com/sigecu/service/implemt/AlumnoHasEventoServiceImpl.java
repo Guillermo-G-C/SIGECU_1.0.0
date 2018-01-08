@@ -1,10 +1,7 @@
 package com.sigecu.service.implemt;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -35,27 +32,11 @@ public class AlumnoHasEventoServiceImpl implements AlumnoHasEventoService {
 	}
 
 	@Override
-	public void findAHEByIdAlumnoAndIdEvento(int id_alumno, int id_evento) {
+	public void findAlumnoHasEventoByIdAlumnoAndIdEvento(int id_alumno, int id_evento) {
 		Tuple result = queryAlumnoHasEvento.findAlumnoHasEventosByIdAlumnoAndIdEvento(id_alumno, id_evento);
 		
-		LOG.info(result);
+		LOG.info("Alumno :" + result.get(0, null));
+		LOG.info("Curso :" + result.get(1, null));
 	}
 	
-	
-	@Override
-	public List<Map<String, Object>>  report(int id_alumno, int id_evento) {
-		
-		Tuple datos = queryAlumnoHasEvento.findAlumnoHasEventosByIdAlumnoAndIdEvento(id_alumno, id_evento);
-		
-		List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
-		
-		Map<String, Object> item= new HashMap<String, Object>();
-		item.put("alumno",datos.get(0, null));
-		item.put("curso", datos.get(1, null));
-		item.put("fecha", datos.get(2, null));
-		
-		result.add(item);
-		
-		return result;
-	}
 }
