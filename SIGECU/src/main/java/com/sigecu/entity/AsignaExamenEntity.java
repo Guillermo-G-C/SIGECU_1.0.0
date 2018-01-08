@@ -81,16 +81,10 @@ public class AsignaExamenEntity {
 		this.status = status;
 	}
 	
-	public AsignaExamenEntity(int idasignaExamen, String asignado, String fechaInicio, String fechaFin, String horaInicio, String horafin, String realizado, String status) {
-		super();
-		this.idasignaExamen = idasignaExamen;
-		this.asignado = asignado;
-		this.fechaInicio = fechaInicio;
-		this.fechaFin = fechaFin;
-		this.horaInicio = horaInicio;
-		this.horafin = horafin;
-		this.realizado = realizado;
-		this.status = status;
+
+
+	public AsignaExamenEntity() {
+		
 	}
 
 }

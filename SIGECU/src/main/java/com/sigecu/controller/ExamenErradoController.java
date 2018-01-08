@@ -18,6 +18,7 @@ import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.PreguntasModel;
 import com.sigecu.model.RespuestasModel;
 import com.sigecu.service.AdminExamService;
+import com.sigecu.service.EvaluacionAlumnoService;
 import com.sigecu.service.ExamenErradoService;
 
 /**
@@ -35,11 +36,15 @@ public class ExamenErradoController {
 	@Autowired
 	@Qualifier("ExamenErradoServiceImplement")
 	private ExamenErradoService examenErradoService;
+	
+	@Autowired
+	@Qualifier("EvaluacionAlumnoImpl")
+	private EvaluacionAlumnoService EvaluacionAlumnoService;
 
 	@GetMapping("/ExamenErrado1")
 	public ModelAndView ExamenErrado1(
 			Model model) {
-		int idEvaluacion=1;
+		int idEvaluacion=3;
 		PreguntasModel preModel = new PreguntasModel();
 		RespuestasModel respuestasModel = new RespuestasModel();
 		ModelAndView mav = new ModelAndView(ViewConstant.NUEVO_EXAMENERRADO);
@@ -49,6 +54,7 @@ public class ExamenErradoController {
 		model.addAttribute("respuestasModel", respuestasModel);
 		model.addAttribute("preModel", preModel);
 		model.addAttribute("idEvaluacion", idEvaluacion);
+		model.addAttribute("eTiempo",EvaluacionAlumnoService.tiempoExamen(3));
 
 		return mav;
 	}

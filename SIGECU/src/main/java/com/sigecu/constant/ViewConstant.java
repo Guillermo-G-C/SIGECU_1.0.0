@@ -20,6 +20,9 @@ public class ViewConstant {
 	/* login 0 */
 	public static final String LOGIN = "publico/login";
 
+	public static final String MOSTRAREXAMEN = "EvaluacionAlumno";
+    public static final String CALIFICACIONEXAMEN = "calificaciones";
+
 	
 	public static final String NUEVO_EXAMENERRADO = "examen/ExamenErrado";
 
