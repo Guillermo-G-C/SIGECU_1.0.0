@@ -43,6 +43,8 @@ public class EventoAlumnoImpl implements eventoAlumnoService{
 			eventosModel.add(eventosConverter.convertEventoToEentoModel(evento));
 		}
 		LOG.info("Eventos" + idAlumno);
+		
+		LOG.info("FECHA" + eventosModel.get(1).getE_fecha_inicio());
 		return eventosModel;
 	}
 

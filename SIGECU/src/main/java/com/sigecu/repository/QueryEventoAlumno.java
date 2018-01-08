@@ -43,6 +43,7 @@ public class QueryEventoAlumno {
 			   .from(qEventos, qAhE, qAlumno)
 			   .where(qEventos.id_evento.eq(qAhE.primaryKey.eventos.id_evento).
 					   and(qAhE.primaryKey.alumno.id_alumno.eq(idAlumno)))
+			   .distinct()
 			   .fetch();
 	   
 	   return listaEventos;

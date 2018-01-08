@@ -53,18 +53,17 @@
 
 									</tr>
 								</thead>
-								<tfoot>
-									<tr>
-										<th>Evento</th>										
-                                        <th>Fecha</th>
-                                        <th>Realizar Examen</th>
-                                   </tr>
-                                </tfoot>
+								
                                         <tbody>
                                        		<tr th:each="evento :${listarEventos}">
                                        		<td th:text="${evento.curso.getcNombre()}"></td>
-                                       		<td th:text="${evento.fecha_Inicio"></td>
-                                       		<td></td>
+                                       		<td th:text="${evento.getE_fecha_inicio()}"></td>
+                                       		
+                                       		<td>
+                                       		<button type="submit" disabled="disabled"
+												class="btn btn-primary btn-lg m-l-15 waves-effect">Realizar
+												Examen</button>
+                                       		</td>
                                        		</tr>
                                         </tbody>
                                     </table>
