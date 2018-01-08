@@ -9,6 +9,6 @@ import com.sigecu.entity.RespuestaALMEntity;
 
 @Repository("respuestasALM")
 public interface respuestaALM  extends JpaRepository<RespuestaALMEntity,Serializable>{
-
+	
 	
 }

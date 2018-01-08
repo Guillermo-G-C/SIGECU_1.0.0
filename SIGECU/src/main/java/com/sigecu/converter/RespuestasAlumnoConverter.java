@@ -21,7 +21,7 @@ public class RespuestasAlumnoConverter {
 	// entity -- to -- model
 	public RespuestaALMModel converterRespuestaALMEntitytoRespuestaALMModel(RespuestaALMEntity respalmEnt) {
 		RespuestaALMModel resalumnomodel = new RespuestaALMModel();
-		
+		LOG.info("Conversion incorrecta: RESPUESTAALM A RESPUESTA MODEL");
 		RespuestasModel respuesta = respuconvert.converterRespuestasToRespuestasModel(respalmEnt.getRespuestas());
 		resalumnomodel.setIdrespuestaALM(respalmEnt.getIdrespuestaALM());
 		resalumnomodel.setRespuestaModel(respuesta);

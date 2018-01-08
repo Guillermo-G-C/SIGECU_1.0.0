@@ -126,9 +126,11 @@ public class PreguntasErradasConServiceImplement implements PreguntasErradasConS
 		List<RespuestaALMEntity> respuestasALumno = respuestaAL.findAll();
 		List <RespuestaALMModel> respuestaALMo = new ArrayList<RespuestaALMModel>();
 		for(RespuestaALMEntity ressal : respuestasALumno) {
-			//respuestaALMO.add(RespuestasAlumno.converterRespuestaALMEntitytoRespuestaALMModel(ressal));
+			respuestaALMo.add(RespuestasAlumno.converterRespuestaALMEntitytoRespuestaALMModel(ressal));
+			LOG.info("Lista de respuestas del alumno fue correcot " );
 		}
-		return null;
+		
+		return respuestaALMo;
 	}
 	
 	

@@ -73,7 +73,7 @@ public class QueryEvaluacion {
 		JPAQuery<Respuestas> query = new JPAQuery<> (em);
 		List<Respuestas> listRespuestas = query.select(qRespuestas)
 				.from(qRespuestas)
-				.where(qRespuestas.preguntas.idPregunta.eq(idPregunta))
+				.where(qRespuestas.preguntas.idPregunta.eq(idPregunta)).orderBy(qRespuestas.idRespuesta.desc())
 				.fetch();
 		return listRespuestas;
 		
