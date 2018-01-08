@@ -103,9 +103,9 @@ input.invisible {
 									<div class="demo-checkbox" th:each="resp : ${listaRespuestas}"
 										th:if="${pregunta.idPregunta==resp.pregunta.getIdPregunta()}">
 
-										<input type="checkbox" id="md_checkbox_1" name="group1"
+										<input type="checkbox" th:id="${resp.rRespuesta}" name="group1"
 											class="chk-col-teal" th:value="${resp.rRespuesta}" /> <label
-											for="md_checkbox_1" th:text="${resp.rRespuesta}"></label>
+											th:for="${resp.rRespuesta}" th:text="${resp.rRespuesta}"></label>
 									</div>
 								</section>
 								<h2></h2>

@@ -1,12 +1,16 @@
 package com.sigecu.model;
+
+import com.sigecu.entity.Cursos;
+import com.sigecu.entity.Instructor;
+
 /**
  * @author Anel
  *
  */
 public class EventosModel {
 	private int idevento;
-	private int c_idcurso;
-	private int i_idinstructor;
+	private Cursos curso;
+	private Instructor instructor;
 	private String eDescripcion;
 	private String eFechaInicio;
 	private String eFechaTermino;
@@ -23,17 +27,29 @@ public class EventosModel {
 	public void setIdevento(int idevento) {
 		this.idevento = idevento;
 	}
-	public int getC_idcurso() {
-		return c_idcurso;
+	/**
+	 * @return the curso
+	 */
+	public Cursos getCurso() {
+		return curso;
 	}
-	public void setC_idcurso(int c_idcurso) {
-		this.c_idcurso = c_idcurso;
+	/**
+	 * @param curso the curso to set
+	 */
+	public void setCurso(Cursos curso) {
+		this.curso = curso;
 	}
-	public int getI_idinstructor() {
-		return i_idinstructor;
+	/**
+	 * @return the instructor
+	 */
+	public Instructor getInstructor() {
+		return instructor;
 	}
-	public void setI_idinstructor(int i_idinstructor) {
-		this.i_idinstructor = i_idinstructor;
+	/**
+	 * @param instructor the instructor to set
+	 */
+	public void setInstructor(Instructor instructor) {
+		this.instructor = instructor;
 	}
 	public String geteDescripcion() {
 		return eDescripcion;
@@ -98,7 +114,7 @@ public class EventosModel {
 	
 	@Override
 	public String toString() {
-		return "EventosModel [idevento=" + idevento + ", c_idcurso=" + c_idcurso + ", i_idinstructor=" + i_idinstructor + ", eDescripcion="
+		return "EventosModel [idevento=" + idevento +" eDescripcion="
 				+ eDescripcion + ", eFechaInicio =" + eFechaInicio + ", eFechaTermino ="+ eFechaTermino +", ePrograma ="+ ePrograma +", "
 				+ "eHorario ="+ eHorario +", lugar_idlugar ="+ lugar_idlugar +", t_idtempletes ="+ t_idtempletes +", eCapacidad ="+ eCapacidad +", "
 				+ "eTipo ="+ eTipo +", eEstatus ="+ eEstatus +"]";

@@ -7,7 +7,9 @@ spring:
     username: root
 
 
+
     password: martinez
+
 
   jpa:
     show-sql: true
