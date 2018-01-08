@@ -1,5 +1,8 @@
 package com.sigecu.controller;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sigecu.constant.ViewConstant;
 import com.sigecu.service.CalificacionService;
 import com.sigecu.service.EvaluacionAlumnoService;
+import com.sigecu.service.implemt.EmailService;
 
 @Controller
 @RequestMapping("/calificaciones")
@@ -26,6 +30,10 @@ public class CalificacionesController {
 	@Qualifier("CalificacionImplement")
 	private CalificacionService calificacionService;
 	
+	@Autowired
+	@Qualifier("emailService")
+	private EmailService mailService;
+	
 	private static final Log LOG = LogFactory.getLog(CalificacionesController.class);
 	
 	@GetMapping("/mostrarCalificaciones")
@@ -35,6 +43,15 @@ public class CalificacionesController {
 		mav.addObject("ePorsentaje",calificacionService.calificacionFnl());
 		mav.addObject("aciertos",calificacionService.aciertosPregunta());
 		mav.addObject("errores",calificacionService.erroresPregunta());
+		try {
+			mailService.send("castillor493@gmail.com", "Examen realizado", "Calificacion Final: "+calificacionService.calificacionFnl()+"");
+		} catch (AddressException e) {
+			LOG.error("La direccion de correo es incorrecta");
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			LOG.info("Error en el envio del correo");
+			e.printStackTrace();
+		}
 		return mav;
 	}
 	
