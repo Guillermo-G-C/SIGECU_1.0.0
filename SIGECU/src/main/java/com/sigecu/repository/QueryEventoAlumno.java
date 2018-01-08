@@ -1,4 +1,4 @@
-package com.sigecu.repository;
+ package com.sigecu.repository;
 
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
