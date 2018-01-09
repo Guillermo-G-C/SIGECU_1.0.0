@@ -71,6 +71,8 @@ public class AdminExamServiceImpl implements AdminExamService {
 	@Autowired
 	@Qualifier("respuestasConverter")
 	private RespuestasConverter respuestasConverter;
+	
+
 
 	@Override
 	public List<EvaluacionesModel> listAllEvaluaciones(int idCurso) {
