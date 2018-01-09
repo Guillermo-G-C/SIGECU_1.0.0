@@ -17,4 +17,6 @@ public interface CertificadoService {
 	public List<Map<String, Object>> report(int idCertificado);
 	
 	public Iterable<Certificado> findAll();
+
+	List<Map<String, Object>> report(int id_alumno, int id_evento);
 }
