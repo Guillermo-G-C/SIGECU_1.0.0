@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -41,39 +43,38 @@
 					<div class="header">
 						<h2>Eventos por Alumno</h2>
 					</div>
-				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"
-					th:each="evento :${listarEventos}">
-					<div class="card">
-						<div class="header bg-cyan">
-							<h2 th:text="${evento.curso.getcNombre()}"></h2>
-							<ul class="header-dropdown m-r--5">
+					<div class="body">
+						<div class="table-responsive">
+							<table
+								class="table table-bordered table-striped table-hover dataTable js-exportable">
+								<thead>
+									<tr>
+										<th>Evento</th>
+										<th>Fecha</th>
+										<th>Realizar examen</th>
 
-							</ul>
-						</div>
-						<div class="body">
-							<div class="input-group input-group-lg">
+									</tr>
+								</thead>
 								
-								<div class="form-line">
-									<textarea rows="5" cols="5" class="form-control"
-										th:text="${evento.getE_fecha_inicio()}"></textarea>
-								</div>
-							</div>
-							<a th:href="@{/preguntasErradas/evaluaciones?}">
-								<button type="button" class="btn btn-primary waves-effect">
-								 <span>Evaluacion</span>
-								</button>
-							</a>
-
-						</div>
-					</div>
-				</div>
-					
-					
+                                        <tbody>
+                                       		<tr th:each="evento :${listarEventos}">
+                                       		<td th:text="${evento.curso.getcNombre()}"></td>
+                                       		<td th:text="${evento.geteFechaInicio()}"></td>
+                                       		
+                                       		<td>
+                                       		<button type="submit" disabled="disabled"
+												class="btn btn-primary btn-lg m-l-15 waves-effect">Realizar
+												Examen</button>
+                                       		</td>
+                                       		</tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </div> 
-                </div>
-                </div>
-                               
+                </div>                
         </section>
         <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
         <!-- Bootstrap Core Js -->
@@ -115,4 +116,5 @@
         <!-- Demo Js -->
         <script th:src="@{/js/demo.js}"></script>
 </body>
+
 </html>
