@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.OneToMany;
 
@@ -29,7 +31,8 @@ public class Alumno {
 	private String a_email;
 	private String a_carrera;
 	private String a_notebook;
-	private String a_status;
+	private String a_status;	
+	private Users user;
 	
 	private Set<Alumno_Has_Eventos> alumno_has_eventos = new HashSet<>(); 
 	public Alumno() {
@@ -183,5 +186,21 @@ public class Alumno {
 	public void setAlumno_has_eventos(Set<Alumno_Has_Eventos> alumno_has_eventos) {
 		this.alumno_has_eventos = alumno_has_eventos;
 	}
+	/**
+	 * @return the user
+	 */
+	@ManyToOne
+	@JoinColumn(name = "user_id_user")
+	public Users getUser() {
+		return user;
+	}
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(Users user) {
+		this.user = user;
+	}
+	
+	
 	
 }

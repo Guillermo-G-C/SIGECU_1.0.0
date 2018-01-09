@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -26,6 +28,7 @@ public class Instructor {
 	private String i_email;
 	private String i_telefono;
 	private String i_direccion;
+	private Users user;
 	public Instructor() {
 		// TODO Auto-generated constructor stub
 	}
@@ -148,6 +151,21 @@ public class Instructor {
 	public void setI_direccion(String i_direccion) {
 		this.i_direccion = i_direccion;
 	}
+	/**
+	 * @return the user
+	 */
+	@ManyToOne
+	@JoinColumn(name = "user_id_user")
+	public Users getUser() {
+		return user;
+	}
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(Users user) {
+		this.user = user;
+	}
+	
 	
 
 }

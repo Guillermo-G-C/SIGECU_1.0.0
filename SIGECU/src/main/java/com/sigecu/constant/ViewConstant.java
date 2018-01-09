@@ -14,6 +14,9 @@ public class ViewConstant {
 	 */
 	/* login 0 */
 	public static final String LOGIN = "publico/login";
+	public static final String ALUMNO = "redirect:/eventosAlumno/listarEventos"; //vista para alumno inicio
+	public static final String INSTRUCTOR = ""; // vista para instructor inicio
+	public static final String ADMIN = "redirect:/adminExamen/listaCursos"; // vista para admin inicio
 
 	public static final String LISTAR_EXAMEN = "adminExamen";
 	public static final String NUEVO_EXAMEN = "NuevoExamen";

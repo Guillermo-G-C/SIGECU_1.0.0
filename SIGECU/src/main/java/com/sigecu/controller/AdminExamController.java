@@ -1,9 +1,15 @@
 package com.sigecu.controller;
 
+import java.util.Iterator;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +29,7 @@ import com.sigecu.service.AdminExamService;
 ///import com.sigecu.service.CursoService;
 
 @Controller
+
 @RequestMapping("/adminExamen")
 public class AdminExamController {
 
@@ -41,10 +48,14 @@ public class AdminExamController {
 		model.addAttribute("idCurso", idCurso);
 		return mav;
 	}
-
+	
+	//@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping("/listaCursos")
 	public ModelAndView showCursos() {
 		ModelAndView mav = new ModelAndView(ViewConstant.LISTAR_CURSOS);
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		mav.addObject("username", user.getUsername());
+		//mav.addObject("username", adminExamService.buscarNombre(user.getUsername()));
 		mav.addObject("listaCursos", adminExamService.listaCursos());
 		return mav;
 	}
