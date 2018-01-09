@@ -23,12 +23,7 @@ public class RespuestaALMEntity {
 	private Respuestas respuestas;
 	
 	
-	
-	@ManyToOne
-	@JoinColumn(name="aE_idasignaExamen")
-	private AsignaExamenEntity asigna;
 
-	
 	
 	
 	@Column(name="seleccionada")
@@ -47,6 +42,22 @@ public class RespuestaALMEntity {
 	public void setSeleccionada(String seleccionada) {
 		this.seleccionada = seleccionada;
 	}
+
+	/**
+	 * @return the respuestas
+	 */
+	public Respuestas getRespuestas() {
+		return respuestas;
+	}
+	/**
+	 * @param respuestas the respuestas to set
+	 */
+	public void setRespuestas(Respuestas respuestas) {
+		this.respuestas = respuestas;
+	}
+	public RespuestaALMEntity() {
+		
+	}
 	
 	public RespuestaALMEntity(int idrespuestaALM, String seleccionada) {
 		super();
@@ -55,10 +66,8 @@ public class RespuestaALMEntity {
 		this.seleccionada = seleccionada;
 	}
 	
-	public RespuestaALMEntity() {
-		
-	}
 	
 	
+
 
 }
