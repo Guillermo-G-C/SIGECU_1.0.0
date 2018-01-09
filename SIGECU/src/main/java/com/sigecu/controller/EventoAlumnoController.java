@@ -31,6 +31,8 @@ public class EventoAlumnoController {
 	@Qualifier("eventoAlumnoImpl")
 	private eventoAlumnoService eventoAlumnoService;
 	
+	private User user;
+	AlumnoModel alumnoModel;
 	@GetMapping("/eventosAlumno")
 	public ModelAndView showEventosAl(@RequestParam(name="idEvento", required=false)int idEvento, Model model) {
 		EventosModel eventoModel=new EventosModel();
@@ -40,18 +42,25 @@ public class EventoAlumnoController {
 		model.addAttribute("idEvento", idEvento);
 		return mo;
 	}
-	
 	@GetMapping("/listarEventos")
 	public ModelAndView mostrarEventos() {
 		ModelAndView mav=new ModelAndView(ViewConstant.EVENTOS_ALUMNO);
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		AlumnoModel alumnoModel =defineUsuario.buscarUsuario(user.getUsername());
+		user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		alumnoModel =defineUsuario.buscarUsuario(user.getUsername());
 		mav.addObject("user", alumnoModel );
 		mav.addObject("listarEventos", eventoAlumnoService.listAllEventosAl(alumnoModel.getId_alumno()));
 		
 		return mav;
 		
 	}
+	@GetMapping("/listarExamenAlumno")
+	public ModelAndView mostrarExamenAlumno(@RequestParam(name="idEvento", required=false)int idEvento, Model model) {
+		ModelAndView mav = new ModelAndView(ViewConstant.EXAMENES_ALUMNO);
+		mav.addObject("listExamen", eventoAlumnoService.listAllExamen(alumnoModel.getId_alumno(), idEvento));
+		mav.addObject("user", alumnoModel);
+		return mav;
+	}
+	
 	
 	
 	

@@ -52,7 +52,6 @@ public class LoginController {
 			else if(role.equals("ADMIN")) {
 				//vista admin
 				redirect= ViewConstant.ADMIN;
-				
 			}
 			else {
 				redirect= ViewConstant.LOGIN;

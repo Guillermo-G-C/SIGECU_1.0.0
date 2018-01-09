@@ -49,7 +49,15 @@ public class QueryEventoAlumno {
 	   return listaEventos;
 	   
    }
-   
+   public Eventos findAllEventosByID(int idEvento){
+	   JPAQuery<Eventos> query = new JPAQuery<>(em);
+	   Eventos evento = query.select(qEventos)
+			   .from(qEventos)
+			   .where(qEventos.id_evento.eq(idEvento))
+			   .fetchOne();
+	   return evento;
+	   
+   }
   
 	
 	

@@ -56,7 +56,7 @@
 									<span th:text="${evento.geteFechaInicio()}"></span>
 								</div>
 							</div>
-							<a th:href="@{/preguntasErradas/evaluaciones}">
+							<a th:href="@{/eventosAlumno/listarExamenAlumno?idEvento=__${evento.getIdevento()}__}">
 								<button type="button" class="btn btn-primary waves-effect">
 									<i class="material-icons">question_answer</i> <span>Evaluaciones</span>
 								</button>

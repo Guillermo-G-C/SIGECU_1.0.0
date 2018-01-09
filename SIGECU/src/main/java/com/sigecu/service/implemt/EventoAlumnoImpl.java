@@ -3,6 +3,7 @@ package com.sigecu.service.implemt;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -10,11 +11,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.sigecu.converter.EvaluacionConverter;
 import com.sigecu.converter.EventosConverter;
+import com.sigecu.entity.Cursos;
+import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Eventos;
 import com.sigecu.model.AlumnoModel;
+import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.EventosModel;
+import com.sigecu.repository.CursosRepository;
+import com.sigecu.repository.EvaluacionRepository;
 import com.sigecu.repository.EventosAlumnoRepository;
+import com.sigecu.repository.QueryEvaluacion;
 import com.sigecu.repository.QueryEventoAlumno;
 import com.sigecu.service.eventoAlumnoService;
 
@@ -25,7 +33,9 @@ public class EventoAlumnoImpl implements eventoAlumnoService{
     @Autowired 
 	@Qualifier("eventosAlumnoRepository")
      private EventosAlumnoRepository eventosAlumnoRepository;
-    
+    @Autowired
+    @Qualifier("evaluacionesRepository")
+    private EvaluacionRepository evaluacionesRepository;
     @Autowired
     @Qualifier("eventosConverter")
     private EventosConverter eventosConverter;
@@ -33,6 +43,18 @@ public class EventoAlumnoImpl implements eventoAlumnoService{
     @Autowired
     @Qualifier("queryEventoAlumno")
     private QueryEventoAlumno queryEventoAlumno;
+    
+    @Autowired
+    @Qualifier("cursoRepository")
+    private CursosRepository cursosRepository;
+    
+    @Autowired
+    @Qualifier("queryEvaluacion")
+    private QueryEvaluacion queryEvaluacion;
+    
+    @Autowired
+    @Qualifier("evalaucionesConverter")
+    private EvaluacionConverter evaluacionesConverter;
 
 	@Override
 	public List<EventosModel> listAllEventosAl(int idAlumno) {
@@ -53,20 +75,23 @@ public class EventoAlumnoImpl implements eventoAlumnoService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-    
-//    @Autowired
-//    @Qualifier("alumnoConverter")
-//    
 
-//	@Override
-//	public List<Evento> listAllEventosAl(int idEvento) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<AlumnoModel> listaAlumnos() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	/* (non-Javadoc)
+	 * @see com.sigecu.service.eventoAlumnoService#listAllExamen(int, int)
+	 */
+	@Override
+	public List<EvaluacionesModel> listAllExamen(int idAlumno, int idEvento) {
+		Eventos evento = queryEventoAlumno.findAllEventosByID(idEvento);
+		Cursos curso = evento.getCursos();
+		List<Evaluaciones> listEvaluaciones = queryEvaluacion.findAllExamenesById(curso.getIdCurso());
+		List<EvaluacionesModel> listEvalModel = new ArrayList<>();
+		for(Evaluaciones evaluacion : listEvaluaciones) {
+			EvaluacionesModel evalModel = evaluacionesConverter.convertEvaluacion2EvaluacionModel(evaluacion);
+			listEvalModel.add(evalModel);
+			LOG.info("EXAMEN AGREGADO: "+evalModel.geteNombre());
+		}
+		return listEvalModel;
+	}
+
+    
 }
