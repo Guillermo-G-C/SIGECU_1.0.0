@@ -13,17 +13,40 @@ public class InstructorModel {
 	
 	private int id;
 	private String carrera;
-	private String i_direccion;
-	private String i_email;
-	private String i_materno;
-	private String i_nombre;
-	private String i_paterno;
-	private String i_telefono;
+	private String iDireccion;
+	private String iEmail;
+	private String iMaterno;
+	private String iNombre;
+	private String iPaterno;
+	private String iTelefono;
 	/**
 	 * 
 	 */
 	public InstructorModel() {
+		super();
 		// TODO Auto-generated constructor stub
+	}
+	/**
+	 * @param id
+	 * @param carrera
+	 * @param iDireccion
+	 * @param iEmail
+	 * @param iMaterno
+	 * @param iNombre
+	 * @param iPaterno
+	 * @param iTelefono
+	 */
+	public InstructorModel(int id, String carrera, String iDireccion, String iEmail, String iMaterno, String iNombre,
+			String iPaterno, String iTelefono) {
+		super();
+		this.id = id;
+		this.carrera = carrera;
+		this.iDireccion = iDireccion;
+		this.iEmail = iEmail;
+		this.iMaterno = iMaterno;
+		this.iNombre = iNombre;
+		this.iPaterno = iPaterno;
+		this.iTelefono = iTelefono;
 	}
 	/**
 	 * @return the id
@@ -50,87 +73,78 @@ public class InstructorModel {
 		this.carrera = carrera;
 	}
 	/**
-	 * @return the i_direccion
+	 * @return the iDireccion
 	 */
-	public String getI_direccion() {
-		return i_direccion;
+	public String getiDireccion() {
+		return iDireccion;
 	}
 	/**
-	 * @param i_direccion the i_direccion to set
+	 * @param iDireccion the iDireccion to set
 	 */
-	public void setI_direccion(String i_direccion) {
-		this.i_direccion = i_direccion;
+	public void setiDireccion(String iDireccion) {
+		this.iDireccion = iDireccion;
 	}
 	/**
-	 * @return the i_email
+	 * @return the iEmail
 	 */
-	public String getI_email() {
-		return i_email;
+	public String getiEmail() {
+		return iEmail;
 	}
 	/**
-	 * @param i_email the i_email to set
+	 * @param iEmail the iEmail to set
 	 */
-	public void setI_email(String i_email) {
-		this.i_email = i_email;
+	public void setiEmail(String iEmail) {
+		this.iEmail = iEmail;
 	}
 	/**
-	 * @return the i_materno
+	 * @return the iMaterno
 	 */
-	public String getI_materno() {
-		return i_materno;
+	public String getiMaterno() {
+		return iMaterno;
 	}
 	/**
-	 * @param i_materno the i_materno to set
+	 * @param iMaterno the iMaterno to set
 	 */
-	public void setI_materno(String i_materno) {
-		this.i_materno = i_materno;
+	public void setiMaterno(String iMaterno) {
+		this.iMaterno = iMaterno;
 	}
 	/**
-	 * @return the i_nombre
+	 * @return the iNombre
 	 */
-	public String getI_nombre() {
-		return i_nombre;
+	public String getiNombre() {
+		return iNombre;
 	}
 	/**
-	 * @param i_nombre the i_nombre to set
+	 * @param iNombre the iNombre to set
 	 */
-	public void setI_nombre(String i_nombre) {
-		this.i_nombre = i_nombre;
+	public void setiNombre(String iNombre) {
+		this.iNombre = iNombre;
 	}
 	/**
-	 * @return the i_paterno
+	 * @return the iPaterno
 	 */
-	public String getI_paterno() {
-		return i_paterno;
+	public String getiPaterno() {
+		return iPaterno;
 	}
 	/**
-	 * @param i_paterno the i_paterno to set
+	 * @param iPaterno the iPaterno to set
 	 */
-	public void setI_paterno(String i_paterno) {
-		this.i_paterno = i_paterno;
+	public void setiPaterno(String iPaterno) {
+		this.iPaterno = iPaterno;
 	}
 	/**
-	 * @return the i_telefono
+	 * @return the iTelefono
 	 */
-	public String getI_telefono() {
-		return i_telefono;
+	public String getiTelefono() {
+		return iTelefono;
 	}
 	/**
-	 * @param i_telefono the i_telefono to set
+	 * @param iTelefono the iTelefono to set
 	 */
-	public void setI_telefono(String i_telefono) {
-		this.i_telefono = i_telefono;
-	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "InstructorModel [carrera=" + carrera + ", i_direccion=" + i_direccion + ", i_email=" + i_email
-				+ ", i_materno=" + i_materno + ", i_nombre=" + i_nombre + ", i_paterno=" + i_paterno + ", i_telefono="
-				+ i_telefono + "]";
+	public void setiTelefono(String iTelefono) {
+		this.iTelefono = iTelefono;
 	}
 	
 	
-
+	
 }

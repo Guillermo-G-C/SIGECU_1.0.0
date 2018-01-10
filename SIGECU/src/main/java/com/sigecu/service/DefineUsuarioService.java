@@ -4,6 +4,7 @@
 package com.sigecu.service;
 
 import com.sigecu.model.AlumnoModel;
+import com.sigecu.model.InstructorModel;
 
 /**
  * @author Rolando Castillo
@@ -12,5 +13,6 @@ import com.sigecu.model.AlumnoModel;
  *
  */
 public interface DefineUsuarioService {
-	public abstract AlumnoModel buscarUsuario(String user);
+	public abstract AlumnoModel buscarUsuarioAlumno(String user);
+	public abstract InstructorModel buscarUsuarioInstructor(String user);
 }

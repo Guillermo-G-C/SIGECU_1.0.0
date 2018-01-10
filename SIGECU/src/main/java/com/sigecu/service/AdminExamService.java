@@ -8,9 +8,7 @@ import com.sigecu.model.PreguntasModel;
 import com.sigecu.model.RespuestasModel;
 
 public interface AdminExamService {
-
 	public abstract List<EvaluacionesModel> listAllEvaluaciones(int idCurso);
-
 	public abstract List<CursoModel> listaCursos();
 
 	public abstract void nuevaEvaluacion(EvaluacionesModel evalModel, int idCurso);
