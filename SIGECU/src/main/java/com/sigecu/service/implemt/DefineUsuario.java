@@ -55,6 +55,7 @@ public class DefineUsuario implements DefineUsuarioService{
 	@Override
 	public AlumnoModel buscarUsuarioAlumno(String user) {
 		Users users =userRepository.findByUsername(user);
+		LOG.info("ROLES: "+ users.getUserRole());
 		LOG.info("USER TIENE ROLE: "+users.getUserRole().size());
 		Alumno alumno= alumnoRepository.findByUser(users);
 		AlumnoModel alumnoModel = alumnoConverter.converterAlumnoToAlumnoModel(alumno);

@@ -4,15 +4,24 @@
 package com.sigecu.service.implemt;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.sigecu.controller.InstructorController;
+import com.sigecu.converter.AlumnosConverter;
 import com.sigecu.converter.EventosConverter;
+import com.sigecu.entity.Alumno;
+import com.sigecu.entity.Alumno_Has_Eventos;
 import com.sigecu.entity.Eventos;
 import com.sigecu.entity.Instructor;
+import com.sigecu.model.AlumnoModel;
 import com.sigecu.model.EventosModel;
 import com.sigecu.repository.EventosRepository;
 import com.sigecu.repository.InstructorRepository;
@@ -39,6 +48,10 @@ public class InstructorServiceImpl implements InstructorService {
 	@Qualifier("eventosConverter")
 	private EventosConverter eventosConverter;
 	
+	@Autowired
+	@Qualifier("alumnosConverter")
+	private AlumnosConverter alumnosConverter;
+	private static final Log LOG = LogFactory.getLog(InstructorServiceImpl.class);
 	/* (non-Javadoc)
 	 * @see com.sigecu.service.InstructorService#eventosPorInstructor(int)
 	 */
@@ -52,6 +65,25 @@ public class InstructorServiceImpl implements InstructorService {
 			eventosModel.add(eventoModel);
 		}
 		return eventosModel;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.sigecu.service.InstructorService#alumnosPorEvento(int)
+	 */
+	@Override
+	public List<AlumnoModel> alumnosPorEvento(int idEvento) {
+		// TODO Auto-generated method stub
+		Eventos evento = eventoRepository.findByIdEvento(idEvento);
+		Set<Alumno_Has_Eventos> alumnosHasEventos = evento.getAlumnosHasEventos();
+		Iterator<Alumno_Has_Eventos> iter = alumnosHasEventos.iterator();
+		List<AlumnoModel> alumnosModel = new ArrayList<>();
+		while(iter.hasNext()) {
+			Alumno alumno = iter.next().getAlumno();
+			AlumnoModel alumnoModel = alumnosConverter.converterAlumnoToAlumnoModel(alumno);
+			alumnosModel.add(alumnoModel);
+			//LOG.info("ALUMNO EN EVENTO: "+ iter.next().getAlumno().getaNombre());;
+		}
+		return alumnosModel;
 	}
 
 }

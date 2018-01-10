@@ -82,7 +82,7 @@ public class EventoAlumnoImpl implements eventoAlumnoService{
 	@Override
 	public List<EvaluacionesModel> listAllExamen(int idAlumno, int idEvento) {
 		Eventos evento = queryEventoAlumno.findAllEventosByID(idEvento);
-		Cursos curso = evento.getCursos();
+		Cursos curso = evento.getCursosEvento();
 		List<Evaluaciones> listEvaluaciones = queryEvaluacion.findAllExamenesById(curso.getIdCurso());
 		List<EvaluacionesModel> listEvalModel = new ArrayList<>();
 		for(Evaluaciones evaluacion : listEvaluaciones) {

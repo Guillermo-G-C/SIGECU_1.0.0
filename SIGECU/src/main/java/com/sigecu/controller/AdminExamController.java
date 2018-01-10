@@ -1,6 +1,9 @@
 package com.sigecu.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +44,9 @@ public class AdminExamController {
 		EvaluacionesModel evalModel = new EvaluacionesModel();
 		ModelAndView mav = new ModelAndView(ViewConstant.LISTAR_EXAMEN);
 		mav.addObject("listaExamen", adminExamService.listAllEvaluaciones(idCurso));
+		List<String> listEval = new ArrayList<>();
 		model.addAttribute("evaluacionesModel", evalModel);
+		model.addAttribute("listPrueba", listEval);
 		model.addAttribute("idCurso", idCurso);
 		return mav;
 	}

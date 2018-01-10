@@ -3,13 +3,18 @@
  */
 package com.sigecu.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -25,14 +30,16 @@ public class Respuestas {
 	@Column(name = "idRespuesta")
 	private int idRespuesta;
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "preguntas_id_pregunta")
 	private Preguntas preguntas;
 	@Column(name = "rRespuesta")
 	private String rRespuesta;
 	@Column(name = "rSolucion")
 	private String rSolucion;
-
+	
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="respuestas")
+	private Set<RespuestaALMEntity> respuestasAML = new HashSet<>();
 	public Respuestas() {
 		// TODO Auto-generated constructor stub
 	}
@@ -102,6 +109,20 @@ public class Respuestas {
 	 */
 	public void setrSolucion(String rSolucion) {
 		this.rSolucion = rSolucion;
+	}
+
+	/**
+	 * @return the respuestasAML
+	 */
+	public Set<RespuestaALMEntity> getRespuestasAML() {
+		return respuestasAML;
+	}
+
+	/**
+	 * @param respuestasAML the respuestasAML to set
+	 */
+	public void setRespuestasAML(Set<RespuestaALMEntity> respuestasAML) {
+		this.respuestasAML = respuestasAML;
 	}
 
 }

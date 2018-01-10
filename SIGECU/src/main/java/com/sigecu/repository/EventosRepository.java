@@ -13,4 +13,5 @@ import com.sigecu.entity.Instructor;
 public interface EventosRepository extends JpaRepository <Eventos, Serializable>{
 	
 	public abstract List<Eventos> findByInstructor (Instructor instructor);
+	public abstract Eventos findByIdEvento(int idEvento);
 }

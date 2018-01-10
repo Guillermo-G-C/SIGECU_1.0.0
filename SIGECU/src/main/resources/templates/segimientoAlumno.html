@@ -34,7 +34,7 @@
 </head>
 <body class="theme-red">
 
-	<section th:include="fragment/menualumno"></section>
+	<section th:include="fragment/menuInstructor"></section>
 	<section class="content">
 		<div class="container-fluid">
 			<div class="block-header">
@@ -43,34 +43,7 @@
 			<!-- Basic Example -->
 			<div class="row clearfix">
 
-				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"
-					th:each="cur : ${listaCursosAl}">
-					<div class="card">
-						<div class="header bg-cyan">
-							<h2 th:text="${cur.cNombre}"></h2>
-							<ul class="header-dropdown m-r--5">
-
-							</ul>
-						</div>
-						<div class="body">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon"> <i
-									class="material-icons">view_compact</i>
-								</span>
-								<div class="form-line">
-									<textarea rows="5" cols="5" class="form-control"
-										th:text="${cur.cDescripcion}"></textarea>
-								</div>
-							</div>
-							<a th:href="@{/preguntasErradas/evaluaciones?idEvaluacion=__${cur.idCurso}__}">
-								<button type="button" class="btn btn-primary waves-effect">
-									<i class="material-icons">question_answer</i> <span>Evaluaciones</span>
-								</button>
-							</a>
-
-						</div>
-					</div>
-				</div>
+				<span>Aqui es el seguimiento al alumno</span>
 			</div>
 		</div>
 	</section>

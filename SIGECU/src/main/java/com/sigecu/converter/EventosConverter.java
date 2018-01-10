@@ -15,16 +15,16 @@ public class EventosConverter {
 	
 	public EventosModel convertEventoToEentoModel(Eventos evento) {
 		 EventosModel eventoModel=new EventosModel();
-		 eventoModel.setIdevento(evento.getId_evento());
-		 eventoModel.seteDescripcion(evento.getE_descripcion());
-		 eventoModel.seteFechaInicio(evento.getE_fecha_inicio());
-		 eventoModel.seteFechaTermino(evento.getE_fecha_termino());
-		 eventoModel.setePrograma(evento.getE_programa());
-		 eventoModel.seteHorario(evento.getE_horario());
-		 eventoModel.seteCapacidad(evento.getE_capacidad());
-		 eventoModel.seteTipo(evento.getE_tipo());
-		 eventoModel.seteEstatus(evento.getE_estatus());
-		 eventoModel.setCurso(evento.getCursos());
+		 eventoModel.setIdevento(evento.getIdEvento());
+		 eventoModel.seteDescripcion(evento.geteDescripcion());
+		 eventoModel.seteFechaInicio(evento.geteFechaInicio());
+		 eventoModel.seteFechaTermino(evento.geteFechaTermino());
+		 eventoModel.setePrograma(evento.getePrograma());
+		 eventoModel.seteHorario(evento.geteHorario());
+		 eventoModel.seteCapacidad(evento.geteCapacidad());
+		 eventoModel.seteTipo(evento.geteTipo());
+		 eventoModel.seteEstatus(evento.geteStatus());
+		 eventoModel.setCurso(evento.getCursosEvento());
 		 eventoModel.setInstructor(evento.getInstructor());
 		 
 		 return eventoModel;
@@ -35,17 +35,17 @@ public class EventosConverter {
 	
 	public Eventos convertEventoModelToEvento (EventosModel evento) {
 		Eventos even=new Eventos() ;
-		even.setId_evento(evento.getIdevento());
-		even.setE_descripcion(evento.geteDescripcion());
-		even.setE_fecha_inicio(evento.geteFechaInicio());
-		even.setE_fecha_termino(evento.geteFechaTermino());
-		even.setE_programa(evento.getePrograma());
-		even.setE_horario(evento.geteHorario());
-		even.setE_capacidad(evento.geteCapacidad());
-		even.setE_tipo(evento.geteTipo());
-		even.setE_estatus(evento.geteEstatus());
+		even.setIdEvento(evento.getIdevento());
+		even.seteDescripcion(evento.geteDescripcion());
+		even.seteFechaInicio(evento.geteFechaInicio());
+		even.seteFechaTermino(evento.geteFechaTermino());
+		even.setePrograma(evento.getePrograma());
+		even.seteHorario(evento.geteHorario());
+		even.seteCapacidad(evento.geteCapacidad());
+		even.seteTipo(evento.geteTipo());
+		even.seteStatus(evento.geteEstatus());
 		even.setInstructor(evento.getInstructor());
-		even.setCursos(evento.getCurso());
+		even.setCursosEvento(evento.getCurso());
 		return even;
 		
 	}

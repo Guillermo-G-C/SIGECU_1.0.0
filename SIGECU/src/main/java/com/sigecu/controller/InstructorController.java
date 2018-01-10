@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sigecu.constant.ViewConstant;
@@ -51,6 +52,21 @@ public class InstructorController {
 		mav.addObject("user", instructorModel );
 		mav.addObject("listarEventos", instructorService.eventosPorInstructor(instructorModel.getId()));
 		return mav;
+	}
+	@GetMapping("/alumnosEvento")
+	public ModelAndView mostrarAlumnosPorEvento(@RequestParam(name="idEvento", required=true) int idEvento) {
+		ModelAndView mav = new ModelAndView(ViewConstant.ALUMNOS_EVENTOS_INSTRUCTOR);
+		LOG.info("MOSTRAR ALUMNOS POR EVENTO");
+		mav.addObject("user", instructorModel );
+		mav.addObject("listaAlumnos", instructorService.alumnosPorEvento(idEvento));
+		return mav;
+	}
+	@GetMapping("/seguimientoAlumno")
+	public ModelAndView seguimientoAlumno(@RequestParam(name="idAlumno", required=true)int idAlumno){
+		ModelAndView mav = new ModelAndView(ViewConstant.SEGUIMIENTO_ALUMNO);
+		mav.addObject("user", instructorModel );
+		return mav;
+		
 	}
 	
 

@@ -41,8 +41,8 @@ public class QueryEventoAlumno {
 	   JPAQuery<Eventos> query=new JPAQuery<> (em);
 	   List<Eventos> listaEventos=query.select(qEventos)
 			   .from(qEventos, qAhE, qAlumno)
-			   .where(qEventos.id_evento.eq(qAhE.primaryKey.eventos.id_evento).
-					   and(qAhE.primaryKey.alumno.id_alumno.eq(idAlumno)))
+			   .where(qEventos.idEvento.eq(qAhE.primaryKey.eventos.idEvento).
+					   and(qAhE.primaryKey.alumno.idAlumno.eq(idAlumno)))
 			   .distinct()
 			   .fetch();
 	   
@@ -53,7 +53,7 @@ public class QueryEventoAlumno {
 	   JPAQuery<Eventos> query = new JPAQuery<>(em);
 	   Eventos evento = query.select(qEventos)
 			   .from(qEventos)
-			   .where(qEventos.id_evento.eq(idEvento))
+			   .where(qEventos.idEvento.eq(idEvento))
 			   .fetchOne();
 	   return evento;
 	   

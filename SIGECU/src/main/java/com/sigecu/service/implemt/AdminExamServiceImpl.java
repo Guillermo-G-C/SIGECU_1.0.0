@@ -1,6 +1,7 @@
 package com.sigecu.service.implemt;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -95,7 +96,7 @@ public class AdminExamServiceImpl implements AdminExamService {
 	public List<PreguntasModel> listarPregunrasByExam(int idExamen) {
 		List<Preguntas> listPreguntas = queryEvaluacion.findAllPreguntasById(idExamen);
 		List<PreguntasModel> preguntasModel = new ArrayList<PreguntasModel>();
-
+		
 		for (Preguntas preg : listPreguntas) {
 			preguntasModel.add(preguntasConverter.converterPreguntasToPreguntasModel(preg));
 		}
@@ -126,6 +127,10 @@ public class AdminExamServiceImpl implements AdminExamService {
 	public void nuevaEvaluacion(EvaluacionesModel evalModel, int idCurso) {
 		LOG.info("NUEVO EXAMEN POR REGISTRAR CON CURSO ID: " + idCurso);
 		Cursos curso = cursoRepository.findByIdCurso(idCurso);
+//		Iterator<Evaluaciones> evale = curso.getEvaluaciones().iterator();
+//		while(evale.hasNext()) {
+//			LOG.info("LAS EVALUACIONES SON: "+evale.next().geteNombre());
+//		}
 		Evaluaciones eval = evaluacionConverter.convertEvaluacionModelToEvaluacion(evalModel, curso);
 		evaluacionesRepository.saveAndFlush(eval);
 		LOG.info("EXAMEN REGISTRADO");

@@ -23,18 +23,18 @@ import javax.persistence.OneToMany;
 @Table(name="alumno")
 public class Alumno {
 	
-	private int id_alumno;
-	private String a_nombre;
-	private String a_paterno;
-	private String a_materno;
-	private String a_telefono;
-	private String a_email;
-	private String a_carrera;
-	private String a_notebook;
-	private String a_status;	
+	private int idAlumno;
+	private String aNombre;
+	private String aPaterno;
+	private String aMaterno;
+	private String aTelefono;
+	private String aEmail;
+	private String aCarrera;
+	private String aNotebook;
+	private String aStatus;	
 	private Users user;
 	
-	private Set<Alumno_Has_Eventos> alumno_has_eventos = new HashSet<>(); 
+	private Set<Alumno_Has_Eventos> alumnoHasEventos = new HashSet<>(); 
 	public Alumno() {
 	}
 	/**
@@ -49,17 +49,17 @@ public class Alumno {
 	 */
 	public Alumno( String a_nombre, String a_paterno, String a_materno, String a_telefono, String a_email,
 			String a_carrera, String a_notebook, String a_status) {
-		this.a_nombre = a_nombre;
-		this.a_paterno = a_paterno;
-		this.a_materno = a_materno;
-		this.a_telefono = a_telefono;
-		this.a_email = a_email;
-		this.a_carrera = a_carrera;
-		this.a_notebook = a_notebook;
-		this.a_status = a_status;
+		this.aNombre = a_nombre;
+		this.aPaterno = a_paterno;
+		this.aMaterno = a_materno;
+		this.aTelefono = a_telefono;
+		this.aEmail = a_email;
+		this.aCarrera = a_carrera;
+		this.aNotebook = a_notebook;
+		this.aStatus = a_status;
 	}
 	public void addEventos(Alumno_Has_Eventos alm_has_event) {
-		this.alumno_has_eventos.add(alm_has_event);
+		this.alumnoHasEventos.add(alm_has_event);
 		
 	}
 	/**
@@ -68,123 +68,120 @@ public class Alumno {
 	@Id
 	@GeneratedValue
 	@Column(name="id_alumno")
-	public int getId_alumno() {
-		return id_alumno;
+	public int getIdAlumno() {
+		return idAlumno;
 	}
 	/**
 	 * @param id_alumno the id_alumno to set
 	 */
-	public void setId_alumno(int id_alumno) {
-		this.id_alumno = id_alumno;
+	public void setIdAlumno(int id_alumno) {
+		this.idAlumno = id_alumno;
 	}
 	/**
-	 * @return the a_nombre
+	 * @return the aNombre
 	 */
-	public String getA_nombre() {
-		return a_nombre;
+	public String getaNombre() {
+		return aNombre;
 	}
 	/**
-	 * @param a_nombre the a_nombre to set
+	 * @param aNombre the aNombre to set
 	 */
-	public void setA_nombre(String a_nombre) {
-		this.a_nombre = a_nombre;
+	public void setaNombre(String aNombre) {
+		this.aNombre = aNombre;
 	}
 	/**
-	 * @return the a_paterno
+	 * @return the aPaterno
 	 */
-	public String getA_paterno() {
-		return a_paterno;
+	public String getaPaterno() {
+		return aPaterno;
 	}
 	/**
-	 * @param a_paterno the a_paterno to set
+	 * @param aPaterno the aPaterno to set
 	 */
-	public void setA_paterno(String a_paterno) {
-		this.a_paterno = a_paterno;
+	public void setaPaterno(String aPaterno) {
+		this.aPaterno = aPaterno;
 	}
 	/**
-	 * @return the a_materno
+	 * @return the aMaterno
 	 */
-	public String getA_materno() {
-		return a_materno;
+	public String getaMaterno() {
+		return aMaterno;
 	}
 	/**
-	 * @param a_materno the a_materno to set
+	 * @param aMaterno the aMaterno to set
 	 */
-	public void setA_materno(String a_materno) {
-		this.a_materno = a_materno;
+	public void setaMaterno(String aMaterno) {
+		this.aMaterno = aMaterno;
 	}
 	/**
-	 * @return the a_telefono
+	 * @return the aTelefono
 	 */
-	public String getA_telefono() {
-		return a_telefono;
+	public String getaTelefono() {
+		return aTelefono;
 	}
 	/**
-	 * @param a_telefono the a_telefono to set
+	 * @param aTelefono the aTelefono to set
 	 */
-	public void setA_telefono(String a_telefono) {
-		this.a_telefono = a_telefono;
+	public void setaTelefono(String aTelefono) {
+		this.aTelefono = aTelefono;
 	}
 	/**
-	 * @return the a_email
+	 * @return the aEmail
 	 */
-	public String getA_email() {
-		return a_email;
+	public String getaEmail() {
+		return aEmail;
 	}
 	/**
-	 * @param a_email the a_email to set
+	 * @param aEmail the aEmail to set
 	 */
-	public void setA_email(String a_email) {
-		this.a_email = a_email;
+	public void setaEmail(String aEmail) {
+		this.aEmail = aEmail;
 	}
 	/**
-	 * @return the a_carrera
+	 * @return the aCarrera
 	 */
-	public String getA_carrera() {
-		return a_carrera;
+	public String getaCarrera() {
+		return aCarrera;
 	}
 	/**
-	 * @param a_carrera the a_carrera to set
+	 * @param aCarrera the aCarrera to set
 	 */
-	public void setA_carrera(String a_carrera) {
-		this.a_carrera = a_carrera;
+	public void setaCarrera(String aCarrera) {
+		this.aCarrera = aCarrera;
 	}
 	/**
-	 * @return the a_notebook
+	 * @return the aNotebook
 	 */
-	public String getA_notebook() {
-		return a_notebook;
+	public String getaNotebook() {
+		return aNotebook;
 	}
 	/**
-	 * @param a_notebook the a_notebook to set
+	 * @param aNotebook the aNotebook to set
 	 */
-	public void setA_notebook(String a_notebook) {
-		this.a_notebook = a_notebook;
+	public void setaNotebook(String aNotebook) {
+		this.aNotebook = aNotebook;
 	}
 	/**
-	 * @return the a_status
+	 * @return the aStatus
 	 */
-	public String getA_status() {
-		return a_status;
+	public String getaStatus() {
+		return aStatus;
 	}
 	/**
-	 * @param a_status the a_status to set
+	 * @param aStatus the aStatus to set
 	 */
-	public void setA_status(String a_status) {
-		this.a_status = a_status;
+	public void setaStatus(String aStatus) {
+		this.aStatus = aStatus;
 	}
-	/**
-	 * @return the alumno_has_eventos
-	 */
 	@OneToMany(mappedBy = "primaryKey.alumno", cascade = CascadeType.ALL)
-	public Set<Alumno_Has_Eventos> getAlumno_has_eventos() {
-		return alumno_has_eventos;
+	public Set<Alumno_Has_Eventos> getAlumnoHasEventos() {
+		return alumnoHasEventos;
 	}
 	/**
 	 * @param alumno_has_eventos the alumno_has_eventos to set
 	 */
-	public void setAlumno_has_eventos(Set<Alumno_Has_Eventos> alumno_has_eventos) {
-		this.alumno_has_eventos = alumno_has_eventos;
+	public void setAlumnoHasEventos(Set<Alumno_Has_Eventos> alumno_has_eventos) {
+		this.alumnoHasEventos = alumno_has_eventos;
 	}
 	/**
 	 * @return the user

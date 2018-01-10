@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -22,6 +23,10 @@ public class QCursos extends EntityPathBase<Cursos> {
     public final StringPath cDescripcion = createString("cDescripcion");
 
     public final StringPath cNombre = createString("cNombre");
+
+    public final SetPath<Evaluaciones, QEvaluaciones> evaluaciones = this.<Evaluaciones, QEvaluaciones>createSet("evaluaciones", Evaluaciones.class, QEvaluaciones.class, PathInits.DIRECT2);
+
+    public final SetPath<Eventos, QEventos> eventos = this.<Eventos, QEventos>createSet("eventos", Eventos.class, QEventos.class, PathInits.DIRECT2);
 
     public final NumberPath<Integer> idCurso = createNumber("idCurso", Integer.class);
 
