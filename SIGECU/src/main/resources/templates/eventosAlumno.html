@@ -29,9 +29,9 @@
 
 </head>
 <body class="theme-red">
-<section th:include="@{fragment/menualumno}"></section>
+	<section th:include="@{fragment/menualumno}"></section>
 	<section class="content">
-	<div class="container-fluid">
+		<div class="container-fluid">
 			<div class="block-header">
 				<h2>CURSOS</h2>
 			</div>
@@ -56,19 +56,24 @@
 									<span th:text="${evento.geteFechaInicio()}"></span>
 								</div>
 							</div>
-							<a th:href="@{/eventosAlumno/listarExamenAlumno?idEvento=__${evento.getIdevento()}__}">
+							<a
+								th:href="@{/eventosAlumno/listarExamenAlumno?idEvento=__${evento.getIdevento()}__}">
 								<button type="button" class="btn btn-primary waves-effect">
 									<i class="material-icons">question_answer</i> <span>Evaluaciones</span>
 								</button>
+							</a> <a th:href="@{/alumno/certificado2?idEvento=__${evento.getIdevento()}__}"
+								target="_blank">
+								<button type="button" class="btn btn-primary waves-effect">
+									<i class="material-icons">question_answer</i> <span>Certificado</span>
+								</button>
 							</a>
-
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>           
-        </section>
-<!-- Jquery Core Js -->
+		</div>
+	</section>
+	<!-- Jquery Core Js -->
 	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core Js -->
