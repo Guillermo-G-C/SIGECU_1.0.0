@@ -49,7 +49,7 @@ public class EvaluacionAlumnoController {
 		model.addAttribute("respuestasModel", respuestasModel);
 		model.addAttribute("preModel", preModel);
 		model.addAttribute("idEvaluacion", idEvaluacion);
-		model.addAttribute("eTiempo",evaluacionAlumnoService.tiempoExamen(3));
+		model.addAttribute("eTiempo",evaluacionAlumnoService.tiempoExamen(1));
 
 		return mav;
 	}
