@@ -3,13 +3,18 @@
  */
 package com.sigecu.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -24,7 +29,7 @@ public class Preguntas {
 	@Column(name = "idPregunta")
 	private int idPregunta;
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "evaluaciones_id_evaluacion")
 	private Evaluaciones evaluaciones;
 	@Column(name = "pPregunta")
@@ -33,6 +38,8 @@ public class Preguntas {
 	private String pDescripcion;
 	@Column(name = "pPuntaje")
 	private String pPuntaje;
+	@OneToMany(fetch= FetchType.EAGER, mappedBy="preguntas")
+	private Set<Respuestas> respuestas = new HashSet<>();
 
 	public Preguntas() {
 		// TODO Auto-generated constructor stub
@@ -119,5 +126,20 @@ public class Preguntas {
 	public void setpPuntaje(String pPuntaje) {
 		this.pPuntaje = pPuntaje;
 	}
+
+	/**
+	 * @return the respuestas
+	 */
+	public Set<Respuestas> getRespuestas() {
+		return respuestas;
+	}
+
+	/**
+	 * @param respuestas the respuestas to set
+	 */
+	public void setRespuestas(Set<Respuestas> respuestas) {
+		this.respuestas = respuestas;
+	}
+	
 
 }

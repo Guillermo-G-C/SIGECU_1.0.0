@@ -41,7 +41,7 @@
 
 
 <body class="theme-red">
-	<section th:include="fragment/menuadmin"></section>
+	<section th:include="fragment/menuInstructor"></section>
 	<section class="content">
 		<div class="container-fluid">
 			<div class="row clearfix">
@@ -52,6 +52,8 @@
 						</div>
 
 						<div class="body">
+							
+							
 							<div class="table-reponsive">
 								<table
 									class="table table-bordered table-spriped table-hover dataTable js-exportable">
@@ -63,14 +65,14 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="curso : ${listaCursos}">
-											<td th:text="${curso.cNombre}"></td>
-											<td th:text="${curso.cDescripcion}"></td>
+										<tr th:each="alumno : ${listaAlumnos}">
+											<td th:text="${alumno.getA_nombre()}"></td>
+											<td th:text="${alumno.getA_email()}"></td>
 											<td><a href="#"
-												th:href="@{/adminExamen/listaExamen?idCurso=__${curso.idCurso}__}">
+												th:href="@{/instructor/seguimientoAlumno?idAlumno=__${alumno.getId_alumno()}__}">
 													<button type="button" class="btn btn-default">
 														<span class="glyphicon glyphicon-pencil"
-															aria-hidden="true"> Examen</span>
+															aria-hidden="true">Seguimiento</span>
 													</button>
 											</a></td>
 										</tr>

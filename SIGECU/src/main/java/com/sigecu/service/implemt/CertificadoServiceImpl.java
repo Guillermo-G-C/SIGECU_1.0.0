@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.querydsl.core.Tuple;
 import com.sigecu.converter.CertificadoConverter;
 import com.sigecu.entity.Certificado;
 import com.sigecu.model.CertificadoModel;
 import com.sigecu.repository.CertificadoRepository;
+import com.sigecu.repository.QueryAlumnoHasEvento;
 import com.sigecu.service.CertificadoService;
 
 @Service("certificadoServiceImpl")
@@ -24,6 +26,9 @@ public class CertificadoServiceImpl implements CertificadoService{
 	@Autowired
 	@Qualifier("certificadoConverter")
 	private CertificadoConverter certificadoConverter;
+	@Autowired
+ 	@Qualifier("queryAlumnoHasEvento")
+ 	private QueryAlumnoHasEvento queryAlumnoHasEvento;
 	
 	@Override
 	public List<CertificadoModel> lisAllCertificados() {
@@ -75,6 +80,23 @@ public class CertificadoServiceImpl implements CertificadoService{
 		return certificadoRepository.findAll();
 	}
 	
+	
+	@Override
+	public List<Map<String, Object>>  report(int id_alumno, int id_evento) {
+		
+		Tuple datos = queryAlumnoHasEvento.findAlumnoHasEventosByIdAlumnoAndIdEvento(id_alumno, id_evento);
+		
+		List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
+		
+		Map<String, Object> item= new HashMap<String, Object>();
+		item.put("alumno",datos.get(0, null));
+		item.put("curso", datos.get(1, null));
+		item.put("fecha", datos.get(2, null));
+		
+		result.add(item);
+		
+		return result;
+	}
 	
 
 }

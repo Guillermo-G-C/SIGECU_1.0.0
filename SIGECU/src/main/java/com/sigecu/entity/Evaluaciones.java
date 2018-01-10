@@ -1,11 +1,16 @@
 package com.sigecu.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /*
@@ -27,9 +32,12 @@ public class Evaluaciones {
 	@Column(name = "ePorsentaje")
 	private String ePorsentaje;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "cursos_id_curso")
 	private Cursos cursos;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="evaluaciones")
+	private Set<Preguntas> preguntas = new HashSet<>();
 
 	public Evaluaciones() {
 
@@ -118,4 +126,18 @@ public class Evaluaciones {
 		this.cursos = cursos;
 	}
 
+	/**
+	 * @return the preguntas
+	 */
+	public Set<Preguntas> getPreguntas() {
+		return preguntas;
+	}
+
+	/**
+	 * @param preguntas the preguntas to set
+	 */
+	public void setPreguntas(Set<Preguntas> preguntas) {
+		this.preguntas = preguntas;
+	}
+	
 }
