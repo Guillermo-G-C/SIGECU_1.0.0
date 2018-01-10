@@ -55,7 +55,9 @@ public class EvaluacionAlumnoController {
 		
 		
 		
+		
 		ModelAndView mav = new ModelAndView(ViewConstant.MOSTRAR_EXAMEN);
+		mav.addObject("user", alumnoModel );
 		mav.addObject("listaPreguntas", evaluacionAlumnoService.listarPreguntasByEvaluacionAlumno(idEvaluacion)); //id examen, preguntas 
 		mav.addObject("listaRespuestas", evaluacionAlumnoService.listarRespuestas());
 		
