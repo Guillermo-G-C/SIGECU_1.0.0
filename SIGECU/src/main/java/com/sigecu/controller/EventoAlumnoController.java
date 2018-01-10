@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
+@PreAuthorize("hasRole('ROLE_ALUMNO')")
 @RequestMapping("/eventosAlumno")
 public class EventoAlumnoController {
 	private static final Log LOG = LogFactory.getLog(EventoAlumnoController.class);
@@ -46,7 +48,8 @@ public class EventoAlumnoController {
 	public ModelAndView mostrarEventos() {
 		ModelAndView mav=new ModelAndView(ViewConstant.EVENTOS_ALUMNO);
 		user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		alumnoModel =defineUsuario.buscarUsuario(user.getUsername());
+		alumnoModel =defineUsuario.buscarUsuarioAlumno(user.getUsername());
+		LOG.info(user.getAuthorities());
 		mav.addObject("user", alumnoModel );
 		mav.addObject("listarEventos", eventoAlumnoService.listAllEventosAl(alumnoModel.getId_alumno()));
 		

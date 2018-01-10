@@ -203,7 +203,7 @@ public class Eventos {
 	 * @return the instructor
 	 */
 	@ManyToOne
-	@JoinColumn(name="id_instructor")
+	@JoinColumn(name="idInstructor")
 	public Instructor getInstructor() {
 		return instructor;
 	}

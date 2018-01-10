@@ -15,7 +15,10 @@ public class ViewConstant {
 	/* login 0 */
 	public static final String LOGIN = "publico/login";
 	public static final String ALUMNO = "redirect:/eventosAlumno/listarEventos"; //vista para alumno inicio
-	public static final String INSTRUCTOR = ""; // vista para instructor inicio
+	public static final String INSTRUCTOR = "redirect:/instructor/eventos"; // vista para instructor inicio
+	public static final String EVENTOS_INSTRUCTOR = "eventosInstructor";
+	
+	
 	public static final String ADMIN = "redirect:/adminExamen/listaCursos"; // vista para admin inicio
 
 	public static final String LISTAR_EXAMEN = "adminExamen";
@@ -30,6 +33,7 @@ public class ViewConstant {
 
 	public static final String CERTIFICADO = "certificado";
 	public static final String EVENTOS_ALUMNO="eventosAlumno";
+	
 
 	public static final String PREGUNTAS_ERRADAS ="EvaluacionAlumnoPreguntasErradas";
 

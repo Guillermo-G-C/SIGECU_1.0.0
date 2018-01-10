@@ -21,5 +21,6 @@ import com.sigecu.entity.Users;
 public interface InstructorRepository extends JpaRepository<Instructor, Serializable>{
 	
 	public abstract Instructor findByUser(Users user);
+	public abstract Instructor findByIdInstructor(int idInstructor);
 
 }

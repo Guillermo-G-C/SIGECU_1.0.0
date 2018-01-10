@@ -42,14 +42,14 @@ public class LoginController {
 			String role = iter.next().getAuthority();
 			LOG.info("ROLE: "+role);
 			//vista a alumno
-			if(role.equals("ALUMNO")) {
+			if(role.equals("ROLE_ALUMNO")) {
 				redirect = ViewConstant.ALUMNO;
 			}
-			else if(role.equals("INSTRUCTOR")) {
+			else if(role.equals("ROLE_INSTRUCTOR")) {
 				//vista instructor
 				redirect = ViewConstant.INSTRUCTOR;
 			}
-			else if(role.equals("ADMIN")) {
+			else if(role.equals("ROLE_ADMIN")) {
 				//vista admin
 				redirect= ViewConstant.ADMIN;
 			}

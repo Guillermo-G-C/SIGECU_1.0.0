@@ -21,7 +21,7 @@ import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.EventosModel;
 import com.sigecu.repository.CursosRepository;
 import com.sigecu.repository.EvaluacionRepository;
-import com.sigecu.repository.EventosAlumnoRepository;
+import com.sigecu.repository.EventosRepository;
 import com.sigecu.repository.QueryEvaluacion;
 import com.sigecu.repository.QueryEventoAlumno;
 import com.sigecu.service.eventoAlumnoService;
@@ -31,8 +31,8 @@ public class EventoAlumnoImpl implements eventoAlumnoService{
 	private static final Log LOG=LogFactory.getLog(EventoAlumnoImpl.class);
 	
     @Autowired 
-	@Qualifier("eventosAlumnoRepository")
-     private EventosAlumnoRepository eventosAlumnoRepository;
+	@Qualifier("eventosRepository")
+     private EventosRepository eventosAlumnoRepository;
     @Autowired
     @Qualifier("evaluacionesRepository")
     private EvaluacionRepository evaluacionesRepository;

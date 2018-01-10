@@ -1,13 +1,11 @@
 package com.sigecu.controller;
 
-import java.util.Iterator;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -29,7 +27,7 @@ import com.sigecu.service.AdminExamService;
 ///import com.sigecu.service.CursoService;
 
 @Controller
-
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 @RequestMapping("/adminExamen")
 public class AdminExamController {
 
@@ -38,7 +36,6 @@ public class AdminExamController {
 	@Autowired
 	@Qualifier("adminExamServiceImpl")
 	private AdminExamService adminExamService;
-
 	@GetMapping("/listaExamen")
 	public ModelAndView showExamenes(@RequestParam(name = "idCurso", required = false) int idCurso, Model model) {
 		EvaluacionesModel evalModel = new EvaluacionesModel();
@@ -50,6 +47,7 @@ public class AdminExamController {
 	}
 	
 	//@PreAuthorize("hasRole('ROLE_USER')")
+	
 	@GetMapping("/listaCursos")
 	public ModelAndView showCursos() {
 		ModelAndView mav = new ModelAndView(ViewConstant.LISTAR_CURSOS);
