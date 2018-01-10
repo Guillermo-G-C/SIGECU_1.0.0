@@ -35,15 +35,15 @@ public class EventoAlumnoController {
 	
 	private User user;
 	AlumnoModel alumnoModel;
-	@GetMapping("/eventosAlumno")
-	public ModelAndView showEventosAl(@RequestParam(name="idEvento", required=false)int idEvento, Model model) {
-		EventosModel eventoModel=new EventosModel();
-		ModelAndView mo=new ModelAndView(ViewConstant.EVENTOS_ALUMNO);
-		mo.addObject("listaEvenAl", eventoAlumnoService.listAllEventosAl(idEvento));
-		model.addAttribute("eventoModel", eventoModel);
-		model.addAttribute("idEvento", idEvento);
-		return mo;
-	}
+//	@GetMapping("/eventosAlumno")
+//	public ModelAndView showEventosAl(@RequestParam(name="idEvento", required=false)int idEvento, Model model) {
+//		EventosModel eventoModel=new EventosModel();
+//		ModelAndView mo=new ModelAndView(ViewConstant.EVENTOS_ALUMNO);
+//		mo.addObject("listaEvenAl", eventoAlumnoService.listAllEventosAl(idEvento));
+//		model.addAttribute("eventoModel", eventoModel);
+//		model.addAttribute("idEvento", idEvento);
+//		return mo;
+//	}
 	@GetMapping("/listarEventos")
 	public ModelAndView mostrarEventos() {
 		ModelAndView mav=new ModelAndView(ViewConstant.EVENTOS_ALUMNO);
@@ -61,6 +61,7 @@ public class EventoAlumnoController {
 		ModelAndView mav = new ModelAndView(ViewConstant.EXAMENES_ALUMNO);
 		mav.addObject("listExamen", eventoAlumnoService.listAllExamen(alumnoModel.getId_alumno(), idEvento));
 		mav.addObject("user", alumnoModel);
+		mav.addObject("idEvento", idEvento);
 		return mav;
 	}
 	

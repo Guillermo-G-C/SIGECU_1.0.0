@@ -86,7 +86,8 @@
 												th:if="${pregunta.idPregunta==resp.pregunta.getIdPregunta()}">
 												<div th:each="alumnores : ${listaResAlm}" >
 												<div th:if="${resp.getIdRespuesta()==alumnores.RespuestaModel.getIdRespuesta()}">
-												<div th:if="${alumnores.seleccionada==1}and{resp.rSolucion==1}">
+												<!--  <div th:if="${alumnores.seleccionada==1}and{resp.rSolucion==1}">-->
+												<div>
 												<input 	type="checkbox" th:id="${resp.idRespuesta}"
 													class="filled-in chk-col-red"
 													th:checked="${resp.rSolucion}" /> <label
