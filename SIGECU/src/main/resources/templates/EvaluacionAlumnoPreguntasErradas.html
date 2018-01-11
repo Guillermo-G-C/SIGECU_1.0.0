@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -21,32 +22,43 @@
 <link th:href="@{/plugins/animate-css/animate.css}" rel="stylesheet" />
 <!-- Sweet Alert Css -->
 <link th:href="@{/plugins/sweetalert/sweetalert.css}" rel="stylesheet" />
-
 <!-- Custom Css -->
 <link th:href="@{/css/style.css}" rel="stylesheet" />
 <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 <link th:href="@{/css/themes/all-themes.css}" rel="stylesheet" />
+<script th:src="@{/js/cronometro.js}"></script>
+
+
 
 
 </head>
 
-<body class="theme-red">
-	<section th:include="fragment/menualumno"></section>
+<body class="theme-red" >
+	<section th:include="fragment/menuadmin"></section>
 
 	<section class="content">
 		<div class="container-fluid">
 
+			<!-- #END# Basic Example | Horizontal Layout -->
+			<!-- Basic Example | Vertical Layout -->
 			<div class="row clearfix">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="card">
 						<div class="header">
 							<h2>Examen</h2>
 
+							<ul class="header-dropdown m-r--5">
+								<li class="dropdown"><a href="javascript:void(0);"
+									class="dropdown-toggle" data-toggle="dropdown" role="button"
+									aria-haspopup="true" aria-expanded="false"> <i
+										class="material-icons">more_vert</i>
+								</a></li>
+							</ul>							
 						</div>
 						<div class="body">
-							<div id="wizard_vertical">
-								<!--  <h2 th:each="preguntas : ${listaPreguntas}"
-									th:text="${preguntas.pPregunta}"></h2>-->
+							<div id="wizard_horizontal">
+								<h2 th:each="preguntas : ${listaPreguntas}"
+									th:text="${preguntas.pPregunta}"></h2>
 								<section th:each="pregunta : ${listaPreguntas}">
 									
 										<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
@@ -73,12 +85,25 @@
 
 											<div th:each="resp : ${listaRespuestas}"
 												th:if="${pregunta.idPregunta==resp.pregunta.getIdPregunta()}">
-
-
+												<div th:each="alumnores : ${listaResAlm}" >
+												<div th:if="${resp.getIdRespuesta()==alumnores.RespuestaModel.getIdRespuesta()}">
+												<!--  <div th:if="${alumnores.seleccionada==1}and{resp.rSolucion==1}">-->
+												<div>
+												<input 	type="checkbox" th:id="${resp.idRespuesta}"
+													class="filled-in chk-col-red"
+													th:checked="${resp.rSolucion}" /> <label
+													th:for="${resp.idRespuesta}" th:text="${resp.rRespuesta}"></label>
+												</div>
 												<input type="checkbox" th:id="${resp.idRespuesta}"
 													class="filled-in chk-col-red"
 													th:checked="${resp.rSolucion}" /> <label
 													th:for="${resp.idRespuesta}" th:text="${resp.rRespuesta}"></label>
+												</div >
+												
+												
+												
+												</div>
+													
 												<!-- 
 										th:if="{resp.idRespuesta==respal.RespuestaModel.getidRespuesta()}"
 										th:if="{respal.rSolucion==1}"
@@ -90,24 +115,15 @@
 										
 									
 								</section>
+
 							</div>
 						</div>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</section>
-
-
-
-
-	<!--  <div th:each="respal : ${listaRespuestasAlm}" >
-										<label th:text="${resp.idRespuesta}"></label>
-										
-										<label th:tex="${respal.RespuestaModel.getidRespuesta()}"></label>
-										
-											</div> -->
-
 	<!-- #END# Basic Example | Vertical Layout -->
 
 
@@ -142,9 +158,9 @@
 	<script th:src="@{/js/pages/forms/form-wizard.js}"></script>
 
 
-	<script th:src="@{/js/pages/ui/tooltips-popovers.js}"></script>
 
 	<!-- Demo Js -->
 	<script th:src="@{/js/demo.js}"></script>
 </body>
+
 </html>

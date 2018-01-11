@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.sigecu.entity.Cursos;
 import com.sigecu.entity.Evaluaciones;
 
 /**
@@ -22,6 +23,7 @@ public interface EvaluacionRepository extends JpaRepository <Evaluaciones, Seria
 	//busca por idEvaluacion y regresa evaluacion
 	
 	public abstract Evaluaciones findByIdEvaluacion(int idEvaluacion);
+	
 	//SELECT e.id_evaluacion, e.e_nombre, e.e_porsentaje, e.e_tiempo, c.c_nombre FROM evaluaciones e, cursos c WHERE c.id_curso=e.cursos_id_curso
 	@Query(value="SELECT e.id_evaluacion, e.e_nombre, e.e_porsentaje, e.e_tiempo, c.c_nombre FROM evaluaciones e, cursos c WHERE c.id_curso=e.cursos_id_curso", nativeQuery=true)
 	//@Query(value="SELECT e.id_evaluacion, e.e_nombre, e.e_porcentaje, e.e_tiempo, c.c_nombre FROM evaluaciones e, cursos c WHERE c.id_curso=e.id_curso", nativeQuery=true)

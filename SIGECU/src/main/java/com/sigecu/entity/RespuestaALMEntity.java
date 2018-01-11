@@ -2,6 +2,7 @@ package com.sigecu.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,32 +18,26 @@ public class RespuestaALMEntity {
 	@GeneratedValue (strategy= GenerationType.AUTO)
 	@Column(name="idrespuestaALM",unique=true,nullable=false)
 	private int idrespuestaALM;
-	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="r_idRespuesta")
 	private Respuestas respuestas;
-	
-	
-
-	
-	
 	@Column(name="seleccionada")
 	private String seleccionada;
-	
+	@ManyToOne(fetch =FetchType.EAGER)
+	@JoinColumn(name="aIdAsignaExamen")
+	private AsignaExamenEntity asignaExamen;
+	/**
+	 * @return the idrespuestaALM
+	 */
 	public int getIdrespuestaALM() {
 		return idrespuestaALM;
 	}
+	/**
+	 * @param idrespuestaALM the idrespuestaALM to set
+	 */
 	public void setIdrespuestaALM(int idrespuestaALM) {
 		this.idrespuestaALM = idrespuestaALM;
 	}
-	
-	public String getSeleccionada() {
-		return seleccionada;
-	}
-	public void setSeleccionada(String seleccionada) {
-		this.seleccionada = seleccionada;
-	}
-
 	/**
 	 * @return the respuestas
 	 */
@@ -55,19 +50,31 @@ public class RespuestaALMEntity {
 	public void setRespuestas(Respuestas respuestas) {
 		this.respuestas = respuestas;
 	}
-	public RespuestaALMEntity() {
-		
+	/**
+	 * @return the seleccionada
+	 */
+	public String getSeleccionada() {
+		return seleccionada;
 	}
-	
-	public RespuestaALMEntity(int idrespuestaALM, String seleccionada) {
-		super();
-		this.idrespuestaALM = idrespuestaALM;
-		
+	/**
+	 * @param seleccionada the seleccionada to set
+	 */
+	public void setSeleccionada(String seleccionada) {
 		this.seleccionada = seleccionada;
 	}
+	/**
+	 * @return the asignaExamen
+	 */
+	public AsignaExamenEntity getAsignaExamen() {
+		return asignaExamen;
+	}
+	/**
+	 * @param asignaExamen the asignaExamen to set
+	 */
+	public void setAsignaExamen(AsignaExamenEntity asignaExamen) {
+		this.asignaExamen = asignaExamen;
+	}
 	
 	
-	
-
 
 }

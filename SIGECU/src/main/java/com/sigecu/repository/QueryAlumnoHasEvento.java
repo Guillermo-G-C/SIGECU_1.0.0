@@ -19,7 +19,7 @@ import com.sigecu.entity.QEventos;
 
 @Repository
 public class QueryAlumnoHasEvento {
-	private static final Log LOG = LogFactory.getLog(QueryEvaluacion.class);
+	private static final Log LOG = LogFactory.getLog(QueryAlumnoHasEvento.class);
 	QAlumno_Has_Eventos qAlumno_Has_Eventos = QAlumno_Has_Eventos.alumno_Has_Eventos;
 	QCursos qCursos = QCursos.cursos;
 	QAlumno qAlumno = QAlumno.alumno;
@@ -34,11 +34,13 @@ public class QueryAlumnoHasEvento {
 	public Tuple findAlumnoHasEventosByIdAlumnoAndIdEvento(int id_alumno, int id_evento) {
 		JPAQuery<Alumno_Has_Eventos> query = new JPAQuery<>(em);
 		
-		Tuple AHE = query.select(qAlumno.a_nombre, qCursos.cNombre)
+		Tuple AHE = query.select(qAlumno.aNombre, qCursos.cNombre,  qEventos.eFechaTermino)
 				.from(qAlumno_Has_Eventos, qCursos, qAlumno, qEventos)
-				.where(qAlumno_Has_Eventos.primaryKey.alumno.id_alumno.eq(id_alumno).and(qAlumno_Has_Eventos.primaryKey.eventos.id_evento.eq(id_evento).and(qCursos.idCurso.eq(qEventos.cursos.idCurso))))
+				.where(qAlumno_Has_Eventos.primaryKey.alumno.idAlumno.eq(qAlumno.idAlumno)
+						.and(qAlumno.idAlumno.eq(id_alumno)).and(qEventos.idEvento.eq(id_evento))
+						.and(qAlumno_Has_Eventos.primaryKey.eventos.idEvento.eq(qEventos.idEvento)
+								.and(qEventos.cursosEvento.idCurso.eq(qCursos.idCurso))))
 				.fetchOne();
-		LOG.info(":v -_- :v");
 		return AHE;
 	}
 	

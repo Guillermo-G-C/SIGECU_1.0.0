@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1" />
-<title>Cursos</title>
-
-<meta charset="UTF-8" />
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport" />
-
+<meta charset="utf-8" />
+<title>Eventos por Instructor</title>
 
 <!-- Google Fonts 
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
@@ -31,23 +25,24 @@
 
 <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 <link th:href="@{/css/themes/all-themes.css}" rel="stylesheet" />
+
+
 </head>
 <body class="theme-red">
-
-	<section th:include="fragment/menualumno"></section>
+<section th:include="@{fragment/menuInstructor}"></section>
 	<section class="content">
-		<div class="container-fluid">
+	<div class="container-fluid">
 			<div class="block-header">
-				<h2>CURSOS</h2>
+				<h2>SEGUIMIENTO DE ALUMNOS</h2>
 			</div>
 			<!-- Basic Example -->
 			<div class="row clearfix">
 
 				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"
-					th:each="cur : ${listaCursosAl}">
+					th:each="evento : ${listarEventos}">
 					<div class="card">
 						<div class="header bg-cyan">
-							<h2 th:text="${cur.cNombre}"></h2>
+							<h2 th:text="${evento.curso.getcNombre()}"></h2>
 							<ul class="header-dropdown m-r--5">
 
 							</ul>
@@ -58,13 +53,12 @@
 									class="material-icons">view_compact</i>
 								</span>
 								<div class="form-line">
-									<textarea rows="5" cols="5" class="form-control"
-										th:text="${cur.cDescripcion}"></textarea>
+									<span th:text="${evento.geteFechaInicio()}"></span>
 								</div>
 							</div>
-							<a th:href="@{/preguntasErradas/evaluaciones?idEvaluacion=__${cur.idCurso}__}">
+							<a th:href="@{/instructor/alumnosEvento?idEvento=__${evento.getIdevento()}__}">
 								<button type="button" class="btn btn-primary waves-effect">
-									<i class="material-icons">question_answer</i> <span>Evaluaciones</span>
+									<i class="material-icons">question_answer</i> <span>Alumnos Inscritos</span>
 								</button>
 							</a>
 
@@ -72,11 +66,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-
-
-	<!-- Jquery Core Js -->
+		</div>           
+        </section>
+<!-- Jquery Core Js -->
 	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core Js -->

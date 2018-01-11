@@ -48,7 +48,7 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"
-					th:each="eva : ${evaluacionesAlumno}">
+					th:each="eva : ${listExamen}">
 					<div class="info-box bg-pink hover-zoom-effect">
 						<div class="icon">
 							<i class="material-icons">question_answer</i>
@@ -68,13 +68,13 @@
 									<i class="material-icons">info</i> <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
-									<li><a th:href="@{/EvaluacionAlumno/mostrarExamen}"><span>Realizar Evaluacion</span>
+									<li><a th:href="@{/EvaluacionAlumno/mostrarExamen?idEvaluacion=__${eva.idevaluacion}__}"><span>Realizar Evaluacion</span>
 									</a></li>
 									<li><a th:href="@{/preguntasErradas/evaluacion?idEvaluacion=__${eva.idevaluacion}__}">
 									<span>Preguntas Erradas</span>
 									</a></li>
-									<li><a th:href="@{/ExamenErrado/ExamenErrado1}"><span>Corregir Examen</span> </a></li>
-									<li><a th:href="${'/alumno/certificado'}" target="_blank"><span>Generar Certificado</span> </a></li>
+									<li><a th:href="@{/ExamenErrado/ExamenErrado1?idEvaluacion=__${eva.idevaluacion}__}"><span>Corregir Examen</span> </a></li>
+									
 								</ul>
 							</div>
 						</div>

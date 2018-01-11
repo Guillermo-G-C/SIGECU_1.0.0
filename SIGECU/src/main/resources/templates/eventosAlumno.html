@@ -1,117 +1,104 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8" />
 <title>Eventos por Alumno</title>
-<link href="#"
-	th:href="@{/fonts/material-design-icons-master/material-icons.css}" />
-<link href="#" th:href="@{/plugins/bootstrap/css/bootstrap.css}"
-	rel="styleseet" />
-<link href="#" th:href="@{/plugins/node-waves/waves.css}"
-	rel="stylesheet" />
-<link href="#" th:href="@{/plugins/bootstrap/css/bootstrap.css}"
-	rel="stylesheet" />
-<link href="#" th:href="@{/css/style.css}" rel="stylesheet" />
-<link href="#" th:href="@{/css/themes/all-themes.css}" rel="stylesheet" />
-<link href="#" th:href="@{/plugins/animate-css/animate.css}"
-	rel="stylesheet" />
-<script src="@{//plugins/jquery/jquery.min.js}"></script>
-<!-- Bootstrap Core Js -->
-<script src="@{//plugins/bootstrap/js/bootstrap.js}"></script>
-<!-- Select Plugin Js -->
-<script src="@{//plugins/bootstrap-select/js/bootstrap-select.js}"></script>
-<!-- Slimscroll Plugin Js -->
-<script src="@{//plugins/jquery-slimscroll/jquery.slimscroll.js}"></script>
-<!-- Waves Effect Plugin Js -->
-<script src="@{//plugins/node-waves/waves.js}"></script>
-<!-- Custom Js -->
-<script src="@{//js/admin.js}"></script>
-<!-- Demo Js -->
-<script src="@{//js/demo.js}"></script>
+
+<!-- Google Fonts 
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
+	rel="stylesheet" type="text/css"/>-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" type="text/css" />
+
+<!-- Bootstrap Core Css -->
+<link th:href="@{/plugins/bootstrap/css/bootstrap.css}" rel="stylesheet" />
+
+<!-- Waves Effect Css -->
+<link th:href="@{/plugins/node-waves/waves.css}" rel="stylesheet" />
+
+<!-- Animation Css -->
+<link th:href="@{/plugins/animate-css/animate.css}" rel="stylesheet" />
+
+
+<!-- Custom Css -->
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+
+<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+<link th:href="@{/css/themes/all-themes.css}" rel="stylesheet" />
+
 
 </head>
 <body class="theme-red">
-<section th:include="@{fragment/menuadmin}"></section>
+	<section th:include="@{fragment/menualumno}"></section>
 	<section class="content">
-	<div class="container-fluid">
-		<!-- Input -->
-		<div class="row clearfix">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<div class="card">
-					<div class="header">
-						<h2>Eventos por Alumno</h2>
+		<div class="container-fluid">
+			<div class="block-header">
+				<h2>CURSOS</h2>
+			</div>
+			<!-- Basic Example -->
+			<div class="row clearfix">
+
+				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"
+					th:each="evento : ${listarEventos}">
+					<div class="card">
+						<div class="header bg-cyan">
+							<h2 th:text="${evento.curso.getcNombre()}"></h2>
+							<ul class="header-dropdown m-r--5">
+
+							</ul>
+						</div>
+						<div class="body">
+							<div class="input-group input-group-lg">
+								<span class="input-group-addon"> <i
+									class="material-icons">view_compact</i>
+								</span>
+								<div class="form-line">
+									<span th:text="${evento.geteFechaInicio()}"></span>
+								</div>
+							</div>
+							<a
+								th:href="@{/eventosAlumno/listarExamenAlumno?idEvento=__${evento.getIdevento()}__}">
+								<button type="button" class="btn btn-primary waves-effect">
+									<i class="material-icons">question_answer</i> <span>Evaluaciones</span>
+								</button>
+							</a> <a th:href="@{/alumno/certificado2?idEvento=__${evento.getIdevento()}__}"
+								target="_blank">
+								<button type="button" class="btn btn-primary waves-effect">
+									<i class="material-icons">question_answer</i> <span>Certificado</span>
+								</button>
+							</a>
+						</div>
 					</div>
-					<div class="body">
-						<div class="table-responsive">
-							<table
-								class="table table-bordered table-striped table-hover dataTable js-exportable">
-								<thead>
-									<tr>
-										<th>Evento</th>
-										<th>Fecha</th>
-										<th>Realizar examen</th>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Jquery Core Js -->
+	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
 
-									</tr>
-								</thead>
-								
-                                        <tbody>
-                                       		<tr th:each="evento :${listarEventos}">
-                                       		<td th:text="${evento.curso.getcNombre()}"></td>
-                                       		<td th:text="${evento.geteFechaInicio()}"></td>
-                                       		
-                                       		<td>
-                                       		<button type="submit" disabled="disabled"
-												class="btn btn-primary btn-lg m-l-15 waves-effect">Realizar
-												Examen</button>
-                                       		</td>
-                                       		</tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>                
-        </section>
-        <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
-        <!-- Bootstrap Core Js -->
-        <script th:src="@{/plugins/bootstrap/js/bootstrap.js}"></script>
-        <!-- Select Plugin Js -->
-        <script
-		th:src="@{/plugins/bootstrap-select/js/bootstrap-select.js}"></script>
-        <!-- Slimscroll Plugin Js -->
-        <script
-		th:src="@{/plugins/jquery-slimscroll/jquery.slimscroll.js}"></script>
-        <!-- Waves Effect Plugin Js -->
-        <script th:src="@{/plugins/node-waves/waves.js}"></script>
+	<!-- Bootstrap Core Js -->
+	<script th:src="@{/plugins/bootstrap/js/bootstrap.js}"></script>
 
-        <!-- Jquery DataTable Plugin Js -->
-        <script
-		th:src="@{/plugins/jquery-datatable/jquery.dataTables.js}"></script>
-        <script
-		th:src="@{/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js}"></script>
-        <script
-		th:src="@{/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js}"></script>
-        <script
-		th:src="@{/plugins/jquery-datatable/extensions/export/buttons.flash.min.js}"></script>
-        <script
-		th:src="@{/plugins/jquery-datatable/extensions/export/jszip.min.js}"></script>
-        <script
-		th:src="@{/plugins/jquery-datatable/extensions/export/pdfmake.min.js}"></script>
-        <script
-		th:src="@{/plugins/jquery-datatable/extensions/export/vfs_fonts.js}"></script>
-        <script
-		th:src="@{/plugins/jquery-datatable/extensions/export/buttons.html5.min.js}"></script>
-        <script
-		th:src="@{/plugins/jquery-datatable/extensions/export/buttons.print.min.js}"></script>
-        <script th:src="@{/js/pages/ui/modals.js}"></script>
+	<!-- Select Plugin Js -->
+	<script th:src="@{/plugins/bootstrap-select/js/bootstrap-select.js}"></script>
 
-        <!-- Custom Js -->
-        <script th:src="@{/js/admin.js}"></script>
-        <script src="@{/js/pages/tables/jquery-datatable.js}"></script>
+	<!-- Slimscroll Plugin Js -->
+	<script th:src="@{/plugins/jquery-slimscroll/jquery.slimscroll.js}"></script>
 
-        <!-- Demo Js -->
-        <script th:src="@{/js/demo.js}"></script>
+	<!-- Bootstrap Notify Plugin Js -->
+	<script th:src="@{/plugins/bootstrap-notify/bootstrap-notify.js}"></script>
+
+	<!-- Waves Effect Plugin Js -->
+	<script th:src="@{/plugins/node-waves/waves.js}"></script>
+
+
+	<!-- Custom Js -->
+	<script th:src="@{/js/admin.js}"></script>
+	<script th:src="@{/js/pages/cards/colored.js}"></script>
+
+	<!-- Demo Js -->
+	<script th:src="@{/js/demo.js}"></script>
 </body>
+
 </html>
