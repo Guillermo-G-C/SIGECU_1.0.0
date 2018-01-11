@@ -24,7 +24,7 @@ public interface PreguntasErradasConService {
 	public abstract List<EvaluacionesModel> listarEvaluaciones(int idCurso);
 	public abstract List<CursoModel> listaCursos();
 	public abstract List<PreguntasModel> listarPregunrasByExam(int idExamen);
-	public abstract List<RespuestasModel> listarRespuestas();
+	public abstract List<RespuestasModel> listarRespuestas(int idEvaluacion);
 	public abstract List<RespuestaALMModel> listarRespuestasAlumno();
 	
 

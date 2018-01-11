@@ -113,8 +113,8 @@ public class PreguntasErradasConServiceImplement implements PreguntasErradasConS
 		return preguntasModel;
 	}
 	@Override
-	public List<RespuestasModel> listarRespuestas() {
-		List<Respuestas> respuestas = respuestasRepository.findAll();
+	public List<RespuestasModel> listarRespuestas(int idEvaluacion) {
+		List<Respuestas> respuestas = respuestasRepository.findByPreguntasEvaluacionesIdEvaluacion(idEvaluacion);
 		List<RespuestasModel> respModel = new ArrayList<RespuestasModel>();
 		for (Respuestas resp : respuestas) {
 			respModel.add(respuestasConverter.converterRespuestasToRespuestasModel(resp));

@@ -4,6 +4,7 @@
 package com.sigecu.repository;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -18,4 +19,6 @@ import com.sigecu.entity.Respuestas;
 @Repository("respuestasRepository")
 public interface RespuestasRepository extends JpaRepository<Respuestas, Serializable> {
 	public abstract Respuestas findByIdRespuesta(int idRespuesta);
+	public abstract List<Respuestas> findByPreguntasEvaluacionesIdEvaluacion(int idEvaluacion);
+	
 }
