@@ -54,9 +54,7 @@ public class ExamenServiceImplJo implements ExamenJoshService {
 	public List<RespuestasModel> listaRespuestas(int idEvaluacion) {
 		Preguntas pregu = preguntasrepo.findByEvaluacionesIdEvaluacion(idEvaluacion);
 		List<RespuestasModel> resmodel = new ArrayList<>();
-		for(Respuestas res :) {
-			
-		}
+		
 		return null;
 	}
 

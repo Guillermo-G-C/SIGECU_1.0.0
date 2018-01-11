@@ -29,6 +29,7 @@ import com.sigecu.model.RespuestaALMModel;
 import com.sigecu.model.RespuestasModel;
 import com.sigecu.repository.CursosRepository;
 import com.sigecu.repository.QueryEvaluacion;
+import com.sigecu.repository.QueryPreguntasErradasCon;
 import com.sigecu.repository.RespuestasRepository;
 import com.sigecu.repository.respuestaALM;
 import com.sigecu.service.PreguntasErradasConService;
@@ -49,6 +50,9 @@ public class PreguntasErradasConServiceImplement implements PreguntasErradasConS
 	@Qualifier("cursosConvertir")
 	private CursosConverter cursosConverter;
 
+	@Autowired
+	@Qualifier("queryDSLPreguntasRepo")
+	private QueryPreguntasErradasCon queryerra;
 	@Autowired
 	@Qualifier("queryEvaluacion")
 	private QueryEvaluacion queryEvaluacion;
@@ -114,11 +118,13 @@ public class PreguntasErradasConServiceImplement implements PreguntasErradasConS
 	}
 	@Override
 	public List<RespuestasModel> listarRespuestas(int idEvaluacion) {
-		List<Respuestas> respuestas = respuestasRepository.findByPreguntasEvaluacionesIdEvaluacion(idEvaluacion);
+		List<Respuestas> respuestas = queryerra.listaRespuestasJo(idEvaluacion);
+				//respuestasRepository.findByPreguntasEvaluacionesIdEvaluacion(idEvaluacion);
 		List<RespuestasModel> respModel = new ArrayList<RespuestasModel>();
 		for (Respuestas resp : respuestas) {
 			respModel.add(respuestasConverter.converterRespuestasToRespuestasModel(resp));
 		}
+		LOG.info("Lista de respuestas  fue correcta " );
 		return respModel;
 	}
 	@Override

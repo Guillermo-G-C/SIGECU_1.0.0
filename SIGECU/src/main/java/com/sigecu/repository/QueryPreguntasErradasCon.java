@@ -12,7 +12,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 
-
+import com.querydsl.core.group.GroupBy;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Preguntas;
@@ -75,6 +75,16 @@ public class QueryPreguntasErradasCon {
 				.fetch();
 		return listPreguntas;
 		
+	}
+	
+	public List<Respuestas> listaRespuestasJo(int IdEvaluacion){
+		JPAQuery<Respuestas> queryRes = new JPAQuery<>(em);
+		List<Respuestas> listaRes = queryRes.select(qRespuestas)
+				.from(qRespuestas)
+				.where(qRespuestas.preguntas.evaluaciones.idEvaluacion.eq(IdEvaluacion))
+				.groupBy(qRespuestas.preguntas.idPregunta)
+				.fetch();
+return listaRes;
 	}
 
 

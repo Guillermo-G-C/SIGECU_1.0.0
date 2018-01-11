@@ -68,7 +68,7 @@ public class PreguntasErradasController {
 		user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		alumnoModel =defineUsuario.buscarUsuarioAlumno(user.getUsername());
 		mav.addObject("listaPreguntas", preguntasErradasConService.listarPregunrasByExam(idEvaluacion));
-		mav.addObject("listaRespuestas", preguntasErradasConService.listarRespuestas());
+		mav.addObject("listaRespuestas", preguntasErradasConService.listarRespuestas(idEvaluacion));
 		mav.addObject("listaResAlm",preguntasErradasConService.listarRespuestasAlumno());
 		mav.addObject("user", alumnoModel );
 		return mav;
