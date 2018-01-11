@@ -160,6 +160,7 @@ public class AdminExamServiceImpl implements AdminExamService {
 	@Override
 	public void nuevaRespuesta(RespuestasModel respuestasModel, int idPregunta) {
 		Preguntas pregunta = preguntasRepository.findByIdPregunta(idPregunta);
+		//pregunta.getRespuestas().iterator().next().getRespuestasAML().iterator().next().getSeleccionada();
 		Respuestas respuesta = respuestasConverter.converterRespuestasModelToRespuestas(respuestasModel, pregunta);
 		respuestasRepository.save(respuesta);
 		LOG.info("RESPUESTA AGREGADA");

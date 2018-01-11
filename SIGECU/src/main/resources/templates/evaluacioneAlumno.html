@@ -68,14 +68,18 @@
 									<i class="material-icons">info</i> <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
-									<li><a th:href="@{/EvaluacionAlumno/mostrarExamen?idEvaluacion=__${eva.idevaluacion}__}"><span>Realizar Evaluacion</span>
+									<li><a th:href="@{/EvaluacionAlumno/mostrarExamen(idEvento=${idEvento},idEvaluacion=${eva.idevaluacion})}"><span>Realizar Evaluacion</span>
 									</a></li>
+
 									<li><a th:href="@{/realizarExamen/evaluacion?idEvaluacion=__${eva.idevaluacion}__}"><span>Realizar Evaluacion josh</span>
 									</a></li>
-									<li><a th:href="@{/preguntasErradas/evaluacion?idEvaluacion=__${eva.idevaluacion}__}">
+									
+
+									<li><a th:href="@{/preguntasErradas/evaluacion(idEvento=${idEvento},idEvaluacion=${eva.idevaluacion})}">
+
 									<span>Preguntas Erradas</span>
 									</a></li>
-									<li><a th:href="@{/ExamenErrado/ExamenErrado1?idEvaluacion=__${eva.idevaluacion}__}"><span>Corregir Examen</span> </a></li>
+									<li><a th:href="@{/ExamenErrado/ExamenErrado1(idEvento=${idEvento},idEvaluacion=${eva.idevaluacion})}"><span>Corregir Examen</span> </a></li>
 									
 								</ul>
 							</div>
