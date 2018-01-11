@@ -32,6 +32,8 @@ public class QEvaluaciones extends EntityPathBase<Evaluaciones> {
 
     public final NumberPath<Integer> idEvaluacion = createNumber("idEvaluacion", Integer.class);
 
+    public final SetPath<Preguntas, QPreguntas> preguntas = this.<Preguntas, QPreguntas>createSet("preguntas", Preguntas.class, QPreguntas.class, PathInits.DIRECT2);
+
     public QEvaluaciones(String variable) {
         this(Evaluaciones.class, forVariable(variable), INITS);
     }

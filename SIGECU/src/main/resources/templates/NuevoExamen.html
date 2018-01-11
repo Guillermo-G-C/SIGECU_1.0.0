@@ -58,7 +58,7 @@
 											th:object="${preModel}" method="POST">
 											<input type="hidden" name="idEvaluacion"
 												th:value="${idEvaluacion}" /> <input type="hidden"
-												th:field="*{idPregunta}" required="" aria-required="true"/>
+												th:field="*{idPregunta}" required="" aria-required="true" />
 											<div class="col-md-6">
 												<label for="title">Pregunta</label>
 												<div class="form-group">
@@ -66,20 +66,12 @@
 													<div class="form-line">
 														<input type="text" class="form-control"
 															placeholder="Enunciado de la Pregunta"
-															th:field="*{pPregunta}" th:value="${pPregunta}" required="" aria-required="true" />
+															th:field="*{pPregunta}" th:value="${pPregunta}"
+															required="" aria-required="true" />
 													</div>
 												</div>
 											</div>
-											<div class="col-md-6">
-												<label for="title">Puntaje</label>
-												<div class="form-group">
-													<div class="form-line">
-														<input type="text" class="form-control"
-															placeholder="Puntos asignados a pregunta"
-															th:field="*{puntaje}" th:value="${puntaje}" required="" aria-required="true" />
-													</div>
-												</div>
-											</div>
+
 											<div class="col-md-6">
 												<label for="title">Descripcion</label>
 												<div class="form-group">
@@ -87,6 +79,19 @@
 														<input type="text" id="descripcion" class="form-control"
 															placeholder="Descripcion de la pregunta"
 															th:field="*{pDescripcion}" th:value="${pDescripcion}" />
+													</div>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<label for="title">Puntaje</label>
+												<div class="input-group form-group">
+													<span class="input-group-addon"> <i
+														class="material-icons">plus_one</i>
+													</span>
+													<div class="form-line ">
+														<input class="form-control" name="puntaje"
+															th:field="*{puntaje}" th:value="${puntaje}" required=""
+															aria-required="true" type="number" />
 													</div>
 												</div>
 											</div>
@@ -186,8 +191,7 @@
 																				th:attr="data-target='#ModalCancelarR'+${resp.idRespuesta}">
 																				<i class="material-icons">clear</i>
 																			</button>
-																		</div> 
-																		<!--Modal cancelar-->
+																		</div> <!--Modal cancelar-->
 																		<div class="modal fade"
 																			th:id="'ModalCancelarR'+${resp.idRespuesta}"
 																			tabindex="-1" role="dialog">
@@ -195,14 +199,17 @@
 																				<div class="modal-content modal-col-red">
 
 																					<div class="modal-header">
-																						<h4 class="modal-title" id="smallModalLabel">SEGURO
-																							QUE DESEA ELIMINAR LA RESPUESTA? <br th:text="${resp.rRespuesta}"/></h4>
+																						<h4 class="modal-title" id="smallModalLabel">
+																							SEGURO QUE DESEA ELIMINAR LA RESPUESTA? <br
+																								th:text="${resp.rRespuesta}" />
+																						</h4>
 																					</div>
 
 																					<div class="modal-body"></div>
 																					<div class="modal-footer">
 																						<a role="button" class="btn btn-link waves-effect"
-																							href ="" th:href="@{/adminExamen/removeRespuesta(idRespuesta=${resp.idRespuesta},idEvaluacion=${idEvaluacion})}">Si</a>
+																							href=""
+																							th:href="@{/adminExamen/removeRespuesta(idRespuesta=${resp.idRespuesta},idEvaluacion=${idEvaluacion})}">Si</a>
 																						<button type="button"
 																							class="btn btn-link waves-effect"
 																							data-dismiss="modal">CLOSE</button>
@@ -230,14 +237,17 @@
 															<div class="modal-content modal-col-red">
 
 																<div class="modal-header">
-																	<h4 class="modal-title" id="smallModalLabel">SEGURO
-																		QUE DESEA ELIMINAR LA PREGUNTA? <br th:text="${pregunta.pPregunta}"/></h4>
+																	<h4 class="modal-title" id="smallModalLabel">
+																		SEGURO QUE DESEA ELIMINAR LA PREGUNTA? <br
+																			th:text="${pregunta.pPregunta}" />
+																	</h4>
 																</div>
 
 																<div class="modal-body"></div>
 																<div class="modal-footer">
 																	<a role="button" class="btn btn-link waves-effect"
-																		href ="" th:href="@{/adminExamen/removePregunta(idPregunta=${pregunta.idPregunta},idEvaluacion=${idEvaluacion})}">Si</a>
+																		href=""
+																		th:href="@{/adminExamen/removePregunta(idPregunta=${pregunta.idPregunta},idEvaluacion=${idEvaluacion})}">Si</a>
 																	<button type="button" class="btn btn-link waves-effect"
 																		data-dismiss="modal">CLOSE</button>
 																</div>
@@ -277,21 +287,25 @@
 																								<input type="text" id="pregunta"
 																									class="form-control"
 																									placeholder="Escribe respuesta"
-																									th:field="*{rRespuesta}"
-																									th:value="${rRespuesta}" required="" aria-required="true" />
+																									th:field="*{rRespuesta}" required=""
+																									aria-required="true" />
 																							</div>
 																						</div>
 																					</div>
 																					<div class="col-md-6">
 																						<label for="title">Solucion</label>
-																						<div class="form-group">
-																							<div class="form-line">
-																								<input type="text" id="solucion"
-																									class="form-control"
-																									placeholder="Escribe si es la solucion"
-																									th:field="*{rSolucion}" th:value="${rSolucion}"  required="" aria-required="true"/>
-																							</div>
+																						<div class="input-group form-group">
+																							<input type="radio" name="esSolucion"
+																								id="radio_1" class="with-gap" required=""
+																								aria-required="true" th:field="*{rSolucion}"
+																								value="1" /> <label for="radio_1">Si</label> <input
+																								type="radio" name="esSolucion" id="radio_2"
+																								class="with-gap" th:field="*{rSolucion}"
+																								value="0" checked="checked" required=""
+																								aria-required="true" /> <label for="radio_2"
+																								class="m-l-20">No</label>
 																						</div>
+
 																					</div>
 																				</div>
 																				<div class="modal-footer">

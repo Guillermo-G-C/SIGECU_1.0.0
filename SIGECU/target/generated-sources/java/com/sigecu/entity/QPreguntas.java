@@ -32,6 +32,8 @@ public class QPreguntas extends EntityPathBase<Preguntas> {
 
     public final StringPath pPuntaje = createString("pPuntaje");
 
+    public final SetPath<Respuestas, QRespuestas> respuestas = this.<Respuestas, QRespuestas>createSet("respuestas", Respuestas.class, QRespuestas.class, PathInits.DIRECT2);
+
     public QPreguntas(String variable) {
         this(Preguntas.class, forVariable(variable), INITS);
     }

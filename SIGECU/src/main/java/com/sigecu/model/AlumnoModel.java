@@ -8,101 +8,153 @@ package com.sigecu.model;
  *
  */
 public class AlumnoModel {
-
+	private int id_alumno;
+	private String a_nombre;
+	private String a_paterno;
+	private String a_materno;
+	private String a_telefono;
+	private String a_email;
+	private String a_carrera;
+	private String a_notebook;
+	private String a_status;
 	/**
-	 * Clase encapsuda de alumnos
+	 * @param id_alumno
+	 * @param a_nombre
+	 * @param a_paterno
+	 * @param a_materno
+	 * @param a_telefono
+	 * @param a_email
+	 * @param a_carrera
+	 * @param a_notebook
+	 * @param a_status
 	 */
-	private int id;
-	private String nombre;
-	private String usuario;
-	private String email;
-	private String passw;
-	
+	public AlumnoModel(int id_alumno, String a_nombre, String a_paterno, String a_materno, String a_telefono,
+			String a_email, String a_carrera, String a_notebook, String a_status) {
+		super();
+		this.id_alumno = id_alumno;
+		this.a_nombre = a_nombre;
+		this.a_paterno = a_paterno;
+		this.a_materno = a_materno;
+		this.a_telefono = a_telefono;
+		this.a_email = a_email;
+		this.a_carrera = a_carrera;
+		this.a_notebook = a_notebook;
+		this.a_status = a_status;
+	}
+	/**
+	 * 
+	 */
 	public AlumnoModel() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
-
 	/**
-	 * @return the id
+	 * @return the id_alumno
 	 */
-	public int getId() {
-		return id;
+	public int getId_alumno() {
+		return id_alumno;
 	}
-
 	/**
-	 * @param id the id to set
+	 * @param id_alumno the id_alumno to set
 	 */
-	public void setId(int id) {
-		this.id = id;
+	public void setId_alumno(int id_alumno) {
+		this.id_alumno = id_alumno;
 	}
-
 	/**
-	 * @return the nombre
+	 * @return the a_nombre
 	 */
-	public String getNombre() {
-		return nombre;
+	public String getA_nombre() {
+		return a_nombre;
 	}
-
 	/**
-	 * @param nombre the nombre to set
+	 * @param a_nombre the a_nombre to set
 	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setA_nombre(String a_nombre) {
+		this.a_nombre = a_nombre;
 	}
-
 	/**
-	 * @return the usuario
+	 * @return the a_paterno
 	 */
-	public String getUsuario() {
-		return usuario;
+	public String getA_paterno() {
+		return a_paterno;
 	}
-
 	/**
-	 * @param usuario the usuario to set
+	 * @param a_paterno the a_paterno to set
 	 */
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setA_paterno(String a_paterno) {
+		this.a_paterno = a_paterno;
 	}
-
 	/**
-	 * @return the email
+	 * @return the a_materno
 	 */
-	public String getEmail() {
-		return email;
+	public String getA_materno() {
+		return a_materno;
 	}
-
 	/**
-	 * @param email the email to set
+	 * @param a_materno the a_materno to set
 	 */
-	public void setEmail(String email) {
-		this.email = email;
+	public void setA_materno(String a_materno) {
+		this.a_materno = a_materno;
 	}
-
 	/**
-	 * @return the passw
+	 * @return the a_telefono
 	 */
-	public String getPassw() {
-		return passw;
+	public String getA_telefono() {
+		return a_telefono;
 	}
-
 	/**
-	 * @param passw the passw to set
+	 * @param a_telefono the a_telefono to set
 	 */
-	public void setPassw(String passw) {
-		this.passw = passw;
+	public void setA_telefono(String a_telefono) {
+		this.a_telefono = a_telefono;
 	}
-	public AlumnoModel(int id, String nombre, String usuario, String email, String passw) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.usuario = usuario;
-		this.email = email;
-		this.passw = passw;
+	/**
+	 * @return the a_email
+	 */
+	public String getA_email() {
+		return a_email;
 	}
-		
-	@Override
-	public String toString() {
-		return "AlumnoModel [id=" + id + ", nombre=" + nombre + ", usuario=" + usuario + ", email="
-				+ email + ", passw =" + passw + "]";
+	/**
+	 * @param a_email the a_email to set
+	 */
+	public void setA_email(String a_email) {
+		this.a_email = a_email;
 	}
+	/**
+	 * @return the a_carrera
+	 */
+	public String getA_carrera() {
+		return a_carrera;
+	}
+	/**
+	 * @param a_carrera the a_carrera to set
+	 */
+	public void setA_carrera(String a_carrera) {
+		this.a_carrera = a_carrera;
+	}
+	/**
+	 * @return the a_notebook
+	 */
+	public String getA_notebook() {
+		return a_notebook;
+	}
+	/**
+	 * @param a_notebook the a_notebook to set
+	 */
+	public void setA_notebook(String a_notebook) {
+		this.a_notebook = a_notebook;
+	}
+	/**
+	 * @return the a_status
+	 */
+	public String getA_status() {
+		return a_status;
+	}
+	/**
+	 * @param a_status the a_status to set
+	 */
+	public void setA_status(String a_status) {
+		this.a_status = a_status;
+	}	
+	
 }

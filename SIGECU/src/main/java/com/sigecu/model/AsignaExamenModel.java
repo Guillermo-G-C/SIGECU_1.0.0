@@ -1,5 +1,10 @@
 package com.sigecu.model;
 
+/**
+ * @author Anel
+ *
+ */
+
 public class AsignaExamenModel {
 	private int idasignaExamen;
 	private String asignado;

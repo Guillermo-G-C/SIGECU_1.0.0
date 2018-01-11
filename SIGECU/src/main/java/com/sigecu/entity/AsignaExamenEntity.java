@@ -1,10 +1,18 @@
 package com.sigecu.entity;
 
+
+
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 @Entity
@@ -30,7 +38,10 @@ public class AsignaExamenEntity {
 	private String realizado;
 	@Column (name="status")
 	private String status;
-	
+
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="asignaExamen")
+	private Set<RespuestaALMEntity> respuestasAML = new HashSet<>();
+
 	
 	public int getIdasignaExamen() {
 		return idasignaExamen;
@@ -81,6 +92,7 @@ public class AsignaExamenEntity {
 		this.status = status;
 	}
 	
+
 	public AsignaExamenEntity(int idasignaExamen, String asignado, String fechaInicio, String fechaFin, String horaInicio, String horafin, String realizado, String status) {
 		super();
 		this.idasignaExamen = idasignaExamen;
@@ -91,6 +103,13 @@ public class AsignaExamenEntity {
 		this.horafin = horafin;
 		this.realizado = realizado;
 		this.status = status;
+	}
+
+
+
+	public AsignaExamenEntity() {
+		
+
 	}
 
 }

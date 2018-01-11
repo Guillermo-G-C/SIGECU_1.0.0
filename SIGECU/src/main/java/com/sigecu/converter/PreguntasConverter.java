@@ -37,9 +37,8 @@ public class PreguntasConverter {
 		Preguntas pregunta = new Preguntas();
 		pregunta.setpPregunta(preguntaModel.getpPregunta());
 		pregunta.setpPuntaje(preguntaModel.getPuntaje());
-		pregunta.setpDescripcion(pregunta.getpDescripcion());
+		pregunta.setpDescripcion(preguntaModel.getpDescripcion());
 		pregunta.setEvaluaciones(eval);
-
 		return pregunta;
 	}
 }

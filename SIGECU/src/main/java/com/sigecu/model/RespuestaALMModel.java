@@ -1,8 +1,18 @@
 package com.sigecu.model;
 
+
+/**
+ * @author Anel
+ *
+ */
+
+
 public class RespuestaALMModel {
-	private int idrespuestaALM;
+	
 	private int r_idRespuesta;
+	private int idrespuestaALM;
+	private RespuestasModel RespuestaModel;
+
 	private int aE_idasignaExamen;
 	private String seleccionada;
 	public int getIdrespuestaALM() {
@@ -17,6 +27,14 @@ public class RespuestaALMModel {
 	public void setR_idRespuesta(int r_idRespuesta) {
 		this.r_idRespuesta = r_idRespuesta;
 	}
+	
+	public RespuestasModel getRespuestaModel() {
+		return RespuestaModel;
+	}
+	public void setRespuestaModel(RespuestasModel respuestaModel) {
+		RespuestaModel = respuestaModel;
+	
+	}
 	public int getaE_idasignaExamen() {
 		return aE_idasignaExamen;
 	}
@@ -29,13 +47,16 @@ public class RespuestaALMModel {
 	public void setSeleccionada(String seleccionada) {
 		this.seleccionada = seleccionada;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "RespuestaALM [idrespuestaALM=" + idrespuestaALM + ", r_idRespuesta=" + r_idRespuesta + ", aE_idasignaExamen=" + aE_idasignaExamen + ", seleccionada="
 				+ seleccionada + "]";
 	}
-	
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	
 
 }
