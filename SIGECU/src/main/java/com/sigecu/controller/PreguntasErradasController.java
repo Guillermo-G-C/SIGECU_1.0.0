@@ -70,7 +70,6 @@ public class PreguntasErradasController {
 		mav.addObject("listaPreguntas", preguntasErradasConService.listarPregunrasByExam(idEvaluacion));
 		mav.addObject("listaRespuestas", preguntasErradasConService.listarRespuestas());
 		mav.addObject("listaResAlm",preguntasErradasConService.listarRespuestasAlumno());
-		mav.addObject("user", alumnoModel );
 		return mav;
 		
 	}

@@ -295,16 +295,14 @@
 																					<div class="col-md-6">
 																						<label for="title">Solucion</label>
 																						<div class="input-group form-group">
-																							<input type="radio" th:name="'esSolucion'+${pregunta.idPregunta}"
-																								th:id="'radio1'+${pregunta.idPregunta}"
-																								class="with-gap" required=""
+																							<input type="radio" name="esSolucion"
+																								id="radio_1" class="with-gap" required=""
 																								aria-required="true" th:field="*{rSolucion}"
-																								value="1" /> <label th:for="'radio1'+${pregunta.idPregunta}">Si</label> <input
-																								type="radio" th:name="'esSolucion'+${pregunta.idPregunta}"
-																								th:id="'radio2'+${pregunta.idPregunta}"
+																								value="1" /> <label for="radio_1">Si</label> <input
+																								type="radio" name="esSolucion" id="radio_2"
 																								class="with-gap" th:field="*{rSolucion}"
 																								value="0" checked="checked" required=""
-																								aria-required="true" /> <label th:for="'radio2'+${pregunta.idPregunta}"
+																								aria-required="true" /> <label for="radio_2"
 																								class="m-l-20">No</label>
 																						</div>
 

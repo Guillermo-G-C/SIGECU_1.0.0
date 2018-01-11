@@ -57,7 +57,6 @@ public class CalificacionesController {
 		mav.addObject("ePorsentaje",calificacionService.calificacionFnl());
 		mav.addObject("aciertos",calificacionService.aciertosPregunta());
 		mav.addObject("errores",calificacionService.erroresPregunta());
-		mav.addObject("user", alumnoModel );
 		try {
 			mailService.send(alumnoModel.getA_email(), "Examen realizado", "Calificacion Final: "+calificacionService.calificacionFnl()+"");
 		} catch (AddressException e) {

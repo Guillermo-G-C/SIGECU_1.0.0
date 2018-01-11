@@ -64,4 +64,9 @@ public class EventoAlumnoController {
 		mav.addObject("idEvento", idEvento);
 		return mav;
 	}
+	
+	
+	
+	
+
 }

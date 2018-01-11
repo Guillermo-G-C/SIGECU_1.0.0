@@ -21,6 +21,5 @@ import com.sigecu.entity.Users;
 public interface AlumnoRepository extends JpaRepository<Alumno, Serializable> {
 	
 	public abstract Alumno findByUser(Users user);
-	public abstract Alumno findByIdAlumno( int idAlumno);
 
 }
