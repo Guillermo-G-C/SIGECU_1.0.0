@@ -47,9 +47,9 @@ public class AlumnoHasEventoServiceImpl implements AlumnoHasEventoService {
 		List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
 		
 		Map<String, Object> item= new HashMap<String, Object>();
-		item.put("alumno",datos.get(0, null));
-		item.put("curso", datos.get(1, null));
-		item.put("fecha", datos.get(2, null));
+		item.put("alumno",datos.get(0, null)+" "+datos.get(1, null)+" "+datos.get(2, null));
+		item.put("curso", datos.get(3, null));
+		item.put("fecha", datos.get(4, null));
 		
 		result.add(item);
 		
