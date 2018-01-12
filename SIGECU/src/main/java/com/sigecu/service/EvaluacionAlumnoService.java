@@ -1,3 +1,4 @@
+
 package com.sigecu.service;
 
 import java.util.List;
@@ -19,6 +20,9 @@ public interface EvaluacionAlumnoService {
 	
 	public abstract List<RespuestasModel> listarRespuestas(int idExamen);
 	
-	List<RespuestasModel> listarRespuestas();
+	public abstract List<RespuestasModel> listarRespuestas();
+	
+	public abstract int validaRealizarExamen(int idEvaluacion, int idAlumno, int idEvento);
 
 }
+

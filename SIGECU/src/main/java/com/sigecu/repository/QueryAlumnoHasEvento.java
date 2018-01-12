@@ -17,7 +17,7 @@ import com.sigecu.entity.QAsignaExamenEntity;
 import com.sigecu.entity.QCursos;
 import com.sigecu.entity.QEventos;
 
-@Repository
+@Repository("queryAlumnoHasEvento")
 public class QueryAlumnoHasEvento {
 	private static final Log LOG = LogFactory.getLog(QueryAlumnoHasEvento.class);
 	QAlumno_Has_Eventos qAlumno_Has_Eventos = QAlumno_Has_Eventos.alumno_Has_Eventos;
@@ -34,7 +34,7 @@ public class QueryAlumnoHasEvento {
 	public Tuple findAlumnoHasEventosByIdAlumnoAndIdEvento(int id_alumno, int id_evento) {
 		JPAQuery<Alumno_Has_Eventos> query = new JPAQuery<>(em);
 		
-		Tuple AHE = query.select(qAlumno.aNombre, qCursos.cNombre,  qEventos.eFechaTermino)
+		Tuple AHE = query.select(qAlumno.aNombre, qAlumno.aPaterno, qAlumno.aPaterno, qCursos.cNombre,  qEventos.eFechaTermino)
 				.from(qAlumno_Has_Eventos, qCursos, qAlumno, qEventos)
 				.where(qAlumno_Has_Eventos.primaryKey.alumno.idAlumno.eq(qAlumno.idAlumno)
 						.and(qAlumno.idAlumno.eq(id_alumno)).and(qEventos.idEvento.eq(id_evento))

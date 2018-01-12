@@ -58,7 +58,9 @@ public class DefineUsuario implements DefineUsuarioService{
 		LOG.info("ROLES: "+ users.getUserRole());
 		LOG.info("USER TIENE ROLE: "+users.getUserRole().size());
 		Alumno alumno= alumnoRepository.findByUser(users);
+		
 		AlumnoModel alumnoModel = alumnoConverter.converterAlumnoToAlumnoModel(alumno);
+		LOG.error(alumnoModel.getA_nombre()+alumnoModel.getA_email()+" alumnos678");
 		return alumnoModel;
 	}
 	/* (non-Javadoc)

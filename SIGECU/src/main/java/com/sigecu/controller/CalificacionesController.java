@@ -39,6 +39,7 @@ public class CalificacionesController {
 	@Autowired
 	@Qualifier("emailService")
 	private EmailService mailService;
+	@Autowired
 	@Qualifier("defineUsuario")
 	private DefineUsuarioService defineUsuario;
 	
@@ -51,12 +52,16 @@ public class CalificacionesController {
 		ModelAndView mav = new ModelAndView(ViewConstant.CALIFICACIONEXAMEN );
 		
 		user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		//System.out.println(user+" prueba123");
+		//LOG.error(defineUsuario.buscarUsuarioAlumno(user.getUsername())+" prueba456");
 		alumnoModel =defineUsuario.buscarUsuarioAlumno(user.getUsername());
+		//LOG.error(alumnoModel.getA_nombre()+" prueba456");
 		
 		//mav.addObject("ePorsentaje",EvaluacionAlumnoService.calificacion(1));
 		mav.addObject("ePorsentaje",calificacionService.calificacionFnl());
 		mav.addObject("aciertos",calificacionService.aciertosPregunta());
 		mav.addObject("errores",calificacionService.erroresPregunta());
+		mav.addObject("user", alumnoModel);
 		try {
 			mailService.send(alumnoModel.getA_email(), "Examen realizado", "Calificacion Final: "+calificacionService.calificacionFnl()+"");
 		} catch (AddressException e) {
