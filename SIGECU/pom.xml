@@ -63,8 +63,11 @@
 			<version>${querydsl.version}</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId> 
-			<version>1.6.1</version> </dependency> -->
+		<!-- <dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.1</version>
+		</dependency>-->
 
 		<!-- JasperReport -->
 		<dependency>
@@ -118,18 +121,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<dependencies>
-					<!-- https://mvnrepository.com/artifact/org.springframework/springloaded -->
-					<dependency>
-						<groupId>org.springframework</groupId>
-						<artifactId>springloaded</artifactId>
-						<version>1.2.0.RELEASE</version>
-					</dependency>
-				</dependencies>
 			</plugin>
 			<plugin>
 				<groupId>com.mysema.maven</groupId>

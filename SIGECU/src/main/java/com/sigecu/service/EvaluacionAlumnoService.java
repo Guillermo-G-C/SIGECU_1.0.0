@@ -19,8 +19,6 @@ public interface EvaluacionAlumnoService {
 	
 	public abstract List<RespuestasModel> listarRespuestas(int idExamen);
 	
-	public abstract List<RespuestasModel> listarRespuestas();
-	
-	public abstract int validaRealizarExamen(int idEvaluacion, int idAlumno, int idEvento);
+	List<RespuestasModel> listarRespuestas();
 
 }
