@@ -63,6 +63,7 @@ public class ExamenErradoController {
 		ModelAndView mav = new ModelAndView(ViewConstant.NUEVO_EXAMENERRADO);
 		mav.addObject("listaPreguntas", examenErradoService.listarPreguntasByExamErrado(idEvaluacion)); //id examen, preguntas erradas
 		mav.addObject("listaRespuestas", examenErradoService.listarRespuestas());
+		mav.addObject("user", alumnoModel );
 		// agregar respuestas
 		model.addAttribute("respuestasModel", respuestasModel);
 		model.addAttribute("preModel", preModel);
