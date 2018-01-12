@@ -47,15 +47,17 @@ public class EvaluacionAlumnoController {
 	private DefineUsuarioService defineUsuario;
 
 	@GetMapping("/mostrarExamen")
-	public ModelAndView mostrarExamenN(@RequestParam(name="idEvaluacion", required=false)int idEvaluacion, Model model) {
+	public ModelAndView mostrarExamenN(@RequestParam(name="idEvaluacion", required=false)int idEvaluacion,
+			@RequestParam(name="idEvento", required=false)int idEvento,
+			Model model) {
 		PreguntasModel preModel = new PreguntasModel();
 		RespuestasModel respuestasModel = new RespuestasModel();
 		user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		alumnoModel =defineUsuario.buscarUsuarioAlumno(user.getUsername());
 		
-		
-		
 		ModelAndView mav = new ModelAndView(ViewConstant.MOSTRAR_EXAMEN);
+		evaluacionAlumnoService.validaRealizarExamen(idEvaluacion, alumnoModel.getId_alumno(), idEvento); 
+		mav.addObject("user", alumnoModel );
 		mav.addObject("listaPreguntas", evaluacionAlumnoService.listarPreguntasByEvaluacionAlumno(idEvaluacion)); //id examen, preguntas 
 		mav.addObject("listaRespuestas", evaluacionAlumnoService.listarRespuestas());
 		
