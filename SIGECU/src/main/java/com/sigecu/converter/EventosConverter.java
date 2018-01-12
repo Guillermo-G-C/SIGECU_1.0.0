@@ -1,20 +1,39 @@
 package com.sigecu.converter;
 
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import com.sigecu.model.AlumnoHasEventoModel;
 import com.sigecu.model.EventosModel;
+import com.sigecu.entity.Alumno;
+import com.sigecu.entity.Alumno_Has_Eventos;
 import com.sigecu.entity.Eventos;
 
 @Component("eventosConverter")
 public class EventosConverter {
 	private static final Log LOG = LogFactory.getLog(EventosConverter.class);
-
+	
+	@Autowired
+	@Qualifier("alumno_Has_EventosConverter")
+	private Alumno_Has_EventosConverter alumnoHasEventoConverter;
 	//Entidad a Modelo
 	
 	public EventosModel convertEventoToEentoModel(Eventos evento) {
 		 EventosModel eventoModel=new EventosModel();
+		 
+		 Set<AlumnoHasEventoModel> alumnos_has_eventos = new HashSet<>();
+		Iterator<Alumno_Has_Eventos> iter= evento.getAlumnosHasEventos().iterator();
+		 while(iter.hasNext()) {
+			 alumnos_has_eventos.add(alumnoHasEventoConverter.convertAlumno_Has_EventosToModel(iter.next()));
+		 }
+		
 		 eventoModel.setIdevento(evento.getIdEvento());
 		 eventoModel.seteDescripcion(evento.geteDescripcion());
 		 eventoModel.seteFechaInicio(evento.geteFechaInicio());
@@ -26,6 +45,7 @@ public class EventosConverter {
 		 eventoModel.seteEstatus(evento.geteStatus());
 		 eventoModel.setCurso(evento.getCursosEvento());
 		 eventoModel.setInstructor(evento.getInstructor());
+		 eventoModel.setAlumnosHasEventos(alumnos_has_eventos);
 		 
 		 return eventoModel;
 	}
@@ -46,6 +66,8 @@ public class EventosConverter {
 		even.seteStatus(evento.geteEstatus());
 		even.setInstructor(evento.getInstructor());
 		even.setCursosEvento(evento.getCurso());
+		//even.addAlumnosHasEventos(evento.getAlumnosHasEventos());
+		
 		return even;
 		
 	}

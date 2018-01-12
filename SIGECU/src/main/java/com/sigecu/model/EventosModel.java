@@ -1,5 +1,9 @@
 package com.sigecu.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.sigecu.entity.Alumno_Has_Eventos;
 import com.sigecu.entity.Cursos;
 import com.sigecu.entity.Instructor;
 
@@ -21,6 +25,8 @@ public class EventosModel {
 	private String eCapacidad;
 	private String eTipo;
 	private String eEstatus;
+	private Set<AlumnoHasEventoModel> alumnosHasEventos = new HashSet<>();
+	
 	public int getIdevento() {
 		return idevento;
 	}
@@ -112,6 +118,12 @@ public class EventosModel {
 		this.eEstatus = eEstatus;
 	}
 	
+	public Set<AlumnoHasEventoModel> getAlumnosHasEventos() {
+		return alumnosHasEventos;
+	}
+	public void setAlumnosHasEventos(Set<AlumnoHasEventoModel> alumnosHasEventos) {
+		this.alumnosHasEventos = alumnosHasEventos;
+	}
 	@Override
 	public String toString() {
 		return "EventosModel [idevento=" + idevento +" eDescripcion="

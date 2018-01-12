@@ -1,12 +1,15 @@
 package com.sigecu.model;
 
+import com.sigecu.entity.AsignaExamenEntity;
+
 public class AlumnoHasEventoModel {
 	
 	private int a_idalumno;
 	private int e_idevento;
 	private String confirmado;
 	private String activo;
-	private int aE_idasignaExamen;
+	private AsignaExamenModel AsignaExamenModel;
+	
 	public int getA_idalumno() {
 		return a_idalumno;
 	}
@@ -31,16 +34,16 @@ public class AlumnoHasEventoModel {
 	public void setActivo(String activo) {
 		this.activo = activo;
 	}
-	public int getaE_idasignaExamen() {
-		return aE_idasignaExamen;
-	}
-	public void setaE_idasignaExamen(int aE_idasignaExamen) {
-		this.aE_idasignaExamen = aE_idasignaExamen;
-	}
 	
+	public AsignaExamenModel getAsignaExamenModel() {
+		return AsignaExamenModel;
+	}
+	public void setAsignaExamenModel(AsignaExamenModel asignaExamenModel) {
+		AsignaExamenModel = asignaExamenModel;
+	}
 	@Override
 	public String toString() {
-		return "alumnoEvento [a_idalumno=" + a_idalumno + ", e_idevento=" + e_idevento + ", confirmado=" + confirmado + ", activo=" + activo + ", aE_idasignaExamen="+ aE_idasignaExamen +"]";
+		return "alumnoEvento [a_idalumno=" + a_idalumno + ", e_idevento=" + e_idevento + ", confirmado=" + confirmado + ", activo=" + activo + ", asignaExamenModel="+ AsignaExamenModel +"]";
 	}
 
 }

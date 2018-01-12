@@ -55,13 +55,17 @@
 								<div class="form-line">
 									<span th:text="${evento.geteFechaInicio()}"></span>
 								</div>
+								<div class="form-line">
+									<span th:text="${evento.getAlumnosHasEventos().iterator().next().getAsignaExamenModel()}"></span>
+								</div>
 							</div>
 							<a
 								th:href="@{/eventosAlumno/listarExamenAlumno?idEvento=__${evento.getIdevento()}__}">
 								<button type="button" class="btn btn-primary waves-effect">
 									<i class="material-icons">question_answer</i> <span>Evaluaciones</span>
 								</button>
-							</a> <a th:href="@{/alumno/certificado2?idEvento=__${evento.getIdevento()}__}"
+							</a> 
+							<a th:href="@{/alumno/certificado2?idEvento=__${evento.getIdevento()}__}"
 								target="_blank">
 								<button type="button" class="btn btn-primary waves-effect">
 									<i class="material-icons">question_answer</i> <span>Certificado</span>

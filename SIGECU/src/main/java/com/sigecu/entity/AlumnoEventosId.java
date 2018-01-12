@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 /**
@@ -26,7 +27,7 @@ public class AlumnoEventosId implements Serializable {
 	/**
 	 * @return the alumno
 	 */
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	public Alumno getAlumno() {
 		return alumno;
 	}
@@ -39,7 +40,7 @@ public class AlumnoEventosId implements Serializable {
 	/**
 	 * @return the evntos
 	 */
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	public Eventos getEventos() {
 		return eventos;
 	}

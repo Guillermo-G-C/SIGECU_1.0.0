@@ -62,7 +62,9 @@ public class EventoAlumnoImpl implements eventoAlumnoService{
 		List<EventosModel> eventosModel=new ArrayList<EventosModel>();
 		
 		for(Eventos evento: eventos) {
+			//LOG.info("Dato que se obtiene ID:"+ evento.getAlumnosHasEventos().iterator().next().getAsignaExamen().getStatus());
 			eventosModel.add(eventosConverter.convertEventoToEentoModel(evento));
+			LOG.info("Datos Model : "+ eventosModel.get(0).getAlumnosHasEventos());
 		}
 		LOG.info("Eventos" + idAlumno);
 		

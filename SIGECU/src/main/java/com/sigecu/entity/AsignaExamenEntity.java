@@ -19,8 +19,8 @@ public class AsignaExamenEntity {
 	
 	@Id
 	@GeneratedValue (strategy= GenerationType.AUTO)
-	@Column(name="idasignaExamen",unique=true,nullable=false)
-	private int idasignaExamen;
+	@Column(name="idAsignaExamen",unique=true,nullable=false)
+	private int idAsignaExamen;
 	@Column (name="asignado")
 	private String asignado;
 	@Column (name="fechaInicio")
@@ -38,12 +38,21 @@ public class AsignaExamenEntity {
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="asignaExamen")
 	private Set<RespuestaALMEntity> respuestasAML = new HashSet<>();
 	
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="asignaExamen")
+	private Set<Alumno_Has_Eventos> alumnoHasEvento = new HashSet<>(); 
 	
-	public int getIdasignaExamen() {
-		return idasignaExamen;
+	
+	public int getIdAsignaExamen() {
+		return idAsignaExamen;
 	}
-	public void setIdasignaExamen(int idasignaExamen) {
-		this.idasignaExamen = idasignaExamen;
+	public void setIdAsignaExamen(int idAsignaExamen) {
+		this.idAsignaExamen = idAsignaExamen;
+	}
+	public Set<RespuestaALMEntity> getRespuestasAML() {
+		return respuestasAML;
+	}
+	public void setRespuestasAML(Set<RespuestaALMEntity> respuestasAML) {
+		this.respuestasAML = respuestasAML;
 	}
 	public String getAsignado() {
 		return asignado;
