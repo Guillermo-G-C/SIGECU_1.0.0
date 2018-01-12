@@ -39,6 +39,7 @@ public class CalificacionesController {
 	@Autowired
 	@Qualifier("emailService")
 	private EmailService mailService;
+	@Autowired
 	@Qualifier("defineUsuario")
 	private DefineUsuarioService defineUsuario;
 	

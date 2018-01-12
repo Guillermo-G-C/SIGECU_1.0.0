@@ -17,7 +17,7 @@ import com.sigecu.entity.QAsignaExamenEntity;
 import com.sigecu.entity.QCursos;
 import com.sigecu.entity.QEventos;
 
-@Repository
+@Repository("queryAlumnoHasEvento")
 public class QueryAlumnoHasEvento {
 	private static final Log LOG = LogFactory.getLog(QueryAlumnoHasEvento.class);
 	QAlumno_Has_Eventos qAlumno_Has_Eventos = QAlumno_Has_Eventos.alumno_Has_Eventos;
