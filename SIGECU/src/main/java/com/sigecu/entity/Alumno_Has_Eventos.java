@@ -7,7 +7,9 @@ import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -29,6 +31,9 @@ public class Alumno_Has_Eventos {
 	private AlumnoEventosId primaryKey = new AlumnoEventosId();
 	private String confirmado;
 	private int activo;
+
+	
+	private AsignaExamenEntity asignaExamen;
 	
 	public Alumno_Has_Eventos() {}
 	/**
@@ -92,6 +97,20 @@ public class Alumno_Has_Eventos {
 	 */
 	public void setActivo(int activo) {
 		this.activo = activo;
+	}
+	/**
+	 * @return the asignaExamen
+	 */
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="idAsignaExamen")
+	public AsignaExamenEntity getAsignaExamen() {
+		return asignaExamen;
+	}
+	/**
+	 * @param asignaExamen the asignaExamen to set
+	 */
+	public void setAsignaExamen(AsignaExamenEntity asignaExamen) {
+		this.asignaExamen = asignaExamen;
 	}
 	
 

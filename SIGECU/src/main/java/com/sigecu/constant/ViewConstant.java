@@ -30,7 +30,8 @@ public class ViewConstant {
 	public static final String MOSTRAR_EXAMEN = "EvaluacionAlumno";
     public static final String CALIFICACIONEXAMEN = "calificaciones";
 
-	
+    //ALUMNO
+	public static final String EXAMEN_NO_ACTIVO = "examen/examenNoActivo";
 	public static final String NUEVO_EXAMENERRADO = "examen/ExamenErrado";
 
 	public static final String CERTIFICADO = "certificado";
