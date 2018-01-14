@@ -22,6 +22,5 @@ public interface EvaluacionAlumnoService {
 	
 	public abstract List<RespuestasModel> listarRespuestas();
 	
-	public abstract boolean validaRealizarExamen(int idEvaluacion, int idAlumno, int idEvento) throws BusinessException;
 
 }

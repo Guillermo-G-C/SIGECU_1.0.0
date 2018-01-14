@@ -72,10 +72,6 @@ public class EvaluacionAlumnoImpl  implements EvaluacionAlumnoService{
 	@Qualifier ("alumnoRepository")
 	private AlumnoRepository alumnoRepository;
 	
-	@Autowired
-	@Qualifier("queryAlumnoHasEvento")
-	private QueryAlumnoHasEvento queryAlumnoHasEvento;
-	
 	@Override
 	public List<PreguntasModel> listarPreguntasByEvaluacionAlumno(int idExam){
 		List<Preguntas> listPreguntas = queryEvaluacion.findAllPreguntasById(idExam);
@@ -133,32 +129,32 @@ public class EvaluacionAlumnoImpl  implements EvaluacionAlumnoService{
 	 * @see com.sigecu.service.EvaluacionAlumnoService#validaRealizarExamen(int, int)
 	 * valida si el examen esta activo para el alumno
 	 */
-	@Override
-	public boolean validaRealizarExamen(int idEvaluacion, int idAlumno, int idEvento) throws BusinessException{
-		try {
-			Alumno_Has_Eventos aHE = queryAlumnoHasEvento.findAlumnoHasEvento(idAlumno, idEvento);
-			LOG.info("ID ALUMNO: " + aHE.getAlumno().getIdAlumno()+ " ID EVENTO: "+aHE.getEvntos().getIdEvento()+
-					" ASIGNA EXAMEN: "+aHE.getAsignaExamen().getIdasignaExamen());
-			LOG.info("ACTIVO: "+aHE.getAsignaExamen().getAsignado());
-			if(aHE.getAsignaExamen().getAsignado().equals("1") && aHE.getAsignaExamen().getRealizado().equals("0")) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}catch(BusinessException e) {
-			LOG.error("NO SE EJECUTO EL METODO");
-			throw e;
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-			BusinessException be = new BusinessException();
-			be.printStackTrace();
-			be.setIdException(001);
-			be.setMsj("ERROR EN SERVICE");
-			throw be;
-		}
-	}
+//	@Override
+//	public boolean validaRealizarExamen(int idEvaluacion, int idAlumno, int idEvento) throws BusinessException{
+//		try {
+//			Alumno_Has_Eventos aHE = queryAlumnoHasEvento.findAlumnoHasEvento(idAlumno, idEvento);
+//			LOG.info("ID ALUMNO: " + aHE.getAlumno().getIdAlumno()+ " ID EVENTO: "+aHE.getEvntos().getIdEvento()+
+//					" ASIGNA EXAMEN: "+aHE.getAsignaExamen().getIdasignaExamen());
+//			LOG.info("ACTIVO: "+aHE.getAsignaExamen().getAsignado());
+//			if(aHE.getAsignaExamen().getAsignado().equals("1") && aHE.getAsignaExamen().getRealizado().equals("0")) {
+//				return true;
+//			}
+//			else {
+//				return false;
+//			}
+//		}catch(BusinessException e) {
+//			LOG.error("NO SE EJECUTO EL METODO");
+//			throw e;
+//			
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//			BusinessException be = new BusinessException();
+//			be.printStackTrace();
+//			be.setIdException(001);
+//			be.setMsj("ERROR EN SERVICE");
+//			throw be;
+//		}
+//	}
 	
 	
 }

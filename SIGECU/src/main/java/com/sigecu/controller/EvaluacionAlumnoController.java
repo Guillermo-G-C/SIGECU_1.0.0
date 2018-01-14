@@ -21,6 +21,7 @@ import com.sigecu.model.PreguntasModel;
 import com.sigecu.model.RespuestasModel;
 import com.sigecu.service.DefineUsuarioService;
 import com.sigecu.service.EvaluacionAlumnoService;
+import com.sigecu.service.ValidarExamenAlumnoService;
 
 
 
@@ -39,13 +40,17 @@ public class EvaluacionAlumnoController {
 	@Autowired
 	@Qualifier("EvaluacionAlumnoImpl")
 	private EvaluacionAlumnoService evaluacionAlumnoService;
+	
+	@Autowired
+	@Qualifier("validarRealizarExamen")
+	private ValidarExamenAlumnoService validaRealizarExamenAlumno;
 	@Autowired
 	@Qualifier("defineUsuario")
 	private DefineUsuarioService defineUsuario;
 
 	@GetMapping("/mostrarExamen")
-	public ModelAndView mostrarExamenN(@RequestParam(name="idEvaluacion", required=false)int idEvaluacion,
-			@RequestParam(name="idEvento", required=false)int idEvento,
+	public ModelAndView mostrarExamenN(@RequestParam(name="idEvento", required=false)int idEvento,
+			@RequestParam(name="idEvaluacion", required=false)int idEvaluacion,
 			Model model) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -53,7 +58,7 @@ public class EvaluacionAlumnoController {
 		user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		alumnoModel =defineUsuario.buscarUsuarioAlumno(user.getUsername());
 		try {
-			validaActivo = evaluacionAlumnoService.validaRealizarExamen(idEvaluacion, alumnoModel.getId_alumno(), idEvento);
+			validaActivo = validaRealizarExamenAlumno.validaRealizarExamen(idEvaluacion, alumnoModel.getId_alumno(), idEvento);
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			LOG.info("ID: "+e.getIdException()+" MENSAJE: "+e.getMsj());
