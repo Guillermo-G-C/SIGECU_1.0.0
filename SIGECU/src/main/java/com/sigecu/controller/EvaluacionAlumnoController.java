@@ -57,7 +57,7 @@ public class EvaluacionAlumnoController {
 		alumnoModel =defineUsuario.buscarUsuarioAlumno(user.getUsername());
 		
 		ModelAndView mav = new ModelAndView(ViewConstant.MOSTRAR_EXAMEN);
-		evaluacionAlumnoService.validaRealizarExamen(idEvaluacion, alumnoModel.getId_alumno(), idEvento); 
+		//evaluacionAlumnoService.validaRealizarExamen(idEvaluacion, alumnoModel.getId_alumno(), idEvento); 
 		mav.addObject("user", alumnoModel );
 		mav.addObject("listaPreguntas", evaluacionAlumnoService.listarPreguntasByEvaluacionAlumno(idEvaluacion)); //id examen, preguntas 
 		mav.addObject("listaRespuestas", evaluacionAlumnoService.listarRespuestas());
@@ -67,6 +67,9 @@ public class EvaluacionAlumnoController {
 		model.addAttribute("preModel", preModel);
 		model.addAttribute("idEvaluacion", idEvaluacion);
 		model.addAttribute("eTiempo",evaluacionAlumnoService.tiempoExamen(idEvaluacion));
+		//LOG.error("horaInicio: "+evaluacionAlumnoService.horaInicio(idEvaluacion));
+		model.addAttribute("eHoraInicio",evaluacionAlumnoService.horaInicio(idEvaluacion));
+		model.addAttribute("eHoraFin",evaluacionAlumnoService.horaFin(idEvaluacion));
 
 		return mav;
 	}

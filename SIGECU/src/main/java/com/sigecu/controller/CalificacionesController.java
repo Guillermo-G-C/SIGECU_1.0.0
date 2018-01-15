@@ -58,12 +58,12 @@ public class CalificacionesController {
 		//LOG.error(alumnoModel.getA_nombre()+" prueba456");
 		
 		//mav.addObject("ePorsentaje",EvaluacionAlumnoService.calificacion(1));
-		mav.addObject("ePorsentaje",calificacionService.calificacionFnl());
+		mav.addObject("ePorsentaje",calificacionService.calificacionFnl(1));
 		mav.addObject("aciertos",calificacionService.aciertosPregunta());
 		mav.addObject("errores",calificacionService.erroresPregunta());
 		mav.addObject("user", alumnoModel);
 		try {
-			mailService.send(alumnoModel.getA_email(), "Examen realizado", "Calificacion Final: "+calificacionService.calificacionFnl()+"");
+			mailService.send(alumnoModel.getA_email(), "Examen realizado", "Calificacion Final: "+calificacionService.calificacionFnl(1)+"");
 		} catch (AddressException e) {
 			LOG.error("La direccion de correo es incorrecta");
 			e.printStackTrace();

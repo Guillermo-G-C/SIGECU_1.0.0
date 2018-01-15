@@ -23,6 +23,10 @@ public interface EvaluacionAlumnoService {
 	public abstract List<RespuestasModel> listarRespuestas();
 	
 	public abstract int validaRealizarExamen(int idEvaluacion, int idAlumno, int idEvento);
+	
+	public abstract String horaInicio(int idEvaluacion);
+	
+	public abstract String horaFin(int idEvaluacion);
 
 }
 

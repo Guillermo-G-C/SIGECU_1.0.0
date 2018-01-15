@@ -56,6 +56,8 @@
 										class="material-icons">more_vert</i>
 								</a></li>
 							</ul>
+							<input type="hidden" id="horaInicio" th:value="${eHoraInicio}" class="invisible"/>
+							<input type="hidden" id="horaFin" th:value="${eHoraFin}" class="invisible"/>
 							<input type="hidden" id="tiempo" name="2" th:value="${eTiempo}" class="insivible"/>
                         	
                        
@@ -152,5 +154,5 @@
 	<!-- Demo Js -->
 	<script th:src="@{/js/demo.js}"></script>
 </body>
->>>>>>> master
+
 </html>

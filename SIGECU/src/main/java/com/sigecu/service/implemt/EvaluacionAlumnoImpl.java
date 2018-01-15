@@ -137,6 +137,21 @@ public class EvaluacionAlumnoImpl  implements EvaluacionAlumnoService{
 			//alumnoEventoIdRepository.buildByAlumnoEvento(alumno);
 		return 0;
 	}
+
+
+	@Override
+	public String horaInicio(int idEvaluacion) {
+		// TODO Auto-generated method stub
+		
+		return evaluacionesRepository.horaInicio();
+	}
+
+
+	@Override
+	public String horaFin(int idEvaluacion) {
+		// TODO Auto-generated method stub
+		return evaluacionesRepository.horaFin();
+	}
 	
 	
 }

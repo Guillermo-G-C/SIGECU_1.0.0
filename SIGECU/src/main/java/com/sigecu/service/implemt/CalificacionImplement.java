@@ -59,9 +59,9 @@ public class CalificacionImplement implements CalificacionService {
 
 
 	@Override
-	public String calificacionFnl() {
+	public String calificacionFnl(int idEvaluacion) {
 		// TODO Auto-generated method stub
-		return calificacionRepository.calificacion()+"";
+		return calificacionRepository.calificacion(idEvaluacion)+"";
 	}
 
 }
