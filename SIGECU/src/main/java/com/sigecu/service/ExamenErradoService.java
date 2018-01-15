@@ -12,7 +12,7 @@ import com.sigecu.model.RespuestasModel;
  */
 public interface ExamenErradoService {
 	public abstract List<EvaluacionesModel> listAllEvaluaciones(int idCurso);
-	public abstract List<PreguntasModel> listarPreguntasByExamErrado(int idExamen);
+	public abstract List<PreguntasModel> listarPreguntasByExamErrado(int idExamen , int idAsignaExamen);
 	public abstract List<RespuestasModel> listarRespuestas(int idExamen);
 	List<RespuestasModel> listarRespuestas();
 	

@@ -23,7 +23,6 @@ import com.sigecu.exception.BusinessException;
 import com.sigecu.model.AlumnoModel;
 import com.sigecu.model.AsignaExamenModel;
 import com.sigecu.model.PreguntasModel;
-import com.sigecu.model.RespuestasModel;
 import com.sigecu.model.VistaRespuestasAlumno;
 import com.sigecu.service.DefineUsuarioService;
 import com.sigecu.service.EvaluacionAlumnoService;
@@ -94,7 +93,7 @@ public class ExamenErradoController {
 				e.printStackTrace();
 			}
 
-			List<PreguntasModel> listaPreguntas = evaluacionAlumnoService.listarPreguntasByEvaluacion(idEvaluacion,
+			List<PreguntasModel> listaPreguntas = examenErradoService.listarPreguntasByExamErrado(idEvaluacion,
 					asignaExamen.getIdasignaExamen());
 			if (listaPreguntas.size() > 0) {
 				mav.addObject("listaPreguntas", listaPreguntas);

@@ -4,6 +4,7 @@
 package com.sigecu.service.implemt;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -14,11 +15,16 @@ import org.springframework.stereotype.Service;
 
 import com.sigecu.converter.PreguntasConverter;
 import com.sigecu.converter.RespuestasConverter;
+import com.sigecu.entity.AsignaExamenEntity;
+import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Preguntas;
+import com.sigecu.entity.RespuestaALMEntity;
 import com.sigecu.entity.Respuestas;
 import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.PreguntasModel;
 import com.sigecu.model.RespuestasModel;
+import com.sigecu.repository.AsignaExamenRepository;
+import com.sigecu.repository.EvaluacionRepository;
 import com.sigecu.repository.PreguntasRepository;
 import com.sigecu.repository.QueryEvaluacion;
 import com.sigecu.repository.RespuestasRepository;
@@ -53,17 +59,48 @@ public class ExamenErradoServiceImplement implements ExamenErradoService {
 	@Autowired
 	@Qualifier("respuestasConverter")
 	private RespuestasConverter respuestasConverter;
+	@Autowired
+	@Qualifier("evaluacionesRepository")
+	private EvaluacionRepository evaluacionesRepository;
+	@Autowired
+	@Qualifier("asignaExamenRepository")
+	private AsignaExamenRepository asignaExamenRepository;
 
 	
 	@Override
-	public List<PreguntasModel> listarPreguntasByExamErrado(int idExam){
-		List<Preguntas> listPreguntas = queryEvaluacion.findAllPreguntasById(idExam);
-		List<PreguntasModel> preguntasModel = new ArrayList<PreguntasModel>();
-		
-		for(Preguntas preg : listPreguntas) {
-			preguntasModel.add(preguntasConverter.converterPreguntasToPreguntasModel(preg));
+	public List<PreguntasModel> listarPreguntasByExamErrado(int idEvaluacion, int idAsignaExamen){
+		Evaluaciones eval = evaluacionesRepository.findByIdEvaluacion(idEvaluacion);
+		List<Preguntas> preguntas = preguntasRepository.findByEvaluaciones(eval);
+		AsignaExamenEntity asignaExamen = asignaExamenRepository.findByIdasignaExamen(idAsignaExamen);
+		Iterator<RespuestaALMEntity> iterAsignaExam = asignaExamen.getRespuestasAML().iterator(); // iterator de
+																									// respuestaALM
+		List<PreguntasModel> preguntasNoModel = new ArrayList<>();
+		List<PreguntasModel> preguntasSiModel = new ArrayList<>();
+		List<PreguntasModel> totalPreguntas = new ArrayList<>();
+		List<RespuestaALMEntity> respuestasALMEntity = new ArrayList<>();
+		while (iterAsignaExam.hasNext()) {
+			respuestasALMEntity.add(iterAsignaExam.next());
 		}
-		return preguntasModel;
+		LOG.info("TAMAÑO de RESPUESTAS ALM: " + asignaExamen.getRespuestasAML().size());
+		for (Preguntas pregunta : preguntas) {
+			PreguntasModel preguntaModel = preguntasConverter.converterPreguntasToPreguntasModelAndRespuestas(pregunta);
+			totalPreguntas.add(preguntaModel);
+			for (RespuestaALMEntity resp : respuestasALMEntity) {
+				if (pregunta.getRespuestas().contains(resp.getRespuestas()))
+					preguntasNoModel.add(preguntaModel);
+			}
+		}
+		for (PreguntasModel pregunta : totalPreguntas) {
+			if (!preguntasNoModel.contains(pregunta)) {
+				preguntasSiModel.add(pregunta);
+				LOG.info("PREGUNTA AGREGADA: " + pregunta.toString());
+			}
+		}
+		LOG.info("PREGUNTAS AGREGADAS: " + preguntasSiModel.size());
+		LOG.info("PREGUNTAS No AGREGADAS: " + preguntasNoModel.size());
+		LOG.info("PREGUNTAS tatales AGREGADAS: " + totalPreguntas.size());
+		// preguntasModel.iterator().next();
+		return preguntasSiModel;
 	}
 
 	
