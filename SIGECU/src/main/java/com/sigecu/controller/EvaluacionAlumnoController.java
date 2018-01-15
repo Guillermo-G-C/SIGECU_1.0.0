@@ -61,36 +61,35 @@ public class EvaluacionAlumnoController {
 		AsignaExamenModel asignaExamen = new AsignaExamenModel();
 
 		try {
-			validaActivo = validaRealizarExamenAlumno.validaRealizarExamen(idEvaluacion, idAlumno,
-					idEvento);
+			validaActivo = validaRealizarExamenAlumno.validaRealizarExamen(idEvaluacion, idAlumno, idEvento);
 		} catch (BusinessException e) {
 			LOG.info("ID: " + e.getIdException() + " MENSAJE: " + e.getMsj());
 			e.printStackTrace();
 		}
-		
+
 		if (validaActivo) {
 			mav.setViewName(ViewConstant.MOSTRAR_EXAMEN);
 			mav.addObject("user", alumnoModel);
 			try {
 				asignaExamen = validaRealizarExamenAlumno.asignarExamen(idAlumno, idEvento);
-				mav.addObject("examenAsignado",asignaExamen); 
+				mav.addObject("examenAsignado", asignaExamen);
 			} catch (BusinessException e) {
 				e.printStackTrace();
 			}
-			
-			List<PreguntasModel> listaPreguntas = evaluacionAlumnoService.listarPreguntasByEvaluacion(idEvaluacion, asignaExamen.getIdasignaExamen());
-			if(listaPreguntas.size()>0) {
+
+			List<PreguntasModel> listaPreguntas = evaluacionAlumnoService.listarPreguntasByEvaluacion(idEvaluacion,
+					asignaExamen.getIdasignaExamen());
+			if (listaPreguntas.size() > 0) {
 				mav.addObject("listaPreguntas", listaPreguntas);
 				mav.addObject("idEvaluacion", idEvaluacion);
 				mav.addObject("idEvento", idEvento);
 
 				model.addAttribute("respuestaAlumno", respuestaAlumno);
 				model.addAttribute("eTiempo", evaluacionAlumnoService.tiempoExamen(idEvaluacion));
-			}
-			else {
+			} else {
 				mav.setViewName("redirect:/calificaciones/mostrarCalificaciones");
 			}
-			
+
 			return mav;
 		} else {
 			mav.setViewName(ViewConstant.EXAMEN_NO_ACTIVO);
@@ -104,20 +103,23 @@ public class EvaluacionAlumnoController {
 			@RequestParam(name = "idEvaluacion", required = false) int idEvaluacion,
 			@RequestParam(name = "asignaExamen", required = true) int idAsignaExamen,
 			@ModelAttribute(name = "respuestaAlumno") VistaRespuestasAlumno respuestaAlumno) {
-		
+
 		evaluacionAlumnoService.guardarRespuestas(respuestaAlumno.getIdRespuesta(), idAsignaExamen);
-		//LOG.info("EXAMEN GUARDADO: " + respuestaAlumno.toString() + " ASIGNA EXAMEN = " + idAsignaExamen);
+		// LOG.info("EXAMEN GUARDADO: " + respuestaAlumno.toString() + " ASIGNA EXAMEN =
+		// " + idAsignaExamen);
 
 		return "redirect:/EvaluacionAlumno/mostrarExamen?idEvento=" + idEvento + "&idEvaluacion=" + idEvaluacion;
 	}
+
 	@GetMapping("/finaliza")
 	public String finaliza(@RequestParam(name = "idEvento", required = false) int idEvento,
 			@RequestParam(name = "idEvaluacion", required = false) int idEvaluacion,
 			@RequestParam(name = "asignaExamen", required = true) int idAsignaExamen,
 			@ModelAttribute(name = "respuestaAlumno") VistaRespuestasAlumno respuestaAlumno) {
-		
+
 		evaluacionAlumnoService.guardarRespuestas(respuestaAlumno.getIdRespuesta(), idAsignaExamen);
-		//LOG.info("EXAMEN GUARDADO: " + respuestaAlumno.toString() + " ASIGNA EXAMEN = " + idAsignaExamen);
+		evaluacionAlumnoService.marcarExamenRealizado(idAsignaExamen);
+		//LOG.info("EXAMEN GUARDADO: " + respuestaAlumno.toString() + " ASIGNA EXAMEN ="+ idAsignaExamen);
 
 		return "redirect:/calificaciones/mostrarCalificaciones";
 	}
