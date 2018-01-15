@@ -18,6 +18,7 @@ import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Preguntas;
 import com.sigecu.entity.QEvaluaciones;
 import com.sigecu.entity.QPreguntas;
+import com.sigecu.entity.QRespuestaALMEntity;
 import com.sigecu.entity.QRespuestas;
 import com.sigecu.entity.Respuestas;
 
@@ -25,13 +26,14 @@ import com.sigecu.entity.Respuestas;
  * @author Dell
  *
  */
-@Repository("queryDSLPreguntasRepo")
+@Repository("queryPreguntaErradaRepository")
 public class QueryPreguntasErradasCon {
 	
 	private static final Log LOG = LogFactory.getLog(QueryPreguntasErradasCon.class);
 	private QEvaluaciones qEvaluaciones = QEvaluaciones.evaluaciones;
 	private QPreguntas qPreguntas = QPreguntas.preguntas;
 	private QRespuestas qRespuestas = QRespuestas.respuestas;
+	private QRespuestaALMEntity qALM = QRespuestaALMEntity.respuestaALMEntity;
 //	private QRespuestaALM qrepuestasalm = QRespuestaALM.respuestaALM;
 //	
 	@PersistenceContext
@@ -75,6 +77,19 @@ public class QueryPreguntasErradasCon {
 				.fetch();
 		return listPreguntas;
 		
+	}
+	
+	public List<Preguntas> findPreguntasErradas(int idEvaluacion){
+		JPAQuery<Preguntas> query = new JPAQuery<>(em);
+		List<Preguntas> listPreguntas = query.select(qPreguntas)
+				.from(qPreguntas, qALM, qRespuestas)
+				.where(qPreguntas.respuestas.contains(qALM.respuestas)
+						.and(qRespuestas.rSolucion.eq("0"))
+						.and(qALM.respuestas.idRespuesta.eq(qRespuestas.idRespuesta))
+						)
+				.fetch();
+		
+		return listPreguntas;
 	}
 
 
