@@ -36,18 +36,6 @@ public class Alumno_Has_Eventos {
 	
 	public Alumno_Has_Eventos() {}
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="idAsignaExamen", referencedColumnName="idAsignaExamen")
-	public AsignaExamenEntity getAsignaExamen() {
-		return asignaExamen;
-	}
-
-
-	public void setAsignaExamen(AsignaExamenEntity asignaExamenEntity) {
-		asignaExamen = asignaExamenEntity;
-	}
-
-
 	/**
 	 * @return the primaryKey
 	 */
@@ -109,6 +97,20 @@ public class Alumno_Has_Eventos {
 	 */
 	public void setActivo(int activo) {
 		this.activo = activo;
+	}
+	/**
+	 * @return the asignaExamen
+	 */
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="idAsignaExamen")
+	public AsignaExamenEntity getAsignaExamen() {
+		return asignaExamen;
+	}
+	/**
+	 * @param asignaExamen the asignaExamen to set
+	 */
+	public void setAsignaExamen(AsignaExamenEntity asignaExamen) {
+		this.asignaExamen = asignaExamen;
 	}
 
 	public Alumno_Has_Eventos(AlumnoEventosId primaryKey, String confirmado, int activo,
