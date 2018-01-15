@@ -35,15 +35,18 @@ import com.sigecu.service.AdminExamService;
 public class AdminExamController {
 
 	private static final Log LOG = LogFactory.getLog(AdminExamController.class);
-
+	private User user;
+	private String username= null;
 	@Autowired
 	@Qualifier("adminExamServiceImpl")
 	private AdminExamService adminExamService;
 	@GetMapping("/listaExamen")
 	public ModelAndView showExamenes(@RequestParam(name = "idCurso", required = false) int idCurso, Model model) {
 		EvaluacionesModel evalModel = new EvaluacionesModel();
+		
 		ModelAndView mav = new ModelAndView(ViewConstant.LISTAR_EXAMEN);
 		mav.addObject("listaExamen", adminExamService.listAllEvaluaciones(idCurso));
+		mav.addObject("username", username);
 		List<String> listEval = new ArrayList<>();
 		model.addAttribute("evaluacionesModel", evalModel);
 		model.addAttribute("listPrueba", listEval);
@@ -56,8 +59,9 @@ public class AdminExamController {
 	@GetMapping("/listaCursos")
 	public ModelAndView showCursos() {
 		ModelAndView mav = new ModelAndView(ViewConstant.LISTAR_CURSOS);
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		mav.addObject("username", user.getUsername());
+		user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		username = user.getUsername();
+		mav.addObject("username", username);
 		//mav.addObject("username", adminExamService.buscarNombre(user.getUsername()));
 		mav.addObject("listaCursos", adminExamService.listaCursos());
 		return mav;
@@ -71,6 +75,7 @@ public class AdminExamController {
 		ModelAndView mav = new ModelAndView(ViewConstant.NUEVO_EXAMEN);
 		mav.addObject("listaPreguntas", adminExamService.listarPregunrasByExam(idEvaluacion));
 		mav.addObject("listaRespuestas", adminExamService.listarRespuestas());
+		mav.addObject("username", user.getUsername());
 		// agregar respuestas
 		model.addAttribute("respuestasModel", respuestasModel);
 		model.addAttribute("preModel", preModel);

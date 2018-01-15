@@ -37,6 +37,8 @@ public class AsignaExamenEntity {
 	private String status;
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="asignaExamen")
 	private Set<RespuestaALMEntity> respuestasAML = new HashSet<>();
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="asignaExamen")
+	private Set<Alumno_Has_Eventos> alumnoHasEventos = new HashSet<>();
 	
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="asignaExamen")
 	private Set<Alumno_Has_Eventos> alumnoHasEvento = new HashSet<>(); 
@@ -47,12 +49,6 @@ public class AsignaExamenEntity {
 	}
 	public void setIdAsignaExamen(int idAsignaExamen) {
 		this.idAsignaExamen = idAsignaExamen;
-	}
-	public Set<RespuestaALMEntity> getRespuestasAML() {
-		return respuestasAML;
-	}
-	public void setRespuestasAML(Set<RespuestaALMEntity> respuestasAML) {
-		this.respuestasAML = respuestasAML;
 	}
 	public String getAsignado() {
 		return asignado;
@@ -96,9 +92,30 @@ public class AsignaExamenEntity {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-
-
+	/**
+	 * @return the respuestasAML
+	 */
+	public Set<RespuestaALMEntity> getRespuestasAML() {
+		return respuestasAML;
+	}
+	/**
+	 * @param respuestasAML the respuestasAML to set
+	 */
+	public void setRespuestasAML(Set<RespuestaALMEntity> respuestasAML) {
+		this.respuestasAML = respuestasAML;
+	}
+	/**
+	 * @return the alumnoHasEventos
+	 */
+	public Set<Alumno_Has_Eventos> getAlumnoHasEventos() {
+		return alumnoHasEventos;
+	}
+	/**
+	 * @param alumnoHasEventos the alumnoHasEventos to set
+	 */
+	public void setAlumnoHasEventos(Set<Alumno_Has_Eventos> alumnoHasEventos) {
+		this.alumnoHasEventos = alumnoHasEventos;
+	}
 	public AsignaExamenEntity() {
 		
 	}
