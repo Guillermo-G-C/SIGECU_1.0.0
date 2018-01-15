@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.sigecu.converter.AsignaExamenConverter;
 import com.sigecu.entity.Alumno_Has_Eventos;
+import com.sigecu.entity.AsignaExamenEntity;
 import com.sigecu.exception.BusinessException;
+import com.sigecu.model.AsignaExamenModel;
 import com.sigecu.repository.QueryAlumnoHasEvento;
 import com.sigecu.service.ValidarExamenAlumnoService;
 
@@ -26,6 +29,10 @@ public class ValidaRealizarExamenServiceImpl implements ValidarExamenAlumnoServi
 	@Autowired
 	@Qualifier("queryAlumnoHasEvento")
 	private QueryAlumnoHasEvento queryAlumnoHasEvento;
+	
+	@Autowired
+	@Qualifier("asignaExamenConverter")
+	private AsignaExamenConverter asignaExamenConverter;
 
 	private static final Log LOG = LogFactory.getLog(ValidaRealizarExamenServiceImpl.class);
 
@@ -121,6 +128,31 @@ public class ValidaRealizarExamenServiceImpl implements ValidarExamenAlumnoServi
 			} else {
 				return false;
 			}
+		} catch (BusinessException e) {
+			LOG.error("NO SE EJECUTO EL METODO");
+			throw e;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			BusinessException be = new BusinessException();
+			be.printStackTrace();
+			be.setIdException(001);
+			be.setMsj("ERROR EN SERVICE");
+			throw be;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see com.sigecu.service.ValidarExamenAlumnoService#asignarExamen(int, int)
+	 */
+	@Override
+	public AsignaExamenModel asignarExamen(int idAlumno, int idEvento) throws BusinessException {
+		try {
+			Alumno_Has_Eventos aHE = queryAlumnoHasEvento.findAlumnoHasEvento(idAlumno, idEvento);
+			LOG.info("AHE DE ASIGNA EXAMEN: "+ aHE.toString());
+			AsignaExamenEntity asignaExamen = aHE.getAsignaExamen();
+			AsignaExamenModel asignaExamenModel = asignaExamenConverter.converterAsignaExamenToAsignaExamenModel(asignaExamen);
+			return asignaExamenModel;
 		} catch (BusinessException e) {
 			LOG.error("NO SE EJECUTO EL METODO");
 			throw e;

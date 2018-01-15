@@ -20,10 +20,20 @@ public class RespuestasALMConverter {
 	public RespuestaALMModel converterRespuestaALMToRespuestasModel(RespuestaALMEntity respuesta) {
 		
 		RespuestaALMModel resModel = new RespuestaALMModel();
-		resModel.setIdrespuestaALM(respuesta.getIdrespuestaALM());
+		resModel.setIdRespuestaALM(respuesta.getIdrespuestaALM());
+		resModel.setSeleccionada(respuesta.getSeleccionada());
 		
 		return resModel;
 		
+	}
+	
+	public RespuestaALMEntity converterRespuestasALMModelToRespuestaALM(RespuestaALMModel respModel) {
+		RespuestaALMEntity respuestaALMEntity = new RespuestaALMEntity();
+		respuestaALMEntity.setSeleccionada(respModel.getSeleccionada());
+		//respuestaALMEntity.setAsignaExamen();
+		//respuestaALMEntity.setRespuestas();
+		
+		return respuestaALMEntity;
 	}
 	
 

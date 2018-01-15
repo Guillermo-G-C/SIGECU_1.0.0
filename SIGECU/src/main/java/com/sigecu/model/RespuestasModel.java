@@ -3,6 +3,9 @@
  */
 package com.sigecu.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.sigecu.entity.Preguntas;
 
 /**
@@ -20,13 +23,36 @@ public class RespuestasModel {
 	private String rRespuesta;
 	private String rSolucion;
 	private Preguntas pregunta;
+	private List<RespuestaALMModel> respuestaALMModel = new ArrayList<>();
 
 	public RespuestasModel() {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * @param idRespuesta
+	 * @param rRespuesta
+	 * @param rSolucion
+	 * @param pregunta
+	 * @param respuestaALMModel
+	 */
+	public RespuestasModel(int idRespuesta, String rRespuesta, String rSolucion, Preguntas pregunta,
+			List<RespuestaALMModel> respuestaALMModel) {
+		super();
+		this.idRespuesta = idRespuesta;
+		this.rRespuesta = rRespuesta;
+		this.rSolucion = rSolucion;
+		this.pregunta = pregunta;
+		this.respuestaALMModel = respuestaALMModel;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
 	public String toString() {
-		return "idRespuesta: " + idRespuesta + " rRespuesta: " + rRespuesta + " rSolucion" + rSolucion;
+		return "RespuestasModel [idRespuesta=" + idRespuesta + ", rRespuesta=" + rRespuesta + ", rSolucion=" + rSolucion
+				+ ", pregunta=" + pregunta + ", respuestaALMModel=" + respuestaALMModel + "]";
 	}
 
 	/**
@@ -89,4 +115,18 @@ public class RespuestasModel {
 		this.pregunta = pregunta;
 	}
 
+	/**
+	 * @return the respuestaALMModel
+	 */
+	public List<RespuestaALMModel> getRespuestaALMModel() {
+		return respuestaALMModel;
+	}
+
+	/**
+	 * @param respuestaALMModel the respuestaALMModel to set
+	 */
+	public void setRespuestaALMModel(List<RespuestaALMModel> respuestaALMModel) {
+		this.respuestaALMModel = respuestaALMModel;
+	}
+	
 }

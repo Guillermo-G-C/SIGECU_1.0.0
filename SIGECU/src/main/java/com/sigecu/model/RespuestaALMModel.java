@@ -6,34 +6,76 @@ package com.sigecu.model;
 
 
 public class RespuestaALMModel {
-	private int idrespuestaALM;
-	private RespuestasModel RespuestaModel;
-	private int aE_idasignaExamen;
+	private int idRespuestaALM;
+	private RespuestasModel respuestasModel;
+	private AsignaExamenModel asignaExamen;
 	private String seleccionada;
-	public int getIdrespuestaALM() {
-		return idrespuestaALM;
+	/**
+	 * 
+	 */
+	public RespuestaALMModel() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	public void setIdrespuestaALM(int idrespuestaALM) {
-		this.idrespuestaALM = idrespuestaALM;
+	/**
+	 * @param idRespuestaALM
+	 * @param respuestasModel
+	 * @param asignaExamen
+	 * @param seleccionada
+	 */
+	public RespuestaALMModel(int idRespuestaALM, RespuestasModel respuestasModel, AsignaExamenModel asignaExamen,
+			String seleccionada) {
+		super();
+		this.idRespuestaALM = idRespuestaALM;
+		this.respuestasModel = respuestasModel;
+		this.asignaExamen = asignaExamen;
+		this.seleccionada = seleccionada;
 	}
-
-	
-	
-	public RespuestasModel getRespuestaModel() {
-		return RespuestaModel;
+	/**
+	 * @return the idRespuestaALM
+	 */
+	public int getIdRespuestaALM() {
+		return idRespuestaALM;
 	}
-	public void setRespuestaModel(RespuestasModel respuestaModel) {
-		RespuestaModel = respuestaModel;
+	/**
+	 * @param idRespuestaALM the idRespuestaALM to set
+	 */
+	public void setIdRespuestaALM(int idRespuestaALM) {
+		this.idRespuestaALM = idRespuestaALM;
 	}
-	public int getaE_idasignaExamen() {
-		return aE_idasignaExamen;
+	/**
+	 * @return the respuestasModel
+	 */
+	public RespuestasModel getRespuestasModel() {
+		return respuestasModel;
 	}
-	public void setaE_idasignaExamen(int aE_idasignaExamen) {
-		this.aE_idasignaExamen = aE_idasignaExamen;
+	/**
+	 * @param respuestasModel the respuestasModel to set
+	 */
+	public void setRespuestasModel(RespuestasModel respuestasModel) {
+		this.respuestasModel = respuestasModel;
 	}
+	/**
+	 * @return the asignaExamen
+	 */
+	public AsignaExamenModel getAsignaExamen() {
+		return asignaExamen;
+	}
+	/**
+	 * @param asignaExamen the asignaExamen to set
+	 */
+	public void setAsignaExamen(AsignaExamenModel asignaExamen) {
+		this.asignaExamen = asignaExamen;
+	}
+	/**
+	 * @return the seleccionada
+	 */
 	public String getSeleccionada() {
 		return seleccionada;
 	}
+	/**
+	 * @param seleccionada the seleccionada to set
+	 */
 	public void setSeleccionada(String seleccionada) {
 		this.seleccionada = seleccionada;
 	}
@@ -42,12 +84,10 @@ public class RespuestaALMModel {
 	 */
 	@Override
 	public String toString() {
-		return "RespuestaALMModel [idrespuestaALM=" + idrespuestaALM + ", RespuestaModel=" + RespuestaModel
-				+ ", aE_idasignaExamen=" + aE_idasignaExamen + ", seleccionada=" + seleccionada + "]";
+		return "RespuestaALMModel [idRespuestaALM=" + idRespuestaALM + ", respuestasModel=" + respuestasModel
+				+ ", asignaExamen=" + asignaExamen + ", seleccionada=" + seleccionada + "]";
 	}
-
 	
-
-
-
+	
+	
 }

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.sigecu.entity.RespuestaALMEntity;
 
-@Repository("respuestasALM")
-public interface respuestaALM  extends JpaRepository<RespuestaALMEntity,Serializable>{
+@Repository("respuestasALMRepository")
+public interface respuestaALMRepository  extends JpaRepository<RespuestaALMEntity,Serializable>{
 	
 	
 }

@@ -3,6 +3,11 @@
  */
 package com.sigecu.model;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import com.sigecu.entity.Evaluaciones;
 
 /**
@@ -21,6 +26,7 @@ public class PreguntasModel {
 	private String pDescripcion;
 	private Evaluaciones evaluacion;
 	private String puntaje;
+	private List<RespuestasModel> respuestasModel = new ArrayList<>();
 
 	public PreguntasModel() {
 	}
@@ -103,5 +109,20 @@ public class PreguntasModel {
 	public void setEvaluacion(Evaluaciones evaluacion) {
 		this.evaluacion = evaluacion;
 	}
+
+	/**
+	 * @return the respuestasModel
+	 */
+	public List<RespuestasModel> getRespuestasModel() {
+		return respuestasModel;
+	}
+
+	/**
+	 * @param respuestasModel the respuestasModel to set
+	 */
+	public void setRespuestasModel(List<RespuestasModel> respuestasModel) {
+		this.respuestasModel = respuestasModel;
+	}
+	
 
 }

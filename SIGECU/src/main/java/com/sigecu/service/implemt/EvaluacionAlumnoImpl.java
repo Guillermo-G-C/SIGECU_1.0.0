@@ -3,6 +3,7 @@ package com.sigecu.service.implemt;
 import org.apache.commons.logging.LogFactory;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -10,26 +11,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.sigecu.converter.EvaluacionAlumnoConverter;
 import com.sigecu.converter.EvaluacionConverter;
 import com.sigecu.converter.PreguntasConverter;
 import com.sigecu.converter.RespuestasConverter;
-import com.sigecu.entity.Alumno;
-import com.sigecu.entity.Alumno_Has_Eventos;
+import com.sigecu.entity.AsignaExamenEntity;
 import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Preguntas;
+import com.sigecu.entity.RespuestaALMEntity;
 import com.sigecu.entity.Respuestas;
-import com.sigecu.exception.BusinessException;
 import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.PreguntasModel;
-import com.sigecu.model.RespuestasModel;
 import com.sigecu.repository.AlumnoRepository;
-import com.sigecu.repository.EvaluacionAlumnoRepository;
+import com.sigecu.repository.AsignaExamenRepository;
 import com.sigecu.repository.EvaluacionRepository;
 import com.sigecu.repository.PreguntasRepository;
-import com.sigecu.repository.QueryAlumnoHasEvento;
 import com.sigecu.repository.QueryEvaluacion;
 import com.sigecu.repository.RespuestasRepository;
+import com.sigecu.repository.respuestaALMRepository;
 import com.sigecu.service.EvaluacionAlumnoService;
 
 @Service("EvaluacionAlumnoImpl")
@@ -72,44 +70,50 @@ public class EvaluacionAlumnoImpl  implements EvaluacionAlumnoService{
 	@Qualifier ("alumnoRepository")
 	private AlumnoRepository alumnoRepository;
 	
-	@Override
-	public List<PreguntasModel> listarPreguntasByEvaluacionAlumno(int idExam){
-		List<Preguntas> listPreguntas = queryEvaluacion.findAllPreguntasById(idExam);
-		List<PreguntasModel> preguntasModel = new ArrayList<PreguntasModel>();
-		
-		for(Preguntas preg : listPreguntas) {
-			preguntasModel.add(preguntasConverter.converterPreguntasToPreguntasModel(preg));
-		}
-		return preguntasModel;
-	}
-
+	@Autowired
+	@Qualifier("asignaExamenRepository")
+	private AsignaExamenRepository asignaExamenRepository;
 	
+	@Autowired
+	@Qualifier("respuestasALMRepository")
+	private respuestaALMRepository respuestaALMRepository;;
+
+	/*
+	 * Agrega las preguntas que no estan contestadas */
 	@Override
-	public List<RespuestasModel> listarRespuestas() {
-		List<Respuestas> respuestas = respuestasRepository.findAll();
-		List<RespuestasModel> respModel = new ArrayList<RespuestasModel>();
-		for (Respuestas resp : respuestas) {
-			respModel.add(respuestasConverter.converterRespuestasToRespuestasModel(resp));
+	public List<PreguntasModel> listarPreguntasByEvaluacion(int idEvaluacion, int idAsignaExamen) {
+		Evaluaciones eval = evaluacionesRepository.findByIdEvaluacion(idEvaluacion);
+		List<Preguntas> preguntas = preguntasRepository.findByEvaluaciones(eval);
+		AsignaExamenEntity asignaExamen = asignaExamenRepository.findByIdasignaExamen(idAsignaExamen);
+		Iterator<RespuestaALMEntity> iterAsignaExam = asignaExamen.getRespuestasAML().iterator();  //iterator de respuestaALM
+		List<PreguntasModel> preguntasNoModel = new ArrayList<>();
+		List<PreguntasModel> preguntasSiModel = new ArrayList<>();
+		List<PreguntasModel> totalPreguntas = new ArrayList<>();
+		List<RespuestaALMEntity> respuestasALMEntity = new ArrayList<>();
+		while(iterAsignaExam.hasNext()) {
+			respuestasALMEntity.add(iterAsignaExam.next());
 		}
-		return respModel;
+		LOG.info("TAMAÑO de RESPUESTAS ALM: "+asignaExamen.getRespuestasAML().size());
+		for (Preguntas pregunta : preguntas ) {
+			PreguntasModel preguntaModel =preguntasConverter.converterPreguntasToPreguntasModelAndRespuestas(pregunta);
+			totalPreguntas.add(preguntaModel);
+			for(RespuestaALMEntity resp : respuestasALMEntity) {
+				if(pregunta.getRespuestas().contains(resp.getRespuestas()))
+					preguntasNoModel.add(preguntaModel);			
+			}
+		}
+		for(PreguntasModel pregunta : totalPreguntas) {
+			if(!preguntasNoModel.contains(pregunta)) {
+				preguntasSiModel.add(pregunta);
+				LOG.info("PREGUNTA AGREGADA: "+pregunta.toString());
+			}
+		}
+		LOG.info("PREGUNTAS AGREGADAS: "+preguntasSiModel.size());
+		LOG.info("PREGUNTAS No AGREGADAS: "+preguntasNoModel.size());
+		LOG.info("PREGUNTAS tatales AGREGADAS: "+totalPreguntas.size());
+		//preguntasModel.iterator().next();
+		return preguntasSiModel;
 	}
-
-
-	@Override
-	public List<EvaluacionesModel> listAllEvaluaciones(int idCurso) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public List<RespuestasModel> listarRespuestas(int idExamen) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	
 	
 	@Override
 	public String tiempoExamen(int idEvaluacion) {
@@ -125,36 +129,24 @@ public class EvaluacionAlumnoImpl  implements EvaluacionAlumnoService{
 	}
 
 
+
+
 	/* (non-Javadoc)
-	 * @see com.sigecu.service.EvaluacionAlumnoService#validaRealizarExamen(int, int)
-	 * valida si el examen esta activo para el alumno
+	 * @see com.sigecu.service.EvaluacionAlumnoService#guardarRespuestas(int, int)
 	 */
-//	@Override
-//	public boolean validaRealizarExamen(int idEvaluacion, int idAlumno, int idEvento) throws BusinessException{
-//		try {
-//			Alumno_Has_Eventos aHE = queryAlumnoHasEvento.findAlumnoHasEvento(idAlumno, idEvento);
-//			LOG.info("ID ALUMNO: " + aHE.getAlumno().getIdAlumno()+ " ID EVENTO: "+aHE.getEvntos().getIdEvento()+
-//					" ASIGNA EXAMEN: "+aHE.getAsignaExamen().getIdasignaExamen());
-//			LOG.info("ACTIVO: "+aHE.getAsignaExamen().getAsignado());
-//			if(aHE.getAsignaExamen().getAsignado().equals("1") && aHE.getAsignaExamen().getRealizado().equals("0")) {
-//				return true;
-//			}
-//			else {
-//				return false;
-//			}
-//		}catch(BusinessException e) {
-//			LOG.error("NO SE EJECUTO EL METODO");
-//			throw e;
-//			
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//			BusinessException be = new BusinessException();
-//			be.printStackTrace();
-//			be.setIdException(001);
-//			be.setMsj("ERROR EN SERVICE");
-//			throw be;
-//		}
-//	}
+	@Override
+	public void guardarRespuestas(int idRespuesta, int idAsignaExamen) {
+		RespuestaALMEntity respuestaALMEntity = new RespuestaALMEntity();
+		//respuestaALMEntity.setRespuestas();
+		Respuestas respuesta = respuestasRepository.findByIdRespuesta(idRespuesta);
+		AsignaExamenEntity asignaExamen = asignaExamenRepository.findByIdasignaExamen(idAsignaExamen);
+		respuestaALMEntity.setSeleccionada("1");
+		respuestaALMEntity.setRespuestas(respuesta);
+		respuestaALMEntity.setAsignaExamen(asignaExamen);
+		respuestaALMRepository.save(respuestaALMEntity);
+		LOG.info("RESPUESTA REGISTRADA: "+respuestaALMEntity.toString());
+		
+	}
 	
 	
 }
