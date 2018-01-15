@@ -57,25 +57,37 @@ public class ExamenErradoController {
 	public ModelAndView ExamenErrado1(@RequestParam(name="idEvento", required=true)int idEvento,
 			@RequestParam(name="idEvaluacion", required=true)int idEvaluacion, 
 			Model model) {
-
-
-		//int idEvaluacion=3;
+		
+		boolean validaReactivado= false; 
 		user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		alumnoModel =defineUsuario.buscarUsuarioAlumno(user.getUsername());
-
-		PreguntasModel preModel = new PreguntasModel();
-		RespuestasModel respuestasModel = new RespuestasModel();
-		ModelAndView mav = new ModelAndView(ViewConstant.NUEVO_EXAMENERRADO);
-		mav.addObject("listaPreguntas", examenErradoService.listarPreguntasByExamErrado(idEvaluacion)); //id examen, preguntas erradas
-		mav.addObject("listaRespuestas", examenErradoService.listarRespuestas());
-		mav.addObject("user", alumnoModel );
-		// agregar respuestas
-		model.addAttribute("respuestasModel", respuestasModel);
-		model.addAttribute("preModel", preModel);
-		model.addAttribute("idEvaluacion", idEvaluacion);
-		model.addAttribute("eTiempo",EvaluacionAlumnoService.tiempoExamen(1));
-
-
+		ModelAndView mav = new ModelAndView();
+		try {
+			validaReactivado = validaRealizarExamenAlumno.validaSegundaOportunidadExamen(idEvaluacion, alumnoModel.getId_alumno(), idEvento);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			LOG.info("ID: "+e.getIdException()+" MENSAJE: "+e.getMsj());
+			e.printStackTrace();
+		} 
+		
+		if(validaReactivado) {
+			mav.setViewName(ViewConstant.NUEVO_EXAMENERRADO);
+			PreguntasModel preModel = new PreguntasModel();
+			RespuestasModel respuestasModel = new RespuestasModel();
+			
+			mav.addObject("listaPreguntas", examenErradoService.listarPreguntasByExamErrado(idEvaluacion)); //id examen, preguntas erradas
+			mav.addObject("listaRespuestas", examenErradoService.listarRespuestas());
+			mav.addObject("user", alumnoModel );
+			// agregar respuestas
+			model.addAttribute("respuestasModel", respuestasModel);
+			model.addAttribute("preModel", preModel);
+			model.addAttribute("idEvaluacion", idEvaluacion);
+			model.addAttribute("eTiempo",EvaluacionAlumnoService.tiempoExamen(idEvaluacion));
+		}else {
+			mav.setViewName(ViewConstant.EXAMEN_NO_ACTIVO);
+			mav.addObject("idEvento", idEvento);
+			return mav;
+		}
 		return mav;
 	}
 

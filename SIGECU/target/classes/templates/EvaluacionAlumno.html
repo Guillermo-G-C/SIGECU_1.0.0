@@ -37,7 +37,7 @@
 </head>
 
 <body class="theme-red" onload="carga()">
-	<section th:include="fragment/menualumno"></section> 
+	<section th:include="fragment/menualumno"></section>
 
 	<section class="content">
 		<div class="container-fluid">
@@ -56,8 +56,6 @@
 										class="material-icons">more_vert</i>
 								</a></li>
 							</ul>
-							<input type="hidden" id="horaInicio" th:value="${eHoraInicio}" class="invisible"/>
-							<input type="hidden" id="horaFin" th:value="${eHoraFin}" class="invisible"/>
 							<input type="hidden" id="tiempo" name="2" th:value="${eTiempo}" class="insivible"/>
                         	
                        
@@ -154,5 +152,4 @@
 	<!-- Demo Js -->
 	<script th:src="@{/js/demo.js}"></script>
 </body>
-
 </html>

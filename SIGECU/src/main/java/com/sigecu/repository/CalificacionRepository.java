@@ -27,10 +27,9 @@ public interface CalificacionRepository extends JpaRepository <RespuestaALMEntit
 	 @Query(value="select count(idrespuestaalm) - (SELECT count(rm.idrespuestaalm) FROM respuestaalm rm, respuestas r WHERE rm.seleccionada = r.r_solucion and rm.idrespuestaalm =r.id_respuesta) from respuestaalm", nativeQuery=true)
 	 String erroneas();
 	 
-	 //String consulta="select (select sum(p_puntaje) from preguntas where id_pregunta in (SELECT r.preguntas_id_pregunta FROM respuestaalm rm, respuestas r WHERE rm.seleccionada = r.r_solucion and rm.idrespuestaalm =r.id_respuesta)) / sum(p_puntaje) *100 from preguntas";
-	 String consulta="select (select sum(p_puntaje) from preguntas where id_pregunta in (SELECT r.preguntas_id_pregunta FROM respuestaalm rm, respuestas r WHERE rm.seleccionada = r.r_solucion and rm.idrespuestaalm =r.id_respuesta)) / sum(p_puntaje) *100 from preguntas where evaluaciones_id_evaluacion = ?1";
+	 String consulta="select (select sum(p_puntaje) from preguntas where id_pregunta in (SELECT r.preguntas_id_pregunta FROM respuestaalm rm, respuestas r WHERE rm.seleccionada = r.r_solucion and rm.idrespuestaalm =r.id_respuesta)) / sum(p_puntaje) *100 from preguntas";
 	 @Query(value=consulta, nativeQuery=true)
-	 String calificacion(int idEvaluacion);
+	 String calificacion();
 	
 	
 }

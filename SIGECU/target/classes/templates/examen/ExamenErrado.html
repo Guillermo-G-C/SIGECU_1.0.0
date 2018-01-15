@@ -76,7 +76,7 @@ input.invisible {
 
 						<div class="body">
 							<div id="wizard_vertical">
-								<h2 th:each="preg : ${listaPreguntas}" > </h2>
+								<h2></h2>
 								<section th:each="pregunta : ${listaPreguntas}">
 									<div class="row clearfix">
 										<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
@@ -92,7 +92,7 @@ input.invisible {
 												</div>
 
 
-												<div class="content" align="left">
+												<div class="content">
 													<div class="text">Puntaje</div>
 													<div class="number" th:text="${pregunta.puntaje}"></div>
 												</div>
@@ -108,7 +108,7 @@ input.invisible {
 											th:for="${resp.rRespuesta}" th:text="${resp.rRespuesta}"></label>
 									</div>
 								</section>
-								
+								<h2></h2>
 
 							</div>
 						</div>

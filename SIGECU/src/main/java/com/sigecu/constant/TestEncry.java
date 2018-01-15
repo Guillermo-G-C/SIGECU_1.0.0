@@ -16,7 +16,7 @@ public class TestEncry {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
-		System.out.println(pe.encode("root"));
+		System.out.println(pe.encode("user"));
 
 	}
 

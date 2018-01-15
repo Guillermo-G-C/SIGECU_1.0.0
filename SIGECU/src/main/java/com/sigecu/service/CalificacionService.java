@@ -9,6 +9,6 @@ public interface CalificacionService {
 	
 	public abstract String erroresPregunta();
 	
-	public abstract String calificacionFnl(int idEvaluacion);
+	public abstract String calificacionFnl();
 	
 }

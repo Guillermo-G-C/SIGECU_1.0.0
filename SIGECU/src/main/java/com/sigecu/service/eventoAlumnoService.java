@@ -1,4 +1,3 @@
-
 package com.sigecu.service;
 
 import com.sigecu.model.AlumnoModel;
@@ -13,4 +12,3 @@ public interface eventoAlumnoService {
 	public abstract List<EvaluacionesModel> listAllExamen(int idAlumno, int idEvento);
 
 }
-

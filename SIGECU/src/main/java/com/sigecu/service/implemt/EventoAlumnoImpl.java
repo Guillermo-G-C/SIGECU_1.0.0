@@ -1,4 +1,3 @@
-
 package com.sigecu.service.implemt;
 
 
@@ -96,4 +95,3 @@ public class EventoAlumnoImpl implements eventoAlumnoService{
 
     
 }
-

@@ -8,7 +8,7 @@ spring:
 
 
 
-    password: root
+    password: martinez
 
 
   jpa:
