@@ -18,6 +18,7 @@ import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Preguntas;
 import com.sigecu.entity.QCursos;
 import com.sigecu.entity.QEvaluaciones;
+import com.sigecu.entity.QEventos;
 import com.sigecu.entity.QPreguntas;
 import com.sigecu.entity.QRespuestas;
 import com.sigecu.entity.Respuestas;
@@ -35,6 +36,7 @@ public class QueryEvaluacion {
 	QCursos qCursos = QCursos.cursos;
 	QPreguntas qPreguntas = QPreguntas.preguntas;
 	QRespuestas qRespuestas = QRespuestas.respuestas;
+	QEventos qEventos=QEventos.eventos;
 	//persistencia de la app
 	@PersistenceContext
 	private EntityManager em;
@@ -78,4 +80,14 @@ public class QueryEvaluacion {
 		return listRespuestas;
 		
 	}
+	
+//	//Busca evaluaciones relaccionadas por el idEvento
+//	public List<Evaluaciones> finAllEvalucionesById(int idEvento){
+//		JPAQuery<Evaluaciones> query=new JPAQuery<> (em);
+//		List<Evaluaciones> listaEvaluaciones=query.select(qEval)
+//				.from(qEval, qCursos, qEventos)
+//				.where(qEval.cursos.idCurso.eq(qCursos.p))
+//		return listaEvaluaciones;
+//		
+//	}
 }

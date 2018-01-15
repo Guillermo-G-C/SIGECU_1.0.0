@@ -69,5 +69,13 @@ public class InstructorController {
 		
 	}
 	
+	@GetMapping("/examenEvento")
+	public ModelAndView mostrarExamenesPorEvento(@RequestParam(name="idEvento", required=true)int idEvento) {
+		ModelAndView mav=new ModelAndView(ViewConstant.LISTA_EXAMEN_INSTRUCTOR);
+		LOG.info("Mostrar examenes por evento");
+		mav.addObject("user", instructorModel);
+		mav.addObject("listaExamen", instructorService.)
+	}
+	
 
 }

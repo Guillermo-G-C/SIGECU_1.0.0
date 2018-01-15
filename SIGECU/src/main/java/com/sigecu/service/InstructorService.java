@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.sigecu.model.AlumnoModel;
 import com.sigecu.model.EventosModel;
+import com.sigecu.model.EvaluacionesModel;
 
 /**
  * @author Rolando Castillo
@@ -17,4 +18,5 @@ import com.sigecu.model.EventosModel;
 public interface InstructorService {
 	public abstract List<EventosModel> eventosPorInstructor(int idInstructor);
 	public abstract List<AlumnoModel> alumnosPorEvento(int idEvento);
+	public abstract List<EvaluacionesModel> evaluacionesPorCurso(int idCurso);
 }

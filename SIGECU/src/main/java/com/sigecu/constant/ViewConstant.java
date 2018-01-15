@@ -18,6 +18,7 @@ public class ViewConstant {
 	public static final String INSTRUCTOR = "redirect:/instructor/eventos"; // vista para instructor inicio
 	public static final String EVENTOS_INSTRUCTOR = "eventosInstructor";
 	public static final String ALUMNOS_EVENTOS_INSTRUCTOR = "listaAlumnosPorEventoInstructor";
+	public static final String LISTA_EXAMEN_INSTRUCTOR="listadoExamen";
 	public static final String SEGUIMIENTO_ALUMNO = "segimientoAlumno";
 	
 	

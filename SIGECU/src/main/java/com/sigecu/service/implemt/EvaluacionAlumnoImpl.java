@@ -3,6 +3,7 @@ package com.sigecu.service.implemt;
 import org.apache.commons.logging.LogFactory;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -14,14 +15,19 @@ import com.sigecu.converter.EvaluacionAlumnoConverter;
 import com.sigecu.converter.EvaluacionConverter;
 import com.sigecu.converter.PreguntasConverter;
 import com.sigecu.converter.RespuestasConverter;
+import com.sigecu.entity.Cursos;
 import com.sigecu.entity.Evaluaciones;
+import com.sigecu.entity.Eventos;
 import com.sigecu.entity.Preguntas;
 import com.sigecu.entity.Respuestas;
+import com.sigecu.model.CursoModel;
 import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.PreguntasModel;
 import com.sigecu.model.RespuestasModel;
+import com.sigecu.repository.CursosRepository;
 import com.sigecu.repository.EvaluacionAlumnoRepository;
 import com.sigecu.repository.EvaluacionRepository;
+import com.sigecu.repository.EventosRepository;
 import com.sigecu.repository.PreguntasRepository;
 import com.sigecu.repository.QueryEvaluacion;
 import com.sigecu.repository.RespuestasRepository;
@@ -42,7 +48,10 @@ public class EvaluacionAlumnoImpl  implements EvaluacionAlumnoService{
 	@Autowired
 	@Qualifier("evalaucionesConverter")
 	private EvaluacionConverter evaluacionConverter;
-		
+	
+	@Autowired
+	@Qualifier("cursoRepository")
+	private CursosRepository cursoRepository;
 	
 	@Autowired
 	@Qualifier("preguntasConverter")
@@ -63,7 +72,16 @@ public class EvaluacionAlumnoImpl  implements EvaluacionAlumnoService{
 	@Autowired
 	@Qualifier("respuestasConverter")
 	private RespuestasConverter respuestasConverter;
-
+	
+	@Autowired
+	@Qualifier("evalaucionesConverter")
+	private EvaluacionConverter evalaucionesConverter;
+	
+	@Autowired
+	@Qualifier("eventosRepository")
+	private EventosRepository eventoRepository;
+	
+	
 	
 	@Override
 	public List<PreguntasModel> listarPreguntasByEvaluacionAlumno(int idExam){
@@ -90,7 +108,6 @@ public class EvaluacionAlumnoImpl  implements EvaluacionAlumnoService{
 
 	@Override
 	public List<EvaluacionesModel> listAllEvaluaciones(int idCurso) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -116,6 +133,14 @@ public class EvaluacionAlumnoImpl  implements EvaluacionAlumnoService{
 	    EvaluacionesModel evaluacionmodel = evaluacionConverter.convertEvaluacion2EvaluacionModel(eval);
 		return evaluacionmodel.getePorcentaje();
 	}
+
+
+//	@Override
+//	public List<EvaluacionesModel> EvaluacionPorEvento(int idEvento) {
+//		List<Evaluaciones> 
+//		
+//		return null;
+//	}
 	
 	
 }

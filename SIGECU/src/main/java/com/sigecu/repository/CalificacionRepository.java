@@ -30,6 +30,8 @@ public interface CalificacionRepository extends JpaRepository <RespuestaALMEntit
 	 String consulta="select (select sum(p_puntaje) from preguntas where id_pregunta in (SELECT r.preguntas_id_pregunta FROM respuestaalm rm, respuestas r WHERE rm.seleccionada = r.r_solucion and rm.idrespuestaalm =r.id_respuesta)) / sum(p_puntaje) *100 from preguntas";
 	 @Query(value=consulta, nativeQuery=true)
 	 String calificacion();
+	 
+	 
 	
 	
 }

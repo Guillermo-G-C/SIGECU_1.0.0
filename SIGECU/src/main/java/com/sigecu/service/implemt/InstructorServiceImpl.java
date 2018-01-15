@@ -16,13 +16,20 @@ import org.springframework.stereotype.Service;
 
 import com.sigecu.controller.InstructorController;
 import com.sigecu.converter.AlumnosConverter;
+import com.sigecu.converter.EvaluacionConverter;
 import com.sigecu.converter.EventosConverter;
 import com.sigecu.entity.Alumno;
 import com.sigecu.entity.Alumno_Has_Eventos;
+import com.sigecu.entity.Cursos;
+import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Eventos;
 import com.sigecu.entity.Instructor;
 import com.sigecu.model.AlumnoModel;
+import com.sigecu.model.CursoModel;
+import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.EventosModel;
+import com.sigecu.repository.CursosRepository;
+import com.sigecu.repository.EvaluacionRepository;
 import com.sigecu.repository.EventosRepository;
 import com.sigecu.repository.InstructorRepository;
 import com.sigecu.service.InstructorService;
@@ -41,12 +48,22 @@ public class InstructorServiceImpl implements InstructorService {
 	private EventosRepository eventoRepository;
 	
 	@Autowired
+	@Qualifier("cursoRepository")
+	private CursosRepository cursoRepository;
+	
+	@Autowired
+	@Qualifier("evaluacionesRepository")
+	private EvaluacionRepository evaluacionesRepository;
+	
+	@Autowired
 	@Qualifier("instructorRepository")
 	private InstructorRepository instructorRepository;
 	
 	@Autowired
 	@Qualifier("eventosConverter")
 	private EventosConverter eventosConverter;
+	
+
 	
 	@Autowired
 	@Qualifier("alumnosConverter")
@@ -85,5 +102,22 @@ public class InstructorServiceImpl implements InstructorService {
 		}
 		return alumnosModel;
 	}
+
+	@Override
+	public List<EvaluacionesModel> evaluacionesPorCurso(int idCurso) {
+		List<Evaluaciones> evaluaciones=evaluacionesRepository.findAll();		
+		List<Cursos> curso=cursoRepository.findAll();
+		List<CursoModel> cursoModel = new ArrayList<CursoModel>();
+		Cursos Object cursoRepository;
+		curso =cursoRepository.findByIdCurso(1);
+		Iterator<Evaluaciones> iter = curso.getEvaluaciones().iterator();
+		while(iter.hasNext()) {
+			evaluacionConverter.convertEvaluacion2EvaluacionModel(iter.next());
+		  }
+		
+		return cursoModel;
+	}
+
+	
 
 }
