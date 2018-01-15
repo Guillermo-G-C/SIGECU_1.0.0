@@ -1,8 +1,9 @@
+
+
 package com.sigecu.service;
 
 import java.util.List;
 
-import com.sigecu.exception.BusinessException;
 import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.PreguntasModel;
 import com.sigecu.model.RespuestasModel;
@@ -22,5 +23,12 @@ public interface EvaluacionAlumnoService {
 	
 	public abstract List<RespuestasModel> listarRespuestas();
 	
+	public abstract int validaRealizarExamen(int idEvaluacion, int idAlumno, int idEvento);
+	
+	public abstract String horaInicio(int idEvaluacion);
+	
+	public abstract String horaFin(int idEvaluacion);
 
 }
+
+

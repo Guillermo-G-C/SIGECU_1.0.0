@@ -19,7 +19,6 @@ import com.sigecu.entity.Alumno_Has_Eventos;
 import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Preguntas;
 import com.sigecu.entity.Respuestas;
-import com.sigecu.exception.BusinessException;
 import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.PreguntasModel;
 import com.sigecu.model.RespuestasModel;
@@ -27,7 +26,6 @@ import com.sigecu.repository.AlumnoRepository;
 import com.sigecu.repository.EvaluacionAlumnoRepository;
 import com.sigecu.repository.EvaluacionRepository;
 import com.sigecu.repository.PreguntasRepository;
-import com.sigecu.repository.QueryAlumnoHasEvento;
 import com.sigecu.repository.QueryEvaluacion;
 import com.sigecu.repository.RespuestasRepository;
 import com.sigecu.service.EvaluacionAlumnoService;
@@ -71,6 +69,7 @@ public class EvaluacionAlumnoImpl  implements EvaluacionAlumnoService{
 	@Autowired
 	@Qualifier ("alumnoRepository")
 	private AlumnoRepository alumnoRepository;
+	
 	
 	@Override
 	public List<PreguntasModel> listarPreguntasByEvaluacionAlumno(int idExam){
@@ -127,34 +126,33 @@ public class EvaluacionAlumnoImpl  implements EvaluacionAlumnoService{
 
 	/* (non-Javadoc)
 	 * @see com.sigecu.service.EvaluacionAlumnoService#validaRealizarExamen(int, int)
-	 * valida si el examen esta activo para el alumno
 	 */
-//	@Override
-//	public boolean validaRealizarExamen(int idEvaluacion, int idAlumno, int idEvento) throws BusinessException{
-//		try {
-//			Alumno_Has_Eventos aHE = queryAlumnoHasEvento.findAlumnoHasEvento(idAlumno, idEvento);
-//			LOG.info("ID ALUMNO: " + aHE.getAlumno().getIdAlumno()+ " ID EVENTO: "+aHE.getEvntos().getIdEvento()+
-//					" ASIGNA EXAMEN: "+aHE.getAsignaExamen().getIdasignaExamen());
-//			LOG.info("ACTIVO: "+aHE.getAsignaExamen().getAsignado());
-//			if(aHE.getAsignaExamen().getAsignado().equals("1") && aHE.getAsignaExamen().getRealizado().equals("0")) {
-//				return true;
-//			}
-//			else {
-//				return false;
-//			}
-//		}catch(BusinessException e) {
-//			LOG.error("NO SE EJECUTO EL METODO");
-//			throw e;
-//			
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//			BusinessException be = new BusinessException();
-//			be.printStackTrace();
-//			be.setIdException(001);
-//			be.setMsj("ERROR EN SERVICE");
-//			throw be;
-//		}
-//	}
+	@Override
+	public int validaRealizarExamen(int idEvaluacion, int idAlumno, int idEvento) {
+			Alumno alumno = alumnoRepository.findByIdAlumno(idAlumno);
+			
+			
+			//Alumno_Has_Eventos alumnoHasEvento =  
+			//alumnoEventoIdRepository.buildByAlumnoEvento(alumno);
+		return 0;
+	}
+
+
+	@Override
+	public String horaInicio(int idEvaluacion) {
+		// TODO Auto-generated method stub
+		
+		return evaluacionesRepository.horaInicio();
+	}
+
+
+	@Override
+	public String horaFin(int idEvaluacion) {
+		// TODO Auto-generated method stub
+		return evaluacionesRepository.horaFin();
+	}
 	
 	
 }
+
+

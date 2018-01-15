@@ -1,3 +1,5 @@
+
+
 package com.sigecu.controller;
 
 import com.sigecu.model.AlumnoModel;
@@ -58,8 +60,6 @@ public class EventoAlumnoController {
 	}
 	@GetMapping("/listarExamenAlumno")
 	public ModelAndView mostrarExamenAlumno(@RequestParam(name="idEvento", required=false)int idEvento, Model model) {
-		user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		alumnoModel =defineUsuario.buscarUsuarioAlumno(user.getUsername());
 		ModelAndView mav = new ModelAndView(ViewConstant.EXAMENES_ALUMNO);
 		mav.addObject("listExamen", eventoAlumnoService.listAllExamen(alumnoModel.getId_alumno(), idEvento));
 		mav.addObject("user", alumnoModel);
@@ -67,3 +67,5 @@ public class EventoAlumnoController {
 		return mav;
 	}
 }
+
+

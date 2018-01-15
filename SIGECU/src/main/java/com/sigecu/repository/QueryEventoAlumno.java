@@ -1,3 +1,4 @@
+
 package com.sigecu.repository;
 
 import org.apache.commons.logging.LogFactory;
@@ -63,3 +64,4 @@ public class QueryEventoAlumno {
 	
 
 }
+
