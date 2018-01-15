@@ -85,9 +85,11 @@ public class ExamenErradoServiceImplement implements ExamenErradoService {
 		for (Preguntas pregunta : preguntas) {
 			PreguntasModel preguntaModel = preguntasConverter.converterPreguntasToPreguntasModelAndRespuestas(pregunta);
 			totalPreguntas.add(preguntaModel);
-			for (RespuestaALMEntity resp : respuestasALMEntity) {
-				if (pregunta.getRespuestas().contains(resp.getRespuestas()))
+			for (Respuestas resp : pregunta.getRespuestas()) {
+				//Iterator <RespuestasALMEntity> 
+				if(respuestasALMEntity.contains(resp) && !(resp.getrSolucion().equals("1"))) {
 					preguntasNoModel.add(preguntaModel);
+				}	
 			}
 		}
 		for (PreguntasModel pregunta : totalPreguntas) {
