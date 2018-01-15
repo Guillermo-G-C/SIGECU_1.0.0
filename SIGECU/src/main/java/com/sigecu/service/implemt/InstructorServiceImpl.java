@@ -63,6 +63,12 @@ public class InstructorServiceImpl implements InstructorService {
 	@Qualifier("eventosConverter")
 	private EventosConverter eventosConverter;
 	
+	@Autowired
+	@Qualifier("evalaucionesConverter")
+	private EvaluacionConverter evalaucionesConverter;
+	
+	
+	
 
 	
 	@Autowired
@@ -109,10 +115,10 @@ public class InstructorServiceImpl implements InstructorService {
 		List<Cursos> curso=cursoRepository.findAll();
 		List<CursoModel> cursoModel = new ArrayList<CursoModel>();
 		Cursos Object cursoRepository;
-		curso =cursoRepository.findByIdCurso(1);
+		curso= cursoRepository.findByIdCurso(1);
 		Iterator<Evaluaciones> iter = curso.getEvaluaciones().iterator();
 		while(iter.hasNext()) {
-			evaluacionConverter.convertEvaluacion2EvaluacionModel(iter.next());
+			evalaucionesConverter.convertEvaluacion2EvaluacionModel(iter.next());
 		  }
 		
 		return cursoModel;

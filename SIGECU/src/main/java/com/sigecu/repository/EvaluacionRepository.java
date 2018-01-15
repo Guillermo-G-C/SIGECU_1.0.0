@@ -31,10 +31,10 @@ public interface EvaluacionRepository extends JpaRepository <Evaluaciones, Seria
 	public abstract  List<Evaluaciones> findT();
 	
 	
-	
-	public abstract Evaluaciones findEvaluacionIdEvento(int idEvento);
-	@Query(value="Select e.id_evaluacion frem evaluaciones as e, cursos as c, eventos as ev WHERE c.id_curso=e.cursos_id_curso AND ev.c_idcursos=c.id_curso", nativeQuery=true)
-	
-	public abstract List<Evaluaciones> find();
-	
+//	Listar las evaluaciones por evaluacione por el id del evento
+//	public abstract Evaluaciones findEvaluacionIdEvento(int idEvento);
+//	@Query(value="Select e.id_evaluacion from evaluaciones as e, cursos as c, eventos as ev WHERE c.id_curso=e.cursos_id_curso AND ev.c_idcursos=c.id_curso", nativeQuery=true)
+//	
+//	public abstract List<Evaluaciones> find();
+//	
 }

@@ -74,7 +74,10 @@ public class InstructorController {
 		ModelAndView mav=new ModelAndView(ViewConstant.LISTA_EXAMEN_INSTRUCTOR);
 		LOG.info("Mostrar examenes por evento");
 		mav.addObject("user", instructorModel);
-		mav.addObject("listaExamen", instructorService.)
+		mav.addObject("listaExamen", instructorService.alumnosPorEvento(idEvento));
+		//mav.addObject("user", instructorModel);
+		mav.addObject("idEvento",idEvento);
+		return mav;
 	}
 	
 
