@@ -33,7 +33,6 @@ public class Alumno_Has_Eventos {
 	private String confirmado;
 	private int activo;
 	private AsignaExamenEntity asignaExamen; 
-
 	
 	public Alumno_Has_Eventos() {}
 	

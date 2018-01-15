@@ -4,6 +4,8 @@ import java.util.Iterator;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -27,7 +29,7 @@ public class LoginController {
 		return ViewConstant.LOGIN;
 	}
 
-	@GetMapping({"/loginsuccess","/"})
+	@GetMapping("/loginsuccess")
 	public String loginCheck() {
 		LOG.info("METHOD: logincheck()");
 		LOG.info("Regresando a la vista de alumnos");

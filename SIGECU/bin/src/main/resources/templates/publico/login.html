@@ -7,14 +7,22 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet" type="text/css" />
 
+<!-- Bootstrap Core Css -->
+<link th:href="@{/plugins/bootstrap/css/bootstrap.css}" rel="stylesheet" />
+
+<!-- Waves Effect Css -->
+<link th:href="@{/plugins/node-waves/waves.css}" rel="stylesheet" />
+
+<!-- Animation Css -->
+<link th:href="@{/plugins/animate-css/animate.css}" rel="stylesheet" />
+
 
 <!-- Custom Css -->
-<link rel="stylesheet" th:href="@{/css/style.css}" />
+<link th:href="@{/css/style.css}" rel="stylesheet" />
 
-<!-- Custom Js -->
-<script type="text/javascript" th:src="@{/js/admin.js}"></script>
+<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+<link th:href="@{/css/themes/all-themes.css}" rel="stylesheet" />
 
-<script type="text/javascript" th:src="@{/js/sign-in.js}"></script>
 </head>
 <body class="login-page">
 	<div class="login-box">
@@ -63,7 +71,18 @@
 		</div>
 	</div>
 	
+	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<!-- Bootstrap Core Js -->
+<script  th:src="@{/plugins/bootstrap/js/bootstrap.js}"></script>
 
+<!-- Waves Effect Plugin Js -->
+<script th:src="@{/plugins/node-waves/waves.js}"></script>
+
+<script th:src="@{/plugins/jquery-validation/jquery.validate.js}"></script>
+<!-- Custom Js -->
+<script th:src="@{/js/admin.js}"></script>
+
+<script th:src="@{/js/pages/examples/sign-in.js}"></script>
 </body>
 
 </html>
