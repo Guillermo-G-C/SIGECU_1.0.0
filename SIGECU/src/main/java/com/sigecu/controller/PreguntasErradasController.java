@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sigecu.constant.ViewConstant;
+import com.sigecu.exception.BusinessException;
 import com.sigecu.model.AlumnoModel;
 import com.sigecu.service.DefineUsuarioService;
 import com.sigecu.service.PreguntasErradasConService;
+import com.sigecu.service.ValidarExamenAlumnoService;
 
 /**
  * @author JorgeLuna
@@ -41,7 +43,9 @@ public class PreguntasErradasController {
 	@Autowired
 	@Qualifier("preErradasServiceImpl")
 	private PreguntasErradasConService preguntasErradasConService;
-	
+	@Autowired
+	@Qualifier("validarRealizarExamen")
+	private ValidarExamenAlumnoService validaRealizarExamenAlumno;
 	
 //	@GetMapping("/cursos")
 //	public ModelAndView Cursos() {
@@ -62,16 +66,34 @@ public class PreguntasErradasController {
 //	}
 
 	@GetMapping("/evaluacion")
-	public ModelAndView preguntasErradas(@RequestParam(name = "idEvaluacion",required = false)
-	int idEvaluacion) {
-		ModelAndView mav = new ModelAndView(ViewConstant.PREGUNTAS_ERRADAS);
+	public ModelAndView preguntasErradas(@RequestParam(name="idEvento", required=false)int idEvento,
+			@RequestParam(name = "idEvaluacion",required = false) int idEvaluacion) {
+		ModelAndView mav = new ModelAndView();
 		user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		alumnoModel =defineUsuario.buscarUsuarioAlumno(user.getUsername());
-		mav.addObject("listaPreguntas", preguntasErradasConService.listarPregunrasByExam(idEvaluacion));
-		mav.addObject("listaRespuestas", preguntasErradasConService.listarRespuestas());
-		mav.addObject("listaResAlm",preguntasErradasConService.listarRespuestasAlumno());
-		mav.addObject("user", alumnoModel );
-		return mav;
+		
+		boolean mostrarRetroalimentacion = false;
+		try {
+			mostrarRetroalimentacion = validaRealizarExamenAlumno.validaMostrarRetroalimentarcion(idEvaluacion, alumnoModel.getId_alumno(), idEvento);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			LOG.info("ID: "+e.getIdException()+" MENSAJE: "+e.getMsj());
+			e.printStackTrace();
+		}
+		if(mostrarRetroalimentacion) {
+			mav.setViewName(ViewConstant.PREGUNTAS_ERRADAS);
+			mav.addObject("listaPreguntas", preguntasErradasConService.listarPregunrasByExam(idEvaluacion));
+			mav.addObject("listaRespuestas", preguntasErradasConService.listarRespuestas());
+			mav.addObject("listaResAlm",preguntasErradasConService.listarRespuestasAlumno());
+			mav.addObject("user", alumnoModel );
+			return mav;
+		}else {
+			mav.setViewName(ViewConstant.NO_RETROALIMENTACION);
+			mav.addObject("idEvento", idEvento);
+			return mav;
+		}
+		
+		
 		
 	}
 
