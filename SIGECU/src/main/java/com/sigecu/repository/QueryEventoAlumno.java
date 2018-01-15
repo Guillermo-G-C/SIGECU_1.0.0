@@ -5,11 +5,13 @@ import org.springframework.stereotype.Repository;
 
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.sigecu.entity.AsignaExamenEntity;
 import com.sigecu.entity.Cursos;
 import com.sigecu.entity.Eventos;
 import com.sigecu.entity.QAlumno;
 import com.sigecu.entity.QAlumnoEventosId;
 import com.sigecu.entity.QAlumno_Has_Eventos;
+import com.sigecu.entity.QAsignaExamenEntity;
 import com.sigecu.entity.QCursos;
 import com.sigecu.entity.QEventos;
 
@@ -30,7 +32,7 @@ public class QueryEventoAlumno {
 	QAlumnoEventosId qAEId=QAlumnoEventosId.alumnoEventosId;	
 	QCursos qCursos=QCursos.cursos;
 	QEventos qEventos=QEventos.eventos;
-	
+	QAsignaExamenEntity qAsignaExamenEntity = QAsignaExamenEntity.asignaExamenEntity; 
 	
 	@PersistenceContext
 	private EntityManager em;
@@ -59,7 +61,16 @@ public class QueryEventoAlumno {
 	   
    }
   
-	
-	
+   public AsignaExamenEntity validarCertificado(int idEvento, int idAlumno){
+	   JPAQuery<AsignaExamenEntity> query = new JPAQuery<>(em);
+	   AsignaExamenEntity v = query.select(qAsignaExamenEntity)
+			   .from(qAsignaExamenEntity,qAhE)
+			   .where(qAhE.primaryKey.eventos.idEvento.eq(idEvento)
+					   .and(qAhE.primaryKey.alumno.idAlumno.eq(idAlumno))
+					   .and(qAhE.asignaExamen.idAsignaExamen.eq(qAsignaExamenEntity.idAsignaExamen)))
+			   .fetchOne();
+	   
+	   return v;
+   }
 
 }

@@ -102,6 +102,22 @@ public class AsignaExamenEntity {
 	public AsignaExamenEntity() {
 		
 	}
+	public AsignaExamenEntity(int idAsignaExamen, String asignado, String fechaInicio, String fechaFin,
+			String horaInicio, String horafin, String realizado, String status, Set<RespuestaALMEntity> respuestasAML,
+			Set<Alumno_Has_Eventos> alumnoHasEvento) {
+		super();
+		this.idAsignaExamen = idAsignaExamen;
+		this.asignado = asignado;
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+		this.horaInicio = horaInicio;
+		this.horafin = horafin;
+		this.realizado = realizado;
+		this.status = status;
+		this.respuestasAML = respuestasAML;
+		this.alumnoHasEvento = alumnoHasEvento;
+	}
+	
 
 }
 

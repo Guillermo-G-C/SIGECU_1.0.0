@@ -13,9 +13,11 @@ import org.springframework.stereotype.Service;
 
 import com.sigecu.converter.EvaluacionConverter;
 import com.sigecu.converter.EventosConverter;
+import com.sigecu.entity.Alumno_Has_Eventos;
 import com.sigecu.entity.Cursos;
 import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Eventos;
+import com.sigecu.model.AlumnoHasEventoModel;
 import com.sigecu.model.AlumnoModel;
 import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.EventosModel;
@@ -62,10 +64,9 @@ public class EventoAlumnoImpl implements eventoAlumnoService{
 		List<EventosModel> eventosModel=new ArrayList<EventosModel>();
 		
 		for(Eventos evento: eventos) {
-			//LOG.info("Dato que se obtiene ID:"+ evento.getAlumnosHasEventos().iterator().next().getAsignaExamen().getStatus());
 			eventosModel.add(eventosConverter.convertEventoToEentoModel(evento));
-			LOG.info("Datos Model : "+ eventosModel.get(0).getAlumnosHasEventos());
 		}
+		
 		LOG.info("Eventos" + idAlumno);
 		
 		//LOG.info("FECHA" + eventosModel.get(1).geteFechaInicio());
@@ -94,6 +95,22 @@ public class EventoAlumnoImpl implements eventoAlumnoService{
 		}
 		return listEvalModel;
 	}
-
-    
+	
+	@Override
+	public List<String[][]> validarCertificado(List<EventosModel> eventos, int idAlumno) {
+		List<String[][]> lista = new ArrayList<String[][]>();
+		String item [][] = new String [1][2];
+		
+		for(EventosModel evento : eventos) {
+			String status = queryEventoAlumno.validarCertificado(evento.getIdevento(), idAlumno).getStatus();
+			item[0][0]=Integer.toString(evento.getIdevento());
+			item[0][1]=status;
+			LOG.info("Evento: "+item[0][0]+" ,Estatus: "+item[0][1]);
+			lista.add(item);
+			
+			LOG.info("Lista: "+lista.get(0));
+		}
+		
+		return lista;
+	}
 }

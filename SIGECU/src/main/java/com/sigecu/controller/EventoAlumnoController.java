@@ -5,6 +5,9 @@ import com.sigecu.model.EventosModel;
 import com.sigecu.constant.ViewConstant;
 import com.sigecu.service.DefineUsuarioService;
 import com.sigecu.service.eventoAlumnoService;
+
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,9 +53,9 @@ public class EventoAlumnoController {
 		user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		alumnoModel =defineUsuario.buscarUsuarioAlumno(user.getUsername());
 		LOG.info(user.getAuthorities());
+		mav.addObject("listC", eventoAlumnoService.validarCertificado(eventoAlumnoService.listAllEventosAl(alumnoModel.getId_alumno()), alumnoModel.getId_alumno()));
 		mav.addObject("user", alumnoModel );
 		mav.addObject("listarEventos", eventoAlumnoService.listAllEventosAl(alumnoModel.getId_alumno()));
-		
 		return mav;
 		
 	}

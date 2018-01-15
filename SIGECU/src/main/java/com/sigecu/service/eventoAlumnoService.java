@@ -10,5 +10,6 @@ public interface eventoAlumnoService {
 	public abstract List<EventosModel> listAllEventosAl (int idAlumno);
 	public abstract List<AlumnoModel> listaAlumnos();
 	public abstract List<EvaluacionesModel> listAllExamen(int idAlumno, int idEvento);
+	public abstract List<String[][]> validarCertificado(List<EventosModel> eventos, int idAlumno);
 
 }

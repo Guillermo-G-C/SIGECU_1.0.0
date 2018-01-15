@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -173,7 +174,7 @@ public class Alumno {
 	public void setaStatus(String aStatus) {
 		this.aStatus = aStatus;
 	}
-	@OneToMany(mappedBy = "primaryKey.alumno", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "primaryKey.alumno", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	public Set<Alumno_Has_Eventos> getAlumnoHasEventos() {
 		return alumnoHasEventos;
 	}
@@ -197,7 +198,4 @@ public class Alumno {
 	public void setUser(Users user) {
 		this.user = user;
 	}
-	
-	
-	
 }

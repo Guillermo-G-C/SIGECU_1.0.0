@@ -102,7 +102,7 @@ public class Eventos {
 	/**
 	 * @return the alumnos_has_eventos
 	 */
-	@OneToMany(mappedBy = "primaryKey.eventos", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "primaryKey.eventos", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	public Set<Alumno_Has_Eventos> getAlumnosHasEventos() {
 		return alumnosHasEventos;
 	}
@@ -209,6 +209,25 @@ public class Eventos {
 	public void seteStatus(String eStatus) {
 		this.eStatus = eStatus;
 	}
+	public Eventos(int idEvento, String eDescripcion, Cursos cursosEvento, Instructor instructor, String eFechaInicio,
+			String eFechaTermino, String ePrograma, String eHorario, String eCapacidad, String eTipo, String eStatus,
+			Set<Alumno_Has_Eventos> alumnosHasEventos) {
+		super();
+		this.idEvento = idEvento;
+		this.eDescripcion = eDescripcion;
+		this.cursosEvento = cursosEvento;
+		this.instructor = instructor;
+		this.eFechaInicio = eFechaInicio;
+		this.eFechaTermino = eFechaTermino;
+		this.ePrograma = ePrograma;
+		this.eHorario = eHorario;
+		this.eCapacidad = eCapacidad;
+		this.eTipo = eTipo;
+		this.eStatus = eStatus;
+		this.alumnosHasEventos = alumnosHasEventos;
+	}
+	
+	
 	
 
 }
