@@ -3,7 +3,6 @@ package com.sigecu.service.implemt;
 import org.apache.commons.logging.LogFactory;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.logging.Log;

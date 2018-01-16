@@ -72,6 +72,7 @@ public class EvaluacionAlumnoController {
 			mav.addObject("user", alumnoModel);
 			try {
 				asignaExamen = validaRealizarExamenAlumno.asignarExamen(idAlumno, idEvento);
+				LOG.info("ASIGNA EXAMEN: "+asignaExamen.getIdasignaExamen());
 				mav.addObject("examenAsignado", asignaExamen);
 			} catch (BusinessException e) {
 				e.printStackTrace();
