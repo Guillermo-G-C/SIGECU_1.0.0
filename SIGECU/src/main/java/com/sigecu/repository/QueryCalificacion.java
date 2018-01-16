@@ -44,6 +44,7 @@ public class QueryCalificacion {
 	private EntityManager em;
 	JPAQueryFactory queryFactory = null;
 
+	//preguntas correctas para el alumno
 	public List<Preguntas> aciertos(int idEvaluacion, int idAsignaExamen){
 		JPAQuery<Preguntas> query = new JPAQuery<>(em);
 		List<Preguntas> listaPreguntas = query.select(qPreguntas)

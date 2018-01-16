@@ -30,4 +30,11 @@ public interface EvaluacionRepository extends JpaRepository <Evaluaciones, Seria
 	//@Query(value="SELECT p FROM evaluaciones p WHERE e_nombre='ok'")
 	public abstract  List<Evaluaciones> findT();
 	
+	
+	@Query(value="SELECT a.horafin FROM asigna_examen a, evaluaciones e where a.idasigna_examen = e.id_evaluacion",nativeQuery=true)
+	String horaFin();
+	
+	@Query(value="SELECT a.hora_inicio FROM asigna_examen a, evaluaciones e where a.idasigna_examen = e.id_evaluacion",nativeQuery=true)
+	String horaInicio();
+	
 }

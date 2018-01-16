@@ -13,4 +13,7 @@ public interface EvaluacionAlumnoService {
 	public abstract void marcarExamenRealizado(int idAsignaExamen);
 
 	public abstract String tiempoExamen(int idEvaluacion);
+	public abstract String horaInicio(int idEvaluacion);
+	
+	public abstract String horaFin(int idEvaluacion);
 }

@@ -24,6 +24,7 @@ import com.sigecu.entity.Respuestas;
 import com.sigecu.model.CursoModel;
 import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.PreguntasModel;
+import com.sigecu.model.PreguntasRetroModel;
 import com.sigecu.model.RespuestaALMModel;
 import com.sigecu.model.RespuestasModel;
 import com.sigecu.repository.CursosRepository;
@@ -71,6 +72,7 @@ public class PreguntasErradasConServiceImplement implements PreguntasErradasConS
 	@Autowired
 	@Qualifier("respuestasALMRepository")
 	private respuestaALMRepository respuestaALMRepository;
+	
 	@Override
 	public List<Respuestas> listarPreguntasHerradas() {
 		// TODO Auto-generated method stub
@@ -99,35 +101,43 @@ public class PreguntasErradasConServiceImplement implements PreguntasErradasConS
 		return cursoModel;
 	}
 	@Override
-	public List<PreguntasModel> listarPregunrasByExam(int idExamen) {
-		List<Preguntas> listPreguntas = queryEvaluacion.findAllPreguntasById(idExamen);
-		List<PreguntasModel> preguntasModel = new ArrayList<PreguntasModel>();
+	public List<PreguntasRetroModel> listarPregunrasByExam(int idEvaluacion, int idAsignaExamen) {
+		List<Preguntas> listPreguntas = queryEvaluacion.findAllPreguntasById(idEvaluacion);
+		List<Preguntas> listPreguntasErr = queryEvaluacion.findPreguntasErradasRetro(idEvaluacion, idAsignaExamen);
+		List<PreguntasRetroModel> preguntasRetroModel = new ArrayList<PreguntasRetroModel>();
 
-		for (Preguntas preg : listPreguntas) {
-			preguntasModel.add(preguntasConverter.converterPreguntasToPreguntasModelAndRespuestas(preg));
+		for (Preguntas pregunta : listPreguntas) {
+			if(listPreguntasErr.contains(pregunta)) {
+				preguntasRetroModel.add(preguntasConverter.converterPreguntasToPreguntasModelAndRespuestasRetro(pregunta, 0));
+				LOG.info("ES INCORRECTA : "+pregunta.getIdPregunta()+"...............");
+			}
+			else {
+				preguntasRetroModel.add(preguntasConverter.converterPreguntasToPreguntasModelAndRespuestasRetro(pregunta, 1));
+				LOG.info("ES CORRECTA : "+pregunta.getIdPregunta()+"...............");
+			}
 		}
-		LOG.info(preguntasModel.iterator().next().getRespuestasModel().iterator().next().getPregunta());
-		return preguntasModel;
+		LOG.info("TOTAL: PREGUNTAS : "+ listPreguntas.size());
+		//LOG.info(preguntasModel.iterator().next().getRespuestasModel().iterator().next().getPregunta());
+		return preguntasRetroModel;
 	}
+	
+	
+	
+	/* (non-Javadoc)
+	 * @see com.sigecu.service.PreguntasErradasConService#listarRespuestas()
+	 */
 	@Override
 	public List<RespuestasModel> listarRespuestas() {
-		List<Respuestas> respuestas = respuestasRepository.findAll();
-		List<RespuestasModel> respModel = new ArrayList<RespuestasModel>();
-		for (Respuestas resp : respuestas) {
-			respModel.add(respuestasConverter.converterRespuestasToRespuestasModel(resp));
-		}
-		return respModel;
+		// TODO Auto-generated method stub
+		return null;
 	}
+	/* (non-Javadoc)
+	 * @see com.sigecu.service.PreguntasErradasConService#listarRespuestasAlumno()
+	 */
 	@Override
 	public List<RespuestaALMModel> listarRespuestasAlumno() {
-		List<RespuestaALMEntity> respuestasALumno = respuestaALMRepository.findAll();
-		List <RespuestaALMModel> respuestaALMo = new ArrayList<RespuestaALMModel>();
-		for(RespuestaALMEntity ressal : respuestasALumno) {
-			//respuestaALMo.add(RespuestasAlumno.converterRespuestaALMEntitytoRespuestaALMModel(ressal));
-			LOG.info("Lista de respuestas del alumno fue correcot " );
-		}
-		
-		return respuestaALMo;
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

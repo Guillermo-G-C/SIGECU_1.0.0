@@ -56,12 +56,11 @@
 										class="material-icons">more_vert</i>
 								</a></li>
 							</ul>
-							<input type="hidden" id="tiempo" name="2" th:value="${eTiempo}" class="insivible"/>
+				<input type="hidden" id="horaInicio" th:value="${eHoraInicio}" class="invisible"/>
+<input type="hidden" id="horaFin" th:value="${eHoraFin}" class="invisible"/>
+<input type="hidden" id="tiempo" name="2" th:value="${eTiempo}" class="insivible"/>
                         	
-                       
-                        
-                        
-                        <span id="horas"></span>:<span id="minutos"></span>:<span id="segundos"></span>
+ <span id="horas"></span>:<span id="minutos"></span>:<span id="segundos"></span>
                         
                         <a href="#" th:href="@{/EvaluacionAlumno/finaliza(idEvento=${idEvento},idEvaluacion=${idEvaluacion},
 							idPregunta=${listaPreguntas.get(0).idPregunta},asignaExamen=${examenAsignado.idasignaExamen})}">
@@ -82,28 +81,10 @@
 								<p th:text="${listaPreguntas.get(0).pPregunta}"></p>
 								</div>
 								
-								<div th:each=" respuesta : ${listaPreguntas.get(0).respuestasModel}">
-									
-									
+								<div th:each=" respuesta : ${listaPreguntas.get(0).respuestasModel}">	
 									<input type="radio" th:field="*{idRespuesta}" th:value="${respuesta.idRespuesta}" />
 									<label th:for="${#ids.prev('idRespuesta')}" th:text="${respuesta.rRespuesta}"></label>
-									
-									<!--  <input type="hidden" th:id="'asignaExamen'+${respuesta.idRespuesta}" 
-									th:field="*{asignaExamen}" th:value="${examenAsignado}"/>
-									
-									<input type="radio" th:field="*{respuestasModel}" th:value="${respuesta}" />
-									<label th:for="${#ids.prev('respuestasModel')}" th:text="${respuesta.rRespuesta}"></label>-->
-									<!--  <p th:text="${examenAsignado.toString()}"></p>
-									<p th:text="${respuesta}"></p>-->
 								</div>
-								<!--  <section th:each="pregunta : ${listaPreguntas}">
-									<div class="row clearfix">
-									<p th:text="${pregunta.pPregunta}"></p>
-									<div th:each="respuesta : ${pregunta.respuestasModel}">
-									
-									</div>
-									</div>
-								</section>-->
 								</div>
 								<button type="submit" class="btn btn-primary m-t-15 waves-effect">SIGUIENTE</button>
 

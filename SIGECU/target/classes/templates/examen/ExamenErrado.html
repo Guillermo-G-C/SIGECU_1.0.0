@@ -36,7 +36,7 @@
 
 </head>
 
-<body class="theme-red" onload="carga()">
+<body class="theme-red">
 	<section th:include="fragment/menualumno"></section>
 
 	<section class="content">
@@ -56,22 +56,13 @@
 										class="material-icons">more_vert</i>
 								</a></li>
 							</ul>
-							<input type="hidden" id="tiempo" name="2" th:value="${eTiempo}" class="insivible"/>
-                        	
-                       
                         
-                        
-                        <span id="horas"></span>:<span id="minutos"></span>:<span id="segundos"></span>
-                        
-                        <a href="#" th:href="@{/EvaluacionAlumno/finaliza(idEvento=${idEvento},idEvaluacion=${idEvaluacion},
+                        <a href="#" th:href="@{/ExamenErrado/finaliza(idEvento=${idEvento},idEvaluacion=${idEvaluacion},
 							idPregunta=${listaPreguntas.get(0).idPregunta},asignaExamen=${examenAsignado.idasignaExamen})}">
 									<button type="button"
 										class="btn btn-primary btn-lg m-l-15 waves-effect">Finalizar</button>
 								</a>
 						</div>
-
-
-
 						<div class="body">
 							<form action="#" th:action="@{/ExamenErrado/guardaRespuesta(idEvento=${idEvento},idEvaluacion=${idEvaluacion},
 							idPregunta=${listaPreguntas.get(0).idPregunta},asignaExamen=${examenAsignado.idasignaExamen})}"

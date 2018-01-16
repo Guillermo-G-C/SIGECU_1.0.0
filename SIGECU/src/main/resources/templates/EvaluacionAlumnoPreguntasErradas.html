@@ -52,12 +52,18 @@
 
 						<div class="body">
 								<div class="card" th:each="pregunta : ${listaPreguntas}">
-								<p th:text="${pregunta.pPregunta}"></p>
+								<button th:if ="${pregunta.correcta==1}" type="button" class="btn bg-blue btn-circle-lg waves-effect waves-circle waves-float">
+                                    <i class="material-icons">done</i>
+                                </button>
+                                <button th:if ="${pregunta.correcta==0}" type="button" class="btn bg-red btn-circle-lg waves-effect waves-circle waves-float">
+                                    <i class="material-icons">clear</i>
+                                </button>
+								<p th:text="${pregunta.preguntaEnun}"></p>
 								<div th:each="respuesta : ${pregunta.respuestasModel}" >	
-									<input th:id="'radio'+${respuesta.idRespuesta}" type="radio"  th:value="${respuesta.idRespuesta}" />
-									<label th:for="'radio'+${respuesta.idRespuesta}" th:text="${respuesta.rRespuesta}"></label>
+									<input th:value="${respuesta.rSolucion}" th:id="'radio'+${respuesta.idRespuesta}" type="radio"/>
+									<label th:id="'radio'+${respuesta.idRespuesta}" th:text="${respuesta.rRespuesta}"></label>
 								</div>
-								<p th:text="${pregunta.pDescripcion}"></p>
+								<p th:if ="${pregunta.correcta==1}" th:text="${pregunta.descripcion}"></p>
 					</div>
 				</div>
 

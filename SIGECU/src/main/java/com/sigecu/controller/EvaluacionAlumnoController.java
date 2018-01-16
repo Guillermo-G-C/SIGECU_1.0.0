@@ -87,6 +87,8 @@ public class EvaluacionAlumnoController {
 
 				model.addAttribute("respuestaAlumno", respuestaAlumno);
 				model.addAttribute("eTiempo", evaluacionAlumnoService.tiempoExamen(idEvaluacion));
+				model.addAttribute("eHoraInicio",evaluacionAlumnoService.horaInicio(idEvaluacion));
+				model.addAttribute("eHoraFin",evaluacionAlumnoService.horaFin(idEvaluacion));
 			} else {
 				mav.setViewName("redirect:/calificaciones/mostrarCalificaciones?idEvaluacion="+idEvaluacion+"&idAsignaExamen="+asignaExamen.getIdasignaExamen());
 			}
@@ -105,9 +107,9 @@ public class EvaluacionAlumnoController {
 			@RequestParam(name = "asignaExamen", required = true) int idAsignaExamen,
 			@RequestParam(name = "idPregunta", required = true) int idPregunta,
 			@ModelAttribute(name = "respuestaAlumno") VistaRespuestasAlumno respuestaAlumno) {
-
+		LOG.info("EXAMEN GUARDADO: " + respuestaAlumno.toString() + " ASIGNA EXAMEN =");
 		evaluacionAlumnoService.guardarRespuestas(respuestaAlumno.getIdRespuesta(), idAsignaExamen, idPregunta);
-		// LOG.info("EXAMEN GUARDADO: " + respuestaAlumno.toString() + " ASIGNA EXAMEN =
+		
 		// " + idAsignaExamen);
 
 		return "redirect:/EvaluacionAlumno/mostrarExamen?idEvento=" + idEvento + "&idEvaluacion=" + idEvaluacion;
@@ -119,10 +121,10 @@ public class EvaluacionAlumnoController {
 			@RequestParam(name = "asignaExamen", required = true) int idAsignaExamen,
 			@RequestParam(name = "idPregunta", required = true) int idPregunta,
 			@ModelAttribute(name = "respuestaAlumno") VistaRespuestasAlumno respuestaAlumno) {
-
+		LOG.info("EXAMEN GUARDADO: " + respuestaAlumno.toString() + " ASIGNA EXAMEN ="+ idAsignaExamen);
 		evaluacionAlumnoService.guardarRespuestas(respuestaAlumno.getIdRespuesta(), idAsignaExamen, idPregunta);
 		evaluacionAlumnoService.marcarExamenRealizado(idAsignaExamen);
-		//LOG.info("EXAMEN GUARDADO: " + respuestaAlumno.toString() + " ASIGNA EXAMEN ="+ idAsignaExamen);
+		
 
 		return "redirect:/calificaciones/mostrarCalificaciones?idEvaluacion="+idEvaluacion+"i&dAsignaExamen="+idAsignaExamen;
 	}

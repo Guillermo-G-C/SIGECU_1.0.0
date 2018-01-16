@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sigecu.constant.ViewConstant;
 import com.sigecu.exception.BusinessException;
 import com.sigecu.model.AlumnoModel;
+import com.sigecu.model.AsignaExamenModel;
 import com.sigecu.service.DefineUsuarioService;
 import com.sigecu.service.PreguntasErradasConService;
 import com.sigecu.service.ValidarExamenAlumnoService;
@@ -71,7 +72,9 @@ public class PreguntasErradasController {
 		ModelAndView mav = new ModelAndView();
 		user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		alumnoModel =defineUsuario.buscarUsuarioAlumno(user.getUsername());
-		
+		alumnoModel = defineUsuario.buscarUsuarioAlumno(user.getUsername());
+		int idAlumno = alumnoModel.getId_alumno();
+		AsignaExamenModel asignaExamen = new AsignaExamenModel();
 		boolean mostrarRetroalimentacion = false;
 		try {
 			mostrarRetroalimentacion = validaRealizarExamenAlumno.validaMostrarRetroalimentarcion(idEvaluacion, alumnoModel.getId_alumno(), idEvento);
@@ -80,9 +83,16 @@ public class PreguntasErradasController {
 			LOG.info("ID: "+e.getIdException()+" MENSAJE: "+e.getMsj());
 			e.printStackTrace();
 		}
+		try {
+			asignaExamen = validaRealizarExamenAlumno.asignarExamen(idAlumno, idEvento);
+			LOG.info("ASIGNA EXAMEN: "+asignaExamen.getIdasignaExamen());
+			mav.addObject("examenAsignado", asignaExamen);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
 		if(mostrarRetroalimentacion) {
 			mav.setViewName(ViewConstant.PREGUNTAS_ERRADAS);
-			mav.addObject("listaPreguntas", preguntasErradasConService.listarPregunrasByExam(idEvaluacion));
+			mav.addObject("listaPreguntas", preguntasErradasConService.listarPregunrasByExam(idEvaluacion, asignaExamen.getIdasignaExamen()));
 			mav.addObject("user", alumnoModel );
 			return mav;
 		}else {

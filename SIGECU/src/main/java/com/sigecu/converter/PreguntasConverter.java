@@ -18,6 +18,7 @@ import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Preguntas;
 import com.sigecu.entity.Respuestas;
 import com.sigecu.model.PreguntasModel;
+import com.sigecu.model.PreguntasRetroModel;
 import com.sigecu.model.RespuestasModel;
 
 /**
@@ -65,6 +66,27 @@ public class PreguntasConverter {
 		preguntaModel.setPuntaje(preguntas.getpPuntaje());
 		preguntaModel.setRespuestasModel(respuestasModel);
 		LOG.info("Conversion correcta: Pregunta a PreguntaModel");
+		return preguntaModel;
+	}
+	
+	
+	/*
+	 * Convertir preguntas con respuesta tipo model agregado para retroalimentacion
+	 * */
+	public PreguntasRetroModel converterPreguntasToPreguntasModelAndRespuestasRetro(Preguntas preguntas, int correcto) {
+		PreguntasRetroModel preguntaModel = new PreguntasRetroModel();
+		
+		List<RespuestasModel> respuestasModel = new ArrayList<>();
+		Iterator<Respuestas> iter = preguntas.getRespuestas().iterator();
+		while(iter.hasNext()) {
+			RespuestasModel respuesta = respuestasConverter.converterRespuestasToRespuestasModelAndAML(iter.next());
+			respuestasModel.add(respuesta);
+		}
+		preguntaModel.setIdPregunta(preguntas.getIdPregunta());
+		preguntaModel.setPreguntaEnun(preguntas.getpPregunta());
+		preguntaModel.setDescripcion(preguntas.getpDescripcion());
+		preguntaModel.setRespuestasModel(respuestasModel);
+		preguntaModel.setCorrecta(correcto);
 		return preguntaModel;
 	}
 

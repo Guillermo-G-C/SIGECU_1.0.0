@@ -79,6 +79,7 @@ public class QueryEvaluacion {
 		
 	}
 
+	//si esta contertada regresa lista de preguntas
 	public List<Preguntas> findPreguntas(int idEvaluacion, int idAsignaExamen){
 		JPAQuery<Preguntas> query = new JPAQuery<> (em);
 		List<Preguntas> listaPreguntas = query.select(qPreguntas)
@@ -94,6 +95,27 @@ public class QueryEvaluacion {
 				
 		
 	}
+	
+	
+	
+	/*
+	 * * preguntas erradas para retroalimentacion
+	 */
+	public List<Preguntas> findPreguntasErradasRetro(int idEvaluacion, int idAsignaExamen){
+		JPAQuery<Preguntas> query = new JPAQuery<>(em);
+		List<Preguntas> listPreguntas = query.select(qPreguntas)
+				.from(qPreguntas, qALM, qRespuestas, qAsignaExamen)
+				.where(qRespuestas.rSolucion.eq("0")
+						.and(qALM.idRespuesta.eq(qRespuestas.idRespuesta))
+						.and(qALM.idPregunta.eq(qPreguntas.idPregunta))
+						.and(qAsignaExamen.idasignaExamen.eq(idAsignaExamen))
+						.and(qAsignaExamen.idasignaExamen.eq(qALM.asignaExamen.idasignaExamen))
+						)
+				.fetch();
+		
+		return listPreguntas;
+	}
+
 	
 	
 }

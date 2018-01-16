@@ -131,5 +131,18 @@ public class EvaluacionAlumnoImpl implements EvaluacionAlumnoService {
 		asignaExamenRepository.save(asignaExamen);
 		
 	}
+	@Override
+	public String horaInicio(int idEvaluacion) {
+		// TODO Auto-generated method stub
+		
+		return evaluacionesRepository.horaInicio();
+	}
+
+
+	@Override
+	public String horaFin(int idEvaluacion) {
+		// TODO Auto-generated method stub
+		return evaluacionesRepository.horaFin();
+	}
 
 }
