@@ -19,6 +19,7 @@ import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Eventos;
 import com.sigecu.model.AlumnoHasEventoModel;
 import com.sigecu.model.AlumnoModel;
+import com.sigecu.model.AsignaExamenModel;
 import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.EventosModel;
 import com.sigecu.repository.CursosRepository;
@@ -97,7 +98,7 @@ public class EventoAlumnoImpl implements eventoAlumnoService{
 	}
 	
 	@Override
-	public List<String[][]> validarCertificado(List<EventosModel> eventos, int idAlumno) {
+	public List<String[][]> validarCertificados(List<EventosModel> eventos, int idAlumno) {
 		List<String[][]> lista = new ArrayList<String[][]>();
 		String item [][] = new String [1][2];
 		
@@ -113,4 +114,18 @@ public class EventoAlumnoImpl implements eventoAlumnoService{
 		
 		return lista;
 	}
+
+	@Override
+	public List<String[][]> validarCertificado(List<EventosModel> eventos, int idAlumno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String validarcertificado(int idAlumno, int idEvento) {
+		String status = queryEventoAlumno.validarCertificado(idEvento, idAlumno).getStatus();
+		LOG.info("Estatus evento: "+status+" ;");
+		return status;
+	}
+	
 }

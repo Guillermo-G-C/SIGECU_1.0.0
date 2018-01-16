@@ -53,7 +53,6 @@ public class EventoAlumnoController {
 		user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		alumnoModel =defineUsuario.buscarUsuarioAlumno(user.getUsername());
 		LOG.info(user.getAuthorities());
-		mav.addObject("listC", eventoAlumnoService.validarCertificado(eventoAlumnoService.listAllEventosAl(alumnoModel.getId_alumno()), alumnoModel.getId_alumno()));
 		mav.addObject("user", alumnoModel );
 		mav.addObject("listarEventos", eventoAlumnoService.listAllEventosAl(alumnoModel.getId_alumno()));
 		return mav;
@@ -67,6 +66,7 @@ public class EventoAlumnoController {
 		mav.addObject("listExamen", eventoAlumnoService.listAllExamen(alumnoModel.getId_alumno(), idEvento));
 		mav.addObject("user", alumnoModel);
 		mav.addObject("idEvento", idEvento);
+		mav.addObject("status", eventoAlumnoService.validarcertificado(alumnoModel.getId_alumno(), idEvento));
 		return mav;
 	}
 }

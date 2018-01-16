@@ -68,13 +68,18 @@
 									<i class="material-icons">info</i> <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
-									<li><a th:href="@{/EvaluacionAlumno/mostrarExamen(idEvento=${idEvento},idEvaluacion=${eva.idevaluacion})}"><span>Realizar Evaluacion</span>
-									</a></li>
-									<li><a th:href="@{/preguntasErradas/evaluacion(idEvento=${idEvento},idEvaluacion=${eva.idevaluacion})}">
-									<span>Preguntas Erradas</span>
-									</a></li>
-									<li><a th:href="@{/ExamenErrado/ExamenErrado1(idEvento=${idEvento},idEvaluacion=${eva.idevaluacion})}"><span>Corregir Examen</span> </a></li>
-									
+									<li>
+										<a th:href="@{/EvaluacionAlumno/mostrarExamen(idEvento=${idEvento},idEvaluacion=${eva.idevaluacion})}"><span>Realizar Evaluacion</span></a>
+									</li>
+									<li>
+										<a th:href="@{/preguntasErradas/evaluacion(idEvento=${idEvento},idEvaluacion=${eva.idevaluacion})}"><span>Preguntas Erradas</span></a>
+									</li>
+									<li>
+										<a th:href="@{/ExamenErrado/ExamenErrado1(idEvento=${idEvento},idEvaluacion=${eva.idevaluacion})}"><span>Corregir Examen</span></a>
+									</li>
+									<li th:if="${status}==1">
+										<a th:href="@{/alumno/certificado?idEvento=__${idEvento}__}" target="_blank"><span>Generar certificado</span></a>
+									</li>	
 								</ul>
 							</div>
 						</div>
