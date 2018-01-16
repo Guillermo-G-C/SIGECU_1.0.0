@@ -104,8 +104,9 @@ public class PreguntasErradasConServiceImplement implements PreguntasErradasConS
 		List<PreguntasModel> preguntasModel = new ArrayList<PreguntasModel>();
 
 		for (Preguntas preg : listPreguntas) {
-			preguntasModel.add(preguntasConverter.converterPreguntasToPreguntasModel(preg));
+			preguntasModel.add(preguntasConverter.converterPreguntasToPreguntasModelAndRespuestas(preg));
 		}
+		LOG.info(preguntasModel.iterator().next().getRespuestasModel().iterator().next().getPregunta());
 		return preguntasModel;
 	}
 	@Override

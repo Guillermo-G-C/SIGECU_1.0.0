@@ -20,7 +20,7 @@ public class RespuestasALMConverter {
 	public RespuestaALMModel converterRespuestaALMToRespuestasModel(RespuestaALMEntity respuesta) {
 		
 		RespuestaALMModel resModel = new RespuestaALMModel();
-		resModel.setIdRespuestaALM(respuesta.getIdrespuestaALM());
+		resModel.setIdRespuestaALM(respuesta.getIdRespuestaALM());
 		resModel.setSeleccionada(respuesta.getSeleccionada());
 		
 		return resModel;

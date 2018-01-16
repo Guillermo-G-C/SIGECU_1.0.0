@@ -87,7 +87,7 @@ public class EvaluacionAlumnoController {
 				model.addAttribute("respuestaAlumno", respuestaAlumno);
 				model.addAttribute("eTiempo", evaluacionAlumnoService.tiempoExamen(idEvaluacion));
 			} else {
-				mav.setViewName("redirect:/calificaciones/mostrarCalificaciones");
+				mav.setViewName("redirect:/calificaciones/mostrarCalificaciones?idEvaluacion="+idEvaluacion+"&idAsignaExamen="+asignaExamen.getIdasignaExamen());
 			}
 
 			return mav;
@@ -102,9 +102,10 @@ public class EvaluacionAlumnoController {
 	public String guardaRespuesta(@RequestParam(name = "idEvento", required = false) int idEvento,
 			@RequestParam(name = "idEvaluacion", required = false) int idEvaluacion,
 			@RequestParam(name = "asignaExamen", required = true) int idAsignaExamen,
+			@RequestParam(name = "idPregunta", required = true) int idPregunta,
 			@ModelAttribute(name = "respuestaAlumno") VistaRespuestasAlumno respuestaAlumno) {
 
-		evaluacionAlumnoService.guardarRespuestas(respuestaAlumno.getIdRespuesta(), idAsignaExamen);
+		evaluacionAlumnoService.guardarRespuestas(respuestaAlumno.getIdRespuesta(), idAsignaExamen, idPregunta);
 		// LOG.info("EXAMEN GUARDADO: " + respuestaAlumno.toString() + " ASIGNA EXAMEN =
 		// " + idAsignaExamen);
 
@@ -115,12 +116,13 @@ public class EvaluacionAlumnoController {
 	public String finaliza(@RequestParam(name = "idEvento", required = false) int idEvento,
 			@RequestParam(name = "idEvaluacion", required = false) int idEvaluacion,
 			@RequestParam(name = "asignaExamen", required = true) int idAsignaExamen,
+			@RequestParam(name = "idPregunta", required = true) int idPregunta,
 			@ModelAttribute(name = "respuestaAlumno") VistaRespuestasAlumno respuestaAlumno) {
 
-		evaluacionAlumnoService.guardarRespuestas(respuestaAlumno.getIdRespuesta(), idAsignaExamen);
+		evaluacionAlumnoService.guardarRespuestas(respuestaAlumno.getIdRespuesta(), idAsignaExamen, idPregunta);
 		evaluacionAlumnoService.marcarExamenRealizado(idAsignaExamen);
 		//LOG.info("EXAMEN GUARDADO: " + respuestaAlumno.toString() + " ASIGNA EXAMEN ="+ idAsignaExamen);
 
-		return "redirect:/calificaciones/mostrarCalificaciones";
+		return "redirect:/calificaciones/mostrarCalificaciones?idEvaluacion="+idEvaluacion+"i&dAsignaExamen="+idAsignaExamen;
 	}
 }

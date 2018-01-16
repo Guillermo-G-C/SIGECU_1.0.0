@@ -73,45 +73,26 @@ public class EvaluacionAlumnoImpl implements EvaluacionAlumnoService {
 
 	@Autowired
 	@Qualifier("respuestasALMRepository")
-	private respuestaALMRepository respuestaALMRepository;;
+	private respuestaALMRepository respuestaALMRepository;
 
 	/*
 	 * Agrega las preguntas que no estan contestadas
 	 */
 	@Override
 	public List<PreguntasModel> listarPreguntasByEvaluacion(int idEvaluacion, int idAsignaExamen) {
+		List<Preguntas> preguntasContestadas = queryEvaluacion.findPreguntas(idEvaluacion, idAsignaExamen);
 		Evaluaciones eval = evaluacionesRepository.findByIdEvaluacion(idEvaluacion);
-		List<Preguntas> preguntas = preguntasRepository.findByEvaluaciones(eval);
-		AsignaExamenEntity asignaExamen = asignaExamenRepository.findByIdasignaExamen(idAsignaExamen);
-		Iterator<RespuestaALMEntity> iterAsignaExam = asignaExamen.getRespuestasAML().iterator(); // iterator de
-																									// respuestaALM
-		List<PreguntasModel> preguntasNoModel = new ArrayList<>();
-		List<PreguntasModel> preguntasSiModel = new ArrayList<>();
-		List<PreguntasModel> totalPreguntas = new ArrayList<>();
-		List<RespuestaALMEntity> respuestasALMEntity = new ArrayList<>();
-		while (iterAsignaExam.hasNext()) {
-			respuestasALMEntity.add(iterAsignaExam.next());
+		List<Preguntas> preguntasExamen = preguntasRepository.findByEvaluaciones(eval);
+		List<PreguntasModel> preguntasFaltantesModel = new ArrayList<>();
+		
+		for(Preguntas pregunta : preguntasExamen) {
+			if(!preguntasContestadas.contains(pregunta))
+				preguntasFaltantesModel.add(preguntasConverter.converterPreguntasToPreguntasModelAndRespuestas(pregunta));
 		}
-		LOG.info("TAMAÑO de RESPUESTAS ALM: " + asignaExamen.getRespuestasAML().size());
-		for (Preguntas pregunta : preguntas) {
-			PreguntasModel preguntaModel = preguntasConverter.converterPreguntasToPreguntasModelAndRespuestas(pregunta);
-			totalPreguntas.add(preguntaModel);
-			for (RespuestaALMEntity resp : respuestasALMEntity) {
-				if (pregunta.getRespuestas().contains(resp.getRespuestas()))
-					preguntasNoModel.add(preguntaModel);
-			}
-		}
-		for (PreguntasModel pregunta : totalPreguntas) {
-			if (!preguntasNoModel.contains(pregunta)) {
-				preguntasSiModel.add(pregunta);
-				LOG.info("PREGUNTA AGREGADA: " + pregunta.toString());
-			}
-		}
-		LOG.info("PREGUNTAS AGREGADAS: " + preguntasSiModel.size());
-		LOG.info("PREGUNTAS No AGREGADAS: " + preguntasNoModel.size());
-		LOG.info("PREGUNTAS tatales AGREGADAS: " + totalPreguntas.size());
-		// preguntasModel.iterator().next();
-		return preguntasSiModel;
+		LOG.info("PREGUNTAS PARA EXAMEN: "+preguntasExamen.size());
+		LOG.info("PREGUNTAS PARA RESPONDER: "+preguntasFaltantesModel.size());
+		LOG.info("PREGUNTAS RESPONDIDAS : "+preguntasContestadas.size());
+		return preguntasFaltantesModel;
 	}
 
 	@Override
@@ -121,25 +102,20 @@ public class EvaluacionAlumnoImpl implements EvaluacionAlumnoService {
 		return evaluacionmodel.geteTiempo();
 	}
 
-	public String calificacion(int idEvaluacion) {
-		Evaluaciones eval = evaluacionesRepository.findByIdEvaluacion(idEvaluacion);
-		EvaluacionesModel evaluacionmodel = evaluacionConverter.convertEvaluacion2EvaluacionModel(eval);
-		return evaluacionmodel.getePorcentaje();
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see com.sigecu.service.EvaluacionAlumnoService#guardarRespuestas(int, int)
 	 */
 	@Override
-	public void guardarRespuestas(int idRespuesta, int idAsignaExamen) {
+	public void guardarRespuestas(int idRespuesta, int idAsignaExamen, int idPregunta) {
 		RespuestaALMEntity respuestaALMEntity = new RespuestaALMEntity();
 		// respuestaALMEntity.setRespuestas();
 		Respuestas respuesta = respuestasRepository.findByIdRespuesta(idRespuesta);
 		AsignaExamenEntity asignaExamen = asignaExamenRepository.findByIdasignaExamen(idAsignaExamen);
 		respuestaALMEntity.setSeleccionada("1");
-		respuestaALMEntity.setRespuestas(respuesta);
+		respuestaALMEntity.setIdRespuesta(idRespuesta);
+		respuestaALMEntity.setIdPregunta(idPregunta);
 		respuestaALMEntity.setAsignaExamen(asignaExamen);
 		respuestaALMRepository.save(respuestaALMEntity);
 		LOG.info("RESPUESTA REGISTRADA: " + respuestaALMEntity.toString());

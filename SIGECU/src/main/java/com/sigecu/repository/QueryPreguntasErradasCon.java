@@ -16,11 +16,11 @@ import org.springframework.stereotype.Repository;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Preguntas;
+import com.sigecu.entity.QAsignaExamenEntity;
 import com.sigecu.entity.QEvaluaciones;
 import com.sigecu.entity.QPreguntas;
 import com.sigecu.entity.QRespuestaALMEntity;
 import com.sigecu.entity.QRespuestas;
-import com.sigecu.entity.Respuestas;
 
 /**
  * @author Dell
@@ -34,26 +34,10 @@ public class QueryPreguntasErradasCon {
 	private QPreguntas qPreguntas = QPreguntas.preguntas;
 	private QRespuestas qRespuestas = QRespuestas.respuestas;
 	private QRespuestaALMEntity qALM = QRespuestaALMEntity.respuestaALMEntity;
-//	private QRespuestaALM qrepuestasalm = QRespuestaALM.respuestaALM;
-//	
+	private QAsignaExamenEntity qAsignaExamen = QAsignaExamenEntity.asignaExamenEntity;
+	
 	@PersistenceContext
     private EntityManager em;
-//	private QEvaluaciones qEvaluaciones = QEvaluaciones.evaluaciones;
-//	private QPreguntas qPreguntas = QPreguntas.preguntas;
-//	private QRespuestas qRespuestas = QRespuestas.respuestas;
-//	private QRespuestaALM qrepuestasalm = QRespuestaALM.respuestaALM;
-//	
-//	@PersistenceContext
-//	private EntityManager em;
-//	
-//	public List<Respuestas> preguntasErradasMo() {
-//		JPAQuery<Preguntas> query = new JPAQuery<Preguntas>(em);
-//		
-//		//query.select(qPreguntas,qRespuestas).from(qPreguntas,qRespuestas).where(qRespuestas.preguntas.idPregunta.eq(qPreguntas.idPregunta)).fetch();
-//		List<Respuestas> pre=query.select(qRespuestas).from(qRespuestas,qrepuestasalm).where(qrepuestasalm.respuestas.idRespuesta.eq(qRespuestas.idRespuesta)).fetch();
-//		return pre;
-//	}
-
 	
 	/*Busca los examenes por id relacionados con el curso*/
 	public List<Evaluaciones> findAllExamenesById(int idCurso) {
@@ -79,13 +63,18 @@ public class QueryPreguntasErradasCon {
 		
 	}
 	
-	public List<Preguntas> findPreguntasErradas(int idEvaluacion){
+	/*
+	 * Agregar preguntas erradas*/
+	public List<Preguntas> findPreguntasErradas(int idEvaluacion, int idAsignaExamen){
 		JPAQuery<Preguntas> query = new JPAQuery<>(em);
 		List<Preguntas> listPreguntas = query.select(qPreguntas)
-				.from(qPreguntas, qALM, qRespuestas)
-				.where(qPreguntas.respuestas.contains(qALM.respuestas)
-						.and(qRespuestas.rSolucion.eq("0"))
-						.and(qALM.respuestas.idRespuesta.eq(qRespuestas.idRespuesta))
+				.from(qPreguntas, qALM, qRespuestas, qAsignaExamen)
+				.where(qRespuestas.rSolucion.eq("0")
+						.and(qALM.seleccionada.eq("1"))
+						.and(qALM.idRespuesta.eq(qRespuestas.idRespuesta))
+						.and(qALM.idPregunta.eq(qPreguntas.idPregunta))
+						.and(qAsignaExamen.idasignaExamen.eq(idAsignaExamen))
+						.and(qAsignaExamen.idasignaExamen.eq(qALM.asignaExamen.idasignaExamen))
 						)
 				.fetch();
 		

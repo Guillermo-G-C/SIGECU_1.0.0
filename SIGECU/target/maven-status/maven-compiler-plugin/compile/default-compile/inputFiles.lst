@@ -1,9 +1,11 @@
+/home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/exception/package-info.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/service/implemt/AdminExamServiceImpl.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/converter/RespuestasALMConverter.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/target/generated-sources/java/com/sigecu/entity/QRespuestaALMEntity.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/target/generated-sources/java/com/sigecu/entity/QUsers.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/service/InstructorService.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/model/EvaluacionesModel.java
+/home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/service/ValidarExamenAlumnoService.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/service/implemt/UserService.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/controller/EvaluacionAlumnoController.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/service/implemt/DefineUsuario.java
@@ -45,13 +47,14 @@
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/component/RequestTimeInterceptor.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/target/generated-sources/java/com/sigecu/entity/QEvaluaciones.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/service/implemt/EmailService.java
-/home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/repository/respuestaALM.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/converter/PreguntasConverter.java
+/home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/repository/AsignaExamenRepository.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/target/generated-sources/java/com/sigecu/entity/QPreguntas.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/repository/RespuestasRepository.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/repository/EvaluacionAlumnoRepository.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/model/CertificadoModel.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/service/implemt/EvaluacionAlumnoImpl.java
+/home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/exception/BusinessException.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/repository/AlumnoRepository.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/repository/QueryAlumnoHasEvento.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/service/AlumnoHasEventoService.java
@@ -59,11 +62,13 @@
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/service/EvaluacionAlumnoService.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/controller/PreguntasErradasController.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/repository/UserRepository.java
+/home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/service/implemt/ValidaRealizarExamenServiceImpl.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/model/CursoModel.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/target/generated-sources/java/com/sigecu/entity/QCursos.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/controller/InstructorController.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/entity/RespuestaALMEntity.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/repository/CertificadoRepository.java
+/home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/model/VistaRespuestasAlumno.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/entity/AlumnoEventosId.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/converter/AlumnosConverter.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/target/generated-sources/java/com/sigecu/entity/QUserRole.java
@@ -75,7 +80,6 @@
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/controller/EventoAlumnoController.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/repository/ExamenErradoRepository.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/service/implemt/CalificacionImplement.java
-/home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/converter/RespuestasAlumnoConverter.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/converter/CursosConverter.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/target/generated-sources/java/com/sigecu/entity/QAsignaExamenEntity.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/target/generated-sources/java/com/sigecu/entity/QCertificado.java
@@ -85,6 +89,7 @@
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/repository/EvaluacionRepository.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/service/DefineUsuarioService.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/entity/Cursos.java
+/home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/repository/respuestaALMRepository.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/model/UserCredencialModel.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/model/AlumnoModel.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/repository/InstructorRepository.java
@@ -101,6 +106,7 @@
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/model/AlumnoHasEventoModel.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/service/implemt/AlumnoHasEventoServiceImpl.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/service/eventoAlumnoService.java
+/home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/converter/AsignaExamenConverter.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/entity/UserRole.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/repository/QueryEvaAlumno.java
 /home/trabajo/eclipse-workspace/SIGECU_1.0.0/SIGECU/src/main/java/com/sigecu/repository/CursosRepository.java

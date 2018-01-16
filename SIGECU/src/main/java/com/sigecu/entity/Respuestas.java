@@ -38,8 +38,8 @@ public class Respuestas {
 	@Column(name = "rSolucion")
 	private String rSolucion;
 	
-	@OneToMany(fetch=FetchType.EAGER, mappedBy="respuestas")
-	private Set<RespuestaALMEntity> respuestasAML = new HashSet<>();
+	//@OneToMany(fetch=FetchType.EAGER, mappedBy="respuestas")
+	//private Set<RespuestaALMEntity> respuestasAML = new HashSet<>();
 	public Respuestas() {
 		// TODO Auto-generated constructor stub
 	}
@@ -111,18 +111,18 @@ public class Respuestas {
 		this.rSolucion = rSolucion;
 	}
 
-	/**
-	 * @return the respuestasAML
-	 */
-	public Set<RespuestaALMEntity> getRespuestasAML() {
-		return respuestasAML;
-	}
-
-	/**
-	 * @param respuestasAML the respuestasAML to set
-	 */
-	public void setRespuestasAML(Set<RespuestaALMEntity> respuestasAML) {
-		this.respuestasAML = respuestasAML;
-	}
+//	/**
+//	 * @return the respuestasAML
+//	 */
+//	public Set<RespuestaALMEntity> getRespuestasAML() {
+//		return respuestasAML;
+//	}
+//
+//	/**
+//	 * @param respuestasAML the respuestasAML to set
+//	 */
+//	public void setRespuestasAML(Set<RespuestaALMEntity> respuestasAML) {
+//		this.respuestasAML = respuestasAML;
+//	}
 
 }

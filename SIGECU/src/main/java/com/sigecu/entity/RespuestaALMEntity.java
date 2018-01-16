@@ -16,43 +16,73 @@ public class RespuestaALMEntity {
 	
 	@Id
 	@GeneratedValue (strategy= GenerationType.AUTO)
-	@Column(name="idrespuestaALM",unique=true,nullable=false)
-	private int idrespuestaALM;
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="r_idRespuesta")
-	private Respuestas respuestas;
+	@Column(name="idRespuestaALM",unique=true,nullable=false)
+	private int idRespuestaALM;
+	//@ManyToOne(fetch=FetchType.EAGER)
+	//@JoinColumn(name="r_idRespuesta")
+	//private Respuestas respuestas;
 	@Column(name="seleccionada")
 	private String seleccionada;
 	@ManyToOne(fetch =FetchType.EAGER)
 	@JoinColumn(name="aIdAsignaExamen")
 	private AsignaExamenEntity asignaExamen;
-	/**
-	 * @return the idrespuestaALM
+	@Column(name="idPregunta")
+	private int idPregunta;
+	@Column (name="idRespuesta")
+	private int idRespuesta;
+	
+	
+/**
+	 * @return the idRespuestaALM
 	 */
-	public int getIdrespuestaALM() {
-		return idrespuestaALM;
+	public int getIdRespuestaALM() {
+		return idRespuestaALM;
 	}
 	/**
-	 * @param idrespuestaALM the idrespuestaALM to set
+	 * @param idRespuestaALM the idRespuestaALM to set
 	 */
-	public void setIdrespuestaALM(int idrespuestaALM) {
-		this.idrespuestaALM = idrespuestaALM;
+	public void setIdRespuestaALM(int idRespuestaALM) {
+		this.idRespuestaALM = idRespuestaALM;
+	}
+/**
+	 * @return the idPregunta
+	 */
+	public int getIdPregunta() {
+		return idPregunta;
 	}
 	/**
-	 * @return the respuestas
+	 * @param idPregunta the idPregunta to set
 	 */
-	public Respuestas getRespuestas() {
-		return respuestas;
+	public void setIdPregunta(int idPregunta) {
+		this.idPregunta = idPregunta;
 	}
 	/**
-	 * @param respuestas the respuestas to set
+	 * @return the idRespuesta
 	 */
-	public void setRespuestas(Respuestas respuestas) {
-		this.respuestas = respuestas;
+	public int getIdRespuesta() {
+		return idRespuesta;
 	}
 	/**
-	 * @return the seleccionada
+	 * @param idRespuesta the idRespuesta to set
 	 */
+	public void setIdRespuesta(int idRespuesta) {
+		this.idRespuesta = idRespuesta;
+	}
+	//	/**
+//	 * @return the respuestas
+//	 */
+//	public Respuestas getRespuestas() {
+//		return respuestas;
+//	}
+//	/**
+//	 * @param respuestas the respuestas to set
+//	 */
+//	public void setRespuestas(Respuestas respuestas) {
+//		this.respuestas = respuestas;
+//	}
+//	/**
+//	 * @return the seleccionada
+//	 */
 	public String getSeleccionada() {
 		return seleccionada;
 	}

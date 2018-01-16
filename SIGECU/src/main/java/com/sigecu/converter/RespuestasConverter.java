@@ -51,19 +51,19 @@ public class RespuestasConverter {
 			
 			RespuestasModel respModel = new RespuestasModel();
 			
-			List<RespuestaALMModel> respuestasALMModel = new ArrayList<>();
-			Iterator<RespuestaALMEntity> iterALM =  respuestas.getRespuestasAML().iterator();
-			while(iterALM.hasNext()) {
-				RespuestaALMModel respALM = 
-						respuestasAMLConverter.converterRespuestaALMToRespuestasModel(iterALM.next());
-				respuestasALMModel.add(respALM);
-			}
+			//List<RespuestaALMModel> respuestasALMModel = new ArrayList<>();
+			//Iterator<RespuestaALMEntity> iterALM =  respuestas.getRespuestasAML().iterator();
+//			while(iterALM.hasNext()) {
+//				RespuestaALMModel respALM = 
+//						respuestasAMLConverter.converterRespuestaALMToRespuestasModel(iterALM.next());
+//				respuestasALMModel.add(respALM);
+//			}
 			
 			respModel.setIdRespuesta(respuestas.getIdRespuesta());
 			respModel.setrSolucion(respuestas.getrSolucion());
 			respModel.setPregunta(respuestas.getPreguntas());
 			respModel.setrRespuesta(respuestas.getrRespuesta());
-			respModel.setRespuestaALMModel(respuestasALMModel);
+			//respModel.setRespuestaALMModel(respuestasALMModel);
 			LOG.info("Conversion correcta: RESPUESTA A RESPUESTA MODEL");
 
 			return respModel;

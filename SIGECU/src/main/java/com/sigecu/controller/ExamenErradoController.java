@@ -84,7 +84,7 @@ public class ExamenErradoController {
 		} 
 		
 		if (validaReactivado) {
-			mav.setViewName(ViewConstant.MOSTRAR_EXAMEN);
+			mav.setViewName(ViewConstant.NUEVO_EXAMENERRADO);
 			mav.addObject("user", alumnoModel);
 			try {
 				asignaExamen = validaRealizarExamenAlumno.asignarExamen(idAlumno, idEvento);
@@ -93,9 +93,9 @@ public class ExamenErradoController {
 				e.printStackTrace();
 			}
 
-			List<PreguntasModel> listaPreguntas = examenErradoService.listarPreguntasByExamErrado(idEvaluacion,
-					asignaExamen.getIdasignaExamen());
+			List<PreguntasModel> listaPreguntas = examenErradoService.listarPreguntasByExamErrado(idEvaluacion, asignaExamen.getIdasignaExamen());
 			if (listaPreguntas.size() > 0) {
+				LOG.info(listaPreguntas.size());
 				mav.addObject("listaPreguntas", listaPreguntas);
 				mav.addObject("idEvaluacion", idEvaluacion);
 				mav.addObject("idEvento", idEvento);
@@ -104,7 +104,7 @@ public class ExamenErradoController {
 				model.addAttribute("eTiempo", evaluacionAlumnoService.tiempoExamen(idEvaluacion));
 			} else {
 				evaluacionAlumnoService.marcarExamenRealizado(asignaExamen.getIdasignaExamen());
-				mav.setViewName("redirect:/calificaciones/mostrarCalificaciones");
+				mav.setViewName("redirect:/calificaciones/mostrarCalificaciones?idEvaluacion="+idEvaluacion+"&idAsignaExamen="+asignaExamen.getIdasignaExamen());
 			}
 
 			return mav;
@@ -119,9 +119,10 @@ public class ExamenErradoController {
 	public String guardaRespuesta(@RequestParam(name = "idEvento", required = false) int idEvento,
 			@RequestParam(name = "idEvaluacion", required = false) int idEvaluacion,
 			@RequestParam(name = "asignaExamen", required = true) int idAsignaExamen,
+			@RequestParam(name = "idPregunta", required = true) int idPregunta,
 			@ModelAttribute(name = "respuestaAlumno") VistaRespuestasAlumno respuestaAlumno) {
 
-		evaluacionAlumnoService.guardarRespuestas(respuestaAlumno.getIdRespuesta(), idAsignaExamen);
+		 examenErradoService.guardarRespuestas(respuestaAlumno.getIdRespuesta(), idAsignaExamen, idPregunta);
 		// LOG.info("EXAMEN GUARDADO: " + respuestaAlumno.toString() + " ASIGNA EXAMEN =
 		// " + idAsignaExamen);
 		return "redirect:/ExamenErrado/ExamenErrado1?idEvento=" + idEvento + "&idEvaluacion=" + idEvaluacion;
@@ -133,11 +134,11 @@ public class ExamenErradoController {
 			@RequestParam(name = "asignaExamen", required = true) int idAsignaExamen,
 			@ModelAttribute(name = "respuestaAlumno") VistaRespuestasAlumno respuestaAlumno) {
 
-		evaluacionAlumnoService.guardarRespuestas(respuestaAlumno.getIdRespuesta(), idAsignaExamen);
-		evaluacionAlumnoService.marcarExamenRealizado(idAsignaExamen);
+		//evaluacionAlumnoService.guardarRespuestas(respuestaAlumno.getIdRespuesta(), idAsignaExamen);
+		examenErradoService.marcarExamenRealizado(idAsignaExamen);
 		//LOG.info("EXAMEN GUARDADO: " + respuestaAlumno.toString() + " ASIGNA EXAMEN ="+ idAsignaExamen);
 
-		return "redirect:/calificaciones/mostrarCalificaciones";
+		return "redirect:/calificaciones/mostrarCalificaciones?idEvaluacion="+idEvaluacion+"i&dAsignaExamen="+idAsignaExamen;
 	}
 	
 

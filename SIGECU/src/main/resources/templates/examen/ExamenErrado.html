@@ -7,7 +7,6 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport" />
-<title>ExamenErrado</title>
 <!-- Favicon-->
 
 <link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon" />
@@ -25,22 +24,20 @@
 <link th:href="@{/css/style.css}" rel="stylesheet" />
 <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 <link th:href="@{/css/themes/all-themes.css}" rel="stylesheet" />
-<script th:src="@{/js/cronometro.js}"></script>
-<style type='text/css'>
-input.invisible {
-	visibility: hidden;
-}
-</style>
 
+ <script th:src="@{/js/cronometro.js}"></script>
+    <style type='text/css'>
 
-
-
+	input.invisible {
+		visibility:hidden;
+	}
+	</style>
 
 
 </head>
 
 <body class="theme-red" onload="carga()">
-	<section th:include="fragment/menuadmin"></section>
+	<section th:include="fragment/menualumno"></section>
 
 	<section class="content">
 		<div class="container-fluid">
@@ -52,7 +49,6 @@ input.invisible {
 					<div class="card">
 						<div class="header">
 							<h2>Examen</h2>
-
 							<ul class="header-dropdown m-r--5">
 								<li class="dropdown"><a href="javascript:void(0);"
 									class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -60,57 +56,39 @@ input.invisible {
 										class="material-icons">more_vert</i>
 								</a></li>
 							</ul>
-							<input type="hidden" id="tiempo" name="2" th:value="${eTiempo}"
-								class="insivible"> </input> <span id="horas"></span>:<span
-								id="minutos"></span>:<span id="segundos"></span>
-
-							
-								<a href="#" th:href="@{/calificaciones/mostrarCalificaciones}">
+							<input type="hidden" id="tiempo" name="2" th:value="${eTiempo}" class="insivible"/>
+                        	
+                       
+                        
+                        
+                        <span id="horas"></span>:<span id="minutos"></span>:<span id="segundos"></span>
+                        
+                        <a href="#" th:href="@{/EvaluacionAlumno/finaliza(idEvento=${idEvento},idEvaluacion=${idEvaluacion},
+							idPregunta=${listaPreguntas.get(0).idPregunta},asignaExamen=${examenAsignado.idasignaExamen})}">
 									<button type="button"
 										class="btn btn-primary btn-lg m-l-15 waves-effect">Finalizar</button>
 								</a>
-							
 						</div>
 
 
 
 						<div class="body">
-							<div id="wizard_vertical">
-								<h2></h2>
-								<section th:each="pregunta : ${listaPreguntas}">
-									<div class="row clearfix">
-										<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-											<h4 th:text="${pregunta.pPregunta}"></h4>
-										</div>
+							<form action="#" th:action="@{/ExamenErrado/guardaRespuesta(idEvento=${idEvento},idEvaluacion=${idEvaluacion},
+							idPregunta=${listaPreguntas.get(0).idPregunta},asignaExamen=${examenAsignado.idasignaExamen})}"
+							th:object="${respuestaAlumno}" method="POST">
+							
+								<div class="card">
+								<div>
+								<p th:text="${listaPreguntas.get(0).pPregunta}"></p>
+								</div>			
+								<div th:each=" respuesta : ${listaPreguntas.get(0).respuestasModel}">	
+									<input type="radio" th:field="*{idRespuesta}" th:value="${respuesta.idRespuesta}" />
+									<label th:for="${#ids.prev('idRespuesta')}" th:text="${respuesta.rRespuesta}"></label>
+								</div>
+								</div>
+								<button type="submit" class="btn btn-primary m-t-15 waves-effect">SIGUIENTE</button>
 
-
-										<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-											<div class="info-box bg-teal hover-expand-effect">
-												<div class="icon">
-													<div class="chart chart-pie"></div>
-
-												</div>
-
-
-												<div class="content">
-													<div class="text">Puntaje</div>
-													<div class="number" th:text="${pregunta.puntaje}"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="demo-checkbox" th:each="resp : ${listaRespuestas}"
-										th:if="${pregunta.idPregunta==resp.pregunta.getIdPregunta()}">
-
-										<input type="checkbox" th:id="${resp.rRespuesta}" name="group1"
-											class="chk-col-teal" th:value="${resp.rRespuesta}" /> <label
-											th:for="${resp.rRespuesta}" th:text="${resp.rRespuesta}"></label>
-									</div>
-								</section>
-								<h2></h2>
-
-							</div>
+							</form>
 						</div>
 					</div>
 				</div>

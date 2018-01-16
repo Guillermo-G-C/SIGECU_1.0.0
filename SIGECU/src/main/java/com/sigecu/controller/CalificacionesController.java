@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sigecu.constant.ViewConstant;
@@ -48,19 +49,18 @@ public class CalificacionesController {
 	AlumnoModel alumnoModel;
 	
 	@GetMapping("/mostrarCalificaciones")
-	public ModelAndView mostrarExamen(Model model){
+	public ModelAndView mostrarExamen(@RequestParam(name = "idEvaluacion", required = false) int idEvaluacion,
+			@RequestParam(name = "idAsignaExamen", required = false) int idAsignaExamen){
 		ModelAndView mav = new ModelAndView(ViewConstant.CALIFICACIONEXAMEN );
 		
 		user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		alumnoModel =defineUsuario.buscarUsuarioAlumno(user.getUsername());
 		
 		//mav.addObject("ePorsentaje",EvaluacionAlumnoService.calificacion(1));
-		mav.addObject("ePorsentaje",calificacionService.calificacionFnl());
-		mav.addObject("aciertos",calificacionService.aciertosPregunta());
-		mav.addObject("errores",calificacionService.erroresPregunta());
+		mav.addObject("resumen",calificacionService.calificacionFnl(idEvaluacion,idAsignaExamen));
 		mav.addObject("user", alumnoModel );
 		try {
-			mailService.send(alumnoModel.getA_email(), "Examen realizado", "Calificacion Final: "+calificacionService.calificacionFnl()+"");
+			mailService.send(alumnoModel.getA_email(), "Examen realizado", "Calificacion Final: "+"");
 		} catch (AddressException e) {
 			LOG.error("La direccion de correo es incorrecta");
 			e.printStackTrace();

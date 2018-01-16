@@ -54,13 +54,13 @@
 						<div class="body">
 							<div>
 							<label for="uname">Calificacion: </label>
-							<label for="uname" th:text="${ePorsentaje}"></label>
+							<label for="uname" th:text="${resumen[0]}"></label>
 							<br/>
 							<label for="uname"> Preguntas acertadas: </label>
-							<label for="uname" th:text="${aciertos}"></label>
+							<label for="uname" th:text="${resumen[1]}"></label>
 							<br/>	
 							<label for="uname"> Preguntas erradas: </label>
-							<label for="uname" th:text="${errores}">0 </label>
+							<label for="uname" th:text="${resumen[2]}">0 </label>
 							
 							</div>
 							
