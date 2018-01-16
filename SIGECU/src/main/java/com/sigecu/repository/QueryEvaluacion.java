@@ -16,9 +16,11 @@ import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.sigecu.entity.Evaluaciones;
 import com.sigecu.entity.Preguntas;
+import com.sigecu.entity.QAsignaExamenEntity;
 import com.sigecu.entity.QCursos;
 import com.sigecu.entity.QEvaluaciones;
 import com.sigecu.entity.QPreguntas;
+import com.sigecu.entity.QRespuestaALMEntity;
 import com.sigecu.entity.QRespuestas;
 import com.sigecu.entity.Respuestas;
 
@@ -35,14 +37,12 @@ public class QueryEvaluacion {
 	QCursos qCursos = QCursos.cursos;
 	QPreguntas qPreguntas = QPreguntas.preguntas;
 	QRespuestas qRespuestas = QRespuestas.respuestas;
+	QRespuestaALMEntity qALM= QRespuestaALMEntity.respuestaALMEntity;
+	QAsignaExamenEntity qAsignaExamen = QAsignaExamenEntity.asignaExamenEntity;
 	//persistencia de la app
 	@PersistenceContext
 	private EntityManager em;
 	JPAQueryFactory queryFactory = null;
-	
-	public void listarExamenes() {
-		
-	}
 	
 	/*Busca los examenes por id relacionados con el curso*/
 	public List<Evaluaciones> findAllExamenesById(int idCurso) {
@@ -78,4 +78,22 @@ public class QueryEvaluacion {
 		return listRespuestas;
 		
 	}
+
+	public List<Preguntas> findPreguntas(int idEvaluacion, int idAsignaExamen){
+		JPAQuery<Preguntas> query = new JPAQuery<> (em);
+		List<Preguntas> listaPreguntas = query.select(qPreguntas)
+				.from(qPreguntas, qALM, qEval, qRespuestas, qAsignaExamen)
+				.where(qRespuestas.idRespuesta.eq(qALM.idRespuesta)
+						.and(qPreguntas.idPregunta.eq(qALM.idPregunta))
+						.and(qEval.idEvaluacion.eq(idEvaluacion))
+						.and(qAsignaExamen.idasignaExamen.eq(idAsignaExamen))
+						.and(qAsignaExamen.idasignaExamen.eq(qALM.asignaExamen.idasignaExamen))
+						.and(qALM.seleccionada.eq("1")))
+				.fetch();
+		return listaPreguntas;
+				
+		
+	}
+	
+	
 }

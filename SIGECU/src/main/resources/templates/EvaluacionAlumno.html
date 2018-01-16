@@ -63,7 +63,8 @@
                         
                         <span id="horas"></span>:<span id="minutos"></span>:<span id="segundos"></span>
                         
-                        <a href="#" th:href="@{/calificaciones/mostrarCalificaciones}">
+                        <a href="#" th:href="@{/EvaluacionAlumno/finaliza(idEvento=${idEvento},idEvaluacion=${idEvaluacion},
+							idPregunta=${listaPreguntas.get(0).idPregunta},asignaExamen=${examenAsignado.idasignaExamen})}">
 									<button type="button"
 										class="btn btn-primary btn-lg m-l-15 waves-effect">Finalizar</button>
 								</a>
@@ -72,41 +73,41 @@
 
 
 						<div class="body">
-							<div id="wizard_vertical">
-								<h2></h2>
-								<section th:each="pregunta : ${listaPreguntas}">
+							<form action="#" th:action="@{/EvaluacionAlumno/guardaRespuesta(idEvento=${idEvento},idEvaluacion=${idEvaluacion},
+							idPregunta=${listaPreguntas.get(0).idPregunta},asignaExamen=${examenAsignado.idasignaExamen})}"
+							th:object="${respuestaAlumno}" method="POST">
+							
+								<div class="card">
+								<div>
+								<p th:text="${listaPreguntas.get(0).pPregunta}"></p>
+								</div>
+								
+								<div th:each=" respuesta : ${listaPreguntas.get(0).respuestasModel}">
+									
+									
+									<input type="radio" th:field="*{idRespuesta}" th:value="${respuesta.idRespuesta}" />
+									<label th:for="${#ids.prev('idRespuesta')}" th:text="${respuesta.rRespuesta}"></label>
+									
+									<!--  <input type="hidden" th:id="'asignaExamen'+${respuesta.idRespuesta}" 
+									th:field="*{asignaExamen}" th:value="${examenAsignado}"/>
+									
+									<input type="radio" th:field="*{respuestasModel}" th:value="${respuesta}" />
+									<label th:for="${#ids.prev('respuestasModel')}" th:text="${respuesta.rRespuesta}"></label>-->
+									<!--  <p th:text="${examenAsignado.toString()}"></p>
+									<p th:text="${respuesta}"></p>-->
+								</div>
+								<!--  <section th:each="pregunta : ${listaPreguntas}">
 									<div class="row clearfix">
-										<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-											<h4 th:text="${pregunta.pPregunta}"></h4>
-										</div>
-
-
-										<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-											<div class="info-box bg-teal hover-expand-effect">
-												<div class="icon">
-													<div class="chart chart-pie"></div>
-
-												</div>
-
-
-												<div class="content">
-													<div class="text">Puntaje</div>
-													<div class="number" th:text="${pregunta.puntaje}"></div>
-												</div>
-											</div>
-										</div>
+									<p th:text="${pregunta.pPregunta}"></p>
+									<div th:each="respuesta : ${pregunta.respuestasModel}">
+									
 									</div>
-
-									<div class="demo-checkbox" th:each="resp : ${listaRespuestas}"
-										th:if="${pregunta.idPregunta==resp.pregunta.getIdPregunta()}">
-
-										<input type="checkbox" id="md_checkbox_1" name="group1"
-											class="chk-col-teal" th:value="${resp.rRespuesta}" /> <label
-											for="md_checkbox_1" th:text="${resp.rRespuesta}"></label>
 									</div>
-								</section>
-								<h2></h2>
-							</div>
+								</section>-->
+								</div>
+								<button type="submit" class="btn btn-primary m-t-15 waves-effect">SIGUIENTE</button>
+
+							</form>
 						</div>
 					</div>
 				</div>

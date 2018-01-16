@@ -26,8 +26,6 @@ public class QRespuestas extends EntityPathBase<Respuestas> {
 
     public final QPreguntas preguntas;
 
-    public final SetPath<RespuestaALMEntity, QRespuestaALMEntity> respuestasAML = this.<RespuestaALMEntity, QRespuestaALMEntity>createSet("respuestasAML", RespuestaALMEntity.class, QRespuestaALMEntity.class, PathInits.DIRECT2);
-
     public final StringPath rRespuesta = createString("rRespuesta");
 
     public final StringPath rSolucion = createString("rSolucion");

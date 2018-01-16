@@ -24,9 +24,11 @@ public class QRespuestaALMEntity extends EntityPathBase<RespuestaALMEntity> {
 
     public final QAsignaExamenEntity asignaExamen;
 
-    public final NumberPath<Integer> idrespuestaALM = createNumber("idrespuestaALM", Integer.class);
+    public final NumberPath<Integer> idPregunta = createNumber("idPregunta", Integer.class);
 
-    public final QRespuestas respuestas;
+    public final NumberPath<Integer> idRespuesta = createNumber("idRespuesta", Integer.class);
+
+    public final NumberPath<Integer> idRespuestaALM = createNumber("idRespuestaALM", Integer.class);
 
     public final StringPath seleccionada = createString("seleccionada");
 
@@ -49,7 +51,6 @@ public class QRespuestaALMEntity extends EntityPathBase<RespuestaALMEntity> {
     public QRespuestaALMEntity(Class<? extends RespuestaALMEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.asignaExamen = inits.isInitialized("asignaExamen") ? new QAsignaExamenEntity(forProperty("asignaExamen")) : null;
-        this.respuestas = inits.isInitialized("respuestas") ? new QRespuestas(forProperty("respuestas"), inits.get("respuestas")) : null;
     }
 
 }

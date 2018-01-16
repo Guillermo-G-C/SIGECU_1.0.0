@@ -14,14 +14,17 @@ import org.springframework.stereotype.Service;
 
 import com.sigecu.converter.PreguntasConverter;
 import com.sigecu.converter.RespuestasConverter;
+import com.sigecu.entity.AsignaExamenEntity;
 import com.sigecu.entity.Preguntas;
-import com.sigecu.entity.Respuestas;
-import com.sigecu.model.EvaluacionesModel;
+import com.sigecu.entity.RespuestaALMEntity;
 import com.sigecu.model.PreguntasModel;
-import com.sigecu.model.RespuestasModel;
+import com.sigecu.repository.AsignaExamenRepository;
+import com.sigecu.repository.EvaluacionRepository;
 import com.sigecu.repository.PreguntasRepository;
 import com.sigecu.repository.QueryEvaluacion;
+import com.sigecu.repository.QueryPreguntasErradasCon;
 import com.sigecu.repository.RespuestasRepository;
+import com.sigecu.repository.respuestaALMRepository;
 import com.sigecu.service.ExamenErradoService;
 
 /**
@@ -53,44 +56,61 @@ public class ExamenErradoServiceImplement implements ExamenErradoService {
 	@Autowired
 	@Qualifier("respuestasConverter")
 	private RespuestasConverter respuestasConverter;
-
+	@Autowired
+	@Qualifier("evaluacionesRepository")
+	private EvaluacionRepository evaluacionesRepository;
+	@Autowired
+	@Qualifier("asignaExamenRepository")
+	private AsignaExamenRepository asignaExamenRepository;
+	
+	@Autowired
+	@Qualifier("queryPreguntaErradaRepository")
+	private QueryPreguntasErradasCon queryPreguntasErradasRepository;
+	@Autowired
+	@Qualifier("respuestasALMRepository")
+	private respuestaALMRepository respuestaALMRepository;
 	
 	@Override
-	public List<PreguntasModel> listarPreguntasByExamErrado(int idExam){
-		List<Preguntas> listPreguntas = queryEvaluacion.findAllPreguntasById(idExam);
-		List<PreguntasModel> preguntasModel = new ArrayList<PreguntasModel>();
-		
-		for(Preguntas preg : listPreguntas) {
-			preguntasModel.add(preguntasConverter.converterPreguntasToPreguntasModel(preg));
+	public List<PreguntasModel> listarPreguntasByExamErrado(int idEvaluacion, int idAsignaExamen){
+		List<Preguntas> preguntas = queryPreguntasErradasRepository.findPreguntasErradas(idEvaluacion, idAsignaExamen);
+		List<PreguntasModel> preguntasModel = new ArrayList<>();
+		for(Preguntas pregunta : preguntas ) {
+			preguntasModel.add(preguntasConverter.converterPreguntasToPreguntasModelAndRespuestas(pregunta));
 		}
+		LOG.info("LAS PREGUNTAS HERRADAS: "+ preguntasModel.size());
+		
 		return preguntasModel;
 	}
 
-	
+
+	/* (non-Javadoc)
+	 * @see com.sigecu.service.ExamenErradoService#guardarRespuestas(int, int, int)
+	 */
 	@Override
-	public List<RespuestasModel> listarRespuestas() {
-		List<Respuestas> respuestas = respuestasRepository.findAll();
-		List<RespuestasModel> respModel = new ArrayList<RespuestasModel>();
-		for (Respuestas resp : respuestas) {
-			respModel.add(respuestasConverter.converterRespuestasToRespuestasModel(resp));
-		}
-		return respModel;
+	public void guardarRespuestas(int idRespuesta, int idAsignaExamen, int idPregunta) {
+		RespuestaALMEntity respuestaALMEntity = respuestaALMRepository.findByIdPregunta(idPregunta);
+		
+		AsignaExamenEntity asignaExamen = asignaExamenRepository.findByIdasignaExamen(idAsignaExamen);
+		respuestaALMEntity.setSeleccionada("2");
+		respuestaALMEntity.setIdRespuesta(idRespuesta);
+		respuestaALMEntity.setIdPregunta(idPregunta);
+		respuestaALMEntity.setAsignaExamen(asignaExamen);
+		respuestaALMRepository.save(respuestaALMEntity);
+		LOG.info("RESPUESTA REGISTRADA: " + respuestaALMEntity.toString());
+
 	}
 
 
+	/* (non-Javadoc)
+	 * @see com.sigecu.service.ExamenErradoService#marcarExamenRealizado(int)
+	 */
 	@Override
-	public List<EvaluacionesModel> listAllEvaluaciones(int idCurso) {
-		// TODO Auto-generated method stub
-		return null;
+	public void marcarExamenRealizado(int idAsignaExamen) {
+		AsignaExamenEntity asignaExamen = asignaExamenRepository.findByIdasignaExamen(idAsignaExamen);
+		asignaExamen.setRealizado("1");
+		asignaExamenRepository.save(asignaExamen);
+		
 	}
-
-
-	@Override
-	public List<RespuestasModel> listarRespuestas(int idExamen) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 
 }

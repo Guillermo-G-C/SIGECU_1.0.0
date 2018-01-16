@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import com.sigecu.converter.CursosConverter;
 import com.sigecu.converter.EvaluacionConverter;
 import com.sigecu.converter.PreguntasConverter;
-import com.sigecu.converter.RespuestasAlumnoConverter;
 import com.sigecu.converter.RespuestasConverter;
 import com.sigecu.entity.Cursos;
 import com.sigecu.entity.Evaluaciones;
@@ -30,7 +29,7 @@ import com.sigecu.model.RespuestasModel;
 import com.sigecu.repository.CursosRepository;
 import com.sigecu.repository.QueryEvaluacion;
 import com.sigecu.repository.RespuestasRepository;
-import com.sigecu.repository.respuestaALM;
+import com.sigecu.repository.respuestaALMRepository;
 import com.sigecu.service.PreguntasErradasConService;
 
 /**
@@ -70,11 +69,8 @@ public class PreguntasErradasConServiceImplement implements PreguntasErradasConS
 	private RespuestasConverter respuestasConverter;
 	
 	@Autowired
-	@Qualifier("respuestasALM")
-	private respuestaALM respuestaAL;
-	@Autowired
-	@Qualifier("respuestasAlumConverter")
-	private RespuestasAlumnoConverter RespuestasAlumno;
+	@Qualifier("respuestasALMRepository")
+	private respuestaALMRepository respuestaALMRepository;
 	@Override
 	public List<Respuestas> listarPreguntasHerradas() {
 		// TODO Auto-generated method stub
@@ -108,8 +104,9 @@ public class PreguntasErradasConServiceImplement implements PreguntasErradasConS
 		List<PreguntasModel> preguntasModel = new ArrayList<PreguntasModel>();
 
 		for (Preguntas preg : listPreguntas) {
-			preguntasModel.add(preguntasConverter.converterPreguntasToPreguntasModel(preg));
+			preguntasModel.add(preguntasConverter.converterPreguntasToPreguntasModelAndRespuestas(preg));
 		}
+		LOG.info(preguntasModel.iterator().next().getRespuestasModel().iterator().next().getPregunta());
 		return preguntasModel;
 	}
 	@Override
@@ -123,10 +120,10 @@ public class PreguntasErradasConServiceImplement implements PreguntasErradasConS
 	}
 	@Override
 	public List<RespuestaALMModel> listarRespuestasAlumno() {
-		List<RespuestaALMEntity> respuestasALumno = respuestaAL.findAll();
+		List<RespuestaALMEntity> respuestasALumno = respuestaALMRepository.findAll();
 		List <RespuestaALMModel> respuestaALMo = new ArrayList<RespuestaALMModel>();
 		for(RespuestaALMEntity ressal : respuestasALumno) {
-			respuestaALMo.add(RespuestasAlumno.converterRespuestaALMEntitytoRespuestaALMModel(ressal));
+			//respuestaALMo.add(RespuestasAlumno.converterRespuestaALMEntitytoRespuestaALMModel(ressal));
 			LOG.info("Lista de respuestas del alumno fue correcot " );
 		}
 		
