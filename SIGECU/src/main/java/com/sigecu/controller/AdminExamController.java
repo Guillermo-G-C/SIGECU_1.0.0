@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sigecu.constant.ViewConstant;
+import com.sigecu.model.AlumnoModel;
 import com.sigecu.model.EvaluacionesModel;
 import com.sigecu.model.PreguntasModel;
 import com.sigecu.model.RespuestasModel;
@@ -132,5 +133,17 @@ public class AdminExamController {
 		return "redirect:/adminExamen/listaExamen?idCurso="+idCurso;
 	}
 	
+	@GetMapping("/alumno")
+	public ModelAndView agregaAlumno(Model model) {
+		ModelAndView mav = new ModelAndView(ViewConstant.ALUMNO_CREA);
+		user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		username = user.getUsername();
+		AlumnoModel alumModel = new AlumnoModel();
+		
+		mav.addObject("username", username);
+		
+		model.addAttribute("Alumno", alumModel);
+		return mav;
+	}
 
 }
